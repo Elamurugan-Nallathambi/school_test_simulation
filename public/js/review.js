@@ -3,6 +3,7 @@
 // and identical review cards.
 import { renderDiagram } from "./diagrams.js";
 import { gradeTest } from "./grade.js";
+import { mentalMathTip } from "./mathstrategy.js";
 
 const esc = (s) => String(s == null ? "" : s)
   .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -81,7 +82,8 @@ export function renderResults(root, opts) {
   const dur = opts.durationSeconds || 0;
   const m = Math.floor(dur / 60), s = dur % 60;
   const mood = pct >= 85 ? "🌟" : pct >= 70 ? "😀" : pct >= 50 ? "🙂" : "💪";
-  const review = g.detail.map(({ q, resp, ok }, i) => reviewCard(q, resp, ok, i, passById)).join("");
+  const isMath = test.subject === "math";
+  const review = g.detail.map(({ q, resp, ok }, i) => reviewCard(q, resp, ok, i, passById, isMath)).join("");
 
   root.innerHTML = `
     <div class="results">
@@ -109,12 +111,45 @@ export function renderResults(root, opts) {
   root.querySelector("#btn-primary").onclick = () => opts.onPrimary && opts.onPrimary();
   root.querySelector("#btn-history").onclick = () => opts.onHistory && opts.onHistory();
   root.querySelector("#btn-print").onclick = () => window.print();
+
+  // Lazy AI "easier way" for math questions without a built-in (offline) tip.
+  root.querySelectorAll(".explain-btn").forEach((b) => {
+    b.onclick = async () => {
+      const item = g.detail[+b.dataset.i];
+      if (!item) return;
+      const box = b.parentElement.querySelector(".tip-out");
+      b.disabled = true; b.textContent = "Thinking…";
+      try {
+        const q = encodeURIComponent(item.q.questionText.slice(0, 400));
+        const a = encodeURIComponent(answerPlain(item.q));
+        const r = await fetch(`/api/explain?q=${q}&a=${a}`);
+        const d = await r.json();
+        if (d && d.strategy) { box.innerHTML = `💡 <b>Easier way:</b> ${esc(d.strategy)}`; b.style.display = "none"; }
+        else throw new Error();
+      } catch {
+        box.innerHTML = navigator.onLine ? "Couldn't load a tip right now." : "Connect to the internet to get a tip.";
+        b.disabled = false; b.textContent = "💡 Show an easier way";
+      }
+    };
+  });
   return g;
 }
 
-export function reviewCard(q, resp, ok, i, passById) {
+function answerPlain(q) {
+  if (q.itemType === "numeric_entry") return String(q.answer);
+  const idxs = Array.isArray(q.answer) ? q.answer : [q.answer];
+  return idxs.map((x) => (q.options || [])[x]).join("; ");
+}
+
+export function reviewCard(q, resp, ok, i, passById, isMath) {
   const passage = q.passageId ? passById[q.passageId] : null;
   const diagramHtml = q.diagram ? `<div class="q-diagram small">${renderDiagram(q.diagram)}</div>` : "";
+  let helper = "";
+  if (isMath) {
+    const tip = mentalMathTip(q.questionText);
+    if (tip) helper = `<div class="tip-box">💡 <b>Easier way:</b> ${esc(tip)}</div>`;
+    else helper = `<div class="tip-wrap"><button class="explain-btn" data-i="${i}">💡 Show an easier way</button><div class="tip-out"></div></div>`;
+  }
   const blank = (resp == null || resp === "" || (Array.isArray(resp) && !resp.length));
   let answerBlock = "";
   if (q.itemType === "numeric_entry") {
@@ -140,6 +175,7 @@ export function reviewCard(q, resp, ok, i, passById) {
       ${diagramHtml}
       ${answerBlock}
       ${q.explanation ? `<div class="rv-exp"><b>Why:</b> ${esc(q.explanation)}</div>` : ""}
+      ${helper}
     </div>`;
 }
 

@@ -253,40 +253,62 @@ function viewType() {
 
 // ── Step 4: Pick existing or generate ──────────────────────────────────────────
 async function viewTests() {
+  const offline = !navigator.onLine;
   render(`
     <section class="wizard">
       ${crumbs([stateLabel(state.region), "Grade " + state.grade, cap(state.subject), state.testType.toUpperCase()])}
       <div class="hero"><h1>Choose a test</h1><p>Use a ready test, or make a brand-new one.</p></div>
+      ${offline ? `<div class="offline-banner">📴 You're offline — showing tests you saved on this device. Tap a test to take it.</div>` : ""}
       <div id="test-list" class="test-list"><div class="loading">Loading tests…</div></div>
-      <div class="gen-row">
+      ${offline ? "" : `<div class="gen-row">
         <button id="btn-generate" class="btn btn-generate">✨ Generate a New Test</button>
         <span class="gen-note">Makes a fresh test with AI (about a minute). It's saved for next time.</span>
-      </div>
+      </div>`}
     </section>`);
-  app.querySelector("#btn-generate").onclick = () => generateNew();
+  const genBtn = app.querySelector("#btn-generate");
+  if (genBtn) genBtn.onclick = () => generateNew();
 
-  try {
-    const tests = await api.listTests({ grade: state.grade, subject: state.subject, testType: state.testType });
-    const list = app.querySelector("#test-list");
-    if (!list) return;
-    if (!tests.length) {
-      list.innerHTML = `<div class="empty">No saved tests yet — tap “Generate a New Test” to make one! ✨</div>`;
-      return;
-    }
-    list.innerHTML = tests.map((t) => `
-      <button class="test-row" data-id="${t.id}">
+  let tests = [];
+  try { tests = await api.listTests({ grade: state.grade, subject: state.subject, testType: state.testType }); }
+  catch (e) {}
+  const list = app.querySelector("#test-list");
+  if (!list) return;
+  if (!tests.length) {
+    list.innerHTML = offline
+      ? `<div class="empty">No tests saved on this device for this choice yet. Connect to the internet and tap “⬇ Save offline” on a test.</div>`
+      : `<div class="empty">No saved tests yet — tap “Generate a New Test” to make one! ✨</div>`;
+    return;
+  }
+  list.innerHTML = tests.map((t) => {
+    const saved = api.isOfflineSaved(t.id);
+    return `
+      <div class="test-row" data-id="${t.id}" role="button" tabindex="0">
         <span class="test-row-icon">${state.subject === "math" ? "🔢" : "📖"}</span>
         <span class="test-row-main">
-          <span class="test-row-title">${esc(t.title)}</span>
+          <span class="test-row-title">${esc(t.title)}${saved ? ` <span class="off-badge">📥 Offline</span>` : ""}</span>
           <span class="test-row-sub">${t.questionCount} questions · ~${t.timeLimitMinutes} min · ${t.source === "ai" ? "✨ AI" : "⭐ Curated"}</span>
         </span>
-        <span class="test-row-go">Start →</span>
-      </button>`).join("");
-    list.querySelectorAll("[data-id]").forEach((b) => (b.onclick = () => go(`#/start/${b.dataset.id}`)));
-  } catch (e) {
-    const list = app.querySelector("#test-list");
-    if (list) list.innerHTML = `<div class="empty error">Couldn't load tests: ${esc(e.message)}</div>`;
-  }
+        <span class="test-row-actions">
+          ${offline ? "" : `<button class="dl-btn ${saved ? "saved" : ""}" data-id="${t.id}">${saved ? "✓ Saved" : "⬇ Save offline"}</button>`}
+          <span class="test-row-go">Start →</span>
+        </span>
+      </div>`;
+  }).join("");
+  list.querySelectorAll(".test-row").forEach((row) => {
+    row.onclick = () => go(`#/start/${row.dataset.id}`);
+    row.onkeydown = (e) => { if (e.key === "Enter") go(`#/start/${row.dataset.id}`); };
+  });
+  list.querySelectorAll(".dl-btn").forEach((b) => {
+    b.onclick = async (e) => {
+      e.stopPropagation();
+      const id = b.dataset.id;
+      if (api.isOfflineSaved(id)) { api.removeOffline(id); viewTests(); return; }
+      b.textContent = "Saving…"; b.disabled = true;
+      try { const full = await api.getTest(id); api.saveOffline(full); }
+      catch { b.textContent = "⬇ Save offline"; b.disabled = false; return; }
+      viewTests();
+    };
+  });
 }
 
 async function generateNew() {
@@ -365,6 +387,7 @@ async function startScreen(id) {
 }
 
 function launch(test, guidance) {
+  api.saveOffline(test); // cache so this test (and resume/review) works offline
   document.body.classList.add("in-test");
   updateChrome(parseHash());
   if (runner) runner.stop();
@@ -481,4 +504,6 @@ document.getElementById("home-link").onclick = (e) => {
 
 initDict();
 window.addEventListener("hashchange", route);
+window.addEventListener("online", () => { if (!document.body.classList.contains("in-test")) route(); });
+window.addEventListener("offline", () => { if (!document.body.classList.contains("in-test")) route(); });
 route();

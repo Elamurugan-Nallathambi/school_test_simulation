@@ -38,3 +38,10 @@ CREATE TABLE IF NOT EXISTS glossary (
   phonetic        TEXT,
   created_at      TEXT NOT NULL
 );
+
+-- Cached "easier way" mental-math strategies for math questions.
+CREATE TABLE IF NOT EXISTS explanations (
+  qkey        TEXT PRIMARY KEY,   -- hash of question+answer
+  strategy    TEXT NOT NULL,
+  created_at  TEXT NOT NULL
+);

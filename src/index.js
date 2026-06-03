@@ -1,6 +1,6 @@
 // Worker entry — routes /api/*, otherwise serves static assets.
-import { listTests, getTest, saveTest, saveAttempt, listAttempts, getAttempt, getGlossary, saveGlossary } from "./db.js";
-import { generateTest, defineWord } from "./openai.js";
+import { listTests, getTest, saveTest, saveAttempt, listAttempts, getAttempt, getGlossary, saveGlossary, getExplanation, saveExplanation } from "./db.js";
+import { generateTest, defineWord, explainMath } from "./openai.js";
 import { validateTest } from "./validate.js";
 import { expectedCount, suggestedMinutes } from "./prompts.js";
 
@@ -126,6 +126,20 @@ async function handleApi(path, request, env) {
     return json({ ...entry, cached: false });
   }
 
+  // GET /api/explain?q=&a=  (cached mental-math "easier way" for a math question)
+  if (path === "/api/explain" && request.method === "GET") {
+    const u = new URL(request.url);
+    const q = (u.searchParams.get("q") || "").slice(0, 400);
+    const a = (u.searchParams.get("a") || "").slice(0, 120);
+    if (!q) return json({ error: "missing question" }, 400);
+    const qkey = "x" + fnv1a(q + "||" + a).toString(36);
+    const cached = await getExplanation(env, qkey);
+    if (cached) return json({ strategy: cached, cached: true });
+    const strategy = await explainMath(env, q, a);
+    if (strategy) { try { await saveExplanation(env, qkey, strategy); } catch {} }
+    return json({ strategy, cached: false });
+  }
+
   // GET /api/attempts?studentName=
   if (path === "/api/attempts" && request.method === "GET") {
     const name = new URL(request.url).searchParams.get("studentName");
@@ -151,6 +165,12 @@ async function handleApi(path, request, env) {
   }
 
   return json({ error: "not found" }, 404);
+}
+
+function fnv1a(str) {
+  let h = 2166136261 >>> 0;
+  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
 }
 
 // Safe, lossless normalizations to raise first-pass validity.

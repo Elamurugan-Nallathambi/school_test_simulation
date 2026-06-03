@@ -1,6 +1,30 @@
 // Minimal OpenAI Chat Completions client (JSON mode) for the Worker.
 import { systemPrompt, userPrompt } from "./prompts.js";
 
+// Kid-friendly "easier way" mental-math strategy for a math question.
+export async function explainMath(env, question, answer) {
+  const apiKey = env.OPENAI_API_KEY;
+  if (!apiKey) throw new Error("OPENAI_API_KEY is not configured");
+  const sys = `You are a friendly elementary math coach. A student just saw the answer to a question.
+Give ONE short, encouraging MENTAL-MATH strategy (2-3 sentences, max ~45 words) for an easier way to think about it —
+use break-apart/friendly numbers, fact families, place value, or drawing a quick model. Be concrete with the actual numbers.
+Return ONLY JSON: {"strategy": "..."}. No preamble.`;
+  const usr = `Question: ${question}\nCorrect answer: ${answer}\nGive the easier-way strategy.`;
+  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
+    body: JSON.stringify({
+      model: env.OPENAI_DEFINE_MODEL || "gpt-4o-mini",
+      messages: [{ role: "system", content: sys }, { role: "user", content: usr }],
+      response_format: { type: "json_object" }, temperature: 0.4, max_tokens: 160,
+    }),
+  });
+  if (!res.ok) throw new Error(`OpenAI explain error ${res.status}`);
+  const json = await res.json();
+  const parsed = JSON.parse(json.choices?.[0]?.message?.content || "{}");
+  return (parsed.strategy || "").trim();
+}
+
 // Kid-friendly single-word definition for the double-click dictionary.
 export async function defineWord(env, word, context) {
   const apiKey = env.OPENAI_API_KEY;

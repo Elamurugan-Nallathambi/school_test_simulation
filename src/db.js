@@ -82,6 +82,16 @@ export async function saveGlossary(env, e) {
   ).bind(e.word, e.partOfSpeech || "", e.meaning, e.example || "", e.phonetic || "", new Date().toISOString()).run();
 }
 
+export async function getExplanation(env, qkey) {
+  const row = await env.DB.prepare("SELECT strategy FROM explanations WHERE qkey = ?").bind(qkey).first();
+  return row ? row.strategy : null;
+}
+export async function saveExplanation(env, qkey, strategy) {
+  await env.DB.prepare(
+    "INSERT OR REPLACE INTO explanations (qkey, strategy, created_at) VALUES (?,?,?)"
+  ).bind(qkey, strategy, new Date().toISOString()).run();
+}
+
 export async function saveAttempt(env, a) {
   const id = "att-" + crypto.randomUUID();
   const now = new Date().toISOString();
