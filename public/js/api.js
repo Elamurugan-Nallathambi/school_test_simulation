@@ -28,6 +28,18 @@ export async function generateTest({ grade, subject, testType }) {
   return d;
 }
 
+export async function listAttempts(studentName) {
+  const r = await fetch(`/api/attempts?studentName=${encodeURIComponent(studentName)}`);
+  const d = await J(r);
+  return d.attempts || [];
+}
+
+export async function getAttempt(id) {
+  const r = await fetch(`/api/attempts/${id}`);
+  if (!r.ok) throw new Error("Could not load result");
+  return J(r); // { attempt, test }
+}
+
 export async function saveAttempt(payload) {
   try {
     const r = await fetch("/api/attempts", {

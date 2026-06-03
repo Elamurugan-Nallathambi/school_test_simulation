@@ -1,7 +1,8 @@
 // Worker entry — routes /api/*, otherwise serves static assets.
-import { listTests, getTest, saveTest, saveAttempt } from "./db.js";
-import { generateTest } from "./openai.js";
+import { listTests, getTest, saveTest, saveAttempt, listAttempts, getAttempt, getGlossary, saveGlossary } from "./db.js";
+import { generateTest, defineWord } from "./openai.js";
 import { validateTest } from "./validate.js";
+import { expectedCount, suggestedMinutes } from "./prompts.js";
 
 const json = (data, status = 200) =>
   new Response(JSON.stringify(data), {
@@ -79,29 +80,66 @@ async function handleApi(path, request, env) {
     const stamp = Date.now().toString(36);
     const id = `g${grade}-${subject === "math" ? "math" : "read"}-${testType}-ai-${stamp}`;
     const title = `Grade ${grade} ${subject === "math" ? "Math" : "Reading"} — ${testType.toUpperCase()} (Generated)`;
+    const wantCount = expectedCount({ grade, subject, testType });
 
-    // Generate with retries — the model occasionally slips (e.g. duplicate
-    // options); retry a couple times before giving up so the kid flow is robust.
+    // Generate with retries — enforce the EXACT question count for the grade/type
+    // and re-roll on validation slips (e.g. duplicate options).
     let test = null, lastErrors = null;
-    for (let attempt = 0; attempt < 3; attempt++) {
+    for (let attempt = 0; attempt < 4; attempt++) {
       const t = await generateTest(env, {
         grade, subject, testType,
-        difficulty: b.difficulty, questionCount: b.questionCount,
+        difficulty: b.difficulty, questionCount: wantCount,
         id, title, attempt,
       });
       t.id = id; t.grade = grade; t.subject = subject; t.testType = testType;
       if (!t.title) t.title = title;
+      t.timeLimitMinutes = suggestedMinutes(testType);
       t.source = "ai";
       if (!Array.isArray(t.passages)) t.passages = [];
       repair(t);
+      // If the model produced extra questions, trim to the exact count.
+      if (Array.isArray(t.questions) && t.questions.length > wantCount) {
+        t.questions = t.questions.slice(0, wantCount);
+      }
       const v = validateTest(t);
-      if (v.ok) { test = t; break; }
-      lastErrors = v.errors;
+      const countOk = Array.isArray(t.questions) && t.questions.length === wantCount;
+      if (v.ok && countOk) { test = t; break; }
+      lastErrors = countOk ? v.errors : [`expected ${wantCount} questions, got ${t.questions?.length}`, ...(v.errors || [])];
     }
     if (!test) return json({ error: "generation failed validation", details: lastErrors }, 502);
 
     await saveTest(env, test, "ai");
     return json(test);
+  }
+
+  // GET /api/define?word=&context=  (cached kid-friendly dictionary)
+  if (path === "/api/define" && request.method === "GET") {
+    const u = new URL(request.url);
+    const raw = (u.searchParams.get("word") || "").toLowerCase().trim();
+    const word = raw.replace(/[^a-z'\-]/g, "");
+    if (!word || word.length > 40) return json({ error: "invalid word" }, 400);
+    const cached = await getGlossary(env, word);
+    if (cached) return json({ ...cached, cached: true });
+    const context = (u.searchParams.get("context") || "").slice(0, 300);
+    const entry = await defineWord(env, word, context);
+    if (entry.meaning) { try { await saveGlossary(env, entry); } catch {} }
+    return json({ ...entry, cached: false });
+  }
+
+  // GET /api/attempts?studentName=
+  if (path === "/api/attempts" && request.method === "GET") {
+    const name = new URL(request.url).searchParams.get("studentName");
+    if (!name) return json({ attempts: [] });
+    const attempts = await listAttempts(env, name);
+    return json({ attempts });
+  }
+
+  // GET /api/attempts/:id
+  const am = path.match(/^\/api\/attempts\/([\w-]+)$/);
+  if (am && request.method === "GET") {
+    const data = await getAttempt(env, am[1]);
+    if (!data) return json({ error: "not found" }, 404);
+    return json(data);
   }
 
   // POST /api/attempts

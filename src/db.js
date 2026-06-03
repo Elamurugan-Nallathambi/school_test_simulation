@@ -38,6 +38,50 @@ export async function saveTest(env, test, source = "ai") {
   return test;
 }
 
+export async function listAttempts(env, studentName) {
+  const { results } = await env.DB.prepare(
+    `SELECT a.id, a.test_id, a.student_name, a.grade, a.subject, a.test_type,
+            a.score, a.total, a.duration_seconds, a.created_at, t.title AS test_title
+       FROM attempts a LEFT JOIN tests t ON t.id = a.test_id
+      WHERE a.student_name = ? COLLATE NOCASE
+      ORDER BY a.created_at DESC LIMIT 100`
+  ).bind(studentName).all();
+  return results.map((r) => ({
+    id: r.id, testId: r.test_id, studentName: r.student_name, grade: r.grade,
+    subject: r.subject, testType: r.test_type, score: r.score, total: r.total,
+    durationSeconds: r.duration_seconds, createdAt: r.created_at,
+    testTitle: r.test_title,
+  }));
+}
+
+export async function getAttempt(env, id) {
+  const row = await env.DB.prepare("SELECT * FROM attempts WHERE id = ?").bind(id).first();
+  if (!row) return null;
+  const test = await getTest(env, row.test_id);
+  return {
+    attempt: {
+      id: row.id, testId: row.test_id, studentName: row.student_name, grade: row.grade,
+      subject: row.subject, testType: row.test_type, score: row.score, total: row.total,
+      durationSeconds: row.duration_seconds, answers: JSON.parse(row.answers || "{}"),
+      createdAt: row.created_at,
+    },
+    test,
+  };
+}
+
+export async function getGlossary(env, word) {
+  const row = await env.DB.prepare("SELECT * FROM glossary WHERE word = ?").bind(word).first();
+  if (!row) return null;
+  return { word: row.word, partOfSpeech: row.part_of_speech, meaning: row.meaning, example: row.example, phonetic: row.phonetic };
+}
+
+export async function saveGlossary(env, e) {
+  await env.DB.prepare(
+    `INSERT OR REPLACE INTO glossary (word, part_of_speech, meaning, example, phonetic, created_at)
+     VALUES (?,?,?,?,?,?)`
+  ).bind(e.word, e.partOfSpeech || "", e.meaning, e.example || "", e.phonetic || "", new Date().toISOString()).run();
+}
+
 export async function saveAttempt(env, a) {
   const id = "att-" + crypto.randomUUID();
   const now = new Date().toISOString();

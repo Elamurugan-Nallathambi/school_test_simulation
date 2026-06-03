@@ -28,3 +28,13 @@ CREATE TABLE IF NOT EXISTS attempts (
 );
 CREATE INDEX IF NOT EXISTS idx_attempts_test ON attempts(test_id);
 CREATE INDEX IF NOT EXISTS idx_attempts_name ON attempts(student_name);
+
+-- Cached kid-friendly word definitions (double-click lookup), so repeats are free.
+CREATE TABLE IF NOT EXISTS glossary (
+  word            TEXT PRIMARY KEY,   -- lowercased
+  part_of_speech  TEXT,
+  meaning         TEXT NOT NULL,
+  example         TEXT,
+  phonetic        TEXT,
+  created_at      TEXT NOT NULL
+);

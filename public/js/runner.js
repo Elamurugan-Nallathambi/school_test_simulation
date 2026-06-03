@@ -1,28 +1,43 @@
-// Exam runner: renders the timed test, handles navigation, autosave, grading.
+// Exam runner: timed test, navigation, autosave, guidance mode, grading.
 import { renderDiagram } from "./diagrams.js";
 import { saveAttempt } from "./api.js";
+import { gradeTest, isCorrect } from "./grade.js";
+import { renderResults, normalizeGenre, GENRE_LABEL } from "./review.js";
+import { officialTiming } from "./timing.js";
 
 const esc = (s) => String(s == null ? "" : s)
   .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const paras = (t) => esc(t).split(/\n\n+/).map((p) => `<p>${p.replace(/\n/g, "<br>")}</p>`).join("");
 
 const LETTERS = ["A", "B", "C", "D", "E", "F"];
+const GENRES = [
+  { v: "fiction", label: "📖 Fiction" },
+  { v: "nonfiction", label: "📰 Nonfiction" },
+  { v: "poetry", label: "🎵 Poetry" },
+];
 
 export class Runner {
-  constructor(root, test, student, onExit) {
+  constructor(root, test, student, opts = {}) {
     this.root = root;
     this.test = test;
     this.student = student;
-    this.onExit = onExit;
+    this.onExit = opts.onExit;
+    this.onHistory = opts.onHistory;
+    this.guidance = !!opts.guidance;
     this.qs = test.questions;
     this.passById = Object.fromEntries((test.passages || []).map((p) => [p.id, p]));
     this.storeKey = `attempt:${test.id}:${student}`;
     this.idx = 0;
-    this.responses = {};   // qid -> answer (int | int[] | string)
-    this.flags = {};       // qid -> bool
+    this.responses = {};   // qid -> answer; also "__genre__<pid>" -> genre pick
+    this.flags = {};
+    this.revealed = {};    // qid -> bool (guidance: show answer)
+    this.checkMsg = {};    // qid -> {text,cls} (guidance: check answer)
     this.submitted = false;
     this.startTs = Date.now();
-    this.remaining = test.timeLimitMinutes * 60;
+    this.timing = officialTiming(test.testType);
+    this.suggestedSec = (test.timeLimitMinutes || this.timing.suggested) * 60;
+    this.maxSec = Math.max(this.timing.max * 60, this.suggestedSec);
+    this.elapsed = 0;
     this.restore();
   }
 
@@ -33,7 +48,8 @@ export class Runner {
         this.responses = saved.responses || {};
         this.flags = saved.flags || {};
         this.idx = saved.idx || 0;
-        if (typeof saved.remaining === "number") this.remaining = saved.remaining;
+        if (typeof saved.elapsed === "number") this.elapsed = saved.elapsed;
+        if (typeof saved.guidance === "boolean") this.guidance = saved.guidance;
       }
     } catch {}
   }
@@ -41,7 +57,7 @@ export class Runner {
     try {
       localStorage.setItem(this.storeKey, JSON.stringify({
         testId: this.test.id, responses: this.responses, flags: this.flags,
-        idx: this.idx, remaining: this.remaining,
+        idx: this.idx, elapsed: this.elapsed, guidance: this.guidance,
       }));
     } catch {}
   }
@@ -55,10 +71,10 @@ export class Runner {
 
   onTick() {
     if (this.submitted) return;
-    this.remaining--;
+    this.elapsed++;
     this.updateTimer();
-    if (this.remaining % 5 === 0) this.persist();
-    if (this.remaining <= 0) { this.remaining = 0; this.submit(true); }
+    if (this.elapsed % 5 === 0) this.persist();
+    if (this.elapsed >= this.maxSec) this.submit(true);
   }
 
   // ── shell ──────────────────────────────────────────────────────────────────
@@ -71,11 +87,11 @@ export class Runner {
             <span class="badge subj-${t.subject}">${t.subject === "math" ? "🔢 Math" : "📖 Reading"}</span>
             <div class="run-title">
               <strong>${esc(t.title)}</strong>
-              <span class="run-student">👋 ${esc(this.student)}</span>
+              <span class="run-student">👋 ${esc(this.student)}${this.guidance ? ' · <span class="guide-tag">🧭 Guidance on</span>' : ""}</span>
             </div>
           </div>
           <div class="run-head-right">
-            <div id="timer" class="timer" title="Time remaining"></div>
+            <div id="timer" class="timer" title="Time"></div>
             <button id="btn-submit" class="btn btn-submit">Finish ✓</button>
           </div>
         </header>
@@ -89,6 +105,7 @@ export class Runner {
               <span><i class="dot flagged"></i> Flagged</span>
               <span><i class="dot"></i> Unseen</span>
             </div>
+            <div class="q-nav-tip">💡 Double-click any word to hear it and see what it means.</div>
           </aside>
         </div>
         <footer class="run-foot">
@@ -98,7 +115,7 @@ export class Runner {
         </footer>
       </div>`;
     this.root.querySelector("#btn-prev").onclick = () => this.go(this.idx - 1);
-    this.root.querySelector("#btn-next").onclick = () => this.go(this.idx + 1);
+    this.root.querySelector("#btn-next").onclick = () => this.next();
     this.root.querySelector("#btn-flag").onclick = () => this.toggleFlag();
     this.root.querySelector("#btn-submit").onclick = () => this.confirmSubmit();
     this.updateTimer();
@@ -108,19 +125,27 @@ export class Runner {
   updateTimer() {
     const el = this.root.querySelector("#timer");
     if (!el) return;
-    const m = Math.floor(this.remaining / 60), s = this.remaining % 60;
-    el.textContent = `⏱ ${m}:${String(s).padStart(2, "0")}`;
-    el.classList.toggle("warn", this.remaining <= 300 && this.remaining > 60);
-    el.classList.toggle("danger", this.remaining <= 60);
+    const over = this.elapsed > this.suggestedSec;
+    el.classList.toggle("warn", !over && this.suggestedSec - this.elapsed <= 300 && this.suggestedSec - this.elapsed > 60);
+    el.classList.toggle("danger", !over && this.suggestedSec - this.elapsed <= 60);
+    el.classList.toggle("overtime", over);
+    if (!over) {
+      const rem = this.suggestedSec - this.elapsed;
+      el.textContent = `⏱ ${fmt(rem)}`;
+      el.title = `Suggested time left (up to ${Math.round(this.maxSec / 60)} min allowed)`;
+    } else {
+      const overBy = this.elapsed - this.suggestedSec;
+      el.textContent = `＋${fmt(overBy)} ⏱`;
+      el.title = `Over the suggested time — you can keep going (max ${Math.round(this.maxSec / 60)} min)`;
+    }
   }
 
   renderGrid() {
     const grid = this.root.querySelector("#q-grid");
     grid.innerHTML = this.qs.map((q, i) => {
-      const answered = this.isAnswered(q.id);
       const cls = ["q-cell"];
       if (i === this.idx) cls.push("current");
-      if (answered) cls.push("answered");
+      if (this.isAnswered(q.id)) cls.push("answered");
       if (this.flags[q.id]) cls.push("flagged");
       return `<button class="${cls.join(" ")}" data-i="${i}">${i + 1}</button>`;
     }).join("");
@@ -141,6 +166,11 @@ export class Runner {
     this.renderQuestion();
     this.renderGrid();
   }
+  // On the last question this finishes the test (and shows the review); otherwise advances.
+  next() {
+    if (this.idx >= this.qs.length - 1) this.confirmSubmit();
+    else this.go(this.idx + 1);
+  }
   toggleFlag() {
     const q = this.qs[this.idx];
     this.flags[q.id] = !this.flags[q.id];
@@ -158,14 +188,13 @@ export class Runner {
     const passageHtml = passage ? `
       <section class="passage">
         <div class="passage-inner">
-          <div class="passage-genre">${esc(passage.genre || "")}${passage.lexile ? " · " + esc(passage.lexile) : ""}</div>
           <h3 class="passage-title">${esc(passage.title || "Passage")}</h3>
           <div class="passage-text">${paras(passage.text)}</div>
+          ${this.genreCheckHtml(passage)}
         </div>
       </section>` : "";
 
-    const diagramHtml = q.diagram
-      ? `<div class="q-diagram">${renderDiagram(q.diagram)}</div>` : "";
+    const diagramHtml = q.diagram ? `<div class="q-diagram">${renderDiagram(q.diagram)}</div>` : "";
 
     const qBody = `
       <section class="question ${passage ? "" : "no-passage"}">
@@ -178,40 +207,95 @@ export class Runner {
           <div class="q-text">${esc(q.questionText).replace(/\n/g, "<br>")}</div>
           ${diagramHtml}
           ${this.renderInput(q)}
+          ${this.guidanceBarHtml(q)}
         </div>
       </section>`;
 
     area.className = "q-area" + (passage ? " with-passage" : "");
     area.innerHTML = passageHtml + qBody;
     this.wireInputs(q);
+    if (passage) this.wireGenre(passage);
+    this.wireGuidance(q);
 
     this.root.querySelector("#btn-prev").disabled = this.idx === 0;
-    const next = this.root.querySelector("#btn-next");
-    next.textContent = this.idx === this.qs.length - 1 ? "Review →" : "Next →";
-    const flagBtn = this.root.querySelector("#btn-flag");
-    flagBtn.classList.toggle("active", !!this.flags[q.id]);
+    this.root.querySelector("#btn-next").textContent = this.idx === this.qs.length - 1 ? "Finish & Review →" : "Next →";
+    this.root.querySelector("#btn-flag").classList.toggle("active", !!this.flags[q.id]);
+  }
+
+  // genre self-check below a passage (validated, not part of the question score)
+  genreCheckHtml(passage) {
+    const pick = this.responses["__genre__" + passage.id];
+    const correct = normalizeGenre(passage.genre);
+    let fb = "";
+    if (pick) {
+      if (this.guidance) {
+        const ok = pick === correct;
+        fb = `<div class="genre-fb ${ok ? "ok" : "no"}">${ok ? "✓ Yes! " : "✗ Not quite — "}This is ${GENRE_LABEL[correct]}.</div>`;
+      } else {
+        fb = `<div class="genre-fb saved">Saved ✓ — we'll check it at the end.</div>`;
+      }
+    }
+    return `
+      <div class="genre-check" data-pid="${passage.id}">
+        <div class="genre-q">📋 What type of text is this?</div>
+        <div class="genre-opts">
+          ${GENRES.map((g) => `<button class="genre-opt ${pick === g.v ? "selected" : ""}" data-g="${g.v}">${g.label}</button>`).join("")}
+        </div>
+        ${fb}
+      </div>`;
+  }
+
+  guidanceBarHtml(q) {
+    if (!this.guidance) return "";
+    const msg = this.checkMsg[q.id];
+    const revealed = this.revealed[q.id];
+    let reveal = "";
+    if (revealed) {
+      const ans = this.correctText(q);
+      reveal = `<div class="reveal-box">✅ <b>Answer:</b> ${ans}${q.explanation ? `<div class="reveal-exp">${esc(q.explanation)}</div>` : ""}</div>`;
+    }
+    return `
+      <div class="guide-bar">
+        <button id="g-check" class="btn btn-ghost sm">✓ Check my answer</button>
+        <button id="g-show" class="btn btn-ghost sm">${revealed ? "🙈 Hide answer" : "👁 Show answer"}</button>
+        ${msg ? `<span class="guide-msg ${msg.cls}">${esc(msg.text)}</span>` : ""}
+      </div>
+      ${reveal}`;
+  }
+
+  correctText(q) {
+    if (q.itemType === "numeric_entry") return esc(q.answer);
+    const idxs = Array.isArray(q.answer) ? q.answer : [q.answer];
+    return idxs.map((x) => `${LETTERS[x]}. ${esc((q.options || [])[x])}`).join("; ");
   }
 
   renderInput(q) {
+    const revealed = this.guidance && this.revealed[q.id];
     const r = this.responses[q.id];
     if (q.itemType === "numeric_entry") {
       return `
         <div class="answer numeric">
           <label class="numeric-label">Type your answer:</label>
           <input id="num-input" class="numeric-input" type="text" inputmode="text"
-                 autocomplete="off" value="${r != null ? esc(r) : ""}" placeholder="answer" />
+                 autocomplete="off" value="${r != null ? esc(r) : ""}" placeholder="answer" ${revealed ? "disabled" : ""}/>
         </div>`;
     }
     const multi = q.itemType === "multi_select";
     const sel = multi ? (Array.isArray(r) ? r : []) : r;
+    const answerSet = new Set(Array.isArray(q.answer) ? q.answer : [q.answer]);
     const hint = multi ? `<div class="multi-hint">✔ Select all that apply</div>` : "";
     const opts = (q.options || []).map((opt, i) => {
       const on = multi ? sel.includes(i) : sel === i;
+      let mark = "";
+      if (revealed) {
+        if (answerSet.has(i)) mark = " correct-opt";
+        else if (on) mark = " wrong-opt";
+      }
       return `
-        <button class="opt ${on ? "selected" : ""}" data-i="${i}" type="button">
+        <button class="opt ${on ? "selected" : ""}${mark}" data-i="${i}" type="button" ${revealed ? "disabled" : ""}>
           <span class="opt-letter">${LETTERS[i]}</span>
           <span class="opt-text">${esc(opt).replace(/\n/g, "<br>")}</span>
-          <span class="opt-check">${multi ? "☑" : "●"}</span>
+          <span class="opt-check">${revealed && answerSet.has(i) ? "✓" : multi ? "☑" : "●"}</span>
         </button>`;
     }).join("");
     return `<div class="answer ${multi ? "multi" : "single"}">${hint}<div class="opts">${opts}</div></div>`;
@@ -221,12 +305,13 @@ export class Runner {
     const area = this.root.querySelector("#q-area");
     if (q.itemType === "numeric_entry") {
       const inp = area.querySelector("#num-input");
-      inp.oninput = () => { this.responses[q.id] = inp.value.trim(); this.persist(); this.renderGrid(); };
+      if (inp) inp.oninput = () => { this.responses[q.id] = inp.value.trim(); this.persist(); this.renderGrid(); };
       return;
     }
     const multi = q.itemType === "multi_select";
     area.querySelectorAll(".opt").forEach((b) => {
       b.onclick = () => {
+        if (this.revealed[q.id]) return;
         const i = +b.dataset.i;
         if (multi) {
           const cur = Array.isArray(this.responses[q.id]) ? this.responses[q.id] : [];
@@ -234,6 +319,7 @@ export class Runner {
         } else {
           this.responses[q.id] = i;
         }
+        delete this.checkMsg[q.id];
         this.persist();
         this.renderQuestion();
         this.renderGrid();
@@ -241,16 +327,33 @@ export class Runner {
     });
   }
 
-  // ── grading ──────────────────────────────────────────────────────────────────
-  grade() {
-    let correct = 0;
-    const detail = this.qs.map((q) => {
-      const resp = this.responses[q.id];
-      const ok = isCorrect(q, resp);
-      if (ok) correct++;
-      return { q, resp, ok };
+  wireGenre(passage) {
+    const wrap = this.root.querySelector(`.genre-check[data-pid="${passage.id}"]`);
+    if (!wrap) return;
+    wrap.querySelectorAll(".genre-opt").forEach((b) => {
+      b.onclick = () => {
+        this.responses["__genre__" + passage.id] = b.dataset.g;
+        this.persist();
+        this.renderQuestion();
+      };
     });
-    return { correct, total: this.qs.length, detail };
+  }
+
+  wireGuidance(q) {
+    if (!this.guidance) return;
+    const check = this.root.querySelector("#g-check");
+    const show = this.root.querySelector("#g-show");
+    if (check) check.onclick = () => {
+      if (!this.isAnswered(q.id)) this.checkMsg[q.id] = { text: "Pick an answer first 🙂", cls: "neutral" };
+      else this.checkMsg[q.id] = isCorrect(q, this.responses[q.id])
+        ? { text: "✓ Correct! Nice work.", cls: "ok" }
+        : { text: "✗ Not quite — try again, or tap Show answer.", cls: "no" };
+      this.renderQuestion();
+    };
+    if (show) show.onclick = () => {
+      this.revealed[q.id] = !this.revealed[q.id];
+      this.renderQuestion();
+    };
   }
 
   confirmSubmit() {
@@ -265,8 +368,11 @@ export class Runner {
     if (this.submitted) return;
     this.submitted = true;
     this.stop();
-    const g = this.grade();
-    const duration = Math.round((Date.now() - this.startTs) / 1000);
+    // Release the in-test layout lock so the results page scrolls normally.
+    document.body.classList.remove("in-test");
+    window.scrollTo(0, 0);
+    const g = gradeTest(this.qs, this.responses);
+    const duration = this.elapsed || Math.round((Date.now() - this.startTs) / 1000);
     localStorage.removeItem(this.storeKey);
     saveAttempt({
       testId: this.test.id, studentName: this.student,
@@ -274,90 +380,18 @@ export class Runner {
       score: g.correct, total: g.total, durationSeconds: duration,
       answers: this.responses,
     });
-    this.renderResults(g, duration, timeUp);
-  }
-
-  renderResults(g, duration, timeUp) {
-    const pct = Math.round((g.correct / g.total) * 100);
-    const m = Math.floor(duration / 60), s = duration % 60;
-    const mood = pct >= 85 ? "🌟" : pct >= 70 ? "😀" : pct >= 50 ? "🙂" : "💪";
-    const review = g.detail.map(({ q, resp, ok }, i) => this.reviewCard(q, resp, ok, i)).join("");
-    this.root.innerHTML = `
-      <div class="results">
-        <div class="results-head">
-          <div class="score-ring ${pct >= 70 ? "good" : pct >= 50 ? "ok" : "low"}">
-            <div class="score-pct">${pct}%</div>
-            <div class="score-frac">${g.correct} / ${g.total}</div>
-          </div>
-          <div class="results-meta">
-            <h2>${mood} Great job, ${esc(this.student)}!</h2>
-            <p>${timeUp ? "⏰ Time was up — here's how you did." : "You finished the test."}</p>
-            <p class="muted">Time used: ${m}m ${s}s · ${esc(this.test.title)}</p>
-            <div class="results-actions">
-              <button id="btn-again" class="btn btn-primary">Back to Tests</button>
-              <button id="btn-print" class="btn btn-ghost">🖨 Print Review</button>
-            </div>
-          </div>
-        </div>
-        <h3 class="review-title">Answer Review</h3>
-        <div class="review-list">${review}</div>
-      </div>`;
-    this.root.querySelector("#btn-again").onclick = () => this.onExit();
-    this.root.querySelector("#btn-print").onclick = () => window.print();
-  }
-
-  reviewCard(q, resp, ok, i) {
-    const passage = q.passageId ? this.passById[q.passageId] : null;
-    const diagramHtml = q.diagram ? `<div class="q-diagram small">${renderDiagram(q.diagram)}</div>` : "";
-    let answerBlock = "";
-    if (q.itemType === "numeric_entry") {
-      answerBlock = `
-        <div class="rv-line"><b>Your answer:</b> <span class="${ok ? "ok" : "no"}">${resp != null && resp !== "" ? esc(resp) : "— (blank)"}</span></div>
-        <div class="rv-line"><b>Correct answer:</b> <span class="ok">${esc(q.answer)}</span></div>`;
-    } else {
-      const letters = (idxs) => (Array.isArray(idxs) ? idxs : [idxs])
-        .filter((x) => x != null && x !== "").map((x) => `${LETTERS[x]}. ${esc(q.options[x])}`).join("; ");
-      const correctIdx = q.itemType === "multi_select" ? q.answer : q.answer;
-      answerBlock = `
-        <div class="rv-line"><b>Your answer:</b> <span class="${ok ? "ok" : "no"}">${(resp == null || (Array.isArray(resp) && !resp.length)) ? "— (blank)" : letters(resp)}</span></div>
-        <div class="rv-line"><b>Correct answer:</b> <span class="ok">${letters(correctIdx)}</span></div>`;
-    }
-    return `
-      <div class="rv-card ${ok ? "rv-ok" : "rv-no"}">
-        <div class="rv-head">
-          <span class="rv-num">${i + 1}</span>
-          <span class="rv-mark">${ok ? "✓ Correct" : "✗ Review"}</span>
-          ${passage ? `<span class="rv-passage">📖 ${esc(passage.title)}</span>` : ""}
-        </div>
-        <div class="rv-q">${esc(q.questionText).replace(/\n/g, "<br>")}</div>
-        ${diagramHtml}
-        ${answerBlock}
-        ${q.explanation ? `<div class="rv-exp"><b>Why:</b> ${esc(q.explanation)}</div>` : ""}
-      </div>`;
+    renderResults(this.root, {
+      test: this.test, responses: this.responses, student: this.student,
+      durationSeconds: duration, timeUp,
+      primaryLabel: "Back to Tests",
+      onPrimary: () => this.onExit && this.onExit(),
+      onHistory: () => this.onHistory && this.onHistory(),
+    });
   }
 }
 
-export function isCorrect(q, resp) {
-  if (resp == null) return false;
-  if (q.itemType === "single_choice") return resp === q.answer;
-  if (q.itemType === "multi_select") {
-    if (!Array.isArray(resp)) return false;
-    const a = [...resp].sort((x, y) => x - y).join(",");
-    const b = [...q.answer].sort((x, y) => x - y).join(",");
-    return a === b && a !== "";
-  }
-  if (q.itemType === "numeric_entry") {
-    const norm = (v) => String(v).trim().toLowerCase().replace(/\s+/g, "").replace(/^\$/, "");
-    const given = norm(resp);
-    if (given === "") return false;
-    const accepted = [q.answer, ...(q.acceptedAnswers || [])].map(norm);
-    if (accepted.includes(given)) return true;
-    // numeric equivalence
-    const gn = Number(given.replace(/[^0-9.\-]/g, ""));
-    return accepted.some((a) => {
-      const an = Number(String(a).replace(/[^0-9.\-]/g, ""));
-      return !Number.isNaN(gn) && !Number.isNaN(an) && Math.abs(gn - an) < 1e-9 && a !== "";
-    });
-  }
-  return false;
+function fmt(sec) {
+  sec = Math.max(0, sec);
+  const m = Math.floor(sec / 60), s = sec % 60;
+  return `${m}:${String(s).padStart(2, "0")}`;
 }

@@ -45,11 +45,22 @@ ${SCHEMA_DOC}
 ${DIAGRAM_DOC}`;
 }
 
+// Canonical question count per grade + subject + test type. Generation must hit
+// this EXACTLY; the curated bank is built to the same numbers.
+export function expectedCount({ subject, testType }) {
+  if (subject === "reading") return testType === "eog" ? 36 : testType === "moy" ? 28 : 24;
+  return testType === "eog" ? 40 : testType === "moy" ? 30 : 25; // math
+}
+
+// Official NC administration time (suggested minutes). EOG ~120, BOG ~90; MOY is
+// a local benchmark. Maximum allowed is up to 3 hours (handled in the runner).
+export function suggestedMinutes(testType) {
+  return testType === "eog" ? 120 : testType === "moy" ? 90 : 90;
+}
+
 export function userPrompt({ grade, subject, testType, difficulty, questionCount, id, title }) {
-  const time = testType === "eog" ? 80 : testType === "moy" ? 60 : 45;
-  const count = questionCount || (subject === "reading"
-    ? (testType === "eog" ? 36 : testType === "moy" ? 28 : 24)
-    : (testType === "eog" ? 40 : testType === "moy" ? 30 : 25));
+  const time = suggestedMinutes(testType);
+  const count = questionCount || expectedCount({ subject, testType });
 
   const mathScope = `Cover the full NC Grade ${grade} math range: add/subtract within 1000, multiplication & division (0-10),
 fractions (number line, bars, equivalence), time (to the minute + elapsed), measurement (mass/volume/length),
@@ -66,7 +77,7 @@ and author's craft. diagram = null for all reading questions.`;
 - id: "${id}"
 - title: "${title}"
 - timeLimitMinutes: ${time}
-- EXACTLY ${count} questions.
+- The "questions" array MUST contain EXACTLY ${count} question objects — not ${count - 1}, not ${count + 1}. Count them before returning.
 - Difficulty target: ${difficulty || "mixed (~40% easy, 40% medium, 20% hard)"}.
 ${subject === "math" ? mathScope : readingScope}
 Return the JSON object only.`;
