@@ -19,6 +19,7 @@ export class Runner {
     this.onExit = opts.onExit;
     this.onHistory = opts.onHistory;
     this.onRetake = opts.onRetake;
+    this.onPause = opts.onPause;
     this.guidance = !!opts.guidance;
     this.navCollapsed = (() => { try { return localStorage.getItem("navCollapsed") === "1"; } catch { return false; } })();
     this.qs = test.questions;
@@ -69,6 +70,14 @@ export class Runner {
   }
   stop() { if (this.tick) clearInterval(this.tick); }
 
+  // Pause: save progress, freeze the timer, and go home. The test stays resumable.
+  pause() {
+    if (this.submitted) return;
+    this.persist();
+    this.stop();
+    if (this.onPause) this.onPause();
+  }
+
   onTick() {
     if (this.submitted) return;
     this.elapsed++;
@@ -92,6 +101,7 @@ export class Runner {
           </div>
           <div class="run-head-right">
             <div id="timer" class="timer" title="Time"></div>
+            <button id="btn-pause" class="btn btn-pause" title="Pause and go home — your progress is saved so you can resume later">⏸ Pause</button>
             <button id="btn-submit" class="btn btn-submit">Finish ✓</button>
           </div>
         </header>
@@ -119,6 +129,7 @@ export class Runner {
     this.root.querySelector("#btn-next").onclick = () => this.next();
     this.root.querySelector("#btn-flag").onclick = () => this.toggleFlag();
     this.root.querySelector("#btn-submit").onclick = () => this.confirmSubmit();
+    this.root.querySelector("#btn-pause").onclick = () => this.pause();
     const fold = this.root.querySelector("#nav-fold");
     const show = this.root.querySelector("#nav-show");
     if (fold) fold.onclick = () => this.setNav(true);

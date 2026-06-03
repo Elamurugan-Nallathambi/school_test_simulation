@@ -428,6 +428,7 @@ function launch(test, guidance) {
   runner = new Runner(app, test, state.student, {
     guidance, onExit: exitTest, onHistory: () => go("#/history"),
     onRetake: () => go(`#/start/${test.id}`),
+    onPause: () => { leaveTest(); go(`#/${state.region}`); },
   });
   runner.start();
 }

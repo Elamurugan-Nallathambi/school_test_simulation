@@ -121,6 +121,8 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
 .btn-begin:hover:not(:disabled) { filter: brightness(1.05); }
 .btn-submit { background: var(--green); color: #fff; padding: 9px 18px; font-size: 14px; }
 .btn-submit:hover { filter: brightness(1.05); }
+.btn-pause { background: #fff7ed; color: #b45309; border: 1px solid #fdba74; padding: 9px 14px; font-size: 14px; }
+.btn-pause:hover { background: #ffedd5; }
 
 /* ── Generating / spinner ────────────────────────────────────────────────────── */
 .generating { text-align: center; background: var(--card); border-radius: var(--radius); padding: 48px 32px; box-shadow: var(--shadow); max-width: 460px; }
