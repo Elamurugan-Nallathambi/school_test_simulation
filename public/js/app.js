@@ -32,7 +32,7 @@ const isState = (c) => STATES.some((s) => s.code === c);
 const GRADES = [
   { v: 3, label: "Grade 3", emoji: "3️⃣", ready: true },
   { v: 4, label: "Grade 4", emoji: "4️⃣", ready: false },
-  { v: 5, label: "Grade 5", emoji: "5️⃣", ready: false },
+  { v: 5, label: "Grade 5", emoji: "5️⃣", ready: true },
 ];
 const SUBJECTS = [
   { v: "reading", label: "Reading", emoji: "📖", desc: "Stories, articles & poems" },

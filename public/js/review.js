@@ -10,14 +10,44 @@ const LETTERS = ["A", "B", "C", "D", "E", "F"];
 
 // NC organizes reading into Literature (Fiction) vs Informational (Nonfiction);
 // poetry is a literary type kept separate so poems aren't mislabeled.
-export const GENRE_LABEL = { fiction: "Fiction", nonfiction: "Nonfiction", poetry: "Poetry" };
+// Genre taxonomy is grade-aware. Grades 3-4 use the broad fiction/nonfiction/poetry
+// split; Grade 5+ uses subgenres (realistic/historical fiction, folklore, drama,
+// informational, biography) that 5th graders are expected to identify.
+const GENRE_LABELS = {
+  fiction: "Fiction", nonfiction: "Nonfiction", poetry: "Poetry",
+  realistic_fiction: "Realistic Fiction", historical_fiction: "Historical Fiction",
+  folklore: "Folktale / Myth / Legend", drama: "Drama",
+  informational: "Informational", biography: "Biography",
+};
+const GENRE_EMOJI = {
+  fiction: "📖", nonfiction: "📰", poetry: "🎵", realistic_fiction: "📖",
+  historical_fiction: "🏰", folklore: "🐢", drama: "🎭", informational: "📰", biography: "👤",
+};
+const BROAD = ["fiction", "nonfiction", "poetry"];
+const FINE = ["realistic_fiction", "historical_fiction", "folklore", "poetry", "drama", "informational", "biography"];
 
-// Normalize any author/genre tag to one of fiction | nonfiction | poetry.
-export function normalizeGenre(g) {
-  const s = String(g || "").toLowerCase();
-  if (/poe|poem|verse|rhyme/.test(s)) return "poetry";
-  if (/inform|nonfiction|non-fiction|biograph|article|science|history|expositor/.test(s)) return "nonfiction";
-  return "fiction"; // fiction, story, fable, folktale, myth, legend, narrative
+export function genreLabel(key) { return GENRE_LABELS[key] || key; }
+
+// Options shown as buttons below a passage, depending on grade.
+export function genreOptions(grade) {
+  const keys = Number(grade) >= 5 ? FINE : BROAD;
+  return keys.map((v) => ({ v, label: `${GENRE_EMOJI[v]} ${GENRE_LABELS[v]}` }));
+}
+
+// Normalize any author/genre tag to the correct key for the grade's taxonomy.
+export function normalizeGenre(raw, grade) {
+  const fine = Number(grade) >= 5;
+  const s = String(raw || "").toLowerCase();
+  if (/poe|poem|verse|rhyme|sonnet|haiku/.test(s)) return "poetry";
+  if (/drama|play|script|\bscene\b/.test(s)) return fine ? "drama" : "fiction";
+  if (/folk|fable|myth|legend|tall tale|fairy|trickster/.test(s)) return fine ? "folklore" : "fiction";
+  if (/autobiograph|biograph|memoir/.test(s)) return fine ? "biography" : "nonfiction";
+  if (/historic/.test(s) && /fiction/.test(s)) return fine ? "historical_fiction" : "fiction";
+  if (/realistic|realism/.test(s)) return fine ? "realistic_fiction" : "fiction";
+  if (/inform|nonfiction|non-fiction|expositor|article|science|social studies|history|essay|report/.test(s))
+    return fine ? "informational" : "nonfiction";
+  if (/fiction|story|narrative|tale/.test(s)) return fine ? "realistic_fiction" : "fiction";
+  return fine ? "informational" : "nonfiction";
 }
 
 function genreSectionHTML(test, responses) {
@@ -25,17 +55,17 @@ function genreSectionHTML(test, responses) {
   if (!passages.length) return "";
   const rows = passages.map((p) => {
     const pick = responses ? responses["__genre__" + p.id] : null;
-    const correct = normalizeGenre(p.genre);
+    const correct = normalizeGenre(p.genre, test.grade);
     const ok = pick === correct;
-    const yourLabel = pick ? GENRE_LABEL[pick] : "— (not chosen)";
+    const yourLabel = pick ? genreLabel(pick) : "— (not chosen)";
     return `<div class="genre-row ${pick ? (ok ? "rv-ok" : "rv-no") : ""}">
         <span class="genre-mark">${pick ? (ok ? "✓" : "✗") : "·"}</span>
         <span class="genre-title">📖 ${esc(p.title || p.id)}</span>
-        <span class="genre-vals">You said: <b>${esc(yourLabel)}</b> · Correct answer: <b>${esc(GENRE_LABEL[correct])}</b></span>
+        <span class="genre-vals">You said: <b>${esc(yourLabel)}</b> · Correct answer: <b>${esc(genreLabel(correct))}</b></span>
       </div>`;
   }).join("");
   const picked = passages.filter((p) => responses && responses["__genre__" + p.id]);
-  const right = picked.filter((p) => responses["__genre__" + p.id] === normalizeGenre(p.genre)).length;
+  const right = picked.filter((p) => responses["__genre__" + p.id] === normalizeGenre(p.genre, test.grade)).length;
   return `
     <h3 class="review-title">Text-Type Check ${picked.length ? `<span class="muted">(${right}/${picked.length} correct)</span>` : ""}</h3>
     <div class="genre-review">${rows}</div>`;

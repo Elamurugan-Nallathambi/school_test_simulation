@@ -2,7 +2,7 @@
 import { renderDiagram } from "./diagrams.js";
 import { saveAttempt } from "./api.js";
 import { gradeTest, isCorrect } from "./grade.js";
-import { renderResults, normalizeGenre, GENRE_LABEL } from "./review.js";
+import { renderResults, normalizeGenre, genreOptions, genreLabel } from "./review.js";
 import { officialTiming } from "./timing.js";
 
 const esc = (s) => String(s == null ? "" : s)
@@ -10,11 +10,6 @@ const esc = (s) => String(s == null ? "" : s)
 const paras = (t) => esc(t).split(/\n\n+/).map((p) => `<p>${p.replace(/\n/g, "<br>")}</p>`).join("");
 
 const LETTERS = ["A", "B", "C", "D", "E", "F"];
-const GENRES = [
-  { v: "fiction", label: "📖 Fiction" },
-  { v: "nonfiction", label: "📰 Nonfiction" },
-  { v: "poetry", label: "🎵 Poetry" },
-];
 
 export class Runner {
   constructor(root, test, student, opts = {}) {
@@ -228,21 +223,23 @@ export class Runner {
   // genre self-check below a passage (validated, not part of the question score)
   genreCheckHtml(passage) {
     const pick = this.responses["__genre__" + passage.id];
-    const correct = normalizeGenre(passage.genre);
+    const correct = normalizeGenre(passage.genre, this.test.grade);
+    const opts = genreOptions(this.test.grade);
+    const fine = Number(this.test.grade) >= 5;
     let fb = "";
     if (pick) {
       if (this.guidance) {
         const ok = pick === correct;
-        fb = `<div class="genre-fb ${ok ? "ok" : "no"}">${ok ? "✓ Yes! " : "✗ Not quite — "}This is ${GENRE_LABEL[correct]}.</div>`;
+        fb = `<div class="genre-fb ${ok ? "ok" : "no"}">${ok ? "✓ Yes! " : "✗ Not quite — "}This is ${genreLabel(correct)}.</div>`;
       } else {
         fb = `<div class="genre-fb saved">Saved ✓ — we'll check it at the end.</div>`;
       }
     }
     return `
       <div class="genre-check" data-pid="${passage.id}">
-        <div class="genre-q">📋 What type of text is this?</div>
+        <div class="genre-q">📋 What ${fine ? "genre" : "type of text"} is this?</div>
         <div class="genre-opts">
-          ${GENRES.map((g) => `<button class="genre-opt ${pick === g.v ? "selected" : ""}" data-g="${g.v}">${g.label}</button>`).join("")}
+          ${opts.map((g) => `<button class="genre-opt ${pick === g.v ? "selected" : ""}" data-g="${g.v}">${g.label}</button>`).join("")}
         </div>
         ${fb}
       </div>`;
