@@ -1,0 +1,20 @@
+name = "us-bme-test"
+main = "src/index.js"
+compatibility_date = "2024-11-06"
+compatibility_flags = ["nodejs_compat"]
+
+# Static assets (the portal SPA) served from ./public
+[assets]
+directory = "./public"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+
+# D1 database — fill database_id after `cfl d1 create us-bme-test-db`
+[[d1_databases]]
+binding = "DB"
+database_name = "us-bme-test-db"
+database_id = "e59ffb63-146a-4c08-bf6f-ad45f97e5412"
+
+[vars]
+# Model used for dynamic generation; OPENAI_API_KEY is set via `cfl secret put`
+OPENAI_MODEL = "gpt-4o"

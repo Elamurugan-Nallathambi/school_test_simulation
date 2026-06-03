@@ -1,0 +1,624 @@
+{
+  "id": "g3-math-boy-1",
+  "grade": 3,
+  "subject": "math",
+  "testType": "boy",
+  "title": "Grade 3 Math — Beginning of Year (BOY) Test 1",
+  "instructions": "Read each question carefully. Choose the best answer.",
+  "timeLimitMinutes": 45,
+  "calculatorAllowed": false,
+  "source": "curated",
+  "passages": [],
+  "questions": [
+    {
+      "id": "Q1",
+      "itemType": "single_choice",
+      "skill": "addition",
+      "difficulty": "easy",
+      "passageId": null,
+      "questionText": "What is 24 + 13?",
+      "diagram": null,
+      "options": [
+        "27",
+        "37",
+        "47",
+        "11"
+      ],
+      "answer": 1,
+      "explanation": "Add the tens (20 + 10 = 30) and the ones (4 + 3 = 7). 30 + 7 = 37.",
+      "points": 1
+    },
+    {
+      "id": "Q2",
+      "itemType": "single_choice",
+      "skill": "subtraction",
+      "difficulty": "easy",
+      "passageId": null,
+      "questionText": "What is 56 − 21?",
+      "diagram": null,
+      "options": [
+        "35",
+        "33",
+        "45",
+        "77"
+      ],
+      "answer": 0,
+      "explanation": "Subtract the tens (50 − 20 = 30) and the ones (6 − 1 = 5). 30 + 5 = 35.",
+      "points": 1
+    },
+    {
+      "id": "Q3",
+      "itemType": "single_choice",
+      "skill": "place_value",
+      "difficulty": "easy",
+      "passageId": null,
+      "questionText": "The base-ten blocks below show a number. What number is shown?",
+      "diagram": {
+        "type": "base_ten",
+        "params": {
+          "hundreds": 2,
+          "tens": 3,
+          "ones": 4
+        }
+      },
+      "options": [
+        "234",
+        "324",
+        "243",
+        "204"
+      ],
+      "answer": 0,
+      "explanation": "2 hundreds = 200, 3 tens = 30, 4 ones = 4. 200 + 30 + 4 = 234.",
+      "points": 1
+    },
+    {
+      "id": "Q4",
+      "itemType": "single_choice",
+      "skill": "place_value",
+      "difficulty": "easy",
+      "passageId": null,
+      "questionText": "In the number 487, what is the value of the digit 8?",
+      "diagram": null,
+      "options": [
+        "8",
+        "80",
+        "800",
+        "88"
+      ],
+      "answer": 1,
+      "explanation": "The 8 is in the tens place, so its value is 8 tens, which is 80.",
+      "points": 1
+    },
+    {
+      "id": "Q5",
+      "itemType": "single_choice",
+      "skill": "multiplication",
+      "difficulty": "easy",
+      "passageId": null,
+      "questionText": "The dots are arranged in an array. How many dots are there in all?",
+      "diagram": {
+        "type": "array_dots",
+        "params": {
+          "rows": 3,
+          "cols": 4
+        }
+      },
+      "options": [
+        "7",
+        "12",
+        "9",
+        "16"
+      ],
+      "answer": 1,
+      "explanation": "There are 3 rows with 4 dots in each row. 3 × 4 = 12.",
+      "points": 1
+    },
+    {
+      "id": "Q6",
+      "itemType": "single_choice",
+      "skill": "multiplication",
+      "difficulty": "easy",
+      "passageId": null,
+      "questionText": "There are 5 bags. Each bag has 2 apples. How many apples are there in all?",
+      "diagram": null,
+      "options": [
+        "7",
+        "10",
+        "12",
+        "25"
+      ],
+      "answer": 1,
+      "explanation": "5 groups of 2 is 5 × 2 = 10 apples.",
+      "points": 1
+    },
+    {
+      "id": "Q7",
+      "itemType": "single_choice",
+      "skill": "fractions",
+      "difficulty": "easy",
+      "passageId": null,
+      "questionText": "What fraction of the bar is shaded?",
+      "diagram": {
+        "type": "fraction_bar",
+        "params": {
+          "parts": 4,
+          "shaded": 3
+        }
+      },
+      "options": [
+        "1/4",
+        "2/4",
+        "3/4",
+        "4/3"
+      ],
+      "answer": 2,
+      "explanation": "The bar has 4 equal parts and 3 are shaded, so 3/4 is shaded.",
+      "points": 1
+    },
+    {
+      "id": "Q8",
+      "itemType": "single_choice",
+      "skill": "fractions",
+      "difficulty": "easy",
+      "passageId": null,
+      "questionText": "What fraction of the circle is shaded?",
+      "diagram": {
+        "type": "fraction_circle",
+        "params": {
+          "parts": 2,
+          "shaded": 1
+        }
+      },
+      "options": [
+        "1/2",
+        "1/4",
+        "2/2",
+        "1/3"
+      ],
+      "answer": 0,
+      "explanation": "The circle is split into 2 equal parts and 1 is shaded, so 1/2 is shaded.",
+      "points": 1
+    },
+    {
+      "id": "Q9",
+      "itemType": "single_choice",
+      "skill": "time",
+      "difficulty": "easy",
+      "passageId": null,
+      "questionText": "What time does the clock show?",
+      "diagram": {
+        "type": "clock",
+        "params": {
+          "hour": 3,
+          "minute": 30
+        }
+      },
+      "options": [
+        "3:00",
+        "3:30",
+        "6:15",
+        "30:03"
+      ],
+      "answer": 1,
+      "explanation": "The hour hand is between 3 and 4 and the minute hand points to 6, which means 30 minutes. The time is 3:30.",
+      "points": 1
+    },
+    {
+      "id": "Q10",
+      "itemType": "single_choice",
+      "skill": "time",
+      "difficulty": "medium",
+      "passageId": null,
+      "questionText": "What time does the clock show?",
+      "diagram": {
+        "type": "clock",
+        "params": {
+          "hour": 9,
+          "minute": 15
+        }
+      },
+      "options": [
+        "9:03",
+        "3:45",
+        "9:15",
+        "9:45"
+      ],
+      "answer": 2,
+      "explanation": "The hour hand is just past 9 and the minute hand points to 3, which means 15 minutes. The time is 9:15.",
+      "points": 1
+    },
+    {
+      "id": "Q11",
+      "itemType": "single_choice",
+      "skill": "bar_graph",
+      "difficulty": "easy",
+      "passageId": null,
+      "questionText": "The bar graph shows how many books each child read. How many books did Ben read?",
+      "diagram": {
+        "type": "bar_graph",
+        "params": {
+          "title": "Books Read",
+          "xLabel": "Kids",
+          "yLabel": "Books",
+          "yMax": 10,
+          "yStep": 2,
+          "bars": [
+            {
+              "label": "Ann",
+              "value": 6
+            },
+            {
+              "label": "Ben",
+              "value": 4
+            },
+            {
+              "label": "Cara",
+              "value": 8
+            }
+          ]
+        }
+      },
+      "options": [
+        "6",
+        "4",
+        "8",
+        "2"
+      ],
+      "answer": 1,
+      "explanation": "Ben's bar reaches the line for 4, so Ben read 4 books.",
+      "points": 1
+    },
+    {
+      "id": "Q12",
+      "itemType": "single_choice",
+      "skill": "bar_graph",
+      "difficulty": "medium",
+      "passageId": null,
+      "questionText": "Using the bar graph, how many more books did Cara read than Ben?",
+      "diagram": {
+        "type": "bar_graph",
+        "params": {
+          "title": "Books Read",
+          "xLabel": "Kids",
+          "yLabel": "Books",
+          "yMax": 10,
+          "yStep": 2,
+          "bars": [
+            {
+              "label": "Ann",
+              "value": 6
+            },
+            {
+              "label": "Ben",
+              "value": 4
+            },
+            {
+              "label": "Cara",
+              "value": 8
+            }
+          ]
+        }
+      },
+      "options": [
+        "2",
+        "4",
+        "12",
+        "6"
+      ],
+      "answer": 1,
+      "explanation": "Cara read 8 and Ben read 4. 8 − 4 = 4 more books.",
+      "points": 1
+    },
+    {
+      "id": "Q13",
+      "itemType": "single_choice",
+      "skill": "picture_graph",
+      "difficulty": "medium",
+      "passageId": null,
+      "questionText": "Each 🍎 stands for 2 apples picked. How many apples were picked on Tuesday?",
+      "diagram": {
+        "type": "picture_graph",
+        "params": {
+          "title": "Apples Picked",
+          "symbol": "🍎",
+          "unitValue": 2,
+          "rows": [
+            {
+              "label": "Mon",
+              "count": 3
+            },
+            {
+              "label": "Tue",
+              "count": 5
+            }
+          ]
+        }
+      },
+      "options": [
+        "5",
+        "7",
+        "10",
+        "2"
+      ],
+      "answer": 2,
+      "explanation": "Tuesday shows 5 apple symbols and each one stands for 2. 5 × 2 = 10 apples.",
+      "points": 1
+    },
+    {
+      "id": "Q14",
+      "itemType": "single_choice",
+      "skill": "shapes",
+      "difficulty": "easy",
+      "passageId": null,
+      "questionText": "How many sides does the shape below have?",
+      "diagram": {
+        "type": "shape",
+        "params": {
+          "kind": "pentagon",
+          "sideLabels": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      },
+      "options": [
+        "4",
+        "5",
+        "6",
+        "3"
+      ],
+      "answer": 1,
+      "explanation": "A pentagon has 5 sides.",
+      "points": 1
+    },
+    {
+      "id": "Q15",
+      "itemType": "single_choice",
+      "skill": "shapes",
+      "difficulty": "easy",
+      "passageId": null,
+      "questionText": "Which name best describes a shape with 4 sides that are all the same length and 4 square corners?",
+      "diagram": {
+        "type": "shape",
+        "params": {
+          "kind": "quadrilateral",
+          "sideLabels": [
+            "3 cm",
+            "3 cm",
+            "3 cm",
+            "3 cm"
+          ]
+        }
+      },
+      "options": [
+        "Triangle",
+        "Square",
+        "Pentagon",
+        "Circle"
+      ],
+      "answer": 1,
+      "explanation": "A shape with 4 equal sides and 4 square corners is a square.",
+      "points": 1
+    },
+    {
+      "id": "Q16",
+      "itemType": "single_choice",
+      "skill": "addition",
+      "difficulty": "medium",
+      "passageId": null,
+      "questionText": "What is 138 + 46?",
+      "diagram": null,
+      "options": [
+        "174",
+        "184",
+        "194",
+        "182"
+      ],
+      "answer": 1,
+      "explanation": "8 + 6 = 14, write 4 carry 1. 3 + 4 + 1 = 8 tens. Bring down 1 hundred. The sum is 184.",
+      "points": 1
+    },
+    {
+      "id": "Q17",
+      "itemType": "single_choice",
+      "skill": "place_value",
+      "difficulty": "medium",
+      "passageId": null,
+      "questionText": "Which number is the same as 4 hundreds, 0 tens, and 6 ones?",
+      "diagram": null,
+      "options": [
+        "46",
+        "460",
+        "406",
+        "4006"
+      ],
+      "answer": 2,
+      "explanation": "4 hundreds = 400, 0 tens = 0, 6 ones = 6. 400 + 0 + 6 = 406.",
+      "points": 1
+    },
+    {
+      "id": "Q18",
+      "itemType": "single_choice",
+      "skill": "number_line",
+      "difficulty": "medium",
+      "passageId": null,
+      "questionText": "What number is shown by the point on the number line?",
+      "diagram": {
+        "type": "number_line",
+        "params": {
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "point": 7
+        }
+      },
+      "options": [
+        "6",
+        "7",
+        "8",
+        "70"
+      ],
+      "answer": 1,
+      "explanation": "Counting from 0, the point lands on the 7th mark, so the number is 7.",
+      "points": 1
+    },
+    {
+      "id": "Q19",
+      "itemType": "single_choice",
+      "skill": "multiplication",
+      "difficulty": "medium",
+      "passageId": null,
+      "questionText": "Which addition sentence matches 4 × 3?",
+      "diagram": {
+        "type": "array_dots",
+        "params": {
+          "rows": 4,
+          "cols": 3
+        }
+      },
+      "options": [
+        "4 + 3",
+        "3 + 3 + 3 + 3",
+        "4 + 4 + 4 + 4",
+        "4 + 3 + 4 + 3"
+      ],
+      "answer": 1,
+      "explanation": "4 × 3 means 4 groups of 3, which is 3 + 3 + 3 + 3 = 12.",
+      "points": 1
+    },
+    {
+      "id": "Q20",
+      "itemType": "single_choice",
+      "skill": "word_problem",
+      "difficulty": "hard",
+      "passageId": null,
+      "questionText": "Maya had 145 stickers. She gave 28 to her friend and then found 12 more. How many stickers does Maya have now?",
+      "diagram": null,
+      "options": [
+        "117",
+        "129",
+        "185",
+        "131"
+      ],
+      "answer": 1,
+      "explanation": "145 − 28 = 117. Then 117 + 12 = 129 stickers.",
+      "points": 1
+    },
+    {
+      "id": "Q21",
+      "itemType": "multi_select",
+      "skill": "even_odd",
+      "difficulty": "medium",
+      "passageId": null,
+      "questionText": "Select all the numbers that are even.",
+      "diagram": null,
+      "options": [
+        "7",
+        "10",
+        "14",
+        "23"
+      ],
+      "answer": [
+        1,
+        2
+      ],
+      "explanation": "Even numbers end in 0, 2, 4, 6, or 8. 10 and 14 are even. 7 and 23 are odd.",
+      "points": 1
+    },
+    {
+      "id": "Q22",
+      "itemType": "multi_select",
+      "skill": "fractions",
+      "difficulty": "hard",
+      "passageId": null,
+      "questionText": "Select all the fraction bars that show one half (1/2) shaded.",
+      "diagram": {
+        "type": "fraction_bar",
+        "params": {
+          "bars": [
+            {
+              "parts": 2,
+              "shaded": 1,
+              "label": "A"
+            },
+            {
+              "parts": 4,
+              "shaded": 2,
+              "label": "B"
+            },
+            {
+              "parts": 4,
+              "shaded": 1,
+              "label": "C"
+            },
+            {
+              "parts": 6,
+              "shaded": 4,
+              "label": "D"
+            }
+          ]
+        }
+      },
+      "options": [
+        "Bar A",
+        "Bar B",
+        "Bar C",
+        "Bar D"
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "Bar A is 1/2. Bar B is 2/4, which equals 1/2. Bar C is 1/4 and Bar D is 4/6, so they are not one half.",
+      "points": 1
+    },
+    {
+      "id": "Q23",
+      "itemType": "numeric_entry",
+      "skill": "addition",
+      "difficulty": "easy",
+      "passageId": null,
+      "questionText": "What is 30 + 40?",
+      "diagram": null,
+      "options": [],
+      "answer": 70,
+      "explanation": "3 tens plus 4 tens is 7 tens, which is 70.",
+      "points": 1
+    },
+    {
+      "id": "Q24",
+      "itemType": "numeric_entry",
+      "skill": "multiplication",
+      "difficulty": "medium",
+      "passageId": null,
+      "questionText": "There are 2 rows of chairs with 5 chairs in each row. How many chairs are there in all? Type the number.",
+      "diagram": {
+        "type": "array_dots",
+        "params": {
+          "rows": 2,
+          "cols": 5
+        }
+      },
+      "options": [],
+      "answer": 10,
+      "explanation": "2 rows of 5 is 2 × 5 = 10 chairs.",
+      "points": 1
+    },
+    {
+      "id": "Q25",
+      "itemType": "numeric_entry",
+      "skill": "subtraction",
+      "difficulty": "hard",
+      "passageId": null,
+      "questionText": "A store had 320 balloons. They sold 145 of them. How many balloons are left? Type the number.",
+      "diagram": null,
+      "options": [],
+      "answer": 175,
+      "explanation": "320 − 145 = 175 balloons left.",
+      "points": 1
+    }
+  ]
+}
