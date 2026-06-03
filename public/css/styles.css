@@ -216,6 +216,24 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
 .dict-spin { width: 14px; height: 14px; border: 2px solid var(--blue-l); border-top-color: var(--blue); border-radius: 50%; display: inline-block; animation: spin 1s linear infinite; }
 .center-note { text-align: center; margin-top: 22px; font-size: 13px; }
 
+/* in-progress / resume cards on the landing */
+.resume-block { max-width: 720px; margin: 0 auto 26px; }
+.resume-head { font-weight: 800; font-size: 15px; color: #b45309; margin-bottom: 10px; }
+.resume-card { display: flex; align-items: center; gap: 14px; background: #fffbeb; border: 1.5px solid #fcd34d; border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; box-shadow: var(--shadow); }
+.resume-icon { font-size: 26px; }
+.resume-main { flex: 1; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.resume-title { font-weight: 800; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.resume-sub { color: var(--muted); font-size: 13px; }
+.resume-bar { height: 7px; background: #fde68a; border-radius: 999px; overflow: hidden; margin-top: 2px; }
+.resume-fill { display: block; height: 100%; background: linear-gradient(90deg, #f59e0b, #fbbf24); border-radius: 999px; }
+.resume-actions { display: flex; align-items: center; gap: 8px; }
+.resume-x { border: none; background: #fef3c7; color: #b45309; width: 30px; height: 30px; border-radius: 999px; font-size: 14px; font-weight: 800; cursor: pointer; }
+.resume-x:hover { background: #fde68a; }
+@media (max-width: 560px) {
+  .resume-card { flex-wrap: wrap; }
+  .resume-actions { width: 100%; justify-content: flex-end; }
+}
+
 .run-body { flex: 1; display: flex; min-height: 0; overflow: hidden; }
 .q-area { flex: 1; display: flex; min-height: 0; overflow: hidden; }
 .q-area.with-passage { gap: 0; }

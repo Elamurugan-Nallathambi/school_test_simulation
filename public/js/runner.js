@@ -58,6 +58,9 @@ export class Runner {
       localStorage.setItem(this.storeKey, JSON.stringify({
         testId: this.test.id, responses: this.responses, flags: this.flags,
         idx: this.idx, elapsed: this.elapsed, guidance: this.guidance,
+        // display metadata so the landing can show resumable tests without an API call
+        title: this.test.title, subject: this.test.subject, testType: this.test.testType,
+        grade: this.test.grade, total: this.qs.length, savedAt: Date.now(),
       }));
     } catch {}
   }

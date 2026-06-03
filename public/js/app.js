@@ -54,6 +54,7 @@ function route() {
   if (p[0] === "history") return viewHistory();
   if (p[0] === "result") return viewResult(p[1]);
   if (p[0] === "start") return startScreen(p[1]);
+  if (p[0] === "resume") return resumeTest(p[1]);
   if (p[0] === "name") return changeName();
 
   if (document.body.classList.contains("in-test")) leaveTest();
@@ -93,11 +94,71 @@ function updateChrome(p) {
   }
 }
 
+// ── In-progress (unfinished) tests saved on this device ────────────────────────
+function isAnsweredVal(r) {
+  if (r == null) return false;
+  if (Array.isArray(r)) return r.length > 0;
+  return r !== "";
+}
+function listInProgress(student) {
+  const out = [];
+  if (!student) return out;
+  const suffix = ":" + student;
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (!k || !k.startsWith("attempt:") || !k.endsWith(suffix)) continue;
+    try {
+      const s = JSON.parse(localStorage.getItem(k));
+      if (!s || !s.testId) continue;
+      const answered = Object.entries(s.responses || {})
+        .filter(([qid, v]) => !qid.startsWith("__genre__") && isAnsweredVal(v)).length;
+      out.push({ key: k, ...s, answered });
+    } catch {}
+  }
+  out.sort((a, b) => (b.savedAt || 0) - (a.savedAt || 0));
+  return out;
+}
+function discardProgress(key) { try { localStorage.removeItem(key); } catch {} }
+
+function inProgressSection() {
+  const items = listInProgress(state.student);
+  if (!items.length) return "";
+  return `
+    <div class="resume-block">
+      <div class="resume-head">⏳ Pick up where you left off</div>
+      ${items.map((s) => {
+        const total = s.total || 0;
+        const pct = total ? Math.round((s.answered / total) * 100) : 0;
+        return `
+        <div class="resume-card" data-id="${esc(s.testId)}">
+          <span class="resume-icon">${s.subject === "math" ? "🔢" : "📖"}</span>
+          <span class="resume-main">
+            <span class="resume-title">${esc(s.title || s.testId)}</span>
+            <span class="resume-sub">${(s.subject || "").toUpperCase()} · ${(s.testType || "").toUpperCase()} · answered ${s.answered}/${total}</span>
+            <span class="resume-bar"><span class="resume-fill" style="width:${pct}%"></span></span>
+          </span>
+          <span class="resume-actions">
+            <button class="btn btn-primary resume-go" data-id="${esc(s.testId)}">Resume →</button>
+            <button class="resume-x" data-key="${esc(s.key)}" title="Discard">✕</button>
+          </span>
+        </div>`;
+      }).join("")}
+    </div>`;
+}
+function wireInProgress() {
+  app.querySelectorAll(".resume-go").forEach((b) => (b.onclick = () => go(`#/resume/${b.dataset.id}`)));
+  app.querySelectorAll(".resume-x").forEach((b) => (b.onclick = (e) => {
+    e.stopPropagation();
+    if (confirm("Discard this unfinished test? Your saved progress will be deleted.")) { discardProgress(b.dataset.key); route(); }
+  }));
+}
+
 // ── Step 0: State ──────────────────────────────────────────────────────────────
 function viewState() {
   render(`
     <section class="wizard">
       <div class="hero"><h1>Where do you go to school? 🗺️</h1><p>Pick your state to get the right practice tests.</p></div>
+      ${inProgressSection()}
       <div class="choice-grid">
         ${STATES.map((s) => `
           <button class="choice-card ${s.ready ? "" : "soon"}" data-c="${s.code}" ${s.ready ? "" : "disabled"}>
@@ -109,6 +170,7 @@ function viewState() {
       <p class="center-note muted">More states coming soon. Right now we have full North Carolina (NC) EOG-style tests.</p>
     </section>`);
   app.querySelectorAll("[data-c]").forEach((b) => (b.onclick = () => go(`#/${b.dataset.c}`)));
+  wireInProgress();
 }
 
 // ── Step 1: Grade ──────────────────────────────────────────────────────────────
@@ -117,6 +179,7 @@ function viewGrade() {
     <section class="wizard">
       ${crumbs([stateLabel(state.region)])}
       <div class="hero"><h1>Pick your grade 🎒</h1><p>Choose your grade to start practicing.</p></div>
+      ${inProgressSection()}
       <div class="choice-grid">
         ${GRADES.map((g) => `
           <button class="choice-card ${g.ready ? "" : "soon"}" data-g="${g.v}" ${g.ready ? "" : "disabled"}>
@@ -129,6 +192,23 @@ function viewGrade() {
     </section>`);
   app.querySelectorAll("[data-g]").forEach((b) => (b.onclick = () => go(`#/${state.region}/g${b.dataset.g}`)));
   const gh = app.querySelector("#go-history"); if (gh) gh.onclick = () => go("#/history");
+  wireInProgress();
+}
+
+// Resume an unfinished test directly (skips the start screen; the runner restores progress).
+async function resumeTest(id) {
+  render(`<section class="wizard center"><div class="generating"><div class="spinner"></div><h2>Resuming your test…</h2></div></section>`);
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(`attempt:${id}:${state.student}`) || "null"); } catch {}
+  let test;
+  try { test = await api.getTest(id); }
+  catch (e) {
+    if (saved) discardProgress(`attempt:${id}:${state.student}`); // test no longer exists
+    go("#/"); return;
+  }
+  state.grade = test.grade; state.subject = test.subject; state.testType = test.testType;
+  if (!state.student) { go(`#/start/${id}`); return; }
+  launch(test, !!(saved && saved.guidance));
 }
 
 // ── Step 2: Subject ────────────────────────────────────────────────────────────

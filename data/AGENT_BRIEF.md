@@ -1,97 +1,107 @@
-# Test-Paper Generation Brief (READ FULLY)
+# Test-Paper Generation Brief v2 — REAL NC EOG SIMULATION (READ FULLY)
 
-You are an expert NC EOG (North Carolina End-of-Grade) assessment item writer.
-Generate ONE complete, exam-quality practice test as a single JSON file.
+You are an expert NC End-of-Grade (EOG) assessment item writer. Generate ONE complete,
+**authentic NC-EOG-style** practice test as a single JSON file. Match the real test's
+counts, item patterns, options, domain balance, and Depth-of-Knowledge mix — and include
+a deliberate layer of **tricky / hard** items that make a strong 3rd grader think.
 
-**CORRECTNESS IS THE #1 RULE.** Every answer key MUST be correct. For every math
-question, compute the answer step by step in your head and DOUBLE-CHECK it before
-writing the key. Make sure exactly one option is correct for single_choice and that
-distractors are plausible but wrong. For multi_select, make sure every listed correct
-index is truly correct and every other option is truly wrong.
+**CORRECTNESS IS RULE #1.** Compute/verify every answer. Exactly one correct option for
+single_choice; every correct index right (and others wrong) for multi_select.
 
 ## Output
+Write valid JSON ONLY to the EXACT path given (use Write, no markdown fences). Then reply
+with the path and question count.
 
-Write the JSON to the EXACT file path you are told. Use `Write`. Output ONLY valid
-JSON in the file (no markdown fences, no comments). After writing, reply with a 2-line
-summary: the file path and the question count.
-
-## JSON Contract (follow EXACTLY)
-
+## JSON Contract (EXACT)
 ```jsonc
 {
-  "id": "<given-id>",
-  "grade": 3,
-  "subject": "math",            // "math" | "reading"  (as instructed)
-  "testType": "eog",            // "boy" | "moy" | "eog" (as instructed)
-  "title": "<given title>",
-  "instructions": "Read each question carefully. Choose the best answer.",
-  "timeLimitMinutes": 80,        // EOG: 80, MOY: 60, BOY: 45 (use the one instructed)
-  "calculatorAllowed": false,
-  "source": "curated",
-  "passages": [ /* reading only; [] for math */
-    { "id": "P1", "title": "...", "genre": "fiction|informational|poetry",
-      "lexile": "520L", "text": "Para 1...\n\nPara 2..." }
-  ],
-  "questions": [
-    {
-      "id": "Q1",
-      "itemType": "single_choice",   // single_choice | multi_select | numeric_entry
-      "skill": "multiplication",     // short skill tag
-      "difficulty": "easy",          // easy | medium | hard
-      "passageId": null,             // reading: the passage id; math: null
-      "questionText": "What is 6 × 7?",
-      "diagram": null,               // or a diagram object (see below)
-      "options": ["35","42","48","13"], // [] for numeric_entry
-      "answer": 1,                   // grading rules below
-      "explanation": "6 rows of 7 is 42.",
-      "points": 1
-    }
-  ]
+  "id": "<given>", "grade": 3, "subject": "math|reading", "testType": "boy|moy|eog",
+  "title": "<given>", "instructions": "...", "timeLimitMinutes": <eog 120 | moy 90 | boy 90>,
+  "calculatorAllowed": false, "source": "curated",
+  "passages": [ { "id":"P1", "title":"...", "genre":"fiction|informational|poetry",
+                  "lexile":"560L", "text":"Part 1 ...\n\n... Part 2 ...\n\n..." } ],  // reading; [] for math
+  "questions": [ {
+    "id":"Q1", "itemType":"single_choice|multi_select|numeric_entry",
+    "skill":"<standard or skill, e.g. RI.3.8 or multiplication>", "difficulty":"easy|medium|hard",
+    "passageId": "P1"|null, "questionText":"...", "diagram": null|{type,params},
+    "options":["...","...","...","..."], "answer": <int | int[] | number|string>,
+    "explanation":"...", "points":1 } ]
 }
 ```
+### Grading: single_choice → correct option INDEX (0-based); multi_select → array of indices;
+numeric_entry → the numeric value (options:[]). Choice items have EXACTLY 4 unique options.
 
-### Grading rules for `answer`
-- single_choice → integer INDEX (0-based) of the correct option.
-- multi_select  → array of integer indices, e.g. `[0,2]` (ALL correct ones, exact).
-- numeric_entry → the numeric value as a number or string (e.g. `42`, `"3/4"`).
-  Optionally add `"acceptedAnswers": ["0.75","3/4"]` for equivalent forms.
+---
 
-### Options rules
-- single_choice & multi_select: provide EXACTLY 4 options (strings).
-- multi_select questions: phrase as "Select all that apply." and make 2–3 correct.
-- numeric_entry: `"options": []`.
+## IF READING — match the real NC Grade 3 Reading test
 
-## Diagrams (use where they help — aim for many in math)
+**Structure:** Write the required number of ORIGINAL **selections** (passages). Each selection
+is **~250-450 words written in TWO labeled parts** — begin the text with `Part 1`, then later
+`Part 2` (paragraphs separated by `\n\n`), exactly like the real EOG. Balance LITERARY (story,
+fable, folktale, poem) and INFORMATIONAL (science, social studies, biography): ~40% literary,
+~50% informational, plus Language (vocabulary) items. Lexile ~420-650L.
 
-`"diagram"` is `{ "type": ..., "params": {...} }`. Supported types & params:
+**Items:** Distribute questions evenly (~8 per selection). **ALL single_choice with EXACTLY 4
+options (A-D)**; you may include **2-3 `multi_select`** total ("Select the two details..."); **NO
+numeric_entry**; `diagram` = null for every reading question.
 
-- `number_line`: `{ "min":0, "max":10, "step":1, "point":3 }` or with
-  `"intervals":[{"from":0,"to":2,"label":"jump"}]`, `"marks":[{"value":4,"label":"4"}]`.
-- `fraction_bar`: `{ "parts":4, "shaded":3 }`  OR multiple:
-  `{ "bars":[{"parts":2,"shaded":1,"label":"A"},{"parts":4,"shaded":2,"label":"B"}] }`.
-- `fraction_circle`: `{ "parts":4, "shaded":3 }`.
-- `array_dots`: `{ "rows":6, "cols":7 }` (multiplication/area model).
-- `bar_graph`: `{ "title":"Books Read","xLabel":"Kids","yLabel":"Books","yMax":10,"yStep":2,
-   "bars":[{"label":"Ann","value":6},{"label":"Ben","value":4}] }`.
-- `picture_graph`: `{ "title":"Apples","symbol":"🍎","unitValue":2,
-   "rows":[{"label":"Mon","count":3},{"label":"Tue","count":5}] }` (count = number of symbols).
-- `clock`: `{ "hour":3, "minute":45 }`.
-- `rectangle`: `{ "width":6, "height":4, "unit":"cm", "showGrid":true, "label":"Garden" }`
-  (area/perimeter; showGrid draws unit squares).
-- `shape`: `{ "kind":"quadrilateral|triangle|pentagon|hexagon|trapezoid|rhombus",
-   "sideLabels":["4 cm","3 cm","4 cm","3 cm"] }`.
-- `base_ten`: `{ "hundreds":3, "tens":4, "ones":2 }` (place value blocks).
-- `data_table`: `{ "headers":["Name","Votes"], "rows":[["Ann","6"],["Ben","4"]] }`.
+**Use these authentic NC stems / standards (spread them across each selection):**
+- Vocabulary-in-context (L.3.4, RL.3.4, RI.3.4): "What is the meaning of **___** in paragraph X?"
+- Key details (RL.3.1, RI.3.1): "According to the text, ..." / "What did ___ do after ___?"
+- Character / sequence (RL.3.3, RI.3.3): "Which word describes ___?" / "What step follows ___?"
+- Main idea / theme (RL.3.2, RI.3.2): "What is the main idea of the text?"
+- **Text structure / connections (RI.3.8) — HARD:** "How does the author connect the ideas in
+  paragraphs X and Y?" / "What is the connection between paragraphs X and Y?"
+  (options like: "presents a problem and a solution", "compares two things", "shows cause and
+  effect", "gives steps in order", "a result of the earlier action")
+- **Evidence:** "Which statement from the text supports the main idea?" / "Which detail from the
+  text supports that ___?" (options are short QUOTES from the passage)
+- **Cross-part (label it "Use both parts of this text to answer this question."):** "What is one
+  way ___ and ___ are alike?" / "Why is ___ pleased at the end of the text?"
+- Figurative language (L.3.5.a): "What is the meaning of the phrase '___' in paragraph X?"
 
-Only attach diagrams that match the question. Keep params consistent with the text
-(e.g. if a bar_graph question asks "how many more", the bar values must support the key).
+**Difficulty mix:** ~35% easy (DOK-1 recall), ~50% medium (DOK-2), ~15% hard (DOK-3 connection,
+evidence, inference, cross-part). Include **≥8 tricky/hard** items. Distractors must be plausible
+misreadings a real 3rd grader would pick.
 
-## Quality bar
-- Real EOG flavor: clear stems, grade-appropriate vocabulary, no trick wording.
-- Spread difficulty (~40% easy, ~40% medium, ~20% hard) and skills evenly.
-- Distractors reflect COMMON student mistakes (off-by-one, wrong operation,
-  place-value slips, partial fractions).
-- Reading passages must be ORIGINAL, age-appropriate, and self-contained, with
-  paragraphs separated by `\n\n`. Questions must be answerable from the passage.
-- Explanations are short, kid-friendly, and show the reasoning.
-- NEVER leave an `answer` that doesn't match `options`. NEVER duplicate option text.
+---
+
+## IF MATH — match the real NC Grade 3 EOG Math
+
+**Domain weights (across the whole test):** Operations & Algebraic Thinking **32-36%**
+(× and ÷ within 0-10, properties, two-step word problems, arithmetic patterns); Number &
+Operations in Base Ten **9-13%** (place value, rounding to nearest 10/100, +/- within 1000);
+Number & Operations–Fractions **28-32%** (fractions on a number line, equivalence, comparison,
+fraction of a whole/set, whole numbers as fractions); Measurement, Data & Geometry **23-27%**
+(area & perimeter, time to the minute + elapsed time, mass & liquid volume, scaled bar & picture
+graphs, partition shapes into equal areas, classify quadrilaterals).
+
+**DOK:** ~45% DOK-1 (recall/procedure), ~55% DOK-2 (apply, multi-step). **Item mix:** ~70%
+single_choice (EXACTLY 4 options), ~12% multi_select ("Select all that apply" / "Select the
+two ___"), ~18% numeric_entry (gridded). Use **MANY diagrams** (≥1 in 3 questions): number_line,
+array_dots, fraction_bar/circle, clock, rectangle (area/perimeter), bar_graph, picture_graph,
+base_ten, shape, data_table (params consistent with the question + key).
+
+**Tricky / hard layer (include ≥8):** multi-step word problems; "Which expressions are equal to
+___?"; comparisons that trap common errors (e.g., 1/3 vs 1/4 on a number line); elapsed time that
+crosses the hour; area-vs-perimeter mix-ups; rounding edge cases (e.g., 549→500, 552→600);
+even/odd and pattern reasoning. Distractors must reflect common mistakes (wrong operation,
+off-by-one, place-value slips, partial fractions).
+
+**Difficulty mix:** ~40% easy, ~40% medium, ~20% hard.
+
+---
+
+## Diagram params (math)
+- number_line `{min,max,step,point}` (+ `intervals:[{from,to,label}]`, `marks:[{value,label}]`)
+- fraction_bar `{parts,shaded}` or `{bars:[{parts,shaded,label}]}` · fraction_circle `{parts,shaded}`
+- array_dots `{rows,cols}` · bar_graph `{title,xLabel,yLabel,yMax,yStep,bars:[{label,value}]}`
+- picture_graph `{title,symbol,unitValue,rows:[{label,count}]}` · clock `{hour,minute}`
+- rectangle `{width,height,unit,showGrid,label}` · shape `{kind,sideLabels}`
+- base_ten `{hundreds,tens,ones}` · data_table `{headers:[...],rows:[[...]]}`
+
+## Final checks before writing
+- EXACT question count requested. Every `answer` matches `options`/grading rules.
+- 4 unique options on every choice item; numeric_entry options:[]. Unique question ids.
+- Reading: every question has a valid passageId; passages have Part 1/Part 2; no diagrams.
+- The required number of tricky/hard items is present and genuinely challenging but grade-appropriate.
