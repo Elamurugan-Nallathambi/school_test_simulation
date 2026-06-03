@@ -20,6 +20,7 @@ export class Runner {
     this.onHistory = opts.onHistory;
     this.onRetake = opts.onRetake;
     this.guidance = !!opts.guidance;
+    this.navCollapsed = (() => { try { return localStorage.getItem("navCollapsed") === "1"; } catch { return false; } })();
     this.qs = test.questions;
     this.passById = Object.fromEntries((test.passages || []).map((p) => [p.id, p]));
     this.storeKey = `attempt:${test.id}:${student}`;
@@ -80,7 +81,7 @@ export class Runner {
   renderShell() {
     const t = this.test;
     this.root.innerHTML = `
-      <div class="runner">
+      <div class="runner ${this.navCollapsed ? "nav-collapsed" : ""}">
         <header class="run-head">
           <div class="run-head-left">
             <span class="badge subj-${t.subject}">${t.subject === "math" ? "🔢 Math" : "📖 Reading"}</span>
@@ -97,7 +98,7 @@ export class Runner {
         <div class="run-body">
           <main id="q-area" class="q-area"></main>
           <aside class="q-nav">
-            <div class="q-nav-title">Questions</div>
+            <div class="q-nav-title">Questions <button id="nav-fold" class="nav-fold" title="Hide questions panel">»</button></div>
             <div id="q-grid" class="q-grid"></div>
             <div class="q-nav-legend">
               <span><i class="dot answered"></i> Answered</span>
@@ -106,6 +107,7 @@ export class Runner {
             </div>
             <div class="q-nav-tip">💡 Double-click any word to hear it and see what it means.</div>
           </aside>
+          <button id="nav-show" class="nav-show" title="Show questions panel">‹ Questions</button>
         </div>
         <footer class="run-foot">
           <button id="btn-prev" class="btn btn-ghost">← Prev</button>
@@ -117,8 +119,19 @@ export class Runner {
     this.root.querySelector("#btn-next").onclick = () => this.next();
     this.root.querySelector("#btn-flag").onclick = () => this.toggleFlag();
     this.root.querySelector("#btn-submit").onclick = () => this.confirmSubmit();
+    const fold = this.root.querySelector("#nav-fold");
+    const show = this.root.querySelector("#nav-show");
+    if (fold) fold.onclick = () => this.setNav(true);
+    if (show) show.onclick = () => this.setNav(false);
     this.updateTimer();
     this.renderGrid();
+  }
+
+  setNav(collapsed) {
+    this.navCollapsed = collapsed;
+    try { localStorage.setItem("navCollapsed", collapsed ? "1" : "0"); } catch {}
+    const r = this.root.querySelector(".runner");
+    if (r) r.classList.toggle("nav-collapsed", collapsed);
   }
 
   updateTimer() {
@@ -266,6 +279,7 @@ export class Runner {
 
   correctText(q) {
     if (q.itemType === "numeric_entry") return esc(q.answer);
+    if (q.itemType === "equation") return esc(String(q.template || "").replace("▢", q.answer));
     const idxs = Array.isArray(q.answer) ? q.answer : [q.answer];
     return idxs.map((x) => `${LETTERS[x]}. ${esc((q.options || [])[x])}`).join("; ");
   }
@@ -279,6 +293,17 @@ export class Runner {
           <label class="numeric-label">Type your answer:</label>
           <input id="num-input" class="numeric-input" type="text" inputmode="text"
                  autocomplete="off" value="${r != null ? esc(r) : ""}" placeholder="answer" ${revealed ? "disabled" : ""}/>
+        </div>`;
+    }
+    if (q.itemType === "equation") {
+      const tpl = String(q.template || "▢");
+      const parts = tpl.split("▢");
+      const box = `<input id="eq-input" class="eq-input" type="text" inputmode="numeric" autocomplete="off" value="${r != null ? esc(r) : ""}" placeholder="?" ${revealed ? "disabled" : ""}/>`;
+      const eq = parts.map((p) => esc(p)).join(box);
+      return `
+        <div class="answer equation">
+          <label class="numeric-label">Fill in the blank to make it true:</label>
+          <div class="eq-line">${eq}</div>
         </div>`;
     }
     const multi = q.itemType === "multi_select";
@@ -304,8 +329,8 @@ export class Runner {
 
   wireInputs(q) {
     const area = this.root.querySelector("#q-area");
-    if (q.itemType === "numeric_entry") {
-      const inp = area.querySelector("#num-input");
+    if (q.itemType === "numeric_entry" || q.itemType === "equation") {
+      const inp = area.querySelector(q.itemType === "equation" ? "#eq-input" : "#num-input");
       if (inp) inp.oninput = () => { this.responses[q.id] = inp.value.trim(); this.persist(); this.renderGrid(); };
       return;
     }

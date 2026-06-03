@@ -10,7 +10,7 @@ export function isCorrect(q, resp) {
     const b = [...(q.answer || [])].sort((x, y) => x - y).join(",");
     return a === b && a !== "";
   }
-  if (q.itemType === "numeric_entry") {
+  if (q.itemType === "numeric_entry" || q.itemType === "equation") {
     const norm = (v) => String(v).trim().toLowerCase().replace(/\s+/g, "").replace(/^\$/, "");
     const given = norm(resp);
     if (given === "") return false;

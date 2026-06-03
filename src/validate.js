@@ -1,7 +1,7 @@
 // Shared test-paper validator. Used by the Worker (post-generation) and scripts.
 // Returns { ok: boolean, errors: string[], warnings: string[] }.
 
-const ITEM_TYPES = ["single_choice", "multi_select", "numeric_entry"];
+const ITEM_TYPES = ["single_choice", "multi_select", "numeric_entry", "equation"];
 const SUBJECTS = ["math", "reading"];
 const TEST_TYPES = ["boy", "moy", "eog"];
 const DIFFICULTIES = ["easy", "medium", "hard"];
@@ -80,6 +80,12 @@ export function validateTest(test) {
       if (opts.length > 0) W(`${tag} numeric_entry should have empty options`);
       if (q.answer === undefined || q.answer === null || q.answer === "")
         E(`${tag} numeric_entry missing answer`);
+    } else if (q.itemType === "equation") {
+      if (opts.length > 0) W(`${tag} equation should have empty options`);
+      if (!q.template || !String(q.template).includes("▢"))
+        E(`${tag} equation needs a template containing the blank box "▢"`);
+      if (q.answer === undefined || q.answer === null || q.answer === "")
+        E(`${tag} equation missing answer`);
     }
 
     if (q.diagram != null) {

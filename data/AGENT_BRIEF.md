@@ -31,6 +31,19 @@ with the path and question count.
 ### Grading: single_choice → correct option INDEX (0-based); multi_select → array of indices;
 numeric_entry → the numeric value (options:[]). Choice items have EXACTLY 4 unique options.
 
+### Item type `equation` (math fill-in-the-blank — a real NC EOG technology-enhanced item)
+A fill-in-the-blank equation. Add a `"template"` field with the blank shown as the box `▢`, and set
+`answer` to the number that goes in the box. `options` MUST be empty. The blank can be anywhere.
+Examples (vary the operation and the blank position):
+  `{ "itemType":"equation", "questionText":"Fill in the blank to make the equation true.",
+     "template":"7 × ▢ = 56", "answer":8, "options":[], "explanation":"56 ÷ 7 = 8.", "points":1 }`
+  other shapes: `"▢ + 38 = 65"` (27), `"45 ÷ ▢ = 9"` (5), `"84 − ▢ = 57"` (27), `"▢ × 6 = 54"` (9),
+  `"6 × 8 = ▢ + 20"` (28). Use +, −, ×, ÷. Keep numbers grade-appropriate.
+
+### Answer placement
+Do NOT always put the correct choice first. VARY the correct option across A/B/C/D. (A balancer also
+runs afterward, but write them varied.)
+
 ---
 
 ## IF READING — match the real NC Grade 3 Reading test
@@ -76,9 +89,10 @@ fraction of a whole/set, whole numbers as fractions); Measurement, Data & Geomet
 (area & perimeter, time to the minute + elapsed time, mass & liquid volume, scaled bar & picture
 graphs, partition shapes into equal areas, classify quadrilaterals).
 
-**DOK:** ~45% DOK-1 (recall/procedure), ~55% DOK-2 (apply, multi-step). **Item mix:** ~70%
+**DOK:** ~45% DOK-1 (recall/procedure), ~55% DOK-2 (apply, multi-step). **Item mix:** ~60%
 single_choice (EXACTLY 4 options), ~12% multi_select ("Select all that apply" / "Select the
-two ___"), ~18% numeric_entry (gridded). Use **MANY diagrams** (≥1 in 3 questions): number_line,
+two ___"), ~13% numeric_entry (gridded), ~15% **equation fill-in-the-blank** (`▢`, mix of +, −, ×, ÷
+with the blank in different spots — see the equation item spec above). Use **MANY diagrams** (≥1 in 3 questions): number_line,
 array_dots, fraction_bar/circle, clock, rectangle (area/perimeter), bar_graph, picture_graph,
 base_ten, shape, data_table (params consistent with the question + key).
 

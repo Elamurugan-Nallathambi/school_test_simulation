@@ -155,7 +155,13 @@ export function reviewCard(q, resp, ok, i, passById, isMath) {
   }
   const blank = (resp == null || resp === "" || (Array.isArray(resp) && !resp.length));
   let answerBlock = "";
-  if (q.itemType === "numeric_entry") {
+  if (q.itemType === "equation") {
+    const filled = esc(String(q.template || "").replace("▢", `[ ${q.answer} ]`));
+    answerBlock = `
+      <div class="rv-line"><b>Equation:</b> <span class="ok">${filled}</span></div>
+      <div class="rv-line"><b>Your answer:</b> <span class="${ok ? "ok" : "no"}">${blank ? "— (blank)" : esc(resp)}</span></div>
+      <div class="rv-line"><b>Correct answer:</b> <span class="ok">${esc(q.answer)}</span></div>`;
+  } else if (q.itemType === "numeric_entry") {
     answerBlock = `
       <div class="rv-line"><b>Your answer:</b> <span class="${ok ? "ok" : "no"}">${blank ? "— (blank)" : esc(resp)}</span></div>
       <div class="rv-line"><b>Correct answer:</b> <span class="ok">${esc(q.answer)}</span></div>`;

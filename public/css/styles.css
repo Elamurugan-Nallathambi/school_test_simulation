@@ -263,7 +263,18 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
   .resume-actions { width: 100%; justify-content: flex-end; }
 }
 
-.run-body { flex: 1; display: flex; min-height: 0; overflow: hidden; }
+.run-body { flex: 1; display: flex; min-height: 0; overflow: hidden; position: relative; }
+/* collapsible question navigator */
+.nav-fold { border: none; background: var(--bg); color: var(--muted); font-weight: 800; border-radius: 8px; width: 26px; height: 24px; cursor: pointer; float: right; font-size: 14px; }
+.nav-fold:hover { background: var(--blue-l); color: var(--blue-d); }
+.nav-show { display: none; }
+.runner.nav-collapsed .q-nav { display: none; }
+.runner.nav-collapsed .nav-show {
+  display: block; position: absolute; top: 14px; right: 0; z-index: 15;
+  background: var(--blue); color: #fff; border: none; border-radius: 999px 0 0 999px;
+  padding: 10px 14px; font-weight: 800; font-size: 13px; cursor: pointer; box-shadow: var(--shadow);
+}
+.runner.nav-collapsed .nav-show:hover { background: var(--blue-d); }
 .q-area { flex: 1; display: flex; min-height: 0; overflow: hidden; }
 .q-area.with-passage { gap: 0; }
 
@@ -308,6 +319,11 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
 .numeric-label { font-weight: 700; }
 .numeric-input { width: 240px; max-width: 100%; padding: 14px 16px; font-size: 22px; border: 2px solid var(--line); border-radius: 12px; }
 .numeric-input:focus { outline: none; border-color: var(--blue); }
+
+/* equation fill-in-the-blank items */
+.equation .eq-line { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; font-size: 28px; font-weight: 800; color: var(--ink); margin-top: 6px; }
+.eq-input { width: 90px; padding: 8px 10px; font-size: 26px; font-weight: 800; text-align: center; border: 2px dashed var(--blue); border-radius: 10px; background: #f8faff; color: var(--blue-d); }
+.eq-input:focus { outline: none; border-style: solid; background: #fff; }
 
 /* navigator */
 .q-nav { width: 220px; flex: 0 0 220px; border-left: 1px solid var(--line); background: var(--card); padding: 16px; overflow-y: auto; }
