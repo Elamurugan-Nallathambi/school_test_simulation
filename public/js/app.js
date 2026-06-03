@@ -363,6 +363,7 @@ async function startScreen(id) {
           <input type="checkbox" id="need-guidance" ${guidePref ? "checked" : ""}/>
           <span>🧭 <b>Need guidance</b> — let me <i>check</i> &amp; <i>show</i> answers as I go (practice mode)</span>
         </label>
+        <div id="adult-gate" class="adult-gate" style="display:none"></div>
         <button id="btn-begin" class="btn btn-begin">Start Test →</button>
         ${known ? `<p class="name-tip">Not ${esc(state.student)}? <button class="linkish" id="change-name">change name</button></p>`
                 : `<p class="name-tip">⏱ A timer will start. We'll remember your name next time.</p>`}
@@ -372,16 +373,49 @@ async function startScreen(id) {
   const input = app.querySelector("#student");
   const begin = app.querySelector("#btn-begin");
   const guide = app.querySelector("#need-guidance");
-  const sync = () => { begin.disabled = !state.student && (!input || input.value.trim().length < 1); };
+  const gateBox = app.querySelector("#adult-gate");
+  let gateAnswer = null, gateOK = false;
+
+  const nameOK = () => !!state.student || (input && input.value.trim().length >= 1);
+  const sync = () => { begin.disabled = !nameOK() || (guide.checked && !gateOK); };
+
+  // Adult-only check: a 2-digit × 2-digit problem a grown-up solves to unlock
+  // guidance (which can reveal answers). Required every time the test is started.
+  function showGate() {
+    const a = 12 + Math.floor(Math.random() * 18);   // 12–29
+    const b = 13 + Math.floor(Math.random() * 16);   // 13–28
+    gateAnswer = a * b; gateOK = false;
+    gateBox.innerHTML = `
+      <div class="gate-title">🔒 Grown-up check</div>
+      <div class="gate-text">Guidance can show answers, so a grown-up unlocks it. Solve: <b>${a} × ${b} = ?</b></div>
+      <input id="gate-input" class="gate-input" type="text" inputmode="numeric" autocomplete="off" placeholder="answer" />
+      <span id="gate-status" class="gate-status"></span>`;
+    gateBox.style.display = "";
+    const gi = gateBox.querySelector("#gate-input");
+    const gs = gateBox.querySelector("#gate-status");
+    gi.oninput = () => {
+      gateOK = parseInt(gi.value, 10) === gateAnswer;
+      gs.textContent = gi.value.trim() === "" ? "" : (gateOK ? "✓ Unlocked" : "");
+      gs.className = "gate-status" + (gateOK ? " ok" : "");
+      sync();
+    };
+    gi.onkeydown = (e) => { if (e.key === "Enter" && !begin.disabled) begin.click(); };
+    gi.focus();
+  }
+  function hideGate() { gateBox.style.display = "none"; gateBox.innerHTML = ""; gateOK = false; gateAnswer = null; }
+
   if (input) { input.oninput = sync; input.focus(); input.onkeydown = (e) => { if (e.key === "Enter" && !begin.disabled) begin.click(); }; }
+  if (guide.checked) showGate();             // remembered preference → still re-confirm
+  guide.onchange = () => { if (guide.checked) showGate(); else hideGate(); sync(); };
   sync();
+
   const cn = app.querySelector("#change-name");
   if (cn) cn.onclick = () => { nameReturn = location.hash; go("#/name"); };
   begin.onclick = () => {
     if (input && input.value.trim()) setStudent(input.value.trim());
     if (!state.student) return;
-    const guidance = !!(guide && guide.checked);
-    localStorage.setItem("needGuidance", guidance ? "1" : "0");
+    const guidance = !!(guide.checked && gateOK);
+    localStorage.setItem("needGuidance", guide.checked ? "1" : "0");
     launch(test, guidance);
   };
 }
@@ -393,6 +427,7 @@ function launch(test, guidance) {
   if (runner) runner.stop();
   runner = new Runner(app, test, state.student, {
     guidance, onExit: exitTest, onHistory: () => go("#/history"),
+    onRetake: () => go(`#/start/${test.id}`),
   });
   runner.start();
 }
@@ -484,6 +519,7 @@ async function viewResult(id) {
       primaryLabel: "← My Results",
       onPrimary: () => go("#/history"),
       onHistory: () => go("#/history"),
+      onRetake: () => go(`#/start/${test.id}`),
     });
   } catch (e) { go("#/history"); }
 }
@@ -501,6 +537,26 @@ document.getElementById("home-link").onclick = (e) => {
   }
   go("#/");
 };
+
+// PWA install prompt → show an "Install" button in the header when available.
+let deferredInstall = null;
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredInstall = e;
+  const b = document.getElementById("install-btn");
+  if (!b) return;
+  b.style.display = "";
+  b.onclick = async () => {
+    b.style.display = "none";
+    deferredInstall.prompt();
+    try { await deferredInstall.userChoice; } catch {}
+    deferredInstall = null;
+  };
+});
+window.addEventListener("appinstalled", () => {
+  const b = document.getElementById("install-btn");
+  if (b) b.style.display = "none";
+});
 
 initDict();
 window.addEventListener("hashchange", route);

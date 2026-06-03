@@ -1,0 +1,26 @@
+{
+  "name": "EOG Practice Portal",
+  "short_name": "EOG Prep",
+  "description": "Kid-friendly NC EOG-style Reading & Math practice tests with timer, diagrams, and offline support.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4f7fe",
+  "theme_color": "#2563eb",
+  "categories": ["education"],
+  "lang": "en-US",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "My Results", "short_name": "Results", "url": "/#/history",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Grade 3 tests", "short_name": "Grade 3", "url": "/#/nc/g3",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

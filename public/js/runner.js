@@ -18,6 +18,7 @@ export class Runner {
     this.student = student;
     this.onExit = opts.onExit;
     this.onHistory = opts.onHistory;
+    this.onRetake = opts.onRetake;
     this.guidance = !!opts.guidance;
     this.qs = test.questions;
     this.passById = Object.fromEntries((test.passages || []).map((p) => [p.id, p]));
@@ -386,6 +387,7 @@ export class Runner {
       primaryLabel: "Back to Tests",
       onPrimary: () => this.onExit && this.onExit(),
       onHistory: () => this.onHistory && this.onHistory(),
+      onRetake: this.onRetake ? () => this.onRetake() : null,
     });
   }
 }

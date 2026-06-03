@@ -201,6 +201,15 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
 .guide-toggle { display: flex; align-items: flex-start; gap: 10px; text-align: left; background: #faf5ff; border: 1.5px solid #e9d5ff; border-radius: 12px; padding: 12px 14px; margin: 4px 0 16px; font-size: 14px; cursor: pointer; }
 .guide-toggle input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--math); flex: 0 0 18px; }
 
+/* adult-only gate to unlock guidance */
+.adult-gate { text-align: left; background: #fef2f2; border: 1.5px solid #fecaca; border-radius: 12px; padding: 12px 14px; margin: 0 0 16px; }
+.gate-title { font-weight: 800; color: #b91c1c; font-size: 14px; margin-bottom: 4px; }
+.gate-text { font-size: 14px; color: var(--ink); margin-bottom: 10px; }
+.gate-input { width: 160px; max-width: 100%; padding: 10px 12px; font-size: 18px; border: 2px solid var(--line); border-radius: 10px; }
+.gate-input:focus { outline: none; border-color: var(--blue); }
+.gate-status { display: inline-block; margin-left: 10px; font-weight: 800; font-size: 14px; color: var(--muted); }
+.gate-status.ok { color: var(--green); }
+
 /* double-click dictionary popover */
 .dict-pop { position: fixed; z-index: 1000; background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow-lg); padding: 12px 14px; font-size: 15px; animation: fade .12s ease; }
 .dict-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }

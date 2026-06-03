@@ -97,6 +97,7 @@ export function renderResults(root, opts) {
           <p class="muted">${esc(test.title)}</p>
           <p class="muted">Score ${g.correct} of ${g.total} · ${pct}%${dur ? ` · Time used ${m}m ${s}s` : ""}${opts.savedAt ? ` · ${esc(formatDate(opts.savedAt))}` : ""}</p>
           <div class="results-actions">
+            ${opts.onRetake ? `<button id="btn-retake" class="btn btn-begin">🔄 Retake Test</button>` : ""}
             <button id="btn-primary" class="btn btn-primary">${esc(opts.primaryLabel || "Back to Tests")}</button>
             <button id="btn-history" class="btn btn-ghost">📊 My Results</button>
             <button id="btn-print" class="btn btn-ghost">🖨 Print</button>
@@ -111,6 +112,8 @@ export function renderResults(root, opts) {
   root.querySelector("#btn-primary").onclick = () => opts.onPrimary && opts.onPrimary();
   root.querySelector("#btn-history").onclick = () => opts.onHistory && opts.onHistory();
   root.querySelector("#btn-print").onclick = () => window.print();
+  const retake = root.querySelector("#btn-retake");
+  if (retake) retake.onclick = () => opts.onRetake && opts.onRetake();
 
   // Lazy AI "easier way" for math questions without a built-in (offline) tip.
   root.querySelectorAll(".explain-btn").forEach((b) => {
