@@ -44,6 +44,29 @@ const TYPES = [
   { v: "eog", label: "End of Grade", short: "EOG", emoji: "🏆", desc: "Full practice exam" },
 ];
 
+const srcLabel = (s) => (s === "ai" ? "✨ AI" : s === "sample" ? "📄 Sample (from a real test)" : "⭐ Curated");
+
+// Helpful outside resources, tagged by grade. type: "ideas" | "questions" | "official".
+const RESOURCES = [
+  { grades: [3], type: "ideas", name: "Hawk Ridge Elementary — Grade 3 Math: Fractions (CMS)",
+    desc: "Standards, anchor charts, videos, and a printable fractions workbook (area & length models).",
+    url: "https://sites.google.com/cms.k12.nc.us/hres3rdmath/fractions?authuser=0" },
+  { grades: [3], type: "questions", name: "Tutorified — NC EOG 3rd Grade Practice Test (PDF & worksheets)",
+    desc: "Free printable ELA & Math practice tests and worksheets with questions.",
+    url: "https://www.tutorified.com/nc-eog-3rd-grade-practice-test-pdf/" },
+  { grades: [3, 4, 5], type: "questions", name: "Lumos Learning — NC EOG Test Prep Workbooks (for Parents)",
+    desc: "Parent workbooks and practice questions aligned to the NC EOG.",
+    url: "https://www.lumoslearning.com/llwp/parents/eog-test-prep-workbooks.html" },
+  { grades: [3, 4, 5], type: "official", name: "NCDPI — End-of-Grade (EOG) Documents",
+    desc: "Official test specifications and released forms (some include released questions).",
+    url: "https://www.dpi.nc.gov/document-terms/eog" },
+];
+const RES_TYPE = {
+  ideas: { label: "💡 Ideas & Practice", cls: "rt-ideas" },
+  questions: { label: "📝 Practice Questions", cls: "rt-questions" },
+  official: { label: "🏛️ Official (some with questions)", cls: "rt-official" },
+};
+
 const go = (hash) => { if (location.hash === hash) route(); else location.hash = hash; };
 const render = (html) => { app.innerHTML = html; };
 const parseHash = () => location.hash.replace(/^#\/?/, "").split("/").filter(Boolean);
@@ -56,6 +79,7 @@ function route() {
   if (p[0] === "start") return startScreen(p[1]);
   if (p[0] === "resume") return resumeTest(p[1]);
   if (p[0] === "name") return changeName();
+  if (p[0] === "resources") return viewResources();
 
   if (document.body.classList.contains("in-test")) leaveTest();
 
@@ -195,6 +219,32 @@ function viewGrade() {
   wireInProgress();
 }
 
+// ── Resources for the selected grade ───────────────────────────────────────────
+function viewResources() {
+  const grade = state.grade || 3;
+  const items = RESOURCES.filter((r) => r.grades.includes(grade));
+  render(`
+    <section class="wizard">
+      ${crumbs([stateLabel(state.region), "Grade " + grade, "Resources"])}
+      <div class="hero"><h1>📚 Helpful Resources</h1><p>Extra practice and official material for Grade ${grade}.</p></div>
+      <div class="res-list">
+        ${items.map((r) => {
+          const t = RES_TYPE[r.type] || RES_TYPE.ideas;
+          return `
+          <a class="res-card" href="${esc(r.url)}" target="_blank" rel="noopener noreferrer">
+            <span class="res-type ${t.cls}">${t.label}</span>
+            <span class="res-name">${esc(r.name)}</span>
+            <span class="res-desc">${esc(r.desc)}</span>
+            <span class="res-go">Open ↗</span>
+          </a>`;
+        }).join("")}
+      </div>
+      <p class="center-note muted">Links open on the providers' sites. Some are study material (ideas); some include real practice questions.</p>
+      <p class="center-link"><button class="linkish" id="res-back">← Back</button></p>
+    </section>`);
+  app.querySelector("#res-back").onclick = () => go(`#/${state.region}/g${grade}`);
+}
+
 // Resume an unfinished test directly (skips the start screen; the runner restores progress).
 async function resumeTest(id) {
   render(`<section class="wizard center"><div class="generating"><div class="spinner"></div><h2>Resuming your test…</h2></div></section>`);
@@ -225,8 +275,10 @@ function viewSubject() {
             <span class="choice-desc">${s.desc}</span>
           </button>`).join("")}
       </div>
+      <p class="center-link"><button class="linkish" id="go-res">📚 Helpful resources for Grade ${state.grade}</button></p>
     </section>`);
   app.querySelectorAll("[data-s]").forEach((b) => (b.onclick = () => go(`#/${state.region}/g${state.grade}/${b.dataset.s}`)));
+  app.querySelector("#go-res").onclick = () => go("#/resources");
 }
 
 // ── Step 3: Test type ──────────────────────────────────────────────────────────
@@ -285,8 +337,8 @@ async function viewTests() {
       <div class="test-row" data-id="${t.id}" role="button" tabindex="0">
         <span class="test-row-icon">${state.subject === "math" ? "🔢" : "📖"}</span>
         <span class="test-row-main">
-          <span class="test-row-title">${esc(t.title)}${saved ? ` <span class="off-badge">📥 Offline</span>` : ""}</span>
-          <span class="test-row-sub">${t.questionCount} questions · ~${t.timeLimitMinutes} min · ${t.source === "ai" ? "✨ AI" : "⭐ Curated"}</span>
+          <span class="test-row-title">${esc(t.title)}${t.source === "sample" ? ` <span class="sample-badge">Sample</span>` : ""}${saved ? ` <span class="off-badge">📥 Offline</span>` : ""}</span>
+          <span class="test-row-sub">${t.questionCount} questions · ~${t.timeLimitMinutes} min · ${srcLabel(t.source)}</span>
         </span>
         <span class="test-row-actions">
           ${offline ? "" : `<button class="dl-btn ${saved ? "saved" : ""}" data-id="${t.id}">${saved ? "✓ Saved" : "⬇ Save offline"}</button>`}

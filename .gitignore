@@ -5,3 +5,6 @@ scripts/seed.sql
 *.log
 .DS_Store
 dist/
+
+# PDF import work dirs
+data/pdf-work/

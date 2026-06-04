@@ -227,6 +227,21 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
 .dict-spin { width: 14px; height: 14px; border: 2px solid var(--blue-l); border-top-color: var(--blue); border-radius: 50%; display: inline-block; animation: spin 1s linear infinite; }
 .center-note { text-align: center; margin-top: 22px; font-size: 13px; }
 
+/* sample (PDF-imported) test badge */
+.sample-badge { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; font-size: 11px; font-weight: 800; padding: 1px 8px; border-radius: 999px; vertical-align: 2px; }
+
+/* resources */
+.res-list { display: flex; flex-direction: column; gap: 14px; max-width: 720px; margin: 0 auto; }
+.res-card { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; background: var(--card); border: 2px solid var(--line); border-radius: 14px; padding: 16px 18px; text-decoration: none; color: var(--ink); box-shadow: var(--shadow); transition: .12s; }
+.res-card:hover { border-color: var(--blue); transform: translateY(-2px); }
+.res-type { grid-column: 1 / 2; font-size: 12px; font-weight: 800; padding: 2px 10px; border-radius: 999px; justify-self: start; }
+.rt-ideas { background: #ede9fe; color: #6d28d9; }
+.rt-questions { background: #dcfce7; color: #15803d; }
+.rt-official { background: #dbeafe; color: #1d4ed8; }
+.res-name { grid-column: 1 / 2; font-weight: 800; font-size: 16px; }
+.res-desc { grid-column: 1 / 2; color: var(--muted); font-size: 14px; }
+.res-go { grid-column: 2 / 3; grid-row: 1 / 4; align-self: center; color: var(--blue-d); font-weight: 800; white-space: nowrap; }
+
 /* mental-math "easier way" helper in the review */
 .tip-box { margin-top: 8px; background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 10px; padding: 10px 12px; font-size: 14px; color: #3730a3; }
 .tip-wrap { margin-top: 8px; }
@@ -361,6 +376,29 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
 .results-meta h2 { font-size: 26px; }
 .results-actions { display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap; }
 .review-title { margin: 30px 0 14px; font-size: 22px; }
+.review-filter { display: flex; gap: 10px; margin: 0 0 16px; flex-wrap: wrap; }
+.rf-btn { border: 1.5px solid var(--line); background: #fff; color: var(--ink); border-radius: 999px; padding: 8px 16px; font-weight: 800; font-size: 14px; cursor: pointer; }
+.rf-btn:hover { background: var(--bg); }
+.rf-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+.rf-btn.rf-ok.active { background: var(--green); border-color: var(--green); }
+.rf-btn.rf-no.active { background: var(--red); border-color: var(--red); }
+.review-list.show-correct .rv-card.rv-no { display: none; }
+.review-list.show-wrong .rv-card.rv-ok { display: none; }
+.rv-passage { cursor: pointer; border: 1px solid var(--reading); background: #ecfeff; color: #0e7490; border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 700; margin-left: auto; }
+.rv-passage:hover { background: #cffafe; }
+
+/* passage modal */
+.modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, .55); display: flex; align-items: center; justify-content: center; z-index: 1200; padding: 18px; animation: fade .15s ease; }
+.modal { background: #fffdf7; border-radius: 16px; max-width: 720px; width: 100%; max-height: 86vh; display: flex; flex-direction: column; box-shadow: var(--shadow-lg); overflow: hidden; }
+.modal-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--line); background: #fff; }
+.modal-head h3 { margin: 0; font-size: 19px; }
+.modal-x { border: none; background: var(--bg); color: var(--ink); width: 34px; height: 34px; border-radius: 50%; font-size: 16px; cursor: pointer; }
+.modal-x:hover { background: var(--line); }
+.modal-body { padding: 22px 26px; overflow-y: auto; font-size: 17px; line-height: 1.8; }
+.modal-body p { margin: 0 0 14px; }
+
+/* image diagram (e.g. figures imported from PDFs) */
+.diagram-img { max-width: 100%; height: auto; border-radius: 8px; display: block; margin: 0 auto; }
 .review-list { display: flex; flex-direction: column; gap: 14px; }
 .rv-card { background: var(--card); border: 2px solid var(--line); border-left-width: 6px; border-radius: 12px; padding: 16px 18px; }
 .rv-card.rv-ok { border-left-color: var(--green); }

@@ -7,7 +7,29 @@ import { mentalMathTip } from "./mathstrategy.js";
 
 const esc = (s) => String(s == null ? "" : s)
   .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const paras = (t) => esc(t).split(/\n\n+/).map((p) => `<p>${p.replace(/\n/g, "<br>")}</p>`).join("");
 const LETTERS = ["A", "B", "C", "D", "E", "F"];
+
+// Modal showing a reading passage so the student can re-review it from the results.
+function showPassageModal(p) {
+  if (!p) return;
+  const ov = document.createElement("div");
+  ov.className = "modal-overlay";
+  ov.innerHTML = `
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-head">
+        <h3>📖 ${esc(p.title || "Passage")}</h3>
+        <button class="modal-x" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body passage-text">${paras(p.text)}</div>
+    </div>`;
+  document.body.appendChild(ov);
+  const close = () => { ov.remove(); document.removeEventListener("keydown", onKey); };
+  function onKey(e) { if (e.key === "Escape") close(); }
+  ov.querySelector(".modal-x").onclick = close;
+  ov.onclick = (e) => { if (e.target === ov) close(); };
+  document.addEventListener("keydown", onKey);
+}
 
 // NC organizes reading into Literature (Fiction) vs Informational (Nonfiction);
 // poetry is a literary type kept separate so poems aren't mislabeled.
@@ -106,12 +128,33 @@ export function renderResults(root, opts) {
       </div>
       ${genreSectionHTML(test, responses)}
       <h3 class="review-title">Answer Review</h3>
-      <div class="review-list">${review}</div>
+      <div class="review-filter">
+        <button class="rf-btn active" data-f="all">All (${g.total})</button>
+        <button class="rf-btn rf-ok" data-f="correct">✓ Correct (${g.correct})</button>
+        <button class="rf-btn rf-no" data-f="wrong">✗ To review (${g.total - g.correct})</button>
+      </div>
+      <div id="review-list" class="review-list">${review}</div>
     </div>`;
 
   root.querySelector("#btn-primary").onclick = () => opts.onPrimary && opts.onPrimary();
   root.querySelector("#btn-history").onclick = () => opts.onHistory && opts.onHistory();
   root.querySelector("#btn-print").onclick = () => window.print();
+
+  // review filter: All / Correct / To review
+  const rl = root.querySelector("#review-list");
+  root.querySelectorAll(".rf-btn").forEach((b) => {
+    b.onclick = () => {
+      root.querySelectorAll(".rf-btn").forEach((x) => x.classList.remove("active"));
+      b.classList.add("active");
+      rl.classList.remove("show-correct", "show-wrong");
+      if (b.dataset.f === "correct") rl.classList.add("show-correct");
+      else if (b.dataset.f === "wrong") rl.classList.add("show-wrong");
+    };
+  });
+  // open the passage for any reading question
+  root.querySelectorAll(".passage-btn").forEach((b) => {
+    b.onclick = (e) => { e.stopPropagation(); showPassageModal(passById[b.dataset.pid]); };
+  });
   const retake = root.querySelector("#btn-retake");
   if (retake) retake.onclick = () => opts.onRetake && opts.onRetake();
 
@@ -178,7 +221,7 @@ export function reviewCard(q, resp, ok, i, passById, isMath) {
       <div class="rv-head">
         <span class="rv-num">${i + 1}</span>
         <span class="rv-mark">${ok ? "✓ Correct" : "✗ Review"}</span>
-        ${passage ? `<span class="rv-passage">📖 ${esc(passage.title)}</span>` : ""}
+        ${passage ? `<button class="rv-passage passage-btn" data-pid="${esc(q.passageId)}" title="Read the passage again">📖 ${esc(passage.title)} · Read</button>` : ""}
       </div>
       <div class="rv-q">${esc(q.questionText).replace(/\n/g, "<br>")}</div>
       ${diagramHtml}

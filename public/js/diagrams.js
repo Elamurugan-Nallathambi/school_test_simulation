@@ -26,6 +26,7 @@ export function renderDiagram(d) {
       case "shape": return shape(p);
       case "base_ten": return baseTen(p);
       case "data_table": return dataTable(p);
+      case "image": return imageDiagram(p);
       default: return "";
     }
   } catch (e) {
@@ -276,6 +277,12 @@ function baseTen(p) {
     if ((i + 1) % 10 === 0) { oy = yTop; ox += u + 2; }
   }
   return wrap(W, H, s);
+}
+
+// ── image (e.g. a figure imported from a PDF) ────────────────────────────────
+function imageDiagram(p) {
+  if (!p || !p.src) return "";
+  return `<img class="diagram-img" src="${esc(p.src)}" alt="${esc(p.alt || "figure")}" loading="lazy" />`;
 }
 
 // ── data table ───────────────────────────────────────────────────────────────

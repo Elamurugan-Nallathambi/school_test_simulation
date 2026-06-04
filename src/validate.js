@@ -9,7 +9,7 @@ const DIFFICULTIES = ["easy", "medium", "hard"];
 const DIAGRAM_TYPES = new Set([
   "number_line", "fraction_bar", "fraction_circle", "array_dots",
   "bar_graph", "picture_graph", "clock", "rectangle", "shape",
-  "base_ten", "data_table",
+  "base_ten", "data_table", "image",
 ]);
 
 export function validateTest(test) {
