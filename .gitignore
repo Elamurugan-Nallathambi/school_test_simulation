@@ -8,3 +8,7 @@ dist/
 
 # PDF import work dirs
 data/pdf-work/
+
+# Generated test figures (regenerated from PDFs on each import)
+public/sample-img/*/
+!public/sample-img/.gitkeep
