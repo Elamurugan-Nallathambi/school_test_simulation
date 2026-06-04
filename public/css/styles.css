@@ -175,6 +175,15 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
 .genre-fb.no { color: var(--red); }
 .genre-fb.saved { color: var(--muted); font-weight: 600; }
 
+/* AI reading buddy */
+.tutor-bar { margin: 6px 0 16px; }
+.tutor-btn { border: none; background: linear-gradient(135deg, #7c3aed, #2563eb); color: #fff; border-radius: 999px; padding: 10px 18px; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: var(--shadow); }
+.tutor-btn:hover { filter: brightness(1.05); }
+.tutor-btn:disabled { opacity: .6; cursor: default; }
+.tutor-state { margin-left: 10px; font-weight: 700; font-size: 14px; color: var(--math); }
+.tutor-cap { margin-top: 10px; background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 12px; padding: 12px 14px; font-size: 15px; line-height: 1.55; color: #4c1d95; }
+.tutor-cap:empty { display: none; }
+
 /* guidance (check / show answer) */
 .guide-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--line); }
 .btn.sm { padding: 8px 14px; font-size: 14px; }

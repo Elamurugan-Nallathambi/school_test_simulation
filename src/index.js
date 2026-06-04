@@ -1,6 +1,7 @@
 // Worker entry — routes /api/*, otherwise serves static assets.
 import { listTests, getTest, saveTest, saveAttempt, listAttempts, getAttempt, getGlossary, saveGlossary, getExplanation, saveExplanation } from "./db.js";
 import { generateTest, defineWord, explainMath } from "./openai.js";
+import { tutorExplain, tutorSpeak } from "./tutor.js";
 import { validateTest } from "./validate.js";
 import { expectedCount, suggestedMinutes } from "./prompts.js";
 
@@ -124,6 +125,22 @@ async function handleApi(path, request, env) {
     const entry = await defineWord(env, word, context);
     if (entry.meaning) { try { await saveGlossary(env, entry); } catch {} }
     return json({ ...entry, cached: false });
+  }
+
+  // POST /api/tutor  → spoken kid-friendly explanation of the current passage/question
+  if (path === "/api/tutor" && request.method === "POST") {
+    const b = await request.json();
+    const text = await tutorExplain(env, b);
+    const audio = await tutorSpeak(env, text);
+    return new Response(audio, {
+      headers: {
+        "Content-Type": "audio/mpeg",
+        "Cache-Control": "no-store",
+        "X-Tutor-Text": encodeURIComponent(text),
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Expose-Headers": "X-Tutor-Text",
+      },
+    });
   }
 
   // GET /api/explain?q=&a=  (cached mental-math "easier way" for a math question)

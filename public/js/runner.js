@@ -75,6 +75,7 @@ export class Runner {
     if (this.submitted) return;
     this.persist();
     this.stop();
+    this.stopTutor();
     if (this.onPause) this.onPause();
   }
 
@@ -204,6 +205,7 @@ export class Runner {
 
   // ── question view ────────────────────────────────────────────────────────────
   renderQuestion() {
+    this.stopTutor();
     const q = this.qs[this.idx];
     const area = this.root.querySelector("#q-area");
     const passage = q.passageId ? this.passById[q.passageId] : null;
@@ -228,6 +230,7 @@ export class Runner {
             ${this.flags[q.id] ? `<span class="q-flagged">⚑ Flagged</span>` : ""}
           </div>
           <div class="q-text">${esc(q.questionText).replace(/\n/g, "<br>")}</div>
+          ${this.tutorBarHtml()}
           ${diagramHtml}
           ${this.renderInput(q)}
           ${this.guidanceBarHtml(q)}
@@ -239,6 +242,7 @@ export class Runner {
     this.wireInputs(q);
     if (passage) this.wireGenre(passage);
     this.wireGuidance(q);
+    this.wireTutor(q);
 
     this.root.querySelector("#btn-prev").disabled = this.idx === 0;
     this.root.querySelector("#btn-next").textContent = this.idx === this.qs.length - 1 ? "Finish & Review →" : "Next →";
@@ -268,6 +272,59 @@ export class Runner {
         </div>
         ${fb}
       </div>`;
+  }
+
+  // ── AI reading buddy (tap to listen) ─────────────────────────────────────────
+  tutorBarHtml() {
+    return `
+      <div class="tutor-bar">
+        <button id="tutor-btn" class="tutor-btn" type="button">🎙️ Help me understand</button>
+        <span id="tutor-state" class="tutor-state"></span>
+        <div id="tutor-cap" class="tutor-cap"></div>
+      </div>`;
+  }
+  wireTutor(q) {
+    const btn = this.root.querySelector("#tutor-btn");
+    if (btn) btn.onclick = () => this.tutorHelp(q);
+  }
+  stopTutor() {
+    if (this.tutorAudio) { try { this.tutorAudio.pause(); } catch {} this.tutorAudio = null; }
+  }
+  async tutorHelp(q) {
+    const btn = this.root.querySelector("#tutor-btn");
+    const st = this.root.querySelector("#tutor-state");
+    const cap = this.root.querySelector("#tutor-cap");
+    if (this.tutorAudio && !this.tutorAudio.paused) { // toggle off
+      this.stopTutor(); if (btn) btn.textContent = "🎙️ Help me understand"; if (st) st.textContent = "";
+      return;
+    }
+    const passage = q.passageId ? this.passById[q.passageId] : null;
+    if (st) st.textContent = "🤔 Your buddy is thinking…";
+    if (cap) cap.textContent = "";
+    btn.disabled = true;
+    try {
+      const res = await fetch("/api/tutor", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          subject: this.test.subject, grade: this.test.grade,
+          passageTitle: passage ? passage.title : "", passageText: passage ? passage.text : "",
+          questionText: q.questionText, options: q.options || [],
+        }),
+      });
+      if (!res.ok) throw new Error("net");
+      let text = ""; try { text = decodeURIComponent(res.headers.get("X-Tutor-Text") || ""); } catch {}
+      const buf = await res.arrayBuffer();
+      const url = URL.createObjectURL(new Blob([buf], { type: "audio/mpeg" }));
+      this.stopTutor();
+      const audio = new Audio(url); this.tutorAudio = audio;
+      audio.onended = () => { if (btn) btn.textContent = "🎙️ Help me understand"; if (st) st.textContent = ""; };
+      await audio.play();
+      if (btn) btn.textContent = "⏹ Stop";
+      if (st) st.textContent = "🔊 Listening…";
+      if (cap && text) cap.textContent = text;
+    } catch (e) {
+      if (st) st.textContent = navigator.onLine ? "Couldn't reach your buddy — try again." : "Connect to the internet for the reading buddy.";
+    } finally { if (btn) btn.disabled = false; }
   }
 
   guidanceBarHtml(q) {
@@ -405,6 +462,7 @@ export class Runner {
     if (this.submitted) return;
     this.submitted = true;
     this.stop();
+    this.stopTutor();
     // Release the in-test layout lock so the results page scrolls normally.
     document.body.classList.remove("in-test");
     window.scrollTo(0, 0);
