@@ -60,6 +60,19 @@ const RESOURCES = [
   { grades: [3, 4, 5], type: "official", name: "NCDPI — End-of-Grade (EOG) Documents",
     desc: "Official test specifications and released forms (some include released questions).",
     url: "https://www.dpi.nc.gov/document-terms/eog" },
+  // Official released forms — open and practice the REAL released questions on NCDPI's site.
+  { grades: [3], type: "official", name: "NCDPI — Grade 3 Math Released Form (real released test)",
+    desc: "Open the official Grade 3 Mathematics released form (PDF) and practice the actual released questions on NCDPI's site.",
+    url: "https://www.dpi.nc.gov/documents/accountability/testing/eog/eog-mathematics-grade-3-released-form/open" },
+  { grades: [3], type: "official", name: "NCDPI — Grade 3 Reading Released Form (BOG3-EOG)",
+    desc: "Official Grade 3 Reading released items (PDF) with passages and questions, on NCDPI's site.",
+    url: "https://www.dpi.nc.gov/documents/accountability/testing/eog/bog3-eog-reading-grade-3-released-form/open" },
+  { grades: [3, 4], type: "official", name: "NCDPI — Grade 4 Math Released Form (real released test)",
+    desc: "Official Grade 4 Mathematics released form (PDF) with the actual released questions, on NCDPI's site.",
+    url: "https://www.dpi.nc.gov/documents/accountability/testing/eog/eog-mathematics-grade-4-released-form/open" },
+  { grades: [3, 4, 5], type: "official", name: "NCDPI — All Released Tests",
+    desc: "Index of every NCDPI released EOG/EOC form (Math, Reading, Science) by grade — open and practice any of them.",
+    url: "https://www.dpi.nc.gov/document-terms/released-tests" },
 ];
 const RES_TYPE = {
   ideas: { label: "💡 Ideas & Practice", cls: "rt-ideas" },

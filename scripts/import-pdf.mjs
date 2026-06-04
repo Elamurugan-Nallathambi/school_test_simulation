@@ -1,24 +1,23 @@
-// Import a real test PDF (e.g. a school's released/sample EOG paper) into the same
-// JSON format the portal uses, marked source:"sample". Rasterizes each page, sends
-// the page images to OpenAI vision (gpt-4o) to extract questions/passages/answers in
-// our schema, crops any figures, and writes data/tests/<id>.json.
+// Import a real test PDF (e.g. an NCDPI released math form) into the portal's JSON
+// format, marked source:"sample". Rasterizes pages, extracts questions with OpenAI
+// vision (gpt-4o) in batches, reads the official answer-key table, merges the keys,
+// crops figures, and writes data/tests/<id>.json.
 //
 // Usage:
-//   OPENAI_API_KEY=... node scripts/import-pdf.mjs <file.pdf> \
-//       --grade 3 --subject math --type eog [--id g3-math-sample-1] [--title "..."] [--pages 1-12]
+//   OPENAI_API_KEY=... node scripts/import-pdf.mjs "<file.pdf>" \
+//       --grade 3 --subject math --type eog [--id ...] [--title "..."]
+//       [--qpages 1-26] [--keypages 27-30] [--batch 6]
 //
-// Requires: pdftoppm (poppler), sharp. After import: node scripts/validate.mjs && reseed.
+// Requires: pdftoppm (poppler), sharp.
 import { execFileSync } from "node:child_process";
-import { readFileSync, writeFileSync, mkdirSync, readdirSync, rmSync, existsSync, copyFileSync } from "node:fs";
-import { join, dirname, basename } from "node:path";
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, rmSync, copyFileSync } from "node:fs";
+import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 import { validateTest } from "../src/validate.js";
 
 const __dir = dirname(fileURLToPath(import.meta.url));
 const root = join(__dir, "..");
-
-// ── args ──────────────────────────────────────────────────────────────────────
 const argv = process.argv.slice(2);
 const pdf = argv.find((a) => !a.startsWith("--"));
 const opt = (k, d) => { const i = argv.indexOf("--" + k); return i >= 0 ? argv[i + 1] : d; };
@@ -27,103 +26,128 @@ const grade = Number(opt("grade", 3));
 const subject = opt("subject", "math");
 const testType = opt("type", "eog");
 const id = opt("id", `g${grade}-${subject === "math" ? "math" : "read"}-sample-${Date.now().toString(36)}`);
-const title = opt("title", `Grade ${grade} ${subject === "math" ? "Math" : "Reading"} — ${testType.toUpperCase()} (Sample)`);
-const pageRange = opt("pages", "");
+const title = opt("title", `Grade ${grade} ${subject === "math" ? "Math" : "Reading"} — Released Form (Sample)`);
+const batch = Number(opt("batch", 6));
 const apiKey = process.env.OPENAI_API_KEY;
 if (!apiKey) { console.error("OPENAI_API_KEY not set"); process.exit(1); }
 
-// ── 1. rasterize the PDF to page PNGs ──────────────────────────────────────────
+const range = (s, total) => { if (!s) return null; const [a, b] = s.split("-").map(Number); return { a, b: b || a }; };
+
+// ── rasterize ──────────────────────────────────────────────────────────────────
 const work = join(root, "data", "pdf-work", id);
 rmSync(work, { recursive: true, force: true }); mkdirSync(work, { recursive: true });
-console.log("Rasterizing pages…");
+console.log("Rasterizing…");
 execFileSync("pdftoppm", ["-png", "-r", "150", pdf, join(work, "page")]);
-let pages = readdirSync(work).filter((f) => f.endsWith(".png")).sort((a, b) =>
-  (+a.match(/\d+/)[0]) - (+b.match(/\d+/)[0]));
-if (pageRange) {
-  const [s, e] = pageRange.split("-").map(Number);
-  pages = pages.filter((_, i) => i + 1 >= s && i + 1 <= (e || s));
-}
-console.log(`${pages.length} pages.`);
-
-// keep public copies so figures can reference page images
+const pageFiles = readdirSync(work).filter((f) => f.endsWith(".png"))
+  .sort((a, b) => (+a.match(/\d+/)[0]) - (+b.match(/\d+/)[0]));
+const total = pageFiles.length;
+console.log(`${total} pages.`);
 const imgDir = join(root, "public", "sample-img", id);
 mkdirSync(imgDir, { recursive: true });
-pages.forEach((p, i) => copyFileSync(join(work, p), join(imgDir, `p${i + 1}.png`)));
-const publicSrc = (n) => `/sample-img/${id}/p${n}.png`;
+pageFiles.forEach((p, i) => copyFileSync(join(work, p), join(imgDir, `p${i + 1}.png`)));
 
-// ── 2. ask OpenAI vision to extract the test in our schema ─────────────────────
-const sys = `You convert a scanned/exported test PDF into a strict JSON test object. Use ONLY what is in the pages.
-Schema: { "questions":[ { "id":"Q1", "itemType":"single_choice|multi_select|numeric_entry|equation",
-  "skill":"...", "difficulty":"easy|medium|hard", "passageId":"P1"|null, "questionText":"...",
-  "diagram": null | { "type":"image", "params":{ "page": <1-based page number the figure is on>,
-     "bbox":[x0,y0,x1,y1] normalized 0..1, "alt":"short description" } },
-  "options":["..."], "answer": <int index | int[] | number for numeric/equation>, "template":"a + ▢ = b" (equation only),
-  "explanation":"...", "points":1 } ],
-  "passages":[ { "id":"P1","title":"...","genre":"fiction|informational|poetry","text":"..." } ] }.
-Rules: single_choice answer = 0-based index of the correct option; multi_select = array of indices; numeric_entry/equation
-answer = the number (equation: also give template with the blank as ▢, options:[]). Reproduce question text and options
-EXACTLY. If the PDF has an answer key, use it; otherwise solve it and set your best answer. If a question shows a figure
-(graph, number line, shape, array, picture), set diagram to type "image" with the page it is on and a tight normalized
-bbox around just that figure. Reading: put each passage in passages[] and link questions via passageId. Output JSON only.`;
+const qRange = range(opt("qpages"), total) || { a: 1, b: total };
+const keyRange = range(opt("keypages"), total);
+const b64 = (n) => readFileSync(join(work, pageFiles[n - 1])).toString("base64");
 
-const content = [{ type: "text", text: `Grade ${grade} ${subject} ${testType}. Extract ALL questions from these ${pages.length} page(s) in order.` }];
-for (let i = 0; i < pages.length; i++) {
-  const b64 = readFileSync(join(work, pages[i])).toString("base64");
-  content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${b64}`, detail: "high" } });
+async function vision(text, pageNums, maxTok = 8000) {
+  const content = [{ type: "text", text }];
+  for (const n of pageNums) content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${b64(n)}`, detail: "high" } });
+  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
+    body: JSON.stringify({ model: "gpt-4o", messages: [{ role: "user", content }], response_format: { type: "json_object" }, temperature: 0.1, max_tokens: maxTok }),
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return JSON.parse((await res.json()).choices[0].message.content);
 }
 
-console.log("Extracting with OpenAI vision (gpt-4o)…");
-const res = await fetch("https://api.openai.com/v1/chat/completions", {
-  method: "POST",
-  headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
-  body: JSON.stringify({
-    model: "gpt-4o", messages: [{ role: "system", content: sys }, { role: "user", content }],
-    response_format: { type: "json_object" }, temperature: 0.1, max_tokens: 12000,
-  }),
-});
-if (!res.ok) { console.error(await res.text()); process.exit(1); }
-const data = await res.json();
-const test = JSON.parse(data.choices[0].message.content);
+const Q_PROMPT = (s, e) => `These are pages ${s}-${e} of a Grade ${grade} ${subject} released test. Extract EVERY numbered test question shown (ignore directions/cover/answer-key pages). Return JSON {"questions":[{
+"itemNumber": <the printed item number, integer>,
+"itemType":"single_choice"|"numeric_entry",
+"questionText":"exact stem text",
+"options":["A text","B text","C text","D text"]  (empty [] for gridded/numeric),
+"diagram": null | {"page": <absolute page number where the figure is>, "bbox":[x0,y0,x1,y1] normalized 0..1 around ONLY the figure, "alt":"short desc"},
+"skill":"short topic" }]}. Reproduce stems and options EXACTLY. Set diagram only when the item shows a real figure (graph, number line, shape, array, model). Do NOT include the answer.`;
 
-// ── 3. finalize fields + crop figures ──────────────────────────────────────────
-test.id = id; test.grade = grade; test.subject = subject; test.testType = testType;
-test.title = test.title || title; test.timeLimitMinutes = testType === "eog" ? 120 : 90;
-test.calculatorAllowed = false; test.source = "sample"; test.createdAt = new Date().toISOString();
-if (!Array.isArray(test.passages)) test.passages = [];
+const KEY_PROMPT = `These pages contain the official Answer Key table (columns like Item Number, Type, Key, DOK, Standard). Return JSON {"keys":[{"itemNumber":<int>,"key":"<the Key cell exactly, e.g. B or 3/4 or 12>"}]}. Include every row.`;
 
-for (const [i, q] of (test.questions || []).entries()) {
-  if (!q.id) q.id = "Q" + (i + 1);
-  q.points = q.points || 1;
+// ── extract questions in batches ────────────────────────────────────────────────
+const questions = [];
+console.log("Extracting questions…");
+for (let s = qRange.a; s <= qRange.b; s += batch) {
+  const e = Math.min(s + batch - 1, qRange.b);
+  const pages = []; for (let n = s; n <= e; n++) pages.push(n);
+  try {
+    const out = await vision(Q_PROMPT(s, e), pages);
+    for (const q of out.questions || []) questions.push(q);
+    console.log(`  pages ${s}-${e}: +${(out.questions || []).length}`);
+  } catch (err) { console.error(`  pages ${s}-${e} failed: ${String(err).slice(0, 120)}`); }
+}
+
+// ── extract answer key ───────────────────────────────────────────────────────────
+const keyMap = {};
+const kr = keyRange || { a: Math.max(1, total - 2), b: total };
+console.log(`Reading answer key (pages ${kr.a}-${kr.b})…`);
+try {
+  const pages = []; for (let n = kr.a; n <= kr.b; n++) pages.push(n);
+  const out = await vision(KEY_PROMPT, pages);
+  for (const k of out.keys || []) keyMap[k.itemNumber] = String(k.key).trim();
+  console.log(`  ${Object.keys(keyMap).length} keys.`);
+} catch (err) { console.error(`  key read failed: ${String(err).slice(0, 120)}`); }
+
+// ── merge + build test ───────────────────────────────────────────────────────────
+let keyed = 0;
+questions.sort((a, b) => (a.itemNumber || 0) - (b.itemNumber || 0));
+for (const [i, q] of questions.entries()) {
+  q.id = "Q" + (q.itemNumber || i + 1);
+  q.points = 1; q.passageId = null;
+  if (!q.difficulty) q.difficulty = "medium";
+  const key = keyMap[q.itemNumber];
+  const opts = Array.isArray(q.options) ? q.options : [];
+  if (key != null) {
+    keyed++;
+    if (/^[A-Da-d]$/.test(key) && opts.length) { q.itemType = "single_choice"; q.answer = key.toUpperCase().charCodeAt(0) - 65; }
+    else if (/^[A-Da-d](\s*,\s*[A-Da-d])+$/.test(key) && opts.length) { q.itemType = "multi_select"; q.answer = key.split(/\s*,\s*/).map((x) => x.toUpperCase().charCodeAt(0) - 65).sort((a, b) => a - b); }
+    else { q.itemType = "numeric_entry"; q.options = []; q.answer = /^[0-9./-]+$/.test(key) ? (key.includes("/") ? key : Number(key)) : key; }
+  } else if (q.itemType === "single_choice" && opts.length) { q.answer = 0; q.needsKey = true; }
+  else { q.itemType = "numeric_entry"; q.options = []; q.answer = ""; q.needsKey = true; }
+  if (!q.explanation) q.explanation = "From the released form answer key.";
+  delete q.itemNumber;
+}
+
+const test = {
+  id, grade, subject, testType, title,
+  instructions: "Released-form sample. Choose the best answer for each question.",
+  timeLimitMinutes: testType === "eog" ? 120 : 90, calculatorAllowed: subject === "math",
+  source: "sample", createdAt: new Date().toISOString(), passages: [], questions,
+};
+
+// ── crop figures ─────────────────────────────────────────────────────────────────
+for (const q of questions) {
   const d = q.diagram;
-  if (d && d.type === "image" && d.params && d.params.page) {
-    const page = Math.min(pages.length, Math.max(1, d.params.page));
-    const pagePng = join(imgDir, `p${page}.png`);
-    let src = publicSrc(page);
-    const bb = d.params.bbox;
-    if (Array.isArray(bb) && bb.length === 4) {
-      try {
-        const meta = await sharp(pagePng).metadata();
-        const [x0, y0, x1, y1] = bb;
-        const left = Math.round(Math.max(0, Math.min(x0, x1)) * meta.width);
-        const top = Math.round(Math.max(0, Math.min(y0, y1)) * meta.height);
-        const wdt = Math.round(Math.min(1, Math.abs(x1 - x0)) * meta.width);
-        const hgt = Math.round(Math.min(1, Math.abs(y1 - y0)) * meta.height);
-        if (wdt > 20 && hgt > 20) {
-          const cropName = `${q.id}.png`;
-          await sharp(pagePng).extract({ left, top, width: wdt, height: hgt }).toFile(join(imgDir, cropName));
-          src = `/sample-img/${id}/${cropName}`;
-        }
-      } catch (e) { /* fall back to full page */ }
-    }
-    q.diagram = { type: "image", params: { src, alt: d.params.alt || "figure" } };
+  if (!d || !d.page) { if (d && !d.type) q.diagram = null; continue; }
+  const page = Math.min(total, Math.max(1, d.page));
+  const pagePng = join(imgDir, `p${page}.png`);
+  let src = `/sample-img/${id}/p${page}.png`;
+  const bb = d.bbox;
+  if (Array.isArray(bb) && bb.length === 4) {
+    try {
+      const m = await sharp(pagePng).metadata();
+      const left = Math.round(Math.max(0, Math.min(bb[0], bb[2])) * m.width);
+      const top = Math.round(Math.max(0, Math.min(bb[1], bb[3])) * m.height);
+      const wdt = Math.round(Math.min(1, Math.abs(bb[2] - bb[0])) * m.width);
+      const hgt = Math.round(Math.min(1, Math.abs(bb[3] - bb[1])) * m.height);
+      if (wdt > 24 && hgt > 24) { await sharp(pagePng).extract({ left, top, width: wdt, height: hgt }).toFile(join(imgDir, `${q.id}.png`)); src = `/sample-img/${id}/${q.id}.png`; }
+    } catch {}
   }
+  q.diagram = { type: "image", params: { src, alt: d.alt || "figure" } };
 }
 
-// ── 4. validate + write ─────────────────────────────────────────────────────────
 const v = validateTest(test);
 const outFile = join(root, "data", "tests", `${id}.json`);
 writeFileSync(outFile, JSON.stringify(test) + "\n");
+const missing = questions.filter((q) => q.needsKey).length;
 console.log(`\nWrote ${outFile}`);
-console.log(`Questions: ${(test.questions || []).length}  ·  valid: ${v.ok}  ·  figures: ${imgDir}`);
-if (!v.ok) { v.errors.slice(0, 12).forEach((e) => console.log("  • " + e)); }
-console.log(`\nReview the JSON, then:  node scripts/validate.mjs && node scripts/seed.mjs && ./setup.sh db:seed --remote && cfl deploy --acc rugan`);
+console.log(`Questions: ${questions.length} · keyed from PDF: ${keyed} · unkeyed: ${missing} · valid: ${v.ok}`);
+if (!v.ok) v.errors.slice(0, 15).forEach((e) => console.log("  • " + e));
+console.log(`Figures: public/sample-img/${id}/`);
