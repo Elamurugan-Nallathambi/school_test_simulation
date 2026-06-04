@@ -7,6 +7,7 @@
 //   OPENAI_API_KEY=... node scripts/import-pdf.mjs "<file.pdf>" \
 //       --grade 3 --subject math --type eog [--id ...] [--title "..."]
 //       [--qpages 1-26] [--keypages 27-30] [--batch 6]
+//       [--passages data/passages.json]   <-- REQUIRED for reading/ELA tests
 //
 // Requires: pdftoppm (poppler), sharp.
 import { execFileSync } from "node:child_process";
@@ -115,11 +116,47 @@ for (const [i, q] of questions.entries()) {
   delete q.itemNumber;
 }
 
+// ── optional passage extraction (reading/ela only) ──────────────────────────────
+const passages = [];
+const passageFile = opt("passages", "");
+if (passageFile && subject !== "math") {
+  try {
+    const defs = JSON.parse(readFileSync(passageFile, "utf8"));
+    console.log("Extracting passages…");
+    for (const def of defs) {
+      if (!Array.isArray(def.pages) || def.pages.length === 0) continue;
+      const content = [{ type: "text", text: `These are pages from a Grade ${grade} reading test passage titled "${def.title}". Extract the FULL passage text exactly as written. Preserve paragraphs. Do NOT include questions, directions, or answer choices. Return JSON {"text":"full passage text"}.` }];
+      for (const n of def.pages) content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${b64(n)}`, detail: "high" } });
+      const res = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
+        body: JSON.stringify({ model: "gpt-4o", messages: [{ role: "user", content }], response_format: { type: "json_object" }, temperature: 0.1, max_tokens: 8000 }),
+      });
+      if (!res.ok) throw new Error(await res.text());
+      const out = JSON.parse((await res.json()).choices[0].message.content);
+      passages.push({ id: def.pid, title: def.title, text: out.text || "" });
+      console.log(`  ${def.title}: ${(out.text || "").length} chars`);
+    }
+    // Link questions to passages by item number
+    for (const q of questions) {
+      const itemNum = q.itemNumber || 0;
+      const def = defs.find((d) => Array.isArray(d.questions) && d.questions.includes(itemNum));
+      q.passageId = def ? def.pid : null;
+    }
+  } catch (err) { console.error(`  passage extraction failed: ${String(err).slice(0, 120)}`); }
+} else if (subject !== "math") {
+  console.warn("\nWARNING: This is a reading test but no --passages file was provided.");
+  console.warn("The imported test will have NO passage text. Students will see questions");
+  console.warn("without the passages to read.");
+  console.warn("\nTo fix, create a JSON file like:");
+  console.warn(`  [{"pid":"P1","title":"Story Title","pages":[1,2],"questions":[1,2,3,4,5]}]`);
+  console.warn("Then re-run with: --passages path/to/defs.json\n");
+}
+
 const test = {
   id, grade, subject, testType, title,
   instructions: "Released-form sample. Choose the best answer for each question.",
   timeLimitMinutes: testType === "eog" ? 120 : 90, calculatorAllowed: subject === "math",
-  source: "sample", createdAt: new Date().toISOString(), passages: [], questions,
+  source: "sample", createdAt: new Date().toISOString(), passages, questions,
 };
 
 // ── crop figures ─────────────────────────────────────────────────────────────────
