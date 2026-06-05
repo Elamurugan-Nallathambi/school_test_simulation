@@ -5,10 +5,28 @@ import { gradeTest, isCorrect } from "./grade.js";
 import { renderResults, normalizeGenre, genreOptions, genreLabel } from "./review.js";
 import { officialTiming } from "./timing.js";
 import { Buddy } from "./buddy.js";
+import { explainSelectionText } from "./dict.js";
 
 const esc = (s) => String(s == null ? "" : s)
   .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const paras = (t) => esc(t).split(/\n\n+/).map((p) => `<p>${p.replace(/\n/g, "<br>")}</p>`).join("");
+// Tools next to a highlight. Buttons have NO text (symbols via CSS ::before) so they
+// don't change the paragraph's textContent — keeping selection offsets accurate.
+const markTools = (id) => `<span class="mark-tools" contenteditable="false"><button class="mark-q" data-mid="${id}" title="Explain this part" aria-label="Explain"></button><button class="mark-x" data-mid="${id}" title="Clear highlight" aria-label="Clear"></button></span>`;
+function closestPpar(node) { const el = node && (node.nodeType === 1 ? node : node.parentElement); return el && el.closest ? el.closest(".ppar") : null; }
+function charOffset(container, node, off) { try { const r = document.createRange(); r.setStart(container, 0); r.setEnd(node, off); return r.toString().length; } catch { return 0; } }
+function renderPara(text, ranges) {
+  let out = "", pos = 0;
+  for (const r of ranges) {
+    const s = Math.max(0, Math.min(r.s, text.length)), e = Math.max(s, Math.min(r.e, text.length));
+    if (e <= s) continue;
+    if (s > pos) out += esc(text.slice(pos, s));
+    out += `<mark class="hl" data-mid="${r.id}">${esc(text.slice(s, e))}</mark>` + markTools(r.id);
+    pos = e;
+  }
+  out += esc(text.slice(pos));
+  return out;
+}
 
 const LETTERS = ["A", "B", "C", "D", "E", "F"];
 
@@ -24,6 +42,9 @@ export class Runner {
     this.guidance = !!opts.guidance;
     this.navCollapsed = (() => { try { return localStorage.getItem("navCollapsed") === "1"; } catch { return false; } })();
     this.buddy = null;       // conversational AI reading buddy for the current question
+    this.markerOn = false;   // passage highlighter mode
+    this.marks = {};         // passageId -> [{id,pi,s,e}] ranges the child highlighted
+    this.markSeq = 0;
     this.qs = test.questions;
     this.passById = Object.fromEntries((test.passages || []).map((p) => [p.id, p]));
     this.storeKey = `attempt:${test.id}:${student}`;
@@ -50,6 +71,10 @@ export class Runner {
         this.idx = saved.idx || 0;
         if (typeof saved.elapsed === "number") this.elapsed = saved.elapsed;
         if (typeof saved.guidance === "boolean") this.guidance = saved.guidance;
+        if (saved.marks && typeof saved.marks === "object") {
+          this.marks = saved.marks;
+          for (const list of Object.values(this.marks)) for (const m of (list || [])) if (m && m.id > this.markSeq) this.markSeq = m.id;
+        }
       }
     } catch {}
   }
@@ -57,7 +82,7 @@ export class Runner {
     try {
       localStorage.setItem(this.storeKey, JSON.stringify({
         testId: this.test.id, responses: this.responses, flags: this.flags,
-        idx: this.idx, elapsed: this.elapsed, guidance: this.guidance,
+        idx: this.idx, elapsed: this.elapsed, guidance: this.guidance, marks: this.marks,
         // display metadata so the landing can show resumable tests without an API call
         title: this.test.title, subject: this.test.subject, testType: this.test.testType,
         grade: this.test.grade, total: this.qs.length, savedAt: Date.now(),
@@ -212,11 +237,17 @@ export class Runner {
     const area = this.root.querySelector("#q-area");
     const passage = q.passageId ? this.passById[q.passageId] : null;
 
+    const hasMarks = passage && (this.marks[passage.id] || []).length > 0;
     const passageHtml = passage ? `
-      <section class="passage">
+      <section class="passage ${this.markerOn ? "marker-on" : ""}">
         <div class="passage-inner">
+          <div class="passage-toolbar">
+            <button id="mark-toggle" class="mark-toggle ${this.markerOn ? "on" : ""}" type="button">🖍️ Highlight</button>
+            <button id="mark-clear" class="mark-clear" type="button" style="display:${hasMarks ? "inline-flex" : "none"}">✕ Clear all</button>
+            <span id="mark-hint" class="mark-hint">${this.markHintText()}</span>
+          </div>
           <h3 class="passage-title">${esc(passage.title || "Passage")}</h3>
-          <div class="passage-text">${paras(passage.text)}</div>
+          <div class="passage-text">${this.markupPassage(passage)}</div>
           ${this.genreCheckHtml(passage)}
         </div>
       </section>` : "";
@@ -242,13 +273,107 @@ export class Runner {
     area.className = "q-area" + (passage ? " with-passage" : "");
     area.innerHTML = passageHtml + qBody;
     this.wireInputs(q);
-    if (passage) this.wireGenre(passage);
+    if (passage) { this.wireGenre(passage); this.wirePassage(passage); }
     this.wireGuidance(q);
     this.wireTutor(q);
 
     this.root.querySelector("#btn-prev").disabled = this.idx === 0;
     this.root.querySelector("#btn-next").textContent = this.idx === this.qs.length - 1 ? "Finish & Review →" : "Next →";
     this.root.querySelector("#btn-flag").classList.toggle("active", !!this.flags[q.id]);
+  }
+
+  // ── passage highlighter ──────────────────────────────────────────────────────
+  markHintText() {
+    return this.markerOn
+      ? "✋ Select any words with your finger or mouse to highlight them. Tap “?” to explain, “✕” to clear."
+      : "Tap “🖍️ Highlight”, then select any words you want to mark.";
+  }
+  markupPassage(passage) {
+    const ranges = (this.marks[passage.id] || []).filter((m) => m && typeof m === "object");
+    const byPi = {};
+    for (const m of ranges) (byPi[m.pi] = byPi[m.pi] || []).push(m);
+    const paras = String(passage.text).split(/\n\n+/).map((p) => p.replace(/\n/g, " ").trim()).filter(Boolean);
+    return paras.map((text, pi) => {
+      const rs = (byPi[pi] || []).slice().sort((a, b) => a.s - b.s);
+      return `<p class="ppar" data-pi="${pi}">${renderPara(text, rs)}</p>`;
+    }).join("");
+  }
+  wirePassage(passage) {
+    const section = this.root.querySelector(".passage");
+    if (!section) return;
+    const toggle = section.querySelector("#mark-toggle");
+    const clear = section.querySelector("#mark-clear");
+    const hint = section.querySelector("#mark-hint");
+    const ptext = section.querySelector(".passage-text");
+    if (toggle) toggle.onclick = () => {
+      this.markerOn = !this.markerOn;
+      section.classList.toggle("marker-on", this.markerOn);
+      toggle.classList.toggle("on", this.markerOn);
+      if (hint) hint.textContent = this.markHintText();
+    };
+    if (clear) clear.onclick = () => this.clearMarks(passage);
+    if (ptext) {
+      ptext.onclick = (e) => {
+        const qb = e.target.closest(".mark-q");
+        if (qb) { e.stopPropagation(); this.explainMark(qb.dataset.mid); return; }
+        const xb = e.target.closest(".mark-x");
+        if (xb) { e.stopPropagation(); this.removeMark(passage, +xb.dataset.mid); return; }
+      };
+      ptext.addEventListener("mouseup", () => this.maybeHighlight(passage));
+      ptext.addEventListener("touchend", () => setTimeout(() => this.maybeHighlight(passage), 10));
+    }
+  }
+  maybeHighlight(passage) {
+    if (!this.markerOn) return;
+    const sel = window.getSelection();
+    if (!sel || !sel.rangeCount || !sel.toString().trim()) return;
+    const range = sel.getRangeAt(0);
+    const ptext = this.root.querySelector(".passage-text");
+    const paras = Array.from(ptext.querySelectorAll(".ppar"));
+    const startP = closestPpar(range.startContainer);
+    const endP = closestPpar(range.endContainer);
+    if (!startP) { sel.removeAllRanges(); return; }
+    const si = +startP.dataset.pi, ei = endP ? +endP.dataset.pi : si;
+    let added = false;
+    for (let pi = si; pi <= ei; pi++) {
+      const pEl = paras[pi]; if (!pEl) continue;
+      const len = pEl.textContent.length;
+      const s = (pi === si) ? charOffset(pEl, range.startContainer, range.startOffset) : 0;
+      const e = (pi === ei) ? charOffset(pEl, range.endContainer, range.endOffset) : len;
+      if (e > s) { this.addRange(passage.id, pi, s, e); added = true; }
+    }
+    sel.removeAllRanges();
+    if (added) { ptext.innerHTML = this.markupPassage(passage); this.refreshClear(passage); this.persist(); }
+  }
+  addRange(pid, pi, s, e) {
+    const list = (this.marks[pid] || []).filter((m) => m && typeof m === "object");
+    let ns = s, ne = e; const keep = [];
+    for (const m of list) {
+      if (m.pi !== pi || m.e < s || m.s > e) keep.push(m);     // no overlap → keep
+      else { ns = Math.min(ns, m.s); ne = Math.max(ne, m.e); } // overlap → merge
+    }
+    keep.push({ id: ++this.markSeq, pi, s: ns, e: ne });
+    this.marks[pid] = keep;
+  }
+  removeMark(passage, mid) {
+    this.marks[passage.id] = (this.marks[passage.id] || []).filter((m) => m.id !== mid);
+    const ptext = this.root.querySelector(".passage-text");
+    if (ptext) ptext.innerHTML = this.markupPassage(passage);
+    this.refreshClear(passage); this.persist();
+  }
+  clearMarks(passage) {
+    this.marks[passage.id] = [];
+    const ptext = this.root.querySelector(".passage-text");
+    if (ptext) ptext.innerHTML = this.markupPassage(passage);
+    this.refreshClear(passage); this.persist();
+  }
+  refreshClear(passage) {
+    const clear = this.root.querySelector("#mark-clear");
+    if (clear) clear.style.display = (this.marks[passage.id] || []).length ? "inline-flex" : "none";
+  }
+  explainMark(mid) {
+    const m = this.root.querySelector(`.hl[data-mid="${mid}"]`);
+    if (m) explainSelectionText(m.textContent.trim(), m.getBoundingClientRect());
   }
 
   // genre self-check below a passage (validated, not part of the question score)
@@ -417,12 +542,54 @@ export class Runner {
     };
   }
 
-  confirmSubmit() {
-    const unanswered = this.qs.filter((q) => !this.isAnswered(q.id)).length;
-    const msg = unanswered > 0
-      ? `You have ${unanswered} unanswered question${unanswered > 1 ? "s" : ""}. Finish anyway?`
-      : `Finish and see your score?`;
-    if (confirm(msg)) this.submit(false);
+  // Pre-submit review: lists blanks (unanswered + no text-type pick) with safe
+  // jump-to links that use the normal navigation (no conflict with Prev/Next).
+  confirmSubmit() { this.showReview(); }
+  showReview() {
+    const unanswered = this.qs.map((q, i) => ({ q, i })).filter((x) => !this.isAnswered(x.q.id));
+    const passages = this.test.subject === "reading" ? (this.test.passages || []) : [];
+    const missingGenre = passages
+      .filter((p) => !this.responses["__genre__" + p.id])
+      .map((p) => ({ p, i: this.qs.findIndex((q) => q.passageId === p.id) }))
+      .filter((x) => x.i >= 0);
+    const answered = this.qs.length - unanswered.length;
+    const allDone = !unanswered.length && !missingGenre.length;
+
+    const ov = document.createElement("div");
+    ov.className = "modal-overlay";
+    ov.innerHTML = `
+      <div class="modal review-modal" role="dialog" aria-modal="true">
+        <div class="modal-head"><h3>${allDone ? "🎉 Ready to finish?" : "Check before you finish"}</h3><button class="modal-x">✕</button></div>
+        <div class="modal-body">
+          <p class="rev-sum"><b>${answered} of ${this.qs.length}</b> questions answered.</p>
+          ${unanswered.length ? `
+            <div class="rev-block">
+              <div class="rev-h">❓ Not answered yet (${unanswered.length}) — tap a number to go there:</div>
+              <div class="rev-chips">${unanswered.map((x) => `<button class="rev-chip" data-go="${x.i}">${x.i + 1}</button>`).join("")}</div>
+            </div>` : ""}
+          ${missingGenre.length ? `
+            <div class="rev-block">
+              <div class="rev-h">📋 Text type not chosen (${missingGenre.length}) — tap to pick fiction / nonfiction:</div>
+              <div class="rev-list">${missingGenre.map((x) => `<button class="rev-row" data-go="${x.i}">📖 ${esc(x.p.title || x.p.id)}</button>`).join("")}</div>
+            </div>` : ""}
+          ${allDone
+            ? `<p class="rev-ok">You answered everything and chose every text type. Great job!</p>`
+            : `<p class="rev-note muted">That's okay — you can still submit now even if some are left blank.</p>`}
+        </div>
+        <div class="modal-foot">
+          <button class="btn btn-ghost rev-keep">← Keep working</button>
+          <button class="btn btn-submit rev-submit">Submit now ✓</button>
+        </div>
+      </div>`;
+    document.body.appendChild(ov);
+    const close = () => { ov.remove(); document.removeEventListener("keydown", onKey); };
+    function onKey(e) { if (e.key === "Escape") close(); }
+    document.addEventListener("keydown", onKey);
+    ov.querySelector(".modal-x").onclick = close;
+    ov.querySelector(".rev-keep").onclick = close;
+    ov.onclick = (e) => { if (e.target === ov) close(); };
+    ov.querySelector(".rev-submit").onclick = () => { close(); this.submit(false); };
+    ov.querySelectorAll("[data-go]").forEach((b) => (b.onclick = () => { close(); this.go(+b.dataset.go); }));
   }
 
   async submit(timeUp) {

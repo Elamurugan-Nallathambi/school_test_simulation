@@ -329,6 +329,25 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
 .passage { flex: 1 1 50%; min-width: 0; border-right: 2px solid var(--line); background: #fffdf7; overflow-y: auto; }
 .passage-inner { padding: 24px 28px; max-width: 640px; }
 .passage-genre { text-transform: uppercase; letter-spacing: .5px; font-size: 12px; font-weight: 800; color: var(--reading); }
+/* passage highlighter */
+.passage-toolbar { position: sticky; top: 0; z-index: 6; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; background: #fffdf7; padding: 8px 0 10px; margin: -4px 0 6px; border-bottom: 1px solid var(--line); }
+.mark-toggle { border: 1.5px solid #fcd34d; background: #fffbeb; color: #92400e; border-radius: 999px; padding: 8px 14px; font-weight: 800; font-size: 14px; cursor: pointer; }
+.mark-toggle:hover { background: #fef3c7; }
+.mark-toggle.on { background: #fde68a; border-color: #f59e0b; }
+.mark-clear { border: 1px solid var(--line); background: #fff; color: var(--muted); border-radius: 999px; padding: 7px 12px; font-weight: 700; font-size: 13px; cursor: pointer; align-items: center; }
+.mark-clear:hover { background: var(--bg); }
+.mark-hint { font-size: 12px; color: var(--muted); }
+.passage.marker-on .passage-text { cursor: text; }
+.passage.marker-on .passage-text::selection, .passage.marker-on .passage-text *::selection { background: #ffe066; }
+.hl { background: #ffe066; border-radius: 4px; box-decoration-break: clone; -webkit-box-decoration-break: clone; box-shadow: 0 0 0 1px #fcd34d inset; padding: 1px 0; }
+.mark-tools { white-space: nowrap; }
+.mark-tools button { border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 12px; font-weight: 800; cursor: pointer; margin: 0 1px; vertical-align: 2px; line-height: 1; }
+.mark-q::before { content: "?"; }
+.mark-x::before { content: "✕"; }
+.mark-q { background: #ddd6fe; color: var(--math); }
+.mark-q:hover { background: #c4b5fd; }
+.mark-x { background: #fee2e2; color: var(--red); }
+.mark-x:hover { background: #fecaca; }
 .passage-title { font-size: 22px; margin: 4px 0 14px; }
 .passage-text { font-size: 17px; line-height: 1.8; color: #1f2937; }
 .passage-text p { margin: 0 0 14px; }
@@ -431,6 +450,20 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
 .modal-x:hover { background: var(--line); }
 .modal-body { padding: 22px 26px; overflow-y: auto; font-size: 17px; line-height: 1.8; }
 .modal-body p { margin: 0 0 14px; }
+.modal-foot { display: flex; justify-content: space-between; gap: 12px; padding: 14px 20px; border-top: 1px solid var(--line); background: #fff; }
+
+/* pre-submit review */
+.review-modal { max-width: 560px; }
+.rev-sum { font-size: 16px; }
+.rev-block { margin: 6px 0 18px; }
+.rev-h { font-weight: 800; font-size: 14px; margin-bottom: 10px; color: var(--ink); }
+.rev-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.rev-chip { width: 40px; height: 40px; border: 1.5px solid #fca5a5; background: #fef2f2; color: var(--red); border-radius: 10px; font-weight: 800; font-size: 14px; cursor: pointer; }
+.rev-chip:hover { background: #fee2e2; }
+.rev-list { display: flex; flex-direction: column; gap: 8px; }
+.rev-row { text-align: left; border: 1.5px solid #fcd34d; background: #fffbeb; color: #92400e; border-radius: 12px; padding: 10px 14px; font-weight: 700; font-size: 15px; cursor: pointer; }
+.rev-row:hover { background: #fef3c7; }
+.rev-ok { color: var(--green); font-weight: 700; }
 
 /* image diagram (e.g. figures imported from PDFs) */
 .diagram-img { max-width: 100%; height: auto; border-radius: 8px; display: block; margin: 0 auto; }

@@ -108,6 +108,7 @@ function onSelectMaybe(e) {
   const el = (container.nodeType === 1 ? container : container.parentElement);
   const host = el && el.closest && el.closest(SELECT_IN);
   if (!host) { hideSelBtn(); return; }
+  if (host.closest(".passage.marker-on")) { hideSelBtn(); return; } // highlighter handles selections
   let rect; try { rect = sel.getRangeAt(0).getBoundingClientRect(); } catch { hideSelBtn(); return; }
   showSelBtn(rect, raw, host);
 }
@@ -129,11 +130,14 @@ function showSelBtn(rect, text, host) {
 }
 function hideSelBtn() { if (selBtn) { selBtn.remove(); selBtn = null; } }
 
-function openExplain(selection, host, rect) {
+function openExplain(selection, host, rect) { explainSelectionText(selection, rect); }
+
+// Explain an arbitrary phrase/sentence (used by drag-select and the passage highlighter).
+export function explainSelectionText(selection, rect) {
   hideSelBtn();
   closeExplain();
   // Use the passage shown on the page (so option-text selections still get full context).
-  const passageText = ((document.querySelector(".passage-text") || host.closest(".passage-text") || host).textContent || "").slice(0, 4000);
+  const passageText = ((document.querySelector(".passage-text") || document.querySelector(".passage") || document.body).textContent || "").slice(0, 4000);
   const questionText = (document.querySelector(".q-text")?.textContent || "").slice(0, 400);
   const muted = (() => { try { return localStorage.getItem("buddyVoice") === "off"; } catch { return false; } })();
   explEl = document.createElement("div");
