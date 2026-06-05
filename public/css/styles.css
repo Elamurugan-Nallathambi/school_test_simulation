@@ -175,14 +175,29 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
 .genre-fb.no { color: var(--red); }
 .genre-fb.saved { color: var(--muted); font-weight: 600; }
 
-/* AI reading buddy */
-.tutor-bar { margin: 6px 0 16px; }
-.tutor-btn { border: none; background: linear-gradient(135deg, #7c3aed, #2563eb); color: #fff; border-radius: 999px; padding: 10px 18px; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: var(--shadow); }
-.tutor-btn:hover { filter: brightness(1.05); }
-.tutor-btn:disabled { opacity: .6; cursor: default; }
-.tutor-state { margin-left: 10px; font-weight: 700; font-size: 14px; color: var(--math); }
-.tutor-cap { margin-top: 10px; background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 12px; padding: 12px 14px; font-size: 15px; line-height: 1.55; color: #4c1d95; }
-.tutor-cap:empty { display: none; }
+/* AI reading buddy (conversational) */
+.tutor-panel { margin: 6px 0 16px; }
+.tutor-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.tutor-mic { border: none; background: linear-gradient(135deg, #7c3aed, #2563eb); color: #fff; border-radius: 999px; padding: 10px 18px; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: var(--shadow); }
+.tutor-mic:hover { filter: brightness(1.05); }
+.tutor-mic.rec { background: var(--red); animation: pulse 1s infinite; }
+.tutor-btn { border: 1px solid #c4b5fd; background: #f5f3ff; color: var(--math); border-radius: 999px; font-weight: 800; cursor: pointer; }
+.tutor-btn.sm { padding: 9px 14px; font-size: 14px; }
+.tutor-btn:hover { background: #ede9fe; }
+.tutor-state { font-weight: 700; font-size: 13px; color: var(--math); }
+.tutor-chat { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; max-height: 260px; overflow-y: auto; }
+.tutor-chat:empty { display: none; }
+.tc-row { display: flex; }
+.tc-row.kid { justify-content: flex-end; }
+.tc-bubble { max-width: 85%; padding: 10px 14px; border-radius: 16px; font-size: 15px; line-height: 1.5; }
+.tc-row.kid .tc-bubble { background: var(--blue); color: #fff; border-bottom-right-radius: 4px; }
+.tc-row.buddy .tc-bubble { background: #faf5ff; border: 1px solid #e9d5ff; color: #4c1d95; border-bottom-left-radius: 4px; }
+/* review-screen buddy */
+.rv-buddy { margin-top: 10px; }
+.buddy-open { border: 1px solid #c4b5fd; background: #f5f3ff; color: var(--math); border-radius: 999px; padding: 8px 14px; font-weight: 800; font-size: 13px; cursor: pointer; }
+.buddy-open:hover { background: #ede9fe; }
+.buddy-modal .modal-body { background: #fff; }
+.buddy-q { font-weight: 800; font-size: 16px; color: var(--ink); background: var(--bg); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; }
 
 /* guidance (check / show answer) */
 .guide-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--line); }
@@ -235,6 +250,12 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
 .dict-loading { color: var(--muted); display: flex; align-items: center; gap: 8px; }
 .dict-spin { width: 14px; height: 14px; border: 2px solid var(--blue-l); border-top-color: var(--blue); border-radius: 50%; display: inline-block; animation: spin 1s linear infinite; }
 .center-note { text-align: center; margin-top: 22px; font-size: 13px; }
+
+/* "Explain this part" on a highlighted phrase */
+.sel-explain-btn { position: fixed; z-index: 1300; background: linear-gradient(135deg, #7c3aed, #2563eb); color: #fff; border: none; border-radius: 999px; padding: 8px 14px; font-weight: 800; font-size: 13px; cursor: pointer; box-shadow: var(--shadow-lg); }
+.sel-explain-btn:hover { filter: brightness(1.05); }
+.expl-pop { width: 300px !important; }
+.expl-sel { font-style: italic; color: var(--reading); font-size: 14px; margin-bottom: 8px; border-left: 3px solid var(--reading); padding-left: 8px; }
 
 /* sample (PDF-imported) test badge */
 .sample-badge { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; font-size: 11px; font-weight: 800; padding: 1px 8px; border-radius: 999px; vertical-align: 2px; }
@@ -328,18 +349,23 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
 /* options */
 .answer { margin-top: 6px; }
 .multi-hint { font-weight: 700; color: var(--green); font-size: 14px; margin-bottom: 10px; }
-.opts { display: flex; flex-direction: column; gap: 12px; }
-.opt {
-  display: flex; align-items: center; gap: 14px; background: var(--card); border: 2px solid var(--line);
-  border-radius: 14px; padding: 16px 18px; text-align: left; font-size: 18px; transition: .1s; width: 100%;
+.opt-help { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+.opts { display: flex; flex-direction: column; gap: 14px; }
+/* The circle is the answer selector (like bubbling A/B/C/D); the text is plain & selectable. */
+.opt-row { display: flex; align-items: flex-start; gap: 14px; padding: 2px 2px; }
+.opt-pick {
+  flex: 0 0 40px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+  border: 2px solid var(--line); background: #fff; color: var(--ink); font-weight: 800; font-size: 16px;
+  border-radius: 50%; cursor: pointer; transition: .1s;
 }
-.opt:hover { border-color: var(--blue); background: #f8faff; }
-.opt-letter { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; flex: 0 0 34px; border-radius: 50%; background: var(--bg); color: var(--ink); font-weight: 800; }
-.opt-text { flex: 1; }
-.opt-check { color: transparent; font-size: 20px; }
-.opt.selected { border-color: var(--blue); background: var(--blue-l); }
-.opt.selected .opt-letter { background: var(--blue); color: #fff; }
-.opt.selected .opt-check { color: var(--blue); }
+.opt-pick.multi { border-radius: 10px; }
+.opt-pick:hover:not(:disabled) { border-color: var(--blue); }
+.opt-pick.on { background: var(--blue); border-color: var(--blue); color: #fff; }
+.opt-pick:disabled { cursor: default; }
+.opt-text { flex: 1; font-size: 18px; line-height: 1.5; padding-top: 7px; -webkit-user-select: text; user-select: text; cursor: text; }
+.opt-row.correct-opt .opt-pick { background: var(--green); border-color: var(--green); color: #fff; }
+.opt-row.wrong-opt .opt-pick { background: var(--red); border-color: var(--red); color: #fff; }
+.opt-row.correct-opt .opt-text { color: #166534; font-weight: 700; }
 
 .numeric { display: flex; flex-direction: column; gap: 8px; }
 .numeric-label { font-weight: 700; }

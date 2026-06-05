@@ -1,7 +1,7 @@
 // Worker entry — routes /api/*, otherwise serves static assets.
 import { listTests, getTest, saveTest, saveAttempt, listAttempts, getAttempt, getGlossary, saveGlossary, getExplanation, saveExplanation } from "./db.js";
 import { generateTest, defineWord, explainMath } from "./openai.js";
-import { tutorExplain, tutorSpeak } from "./tutor.js";
+import { tutorExplain, tutorSpeak, transcribe, tutorChat, explainPart } from "./tutor.js";
 import { validateTest } from "./validate.js";
 import { expectedCount, suggestedMinutes } from "./prompts.js";
 
@@ -127,20 +127,45 @@ async function handleApi(path, request, env) {
     return json({ ...entry, cached: false });
   }
 
+  const audioReply = (audio, text) => new Response(audio, {
+    headers: {
+      "Content-Type": "audio/mpeg", "Cache-Control": "no-store",
+      "X-Tutor-Text": encodeURIComponent(text),
+      "Access-Control-Allow-Origin": "*", "Access-Control-Expose-Headers": "X-Tutor-Text",
+    },
+  });
+
   // POST /api/tutor  → spoken kid-friendly explanation of the current passage/question
   if (path === "/api/tutor" && request.method === "POST") {
     const b = await request.json();
     const text = await tutorExplain(env, b);
-    const audio = await tutorSpeak(env, text);
-    return new Response(audio, {
-      headers: {
-        "Content-Type": "audio/mpeg",
-        "Cache-Control": "no-store",
-        "X-Tutor-Text": encodeURIComponent(text),
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Expose-Headers": "X-Tutor-Text",
-      },
-    });
+    if (b.mute) return json({ text });
+    return audioReply(await tutorSpeak(env, text), text);
+  }
+
+  // POST /api/stt  → transcribe the child's spoken question (audio body) → { text }
+  if (path === "/api/stt" && request.method === "POST") {
+    const mime = request.headers.get("Content-Type") || "audio/webm";
+    const buf = await request.arrayBuffer();
+    if (!buf || buf.byteLength < 200) return json({ text: "" });
+    const text = await transcribe(env, buf, mime);
+    return json({ text });
+  }
+
+  // POST /api/chat  → conversational reply (grounded in the passage) → spoken audio
+  if (path === "/api/chat" && request.method === "POST") {
+    const b = await request.json();
+    const text = await tutorChat(env, b);
+    if (b.mute) return json({ text });
+    return audioReply(await tutorSpeak(env, text), text);
+  }
+
+  // POST /api/passage-explain → explain a highlighted phrase in passage context
+  if (path === "/api/passage-explain" && request.method === "POST") {
+    const b = await request.json();
+    const text = await explainPart(env, b);
+    if (b.mute) return json({ text });
+    return audioReply(await tutorSpeak(env, text), text);
   }
 
   // GET /api/explain?q=&a=  (cached mental-math "easier way" for a math question)

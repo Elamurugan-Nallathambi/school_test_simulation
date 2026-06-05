@@ -4,11 +4,34 @@
 import { renderDiagram } from "./diagrams.js";
 import { gradeTest } from "./grade.js";
 import { mentalMathTip } from "./mathstrategy.js";
+import { Buddy } from "./buddy.js";
 
 const esc = (s) => String(s == null ? "" : s)
   .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const paras = (t) => esc(t).split(/\n\n+/).map((p) => `<p>${p.replace(/\n/g, "<br>")}</p>`).join("");
 const LETTERS = ["A", "B", "C", "D", "E", "F"];
+
+// Modal with the conversational reading buddy bound to one reviewed question.
+function showBuddyModal(ctx) {
+  const ov = document.createElement("div");
+  ov.className = "modal-overlay";
+  ov.innerHTML = `
+    <div class="modal buddy-modal" role="dialog" aria-modal="true">
+      <div class="modal-head"><h3>🎤 Reading buddy</h3><button class="modal-x" aria-label="Close">✕</button></div>
+      <div class="modal-body">
+        <div class="buddy-q">${esc(ctx.questionText)}</div>
+        <div class="buddy-mount"></div>
+      </div>
+    </div>`;
+  document.body.appendChild(ov);
+  const buddy = new Buddy(ctx);
+  buddy.mount(ov.querySelector(".buddy-mount"));
+  const close = () => { buddy.stop(); ov.remove(); document.removeEventListener("keydown", onKey); };
+  function onKey(e) { if (e.key === "Escape") close(); }
+  ov.querySelector(".modal-x").onclick = close;
+  ov.onclick = (e) => { if (e.target === ov) close(); };
+  document.addEventListener("keydown", onKey);
+}
 
 // Modal showing a reading passage so the student can re-review it from the results.
 function showPassageModal(p) {
@@ -155,6 +178,19 @@ export function renderResults(root, opts) {
   root.querySelectorAll(".passage-btn").forEach((b) => {
     b.onclick = (e) => { e.stopPropagation(); showPassageModal(passById[b.dataset.pid]); };
   });
+  // talk through any question with the reading buddy
+  root.querySelectorAll(".buddy-open").forEach((b) => {
+    b.onclick = () => {
+      const item = g.detail[+b.dataset.i];
+      if (!item) return;
+      const q = item.q;
+      showBuddyModal({
+        subject: test.subject, grade: test.grade,
+        passage: q.passageId ? passById[q.passageId] : null,
+        questionText: q.questionText, options: q.options || [],
+      });
+    };
+  });
   const retake = root.querySelector("#btn-retake");
   if (retake) retake.onclick = () => opts.onRetake && opts.onRetake();
 
@@ -228,6 +264,7 @@ export function reviewCard(q, resp, ok, i, passById, isMath) {
       ${answerBlock}
       ${q.explanation ? `<div class="rv-exp"><b>Why:</b> ${esc(q.explanation)}</div>` : ""}
       ${helper}
+      <div class="rv-buddy"><button class="buddy-open" data-i="${i}">🎤 Ask the reading buddy about this</button></div>
     </div>`;
 }
 

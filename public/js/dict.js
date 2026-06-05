@@ -3,18 +3,26 @@
 // /api/define (OpenAI-backed, cached in D1).
 
 const LOOKUP_IN = ".passage-text, .passage-title, .q-text, .opt-text, .rv-q, .rv-exp, .genre-q";
+const SELECT_IN = ".passage-text, .q-text, .opt-text"; // where "explain this part" is offered
 let popEl = null;
+let selBtn = null;     // floating "Explain this part" button
+let explEl = null;     // explanation popover
+let explAudio = null;
 let started = false;
 
 export function initDict() {
   if (started) return;
   started = true;
   document.addEventListener("dblclick", onDblClick, true);
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePopover(); });
-  window.addEventListener("resize", closePopover);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") { closePopover(); closeExplain(); hideSelBtn(); } });
+  window.addEventListener("resize", () => { closePopover(); closeExplain(); hideSelBtn(); });
   document.addEventListener("click", (e) => {
     if (popEl && !popEl.contains(e.target)) closePopover();
+    if (explEl && !explEl.contains(e.target) && (!selBtn || !selBtn.contains(e.target))) closeExplain();
   });
+  // phrase/sentence selection → "Explain this part"
+  document.addEventListener("mouseup", onSelectMaybe);
+  document.addEventListener("touchend", () => setTimeout(onSelectMaybe, 10));
 }
 
 function onDblClick(e) {
@@ -86,6 +94,82 @@ function position(el, rect) {
 
 function closePopover() {
   if (popEl) { popEl.remove(); popEl = null; }
+}
+
+// ── "Explain this part" on a highlighted phrase ──────────────────────────────
+function onSelectMaybe(e) {
+  if (selBtn && selBtn.contains(e.target)) return;          // ignore clicks on our button
+  const sel = window.getSelection();
+  const raw = (sel ? sel.toString() : "").trim();
+  const words = raw.split(/\s+/).filter(Boolean);
+  if (words.length < 2 || words.length > 60) { hideSelBtn(); return; }
+  let container;
+  try { container = sel.getRangeAt(0).commonAncestorContainer; } catch { hideSelBtn(); return; }
+  const el = (container.nodeType === 1 ? container : container.parentElement);
+  const host = el && el.closest && el.closest(SELECT_IN);
+  if (!host) { hideSelBtn(); return; }
+  let rect; try { rect = sel.getRangeAt(0).getBoundingClientRect(); } catch { hideSelBtn(); return; }
+  showSelBtn(rect, raw, host);
+}
+
+function showSelBtn(rect, text, host) {
+  hideSelBtn();
+  selBtn = document.createElement("button");
+  selBtn.className = "sel-explain-btn";
+  selBtn.textContent = "💬 Explain this part";
+  document.body.appendChild(selBtn);
+  const w = selBtn.offsetWidth || 150;
+  let left = rect.left + rect.width / 2 - w / 2;
+  left = Math.max(8, Math.min(left, window.innerWidth - w - 8));
+  let top = rect.top - selBtn.offsetHeight - 8;
+  if (top < 6) top = rect.bottom + 8;
+  selBtn.style.left = left + "px";
+  selBtn.style.top = top + "px";
+  selBtn.onclick = (ev) => { ev.stopPropagation(); openExplain(text, host, rect); };
+}
+function hideSelBtn() { if (selBtn) { selBtn.remove(); selBtn = null; } }
+
+function openExplain(selection, host, rect) {
+  hideSelBtn();
+  closeExplain();
+  // Use the passage shown on the page (so option-text selections still get full context).
+  const passageText = ((document.querySelector(".passage-text") || host.closest(".passage-text") || host).textContent || "").slice(0, 4000);
+  const questionText = (document.querySelector(".q-text")?.textContent || "").slice(0, 400);
+  const muted = (() => { try { return localStorage.getItem("buddyVoice") === "off"; } catch { return false; } })();
+  explEl = document.createElement("div");
+  explEl.className = "dict-pop expl-pop";
+  explEl.innerHTML = `
+    <div class="dict-head"><span class="dict-word">💬 What this means</span><button class="dict-close">✕</button></div>
+    <div class="dict-body"><div class="dict-loading"><span class="dict-spin"></span> Thinking…</div></div>`;
+  document.body.appendChild(explEl);
+  position(explEl, rect);
+  explEl.querySelector(".dict-close").onclick = closeExplain;
+
+  fetch("/api/passage-explain", {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ grade: 3, passageText, questionText, selection, mute: muted }),
+  }).then(async (r) => {
+    if (!r.ok) throw new Error();
+    let text = "", audio = null;
+    if (muted) { text = (await r.json()).text || ""; }
+    else { text = decodeURIComponent(r.headers.get("X-Tutor-Text") || ""); audio = await r.arrayBuffer(); }
+    if (!explEl) return;
+    explEl.querySelector(".dict-body").innerHTML =
+      `<div class="expl-sel">“${esc(selection.length > 90 ? selection.slice(0, 90) + "…" : selection)}”</div>
+       <div class="dict-meaning">${esc(text)}</div>`;
+    if (audio) {
+      try { if (explAudio) explAudio.pause(); } catch {}
+      explAudio = new Audio(URL.createObjectURL(new Blob([audio], { type: "audio/mpeg" })));
+      explAudio.play().catch(() => {});
+    }
+  }).catch(() => {
+    if (explEl) explEl.querySelector(".dict-body").innerHTML =
+      `<div class="dict-meaning">${navigator.onLine ? "Couldn't explain that right now." : "Connect to the internet to explain a phrase."}</div>`;
+  });
+}
+function closeExplain() {
+  if (explAudio) { try { explAudio.pause(); } catch {} explAudio = null; }
+  if (explEl) { explEl.remove(); explEl = null; }
 }
 
 // ── text to speech ───────────────────────────────────────────────────────────

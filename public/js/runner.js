@@ -4,6 +4,7 @@ import { saveAttempt } from "./api.js";
 import { gradeTest, isCorrect } from "./grade.js";
 import { renderResults, normalizeGenre, genreOptions, genreLabel } from "./review.js";
 import { officialTiming } from "./timing.js";
+import { Buddy } from "./buddy.js";
 
 const esc = (s) => String(s == null ? "" : s)
   .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -22,6 +23,7 @@ export class Runner {
     this.onPause = opts.onPause;
     this.guidance = !!opts.guidance;
     this.navCollapsed = (() => { try { return localStorage.getItem("navCollapsed") === "1"; } catch { return false; } })();
+    this.buddy = null;       // conversational AI reading buddy for the current question
     this.qs = test.questions;
     this.passById = Object.fromEntries((test.passages || []).map((p) => [p.id, p]));
     this.storeKey = `attempt:${test.id}:${student}`;
@@ -274,58 +276,19 @@ export class Runner {
       </div>`;
   }
 
-  // ── AI reading buddy (tap to listen) ─────────────────────────────────────────
-  tutorBarHtml() {
-    return `
-      <div class="tutor-bar">
-        <button id="tutor-btn" class="tutor-btn" type="button">🎙️ Help me understand</button>
-        <span id="tutor-state" class="tutor-state"></span>
-        <div id="tutor-cap" class="tutor-cap"></div>
-      </div>`;
-  }
+  // ── AI reading buddy (conversational) — uses the shared Buddy controller ──────
+  tutorBarHtml() { return `<div class="tutor-panel" id="tutor-mount"></div>`; }
   wireTutor(q) {
-    const btn = this.root.querySelector("#tutor-btn");
-    if (btn) btn.onclick = () => this.tutorHelp(q);
-  }
-  stopTutor() {
-    if (this.tutorAudio) { try { this.tutorAudio.pause(); } catch {} this.tutorAudio = null; }
-  }
-  async tutorHelp(q) {
-    const btn = this.root.querySelector("#tutor-btn");
-    const st = this.root.querySelector("#tutor-state");
-    const cap = this.root.querySelector("#tutor-cap");
-    if (this.tutorAudio && !this.tutorAudio.paused) { // toggle off
-      this.stopTutor(); if (btn) btn.textContent = "🎙️ Help me understand"; if (st) st.textContent = "";
-      return;
-    }
+    const mount = this.root.querySelector("#tutor-mount");
+    if (!mount) return;
     const passage = q.passageId ? this.passById[q.passageId] : null;
-    if (st) st.textContent = "🤔 Your buddy is thinking…";
-    if (cap) cap.textContent = "";
-    btn.disabled = true;
-    try {
-      const res = await fetch("/api/tutor", {
-        method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          subject: this.test.subject, grade: this.test.grade,
-          passageTitle: passage ? passage.title : "", passageText: passage ? passage.text : "",
-          questionText: q.questionText, options: q.options || [],
-        }),
-      });
-      if (!res.ok) throw new Error("net");
-      let text = ""; try { text = decodeURIComponent(res.headers.get("X-Tutor-Text") || ""); } catch {}
-      const buf = await res.arrayBuffer();
-      const url = URL.createObjectURL(new Blob([buf], { type: "audio/mpeg" }));
-      this.stopTutor();
-      const audio = new Audio(url); this.tutorAudio = audio;
-      audio.onended = () => { if (btn) btn.textContent = "🎙️ Help me understand"; if (st) st.textContent = ""; };
-      await audio.play();
-      if (btn) btn.textContent = "⏹ Stop";
-      if (st) st.textContent = "🔊 Listening…";
-      if (cap && text) cap.textContent = text;
-    } catch (e) {
-      if (st) st.textContent = navigator.onLine ? "Couldn't reach your buddy — try again." : "Connect to the internet for the reading buddy.";
-    } finally { if (btn) btn.disabled = false; }
+    this.buddy = new Buddy({
+      subject: this.test.subject, grade: this.test.grade, passage,
+      questionText: q.questionText, options: q.options || [],
+    });
+    this.buddy.mount(mount);
   }
+  stopTutor() { if (this.buddy) this.buddy.stop(); }
 
   guidanceBarHtml(q) {
     if (!this.guidance) return "";
@@ -377,7 +340,11 @@ export class Runner {
     const multi = q.itemType === "multi_select";
     const sel = multi ? (Array.isArray(r) ? r : []) : r;
     const answerSet = new Set(Array.isArray(q.answer) ? q.answer : [q.answer]);
-    const hint = multi ? `<div class="multi-hint">✔ Select all that apply</div>` : "";
+    const hint = multi
+      ? `<div class="multi-hint">✔ Tap all the circles that apply</div>`
+      : `<div class="opt-help">Tap the circle to choose · highlight any answer text and tap “💬 Explain this part”.</div>`;
+    // The circle (A/B/C/D) is the selector; the text stays plain & selectable so the
+    // child can highlight an answer to ask the AI to explain it.
     const opts = (q.options || []).map((opt, i) => {
       const on = multi ? sel.includes(i) : sel === i;
       let mark = "";
@@ -385,12 +352,12 @@ export class Runner {
         if (answerSet.has(i)) mark = " correct-opt";
         else if (on) mark = " wrong-opt";
       }
+      const face = revealed && answerSet.has(i) ? "✓" : LETTERS[i];
       return `
-        <button class="opt ${on ? "selected" : ""}${mark}" data-i="${i}" type="button" ${revealed ? "disabled" : ""}>
-          <span class="opt-letter">${LETTERS[i]}</span>
+        <div class="opt-row ${on ? "selected" : ""}${mark}">
+          <button class="opt-pick ${multi ? "multi" : "single"} ${on ? "on" : ""}" data-i="${i}" type="button" ${revealed ? "disabled" : ""} aria-pressed="${on}" title="Choose ${LETTERS[i]}">${face}</button>
           <span class="opt-text">${esc(opt).replace(/\n/g, "<br>")}</span>
-          <span class="opt-check">${revealed && answerSet.has(i) ? "✓" : multi ? "☑" : "●"}</span>
-        </button>`;
+        </div>`;
     }).join("");
     return `<div class="answer ${multi ? "multi" : "single"}">${hint}<div class="opts">${opts}</div></div>`;
   }
@@ -403,7 +370,7 @@ export class Runner {
       return;
     }
     const multi = q.itemType === "multi_select";
-    area.querySelectorAll(".opt").forEach((b) => {
+    area.querySelectorAll(".opt-pick").forEach((b) => {
       b.onclick = () => {
         if (this.revealed[q.id]) return;
         const i = +b.dataset.i;
