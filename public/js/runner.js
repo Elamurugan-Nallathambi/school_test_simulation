@@ -45,6 +45,7 @@ export class Runner {
     this.markerOn = false;   // passage highlighter mode
     this.marks = {};         // passageId -> [{id,pi,s,e}] ranges the child highlighted
     this.markSeq = 0;
+    this.struck = {};        // qid -> [option indices crossed out] (visual only, not scored)
     this.qs = test.questions;
     this.passById = Object.fromEntries((test.passages || []).map((p) => [p.id, p]));
     this.storeKey = `attempt:${test.id}:${student}`;
@@ -75,6 +76,7 @@ export class Runner {
           this.marks = saved.marks;
           for (const list of Object.values(this.marks)) for (const m of (list || [])) if (m && m.id > this.markSeq) this.markSeq = m.id;
         }
+        if (saved.struck && typeof saved.struck === "object") this.struck = saved.struck;
       }
     } catch {}
   }
@@ -82,7 +84,7 @@ export class Runner {
     try {
       localStorage.setItem(this.storeKey, JSON.stringify({
         testId: this.test.id, responses: this.responses, flags: this.flags,
-        idx: this.idx, elapsed: this.elapsed, guidance: this.guidance, marks: this.marks,
+        idx: this.idx, elapsed: this.elapsed, guidance: this.guidance, marks: this.marks, struck: this.struck,
         // display metadata so the landing can show resumable tests without an API call
         title: this.test.title, subject: this.test.subject, testType: this.test.testType,
         grade: this.test.grade, total: this.qs.length, savedAt: Date.now(),
@@ -470,6 +472,7 @@ export class Runner {
       : `<div class="opt-help">Tap the circle to choose · highlight any answer text and tap “💬 Explain this part”.</div>`;
     // The circle (A/B/C/D) is the selector; the text stays plain & selectable so the
     // child can highlight an answer to ask the AI to explain it.
+    const struck = new Set(this.struck[q.id] || []);
     const opts = (q.options || []).map((opt, i) => {
       const on = multi ? sel.includes(i) : sel === i;
       let mark = "";
@@ -477,11 +480,13 @@ export class Runner {
         if (answerSet.has(i)) mark = " correct-opt";
         else if (on) mark = " wrong-opt";
       }
+      const isStruck = struck.has(i);
       const face = revealed && answerSet.has(i) ? "✓" : LETTERS[i];
       return `
-        <div class="opt-row ${on ? "selected" : ""}${mark}">
+        <div class="opt-row ${on ? "selected" : ""}${mark}${isStruck ? " struck" : ""}">
           <button class="opt-pick ${multi ? "multi" : "single"} ${on ? "on" : ""}" data-i="${i}" type="button" ${revealed ? "disabled" : ""} aria-pressed="${on}" title="Choose ${LETTERS[i]}">${face}</button>
           <span class="opt-text">${esc(opt).replace(/\n/g, "<br>")}</span>
+          <button class="opt-strike ${isStruck ? "on" : ""}" data-i="${i}" type="button" title="Cross out this option to ignore it" aria-label="Cross out option ${LETTERS[i]}">✕</button>
         </div>`;
     }).join("");
     return `<div class="answer ${multi ? "multi" : "single"}">${hint}<div class="opts">${opts}</div></div>`;
@@ -509,6 +514,21 @@ export class Runner {
         this.persist();
         this.renderQuestion();
         this.renderGrid();
+      };
+    });
+    // cross-out (eliminate) toggles — visual only, never affects the answer/score
+    area.querySelectorAll(".opt-strike").forEach((b) => {
+      b.onclick = (e) => {
+        e.stopPropagation();
+        const i = +b.dataset.i;
+        const set = new Set(this.struck[q.id] || []);
+        if (set.has(i)) set.delete(i); else set.add(i);
+        this.struck[q.id] = [...set];
+        const on = set.has(i);
+        const row = b.closest(".opt-row");
+        if (row) row.classList.toggle("struck", on);
+        b.classList.toggle("on", on);
+        this.persist();
       };
     });
   }

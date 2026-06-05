@@ -385,6 +385,12 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
 .opt-row.correct-opt .opt-pick { background: var(--green); border-color: var(--green); color: #fff; }
 .opt-row.wrong-opt .opt-pick { background: var(--red); border-color: var(--red); color: #fff; }
 .opt-row.correct-opt .opt-text { color: #166534; font-weight: 700; }
+/* cross-out (eliminate) an option — visual only */
+.opt-strike { flex: 0 0 30px; width: 30px; height: 30px; align-self: center; border: 1.5px solid var(--line); background: #fff; color: var(--muted); border-radius: 50%; font-weight: 800; font-size: 13px; cursor: pointer; transition: .1s; }
+.opt-strike:hover { border-color: var(--red); color: var(--red); }
+.opt-strike.on { background: #fee2e2; border-color: #fca5a5; color: var(--red); }
+.opt-row.struck .opt-text { text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: var(--red); color: var(--muted); opacity: .6; }
+.opt-row.struck .opt-pick { opacity: .45; }
 
 .numeric { display: flex; flex-direction: column; gap: 8px; }
 .numeric-label { font-weight: 700; }
