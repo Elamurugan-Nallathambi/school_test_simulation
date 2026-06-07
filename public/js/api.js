@@ -47,6 +47,14 @@ export async function getTest(id) {
   throw new Error("Could not load test");
 }
 
+export async function refreshOffline(id) {
+  const r = await fetch(`/api/tests/${id}`);
+  if (!r.ok) throw new Error("Could not refresh test");
+  const t = await J(r);
+  saveOffline(t);
+  return t;
+}
+
 export async function generateTest({ grade, subject, testType }) {
   const r = await fetch("/api/generate", {
     method: "POST",

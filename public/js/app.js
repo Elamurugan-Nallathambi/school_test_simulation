@@ -115,10 +115,12 @@ function updateChrome(p) {
   const back = document.getElementById("home-back");
   const chip = document.getElementById("student-chip");
   const results = document.getElementById("results-link");
+  const reload = document.getElementById("reload-btn");
   const inTest = document.body.classList.contains("in-test");
   const atRoot = !p || p.length === 0;
   back.style.display = atRoot || inTest ? "none" : "";
   back.onclick = () => history.back();
+  if (reload) reload.style.display = inTest ? "none" : "";
   if (state.student && !inTest) {
     chip.style.display = "";
     chip.innerHTML = `👤 ${esc(state.student)} <span class="chip-edit">✎</span>`;
@@ -355,6 +357,7 @@ async function viewTests() {
         </span>
         <span class="test-row-actions">
           ${offline ? "" : `<button class="dl-btn ${saved ? "saved" : ""}" data-id="${t.id}">${saved ? "✓ Saved" : "⬇ Save offline"}</button>`}
+          ${saved && !offline ? `<button class="dl-btn refresh-btn" data-id="${t.id}">🔄 Refresh</button>` : ""}
           <span class="test-row-go">Start →</span>
         </span>
       </div>`;
@@ -367,6 +370,13 @@ async function viewTests() {
     b.onclick = async (e) => {
       e.stopPropagation();
       const id = b.dataset.id;
+      if (b.classList.contains("refresh-btn")) {
+        b.textContent = "Refreshing…"; b.disabled = true;
+        try { await api.refreshOffline(id); b.textContent = "✓ Updated"; }
+        catch { b.textContent = "Failed"; }
+        setTimeout(() => viewTests(), 600);
+        return;
+      }
       if (api.isOfflineSaved(id)) { api.removeOffline(id); viewTests(); return; }
       b.textContent = "Saving…"; b.disabled = true;
       try { const full = await api.getTest(id); api.saveOffline(full); }
@@ -610,6 +620,16 @@ document.getElementById("home-link").onclick = (e) => {
   }
   go("#/");
 };
+
+const reloadBtn = document.getElementById("reload-btn");
+if (reloadBtn) {
+  reloadBtn.onclick = () => {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.getRegistration().then((r) => { if (r) r.update(); });
+    }
+    location.reload();
+  };
+}
 
 // PWA install prompt → show an "Install" button in the header when available.
 let deferredInstall = null;
