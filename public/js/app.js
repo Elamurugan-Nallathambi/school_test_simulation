@@ -271,7 +271,7 @@ async function resumeTest(id) {
   }
   state.grade = test.grade; state.subject = test.subject; state.testType = test.testType;
   if (!state.student) { go(`#/start/${id}`); return; }
-  launch(test, !!(saved && saved.guidance));
+  launch(test, !!(saved && saved.guidance), saved && typeof saved.validate === "boolean" ? saved.validate : true);
 }
 
 // ── Step 2: Subject ────────────────────────────────────────────────────────────
@@ -413,6 +413,7 @@ async function startScreen(id) {
   const tm = officialTiming(test.testType);
   const known = !!state.student;
   const guidePref = localStorage.getItem("needGuidance") === "1";
+  const validatePref = localStorage.getItem("enableValidate") !== "0"; // default ON
 
   render(`
     <section class="wizard center">
@@ -424,6 +425,10 @@ async function startScreen(id) {
         ${known ? "" : `
           <label class="name-label" for="student">Type your first name to begin:</label>
           <input id="student" class="name-input" type="text" maxlength="24" placeholder="Your name" value="${esc(state.student)}" autocomplete="off" />`}
+        <label class="guide-toggle validate-toggle">
+          <input type="checkbox" id="enable-validate" ${validatePref ? "checked" : ""}/>
+          <span>✅ <b>Let me validate my answers</b> — after I pick, I can tap <i>Validate</i> to lock it in and instantly see if it's right (and the correct answer if not)</span>
+        </label>
         <label class="guide-toggle">
           <input type="checkbox" id="need-guidance" ${guidePref ? "checked" : ""}/>
           <span>🧭 <b>Need guidance</b> — let me <i>check</i> &amp; <i>show</i> answers as I go (practice mode)</span>
@@ -476,22 +481,24 @@ async function startScreen(id) {
 
   const cn = app.querySelector("#change-name");
   if (cn) cn.onclick = () => { nameReturn = location.hash; go("#/name"); };
+  const validate = app.querySelector("#enable-validate");
   begin.onclick = () => {
     if (input && input.value.trim()) setStudent(input.value.trim());
     if (!state.student) return;
     const guidance = !!(guide.checked && gateOK);
     localStorage.setItem("needGuidance", guide.checked ? "1" : "0");
-    launch(test, guidance);
+    localStorage.setItem("enableValidate", validate.checked ? "1" : "0");
+    launch(test, guidance, validate.checked);
   };
 }
 
-function launch(test, guidance) {
+function launch(test, guidance, validate = true) {
   api.saveOffline(test); // cache so this test (and resume/review) works offline
   document.body.classList.add("in-test");
   updateChrome(parseHash());
   if (runner) runner.stop();
   runner = new Runner(app, test, state.student, {
-    guidance, onExit: exitTest, onHistory: () => go("#/history"),
+    guidance, validate, onExit: exitTest, onHistory: () => go("#/history"),
     onRetake: () => go(`#/start/${test.id}`),
     onPause: () => { leaveTest(); go(`#/${state.region}`); },
   });

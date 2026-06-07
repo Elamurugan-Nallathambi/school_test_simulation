@@ -40,6 +40,8 @@ export class Runner {
     this.onRetake = opts.onRetake;
     this.onPause = opts.onPause;
     this.guidance = !!opts.guidance;
+    this.validateMode = !!opts.validate; // self-check: lock answer & show if right (separate from guidance)
+    this.validated = {};     // qid -> bool (answer validated → locked, feedback shown)
     this.navCollapsed = (() => { try { return localStorage.getItem("navCollapsed") === "1"; } catch { return false; } })();
     this.buddy = null;       // conversational AI reading buddy for the current question
     this.markerOn = false;   // passage highlighter mode
@@ -72,6 +74,8 @@ export class Runner {
         this.idx = saved.idx || 0;
         if (typeof saved.elapsed === "number") this.elapsed = saved.elapsed;
         if (typeof saved.guidance === "boolean") this.guidance = saved.guidance;
+        if (typeof saved.validate === "boolean") this.validateMode = saved.validate;
+        if (saved.validated && typeof saved.validated === "object") this.validated = saved.validated;
         if (saved.marks && typeof saved.marks === "object") {
           this.marks = saved.marks;
           for (const list of Object.values(this.marks)) for (const m of (list || [])) if (m && m.id > this.markSeq) this.markSeq = m.id;
@@ -85,6 +89,7 @@ export class Runner {
       localStorage.setItem(this.storeKey, JSON.stringify({
         testId: this.test.id, responses: this.responses, flags: this.flags,
         idx: this.idx, elapsed: this.elapsed, guidance: this.guidance, marks: this.marks, struck: this.struck,
+        validate: this.validateMode, validated: this.validated,
         // display metadata so the landing can show resumable tests without an API call
         title: this.test.title, subject: this.test.subject, testType: this.test.testType,
         grade: this.test.grade, total: this.qs.length, savedAt: Date.now(),
@@ -126,7 +131,7 @@ export class Runner {
             <span class="badge subj-${t.subject}">${t.subject === "math" ? "🔢 Math" : "📖 Reading"}</span>
             <div class="run-title">
               <strong>${esc(t.title)}</strong>
-              <span class="run-student">👋 ${esc(this.student)}${this.guidance ? ' · <span class="guide-tag">🧭 Guidance on</span>' : ""}</span>
+              <span class="run-student">👋 ${esc(this.student)}${this.guidance ? ' · <span class="guide-tag">🧭 Guidance on</span>' : ""}${this.validateMode ? ' · <span class="guide-tag validate-tag">✅ Validate on</span>' : ""}</span>
             </div>
           </div>
           <div class="run-head-right">
@@ -268,6 +273,7 @@ export class Runner {
           ${this.tutorBarHtml()}
           ${diagramHtml}
           ${this.renderInput(q)}
+          ${this.validateBarHtml(q)}
           ${this.guidanceBarHtml(q)}
         </div>
       </section>`;
@@ -277,6 +283,7 @@ export class Runner {
     this.wireInputs(q);
     if (passage) { this.wireGenre(passage); this.wirePassage(passage); }
     this.wireGuidance(q);
+    this.wireValidate(q);
     this.wireTutor(q);
 
     this.root.querySelector("#btn-prev").disabled = this.idx === 0;
@@ -442,8 +449,14 @@ export class Runner {
     return idxs.map((x) => `${LETTERS[x]}. ${esc((q.options || [])[x])}`).join("; ");
   }
 
+  // An answer is locked (read-only, with the correct answer marked) once it's been
+  // revealed via guidance OR validated via the self-check button.
+  isLocked(q) {
+    return (this.guidance && !!this.revealed[q.id]) || (this.validateMode && !!this.validated[q.id]);
+  }
+
   renderInput(q) {
-    const revealed = this.guidance && this.revealed[q.id];
+    const revealed = this.isLocked(q);
     const r = this.responses[q.id];
     if (q.itemType === "numeric_entry") {
       return `
@@ -502,7 +515,7 @@ export class Runner {
     const multi = q.itemType === "multi_select";
     area.querySelectorAll(".opt-pick").forEach((b) => {
       b.onclick = () => {
-        if (this.revealed[q.id]) return;
+        if (this.isLocked(q)) return;
         const i = +b.dataset.i;
         if (multi) {
           const cur = Array.isArray(this.responses[q.id]) ? this.responses[q.id] : [];
@@ -559,6 +572,44 @@ export class Runner {
     if (show) show.onclick = () => {
       this.revealed[q.id] = !this.revealed[q.id];
       this.renderQuestion();
+    };
+  }
+
+  // ── Validate-my-answer (instant self-check) ──────────────────────────────────
+  // A separate, kid-controlled mode: tap "Validate", the answer locks (no more
+  // changes), and we instantly show whether it's right — and, if not, the correct
+  // answer with the reason. Independent from guidance; never affects the score.
+  validateBarHtml(q) {
+    if (!this.validateMode) return "";
+    if (this.validated[q.id]) {
+      const ok = isCorrect(q, this.responses[q.id]);
+      const ans = this.correctText(q);
+      return `
+        <div class="validate-bar done">
+          <div class="validate-result ${ok ? "ok" : "no"}">${ok ? "🎉 Correct! Great job." : "❌ Not quite."}</div>
+          ${ok
+            ? (q.explanation ? `<div class="reveal-box">💡 ${esc(q.explanation)}</div>` : "")
+            : `<div class="reveal-box">✅ <b>Correct answer:</b> ${ans}${q.explanation ? `<div class="reveal-exp">${esc(q.explanation)}</div>` : ""}</div>`}
+          <div class="validate-note muted">🔒 Your answer is locked for this question.</div>
+        </div>`;
+    }
+    const ready = this.isAnswered(q.id);
+    return `
+      <div class="validate-bar">
+        <button id="v-check" class="btn btn-validate" ${ready ? "" : "disabled"}>✅ Validate my answer</button>
+        <span class="validate-hint muted">${ready ? "Once you validate, your answer locks and I'll show you if it's right." : "Pick an answer first, then tap Validate."}</span>
+      </div>`;
+  }
+  wireValidate(q) {
+    if (!this.validateMode) return;
+    const btn = this.root.querySelector("#v-check");
+    if (!btn) return;
+    btn.onclick = () => {
+      if (!this.isAnswered(q.id)) return;
+      this.validated[q.id] = true;
+      this.persist();
+      this.renderQuestion();
+      this.renderGrid();
     };
   }
 

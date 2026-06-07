@@ -214,6 +214,19 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
 .opt.wrong-opt { border-color: var(--red); background: #fef2f2; }
 .opt.wrong-opt .opt-letter { background: var(--red); color: #fff; }
 
+/* validate-my-answer (instant self-check, locks the answer) */
+.validate-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--line); }
+.validate-bar.done { flex-direction: column; align-items: stretch; gap: 8px; }
+.btn-validate { background: var(--blue); color: #fff; font-size: 16px; padding: 11px 22px; }
+.btn-validate:hover:not(:disabled) { filter: brightness(1.05); }
+.btn-validate:disabled { opacity: .5; cursor: default; }
+.validate-hint { font-size: 13px; }
+.validate-result { font-weight: 800; font-size: 17px; }
+.validate-result.ok { color: var(--green); }
+.validate-result.no { color: var(--red); }
+.validate-note { font-size: 13px; }
+.validate-tag { background: #dbeafe; color: var(--blue-d); }
+
 /* genre review section in results */
 .genre-review { display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px; }
 .genre-row { display: flex; align-items: center; gap: 10px; background: var(--card); border: 1.5px solid var(--line); border-left-width: 5px; border-radius: 10px; padding: 10px 14px; flex-wrap: wrap; }
