@@ -332,24 +332,13 @@ export class Runner {
         if (xb) { e.stopPropagation(); this.removeMark(passage, +xb.dataset.mid); return; }
       };
       ptext.addEventListener("mouseup", () => this.maybeHighlight(passage));
-      // Mobile: longer timeout so the browser finishes its selection; also listen to
-      // selectionchange as a fallback because some mobile browsers clear getSelection()
-      // before touchend fires.
-      const onTouch = () => setTimeout(() => this.maybeHighlight(passage), 120);
+      // Only process highlight on mouseup / touchend. selectionchange is skipped
+      // because it fires mid-drag and captures partial selections.
+      const onTouch = () => setTimeout(() => this.maybeHighlight(passage), 250);
       ptext.addEventListener("touchend", onTouch);
-      // selectionchange fires whenever the user selects/deselects text.
-      let selTimer = null;
-      const onSelChange = () => {
-        if (!this.markerOn) return;
-        clearTimeout(selTimer);
-        selTimer = setTimeout(() => this.maybeHighlight(passage), 80);
-      };
-      document.addEventListener("selectionchange", onSelChange);
-      // Clean up listeners when runner stops to avoid leaks
       this._selCleanups = this._selCleanups || [];
       this._selCleanups.push(() => {
         ptext.removeEventListener("touchend", onTouch);
-        document.removeEventListener("selectionchange", onSelChange);
       });
     }
   }

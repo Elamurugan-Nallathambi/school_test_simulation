@@ -152,6 +152,21 @@ async function handleApi(path, request, env) {
     return json({ text });
   }
 
+  // POST /api/speak → text-to-speech (Cartesia) → audio/mp3
+  if (path === "/api/speak" && request.method === "POST") {
+    const b = await request.json();
+    const text = String(b.text || "").slice(0, 4000);
+    if (!text) return new Response("No text", { status: 400 });
+    try {
+      const audio = await tutorSpeak(env, text, b.voiceId || null);
+      return new Response(audio, {
+        headers: { "Content-Type": "audio/mpeg", "Cache-Control": "public, max-age=86400" },
+      });
+    } catch (e) {
+      return json({ error: e.message }, { status: 500 });
+    }
+  }
+
   // POST /api/chat  → conversational reply (grounded in the passage) → spoken audio
   if (path === "/api/chat" && request.method === "POST") {
     const b = await request.json();

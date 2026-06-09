@@ -114,10 +114,10 @@ Always name the highlighted words directly — never say "the highlighted part" 
   return (json.choices?.[0]?.message?.content || "").trim();
 }
 
-export async function tutorSpeak(env, text) {
+export async function tutorSpeak(env, text, voiceId) {
   const key = env.CARTESIA_API_KEY;
   if (!key) throw new Error("CARTESIA_API_KEY is not configured");
-  const voice = env.CARTESIA_VOICE_ID || "f786b574-daa5-4673-aa0c-cbe3e8534c02"; // Katie — gentle, enunciating
+  const voice = voiceId || env.CARTESIA_VOICE_ID || "f786b574-daa5-4673-aa0c-cbe3e8534c02"; // Katie
   const res = await fetch("https://api.cartesia.ai/tts/bytes", {
     method: "POST",
     headers: { "Cartesia-Version": "2024-11-13", "X-API-Key": key, "Content-Type": "application/json" },

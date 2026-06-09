@@ -5,8 +5,69 @@ let readerMarks = {};       // storyId -> [{id,pi,s,e}]
 let readerMarkSeq = 0;
 let readerMarkerOn = false;
 let readerSelCleanups = [];
+let readAudio = null;       // current Audio object
 
 const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+// ── Voice config ──────────────────────────────────────────────────────────────
+const CARTESIA_VOICES = [
+  { id: "f786b574-daa5-4673-aa0c-cbe3e8534c02", name: "Katie", desc: "gentle & clear" },
+  { id: "41534e16-2966-4c6d-b0e9-1919d8313385", name: "Jessica", desc: "warm & friendly" },
+  { id: "694f9389-aac1-45b6-b726-9d9369183238", name: "Nicole", desc: "bright & expressive" },
+];
+const VOICE_KEY = "readerVoice";
+function getVoicePref() {
+  try { return localStorage.getItem(VOICE_KEY) || "cartesia:f786b574-daa5-4673-aa0c-cbe3e8534c02"; } catch { return "cartesia:f786b574-daa5-4673-aa0c-cbe3e8534c02"; }
+}
+function setVoicePref(v) { try { localStorage.setItem(VOICE_KEY, v); } catch {} }
+function isBuiltIn(v) { return !v || v.startsWith("builtin:"); }
+function getBuiltInLabel(v) { return v?.replace("builtin:", "") || "Default"; }
+
+async function speak(text, voicePref, onStatus) {
+  // Stop any current audio
+  try { if (readAudio) { readAudio.pause(); readAudio = null; } } catch {}
+  window.speechSynthesis && window.speechSynthesis.cancel();
+
+  if (!isBuiltIn(voicePref)) {
+    const voiceId = voicePref.replace("cartesia:", "");
+    if (onStatus) onStatus("Loading voice…");
+    try {
+      const r = await fetch("/api/speak", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text, voiceId }),
+      });
+      if (!r.ok) throw new Error(await r.text());
+      const buf = await r.arrayBuffer();
+      readAudio = new Audio(URL.createObjectURL(new Blob([buf], { type: "audio/mpeg" })));
+      readAudio.onended = () => { if (onStatus) onStatus(""); };
+      readAudio.onerror = () => { if (onStatus) onStatus(""); };
+      readAudio.play().catch(() => {});
+      if (onStatus) onStatus("🔊 Reading…");
+    } catch (e) {
+      if (onStatus) onStatus("Voice failed, trying built-in…");
+      speakBuiltin(text, voicePref);
+    }
+  } else {
+    speakBuiltin(text, voicePref);
+  }
+}
+
+function speakBuiltin(text, voicePref) {
+  if (!("speechSynthesis" in window)) return;
+  const desired = getBuiltInLabel(voicePref).toLowerCase();
+  const voices = window.speechSynthesis.getVoices() || [];
+  const v = voices.find((x) => x.name.toLowerCase().includes(desired) && /^en/i.test(x.lang))
+    || voices.find((x) => /^en/i.test(x.lang)) || voices[0];
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "en-US"; u.rate = 0.9; u.pitch = 1.0;
+  if (v) u.voice = v;
+  window.speechSynthesis.speak(u);
+}
+
+function getBuiltinVoices() {
+  if (!("speechSynthesis" in window)) return [];
+  return (window.speechSynthesis.getVoices() || []).filter((v) => /^en/i.test(v.lang));
+}
 const paras = (t) => esc(t).split(/\n\n+/).map((p) => `<p>${p.replace(/\n/g, "<br>")}</p>`).join("");
 const markTools = (id) => `<span class="mark-tools" contenteditable="false"><button class="mark-q" data-mid="${id}" title="Explain this part" aria-label="Explain"></button><button class="mark-x" data-mid="${id}" title="Clear highlight" aria-label="Clear"></button></span>`;
 
@@ -125,8 +186,20 @@ async function renderReader(app, storyId, student, onBack) {
         <div class="passage-toolbar">
           <button id="read-toggle" class="mark-toggle">🖍️ Highlight</button>
           <button id="read-clear" class="mark-clear" style="display:none">Clear All</button>
-          <button id="read-tts" class="mark-clear">🔊 Read Aloud</button>
+          <div class="voice-picker">
+            <select id="read-voice" class="voice-select" title="Choose reading voice">
+              <optgroup label="Cartesia (AI voices)">
+                ${CARTESIA_VOICES.map((v) => `<option value="cartesia:${esc(v.id)}" ${getVoicePref() === `cartesia:${v.id}` ? "selected" : ""}>${esc(v.name)} — ${esc(v.desc)}</option>`).join("")}
+              </optgroup>
+              <optgroup label="Built-in (this device)">
+                <option value="builtin:default" ${getVoicePref() === "builtin:default" ? "selected" : ""}>Device Default</option>
+                ${getBuiltinVoices().map((v) => `<option value="builtin:${esc(v.name)}" ${getVoicePref() === `builtin:${esc(v.name)}` ? "selected" : ""}>${esc(v.name)}</option>`).join("")}
+              </optgroup>
+            </select>
+            <button id="read-tts" class="mark-clear">🔊 Read Aloud</button>
+          </div>
           <span id="read-hint" class="mark-hint">Tap “🖍️ Highlight”, then select any words you want to mark.</span>
+          <span id="read-tts-status" class="mark-hint" style="margin-left:auto;color:var(--blue-d);font-weight:700"></span>
         </div>
         <div class="passage-text" id="read-ptext">${markup}</div>
       </div>
@@ -179,37 +252,41 @@ async function renderReader(app, storyId, student, onBack) {
     }
   };
 
-  // Highlight on select
+  // Highlight on select — only on mouseup / touchend so the user has full
+  // control: hold to select, release to confirm. No selectionchange listener
+  // because it fires mid-drag and captures partial selections.
   ptext.addEventListener("mouseup", () => maybeHighlight(story, ptext, textParas));
-  const onTouch = () => setTimeout(() => maybeHighlight(story, ptext, textParas), 120);
+  const onTouch = () => setTimeout(() => maybeHighlight(story, ptext, textParas), 250);
   ptext.addEventListener("touchend", onTouch);
-
-  let selTimer = null;
-  const onSelChange = () => {
-    if (!readerMarkerOn) return;
-    clearTimeout(selTimer);
-    selTimer = setTimeout(() => maybeHighlight(story, ptext, textParas), 80);
-  };
-  document.addEventListener("selectionchange", onSelChange);
   readerSelCleanups.push(() => {
     ptext.removeEventListener("touchend", onTouch);
-    document.removeEventListener("selectionchange", onSelChange);
   });
 
-  // TTS Read Aloud
+  // TTS Read Aloud — Cartesia by default, built-in as fallback option
+  const ttsStatus = app.querySelector("#read-tts-status");
   app.querySelector("#read-tts").onclick = () => {
-    if (!("speechSynthesis" in window)) return;
-    window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(story.text);
-    u.lang = "en-US"; u.rate = 0.9; u.pitch = 1.0;
-    const voices = window.speechSynthesis.getVoices() || [];
-    const v = voices.find((x) => /en[-_]US/i.test(x.lang) && /samantha|zira|google/i.test(x.name))
-      || voices.find((x) => /^en/i.test(x.lang)) || voices[0];
-    if (v) u.voice = v;
-    window.speechSynthesis.speak(u);
+    const voicePref = app.querySelector("#read-voice")?.value || getVoicePref();
+    speak(story.text, voicePref, (msg) => { if (ttsStatus) ttsStatus.textContent = msg; });
+  };
+  app.querySelector("#read-voice").onchange = (e) => {
+    setVoicePref(e.target.value);
+    // Refresh built-in voices if the picker is opened again
+    if (isBuiltIn(e.target.value)) {
+      const opts = e.target.querySelector('optgroup[label="Built-in (this device)"]');
+      if (opts) {
+        const existing = Array.from(opts.querySelectorAll('option:not([value="builtin:default"])')).map((o) => o.value);
+        const fresh = getBuiltinVoices().filter((v) => !existing.includes(`builtin:${v.name}`));
+        fresh.forEach((v) => {
+          const o = document.createElement("option");
+          o.value = `builtin:${esc(v.name)}`; o.textContent = esc(v.name);
+          opts.appendChild(o);
+        });
+      }
+    }
   };
 
   app.querySelector("#read-done").onclick = () => {
+    try { if (readAudio) { readAudio.pause(); readAudio = null; } } catch {}
     window.speechSynthesis && window.speechSynthesis.cancel();
     renderComprehension(app, story, student, onBack);
   };
