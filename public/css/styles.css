@@ -520,6 +520,37 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
   .results-head { flex-direction: column; text-align: center; }
 }
 
+/* ── Vocabulary page ─────────────────────────────────────────────────────────── */
+.vocab-wiz { max-width: 720px; margin: 0 auto; }
+.vocab-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.vocab-score-box { display: flex; flex-direction: column; align-items: center; background: var(--card); border: 2px solid var(--line); border-radius: 14px; padding: 8px 18px; box-shadow: var(--shadow); }
+.vocab-score-label { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; }
+.vocab-score-num { font-size: 28px; font-weight: 900; color: var(--ink); }
+.vocab-score-num.pos { color: var(--green); }
+.vocab-score-num.neg { color: var(--red); }
+.vocab-level-bar { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 18px; }
+.vocab-level-label { font-weight: 700; font-size: 14px; color: var(--muted); }
+.vocab-grade-select { padding: 8px 14px; font-size: 15px; font-weight: 700; border: 2px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); cursor: pointer; }
+.vocab-grade-select:focus { outline: none; border-color: var(--blue); }
+.vocab-card { background: var(--card); border: 2px solid var(--line); border-radius: var(--radius); padding: 32px 28px; box-shadow: var(--shadow-lg); text-align: center; }
+.vocab-word { font-size: 56px; font-weight: 900; color: var(--blue-d); line-height: 1.1; margin-bottom: 8px; word-break: break-word; }
+.vocab-grade-tag { display: inline-block; background: var(--blue-l); color: var(--blue-d); font-weight: 700; font-size: 12px; padding: 3px 10px; border-radius: 999px; margin-bottom: 20px; }
+.vocab-actions { display: flex; justify-content: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+.vocab-meaning { background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 14px; padding: 18px 20px; text-align: left; margin-bottom: 18px; animation: fade .2s ease; }
+.vocab-meaning-text { font-size: 17px; font-weight: 700; color: #166534; margin-bottom: 8px; }
+.vocab-example { font-size: 15px; color: var(--ink); font-style: italic; margin-bottom: 14px; }
+.vocab-selfcheck { border-top: 1px dashed #86efac; padding-top: 14px; }
+.vocab-check-q { font-size: 15px; font-weight: 700; color: var(--ink); margin: 0 0 10px; text-align: center; }
+.vocab-check-btns { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.vocab-next-row { margin-top: 10px; }
+.btn-sm { padding: 8px 16px; font-size: 14px; }
+
+@media (max-width: 560px) {
+  .vocab-word { font-size: 40px; }
+  .vocab-header { flex-wrap: wrap; }
+  .vocab-score-box { order: -1; width: 100%; }
+}
+
 /* ── Print (review) ──────────────────────────────────────────────────────────── */
 @media print {
   .site-head, .site-foot, .results-actions, .run-foot, .q-nav { display: none !important; }

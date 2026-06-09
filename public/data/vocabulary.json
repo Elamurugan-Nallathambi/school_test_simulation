@@ -1,0 +1,8282 @@
+[
+  {
+    "word": "twilight",
+    "grade": 5,
+    "meaning": "the time between day and night",
+    "example": "Bats come out at twilight."
+  },
+  {
+    "word": "literature",
+    "grade": 4,
+    "meaning": "written works",
+    "example": "We study literature in class."
+  },
+  {
+    "word": "ride",
+    "grade": 2,
+    "meaning": "to sit on and control",
+    "example": "I ride my bike."
+  },
+  {
+    "word": "attract",
+    "grade": 3,
+    "meaning": "to draw interest",
+    "example": "Bright colors attract birds."
+  },
+  {
+    "word": "immigrant",
+    "grade": 4,
+    "meaning": "a person who moves to a new country",
+    "example": "My grandmother was an immigrant."
+  },
+  {
+    "word": "might",
+    "grade": 2,
+    "meaning": "possible but uncertain",
+    "example": "It might rain today."
+  },
+  {
+    "word": "refer",
+    "grade": 5,
+    "meaning": "to mention or direct",
+    "example": "Refer to page ten."
+  },
+  {
+    "word": "found",
+    "grade": 1,
+    "meaning": "past tense of find",
+    "example": "I found my lost toy."
+  },
+  {
+    "word": "jump",
+    "grade": 1,
+    "meaning": "to push yourself off the ground",
+    "example": "I can jump high."
+  },
+  {
+    "word": "economy",
+    "grade": 4,
+    "meaning": "the system of money and trade",
+    "example": "The economy is growing."
+  },
+  {
+    "word": "glorious",
+    "grade": 4,
+    "meaning": "magnificent and beautiful",
+    "example": "The sunrise was glorious."
+  },
+  {
+    "word": "repeat",
+    "grade": 5,
+    "meaning": "to say or do again",
+    "example": "Repeat after me."
+  },
+  {
+    "word": "scatter",
+    "grade": 5,
+    "meaning": "to spread in different directions",
+    "example": "Scatter the seeds in the soil."
+  },
+  {
+    "word": "always",
+    "grade": 2,
+    "meaning": "at all times",
+    "example": "I always eat breakfast."
+  },
+  {
+    "word": "broadcast",
+    "grade": 3,
+    "meaning": "to send out by radio or TV",
+    "example": "The news broadcast starts at six."
+  },
+  {
+    "word": "limit",
+    "grade": 4,
+    "meaning": "a boundary or maximum",
+    "example": "There is a speed limit."
+  },
+  {
+    "word": "oxygen",
+    "grade": 5,
+    "meaning": "a gas we need to breathe",
+    "example": "Plants produce oxygen."
+  },
+  {
+    "word": "came",
+    "grade": 1,
+    "meaning": "past tense of come",
+    "example": "My friend came to visit."
+  },
+  {
+    "word": "because",
+    "grade": 1,
+    "meaning": "for the reason that",
+    "example": "I am happy because it is Friday."
+  },
+  {
+    "word": "glance",
+    "grade": 4,
+    "meaning": "a quick look",
+    "example": "Take a glance at the menu."
+  },
+  {
+    "word": "struggle",
+    "grade": 5,
+    "meaning": "to try hard against difficulty",
+    "example": "Don't give up the struggle."
+  },
+  {
+    "word": "pollute",
+    "grade": 5,
+    "meaning": "to make dirty or harmful",
+    "example": "Don't pollute the river."
+  },
+  {
+    "word": "paragraph",
+    "grade": 5,
+    "meaning": "a section of writing",
+    "example": "Write a paragraph about your trip."
+  },
+  {
+    "word": "disappear",
+    "grade": 3,
+    "meaning": "to vanish from sight",
+    "example": "The magician made the coin disappear."
+  },
+  {
+    "word": "belief",
+    "grade": 3,
+    "meaning": "something accepted as true",
+    "example": "It is my belief that honesty matters."
+  },
+  {
+    "word": "such",
+    "grade": 2,
+    "meaning": "of a particular kind",
+    "example": "It was such a fun day."
+  },
+  {
+    "word": "took",
+    "grade": 2,
+    "meaning": "past tense of take",
+    "example": "I took the bus."
+  },
+  {
+    "word": "continent",
+    "grade": 3,
+    "meaning": "a large land mass",
+    "example": "Africa is a large continent."
+  },
+  {
+    "word": "deny",
+    "grade": 3,
+    "meaning": "to refuse to admit",
+    "example": "Do not deny your mistake."
+  },
+  {
+    "word": "seldom",
+    "grade": 5,
+    "meaning": "not often",
+    "example": "I seldom eat fast food."
+  },
+  {
+    "word": "trial",
+    "grade": 5,
+    "meaning": "a test or legal process",
+    "example": "The trial lasted three days."
+  },
+  {
+    "word": "vulnerable",
+    "grade": 5,
+    "meaning": "easily harmed",
+    "example": "Baby animals are vulnerable."
+  },
+  {
+    "word": "steady",
+    "grade": 5,
+    "meaning": "firm and stable",
+    "example": "Keep a steady hand."
+  },
+  {
+    "word": "robust",
+    "grade": 5,
+    "meaning": "strong and healthy",
+    "example": "The plant is robust."
+  },
+  {
+    "word": "prohibit",
+    "grade": 5,
+    "meaning": "to forbid",
+    "example": "Signs prohibit swimming."
+  },
+  {
+    "word": "up",
+    "grade": 1,
+    "meaning": "toward a higher place",
+    "example": "Look up at the sky."
+  },
+  {
+    "word": "shriek",
+    "grade": 5,
+    "meaning": "a loud sharp cry",
+    "example": "A shriek came from the haunted house."
+  },
+  {
+    "word": "strife",
+    "grade": 5,
+    "meaning": "conflict or struggle",
+    "example": "The country was torn by strife."
+  },
+  {
+    "word": "father",
+    "grade": 1,
+    "meaning": "a male parent",
+    "example": "My father reads me stories."
+  },
+  {
+    "word": "so",
+    "grade": 1,
+    "meaning": "for that reason",
+    "example": "I was tired, so I slept."
+  },
+  {
+    "word": "devise",
+    "grade": 3,
+    "meaning": "to plan or invent",
+    "example": "Devise a plan for the project."
+  },
+  {
+    "word": "inspire",
+    "grade": 4,
+    "meaning": "to motivate or influence",
+    "example": "Her speech will inspire you."
+  },
+  {
+    "word": "blizzard",
+    "grade": 3,
+    "meaning": "a severe snowstorm",
+    "example": "The blizzard closed the schools."
+  },
+  {
+    "word": "parallel",
+    "grade": 5,
+    "meaning": "lines that never meet",
+    "example": "The roads run parallel."
+  },
+  {
+    "word": "trustworthy",
+    "grade": 5,
+    "meaning": "deserving of trust",
+    "example": "She is a trustworthy friend."
+  },
+  {
+    "word": "describe",
+    "grade": 3,
+    "meaning": "to tell about in words",
+    "example": "Describe your favorite place."
+  },
+  {
+    "word": "high",
+    "grade": 2,
+    "meaning": "great in height",
+    "example": "The bird flies high."
+  },
+  {
+    "word": "invisible",
+    "grade": 4,
+    "meaning": "unable to be seen",
+    "example": "Air is invisible."
+  },
+  {
+    "word": "expect",
+    "grade": 4,
+    "meaning": "to think something will happen",
+    "example": "I expect rain tomorrow."
+  },
+  {
+    "word": "assist",
+    "grade": 3,
+    "meaning": "to help",
+    "example": "Can you assist me with this?"
+  },
+  {
+    "word": "reward",
+    "grade": 5,
+    "meaning": "something given for good behavior",
+    "example": "Hard work brings its own reward."
+  },
+  {
+    "word": "emphasis",
+    "grade": 4,
+    "meaning": "special importance",
+    "example": "Place emphasis on key words."
+  },
+  {
+    "word": "recognize",
+    "grade": 5,
+    "meaning": "to identify",
+    "example": "I recognize that song."
+  },
+  {
+    "word": "park",
+    "grade": 2,
+    "meaning": "an area for recreation",
+    "example": "We play at the park."
+  },
+  {
+    "word": "optional",
+    "grade": 5,
+    "meaning": "not required",
+    "example": "Dessert is optional."
+  },
+  {
+    "word": "glimmer",
+    "grade": 4,
+    "meaning": "a faint light",
+    "example": "A glimmer of hope remained."
+  },
+  {
+    "word": "emotion",
+    "grade": 4,
+    "meaning": "a strong feeling",
+    "example": "Joy is a happy emotion."
+  },
+  {
+    "word": "federal",
+    "grade": 4,
+    "meaning": "relating to national government",
+    "example": "Federal laws apply to all states."
+  },
+  {
+    "word": "road",
+    "grade": 2,
+    "meaning": "a path for vehicles",
+    "example": "The road is bumpy."
+  },
+  {
+    "word": "beside",
+    "grade": 3,
+    "meaning": "next to",
+    "example": "Sit beside your partner."
+  },
+  {
+    "word": "remain",
+    "grade": 5,
+    "meaning": "to stay in place",
+    "example": "Please remain seated."
+  },
+  {
+    "word": "two",
+    "grade": 1,
+    "meaning": "the number 2",
+    "example": "I have two hands."
+  },
+  {
+    "word": "sound",
+    "grade": 2,
+    "meaning": "something heard",
+    "example": "What is that sound?"
+  },
+  {
+    "word": "descend",
+    "grade": 3,
+    "meaning": "to go down",
+    "example": "Descend the stairs carefully."
+  },
+  {
+    "word": "invent",
+    "grade": 4,
+    "meaning": "to create something new",
+    "example": "Edison invented the light bulb."
+  },
+  {
+    "word": "important",
+    "grade": 4,
+    "meaning": "of great value",
+    "example": "School is important."
+  },
+  {
+    "word": "was",
+    "grade": 1,
+    "meaning": "past tense of is",
+    "example": "Yesterday was fun."
+  },
+  {
+    "word": "hot",
+    "grade": 1,
+    "meaning": "having high temperature",
+    "example": "The soup is hot."
+  },
+  {
+    "word": "gaze",
+    "grade": 4,
+    "meaning": "to look steadily",
+    "example": "Gaze at the stars tonight."
+  },
+  {
+    "word": "stain",
+    "grade": 5,
+    "meaning": "a discolored spot",
+    "example": "The coffee left a stain."
+  },
+  {
+    "word": "slight",
+    "grade": 5,
+    "meaning": "small in degree",
+    "example": "There was a slight breeze."
+  },
+  {
+    "word": "fatigue",
+    "grade": 4,
+    "meaning": "extreme tiredness",
+    "example": "The hike caused fatigue."
+  },
+  {
+    "word": "encounter",
+    "grade": 4,
+    "meaning": "to meet unexpectedly",
+    "example": "We encountered a bear on the trail."
+  },
+  {
+    "word": "culture",
+    "grade": 3,
+    "meaning": "the customs of a group",
+    "example": "We studied Japanese culture."
+  },
+  {
+    "word": "frustrate",
+    "grade": 4,
+    "meaning": "to cause upset",
+    "example": "Loud noise can frustrate students."
+  },
+  {
+    "word": "balance",
+    "grade": 3,
+    "meaning": "an equal distribution",
+    "example": "The bird has good balance."
+  },
+  {
+    "word": "issue",
+    "grade": 4,
+    "meaning": "a topic or problem",
+    "example": "We discussed the issue."
+  },
+  {
+    "word": "continue",
+    "grade": 3,
+    "meaning": "to go on without stopping",
+    "example": "Please continue reading."
+  },
+  {
+    "word": "cold",
+    "grade": 1,
+    "meaning": "having low temperature",
+    "example": "The ice is cold."
+  },
+  {
+    "word": "as",
+    "grade": 1,
+    "meaning": "in the role of",
+    "example": "She works as a teacher."
+  },
+  {
+    "word": "very",
+    "grade": 1,
+    "meaning": "to a high degree",
+    "example": "The sun is very hot."
+  },
+  {
+    "word": "tempt",
+    "grade": 5,
+    "meaning": "to try to persuade",
+    "example": "The cake will tempt you."
+  },
+  {
+    "word": "plague",
+    "grade": 5,
+    "meaning": "a widespread disease",
+    "example": "The plague killed many people."
+  },
+  {
+    "word": "educate",
+    "grade": 4,
+    "meaning": "to teach or train",
+    "example": "Schools educate children."
+  },
+  {
+    "word": "topic",
+    "grade": 5,
+    "meaning": "a subject of discussion",
+    "example": "What is today's topic?"
+  },
+  {
+    "word": "instrument",
+    "grade": 4,
+    "meaning": "a tool for making music",
+    "example": "The violin is a string instrument."
+  },
+  {
+    "word": "manual",
+    "grade": 5,
+    "meaning": "done by hand",
+    "example": "Read the manual first."
+  },
+  {
+    "word": "timid",
+    "grade": 5,
+    "meaning": "shy and nervous",
+    "example": "The timid deer ran away."
+  },
+  {
+    "word": "document",
+    "grade": 3,
+    "meaning": "a written record",
+    "example": "Sign the document please."
+  },
+  {
+    "word": "superior",
+    "grade": 5,
+    "meaning": "higher in quality",
+    "example": "This product is superior."
+  },
+  {
+    "word": "negative",
+    "grade": 5,
+    "meaning": "less than zero or bad",
+    "example": "The test came back negative."
+  },
+  {
+    "word": "bounce",
+    "grade": 3,
+    "meaning": "to spring back after hitting",
+    "example": "The ball will bounce high."
+  },
+  {
+    "word": "jagged",
+    "grade": 4,
+    "meaning": "rough with sharp points",
+    "example": "The jagged rocks were dangerous."
+  },
+  {
+    "word": "media",
+    "grade": 5,
+    "meaning": "channels of communication",
+    "example": "The news spread through social media."
+  },
+  {
+    "word": "large",
+    "grade": 2,
+    "meaning": "big in size",
+    "example": "The elephant is large."
+  },
+  {
+    "word": "mature",
+    "grade": 5,
+    "meaning": "fully grown",
+    "example": "The fruit is mature and ready."
+  },
+  {
+    "word": "dive",
+    "grade": 3,
+    "meaning": "to jump into water",
+    "example": "Dive into the pool."
+  },
+  {
+    "word": "chemical",
+    "grade": 3,
+    "meaning": "relating to substances and reactions",
+    "example": "A chemical reaction created bubbles."
+  },
+  {
+    "word": "interest",
+    "grade": 4,
+    "meaning": "a feeling of curiosity",
+    "example": "I have an interest in science."
+  },
+  {
+    "word": "were",
+    "grade": 1,
+    "meaning": "past tense of are",
+    "example": "They were at school."
+  },
+  {
+    "word": "have",
+    "grade": 1,
+    "meaning": "to possess or own",
+    "example": "I have three cats."
+  },
+  {
+    "word": "when",
+    "grade": 1,
+    "meaning": "at what time",
+    "example": "When is lunch?"
+  },
+  {
+    "word": "bundle",
+    "grade": 3,
+    "meaning": "a group of things tied together",
+    "example": "A bundle of sticks."
+  },
+  {
+    "word": "real",
+    "grade": 2,
+    "meaning": "actually existing",
+    "example": "Is that a real dinosaur?"
+  },
+  {
+    "word": "brilliant",
+    "grade": 3,
+    "meaning": "very smart or shining",
+    "example": "She had a brilliant idea."
+  },
+  {
+    "word": "promote",
+    "grade": 5,
+    "meaning": "to support or encourage",
+    "example": "The campaign will promote reading."
+  },
+  {
+    "word": "world",
+    "grade": 1,
+    "meaning": "the earth and all its people",
+    "example": "The world is big."
+  },
+  {
+    "word": "family",
+    "grade": 1,
+    "meaning": "a group of related people",
+    "example": "My family is kind."
+  },
+  {
+    "word": "carpenter",
+    "grade": 3,
+    "meaning": "a person who builds with wood",
+    "example": "The carpenter made a table."
+  },
+  {
+    "word": "kingdom",
+    "grade": 4,
+    "meaning": "a country ruled by a king",
+    "example": "The kingdom was peaceful."
+  },
+  {
+    "word": "independent",
+    "grade": 4,
+    "meaning": "free from outside control",
+    "example": "She is an independent thinker."
+  },
+  {
+    "word": "sprout",
+    "grade": 5,
+    "meaning": "to begin to grow",
+    "example": "Seeds sprout in spring."
+  },
+  {
+    "word": "cashier",
+    "grade": 3,
+    "meaning": "a person who handles money",
+    "example": "Pay the cashier at the front."
+  },
+  {
+    "word": "keep",
+    "grade": 2,
+    "meaning": "to retain possession",
+    "example": "Keep your room tidy."
+  },
+  {
+    "word": "experience",
+    "grade": 4,
+    "meaning": "knowledge from doing",
+    "example": "She has experience with dogs."
+  },
+  {
+    "word": "essential",
+    "grade": 4,
+    "meaning": "absolutely necessary",
+    "example": "Water is essential for life."
+  },
+  {
+    "word": "undermine",
+    "grade": 5,
+    "meaning": "to weaken",
+    "example": "Don't undermine your team."
+  },
+  {
+    "word": "peer",
+    "grade": 5,
+    "meaning": "a person of the same age",
+    "example": "She looked to her peers for advice."
+  },
+  {
+    "word": "justice",
+    "grade": 4,
+    "meaning": "fair treatment",
+    "example": "Justice must be served."
+  },
+  {
+    "word": "restrict",
+    "grade": 5,
+    "meaning": "to limit",
+    "example": "Restrict screen time."
+  },
+  {
+    "word": "sparkle",
+    "grade": 5,
+    "meaning": "to shine with small flashes",
+    "example": "The diamonds sparkle."
+  },
+  {
+    "word": "does",
+    "grade": 1,
+    "meaning": "third person of do",
+    "example": "She does her best."
+  },
+  {
+    "word": "instruct",
+    "grade": 4,
+    "meaning": "to teach or direct",
+    "example": "Instruct the class on safety."
+  },
+  {
+    "word": "ravine",
+    "grade": 5,
+    "meaning": "a deep narrow valley",
+    "example": "The ravine was dangerous."
+  },
+  {
+    "word": "threat",
+    "grade": 5,
+    "meaning": "a warning of harm",
+    "example": "The storm is a threat."
+  },
+  {
+    "word": "design",
+    "grade": 3,
+    "meaning": "a plan or pattern",
+    "example": "The design of the building is modern."
+  },
+  {
+    "word": "exhaust",
+    "grade": 4,
+    "meaning": "to use up completely",
+    "example": "Don't exhaust your energy."
+  },
+  {
+    "word": "obtain",
+    "grade": 5,
+    "meaning": "to get or acquire",
+    "example": "Obtain permission first."
+  },
+  {
+    "word": "debate",
+    "grade": 3,
+    "meaning": "a formal discussion",
+    "example": "The class held a debate."
+  },
+  {
+    "word": "diagram",
+    "grade": 3,
+    "meaning": "a drawing that explains",
+    "example": "Study the diagram carefully."
+  },
+  {
+    "word": "will",
+    "grade": 1,
+    "meaning": "future tense helper",
+    "example": "I will go tomorrow."
+  },
+  {
+    "word": "these",
+    "grade": 1,
+    "meaning": "more than one thing near you",
+    "example": "These flowers are pretty."
+  },
+  {
+    "word": "publish",
+    "grade": 5,
+    "meaning": "to make public in print",
+    "example": "She will publish her first book."
+  },
+  {
+    "word": "starve",
+    "grade": 5,
+    "meaning": "to suffer from hunger",
+    "example": "The plant will starve without water."
+  },
+  {
+    "word": "specimen",
+    "grade": 5,
+    "meaning": "a sample for study",
+    "example": "The specimen was examined."
+  },
+  {
+    "word": "generous",
+    "grade": 4,
+    "meaning": "willing to give",
+    "example": "She is generous with her time."
+  },
+  {
+    "word": "logic",
+    "grade": 4,
+    "meaning": "reasoning or sound thinking",
+    "example": "Use logic to solve the puzzle."
+  },
+  {
+    "word": "subject",
+    "grade": 5,
+    "meaning": "a topic of study",
+    "example": "Math is my favorite subject."
+  },
+  {
+    "word": "radiant",
+    "grade": 5,
+    "meaning": "shining brightly",
+    "example": "Her smile was radiant."
+  },
+  {
+    "word": "quite",
+    "grade": 2,
+    "meaning": "completely or fairly",
+    "example": "It is quite cold."
+  },
+  {
+    "word": "impatient",
+    "grade": 4,
+    "meaning": "not willing to wait",
+    "example": "The impatient child tapped his foot."
+  },
+  {
+    "word": "suffer",
+    "grade": 5,
+    "meaning": "to experience pain",
+    "example": "The plant will suffer without water."
+  },
+  {
+    "word": "move",
+    "grade": 2,
+    "meaning": "to change position",
+    "example": "Move your chair closer."
+  },
+  {
+    "word": "know",
+    "grade": 2,
+    "meaning": "to understand or be aware",
+    "example": "I know my ABCs."
+  },
+  {
+    "word": "urgent",
+    "grade": 5,
+    "meaning": "needing immediate attention",
+    "example": "This is an urgent matter."
+  },
+  {
+    "word": "element",
+    "grade": 4,
+    "meaning": "a basic part of something",
+    "example": "Water is an element of life."
+  },
+  {
+    "word": "shelter",
+    "grade": 5,
+    "meaning": "a place of protection",
+    "example": "The barn provided shelter."
+  },
+  {
+    "word": "furious",
+    "grade": 4,
+    "meaning": "extremely angry",
+    "example": "The coach was furious at the call."
+  },
+  {
+    "word": "must",
+    "grade": 1,
+    "meaning": "have to",
+    "example": "You must wear a seatbelt."
+  },
+  {
+    "word": "equal",
+    "grade": 4,
+    "meaning": "the same in amount",
+    "example": "Cut the cake into equal pieces."
+  },
+  {
+    "word": "flock",
+    "grade": 4,
+    "meaning": "a group of birds or animals",
+    "example": "A flock of geese flew south."
+  },
+  {
+    "word": "elaborate",
+    "grade": 4,
+    "meaning": "detailed and complex",
+    "example": "She gave an elaborate explanation."
+  },
+  {
+    "word": "cellar",
+    "grade": 3,
+    "meaning": "a room below ground",
+    "example": "Store jars in the cellar."
+  },
+  {
+    "word": "speculate",
+    "grade": 5,
+    "meaning": "to guess without evidence",
+    "example": "We can only speculate."
+  },
+  {
+    "word": "crisis",
+    "grade": 3,
+    "meaning": "a time of danger or difficulty",
+    "example": "The flood caused a crisis."
+  },
+  {
+    "word": "reverse",
+    "grade": 5,
+    "meaning": "to turn backward",
+    "example": "Reverse the car slowly."
+  },
+  {
+    "word": "conscious",
+    "grade": 3,
+    "meaning": "aware and awake",
+    "example": "I was conscious during the trip."
+  },
+  {
+    "word": "incredible",
+    "grade": 4,
+    "meaning": "impossible to believe",
+    "example": "The view was incredible."
+  },
+  {
+    "word": "throne",
+    "grade": 5,
+    "meaning": "a king's chair",
+    "example": "The queen sat on the throne."
+  },
+  {
+    "word": "predict",
+    "grade": 5,
+    "meaning": "to say what will happen",
+    "example": "I predict rain tomorrow."
+  },
+  {
+    "word": "collect",
+    "grade": 3,
+    "meaning": "to gather together",
+    "example": "Collect the leaves in a pile."
+  },
+  {
+    "word": "express",
+    "grade": 4,
+    "meaning": "to show or communicate",
+    "example": "Express your feelings honestly."
+  },
+  {
+    "word": "forecast",
+    "grade": 4,
+    "meaning": "a prediction of weather",
+    "example": "The forecast says rain."
+  },
+  {
+    "word": "a",
+    "grade": 1,
+    "meaning": "one single thing",
+    "example": "I have a dog."
+  },
+  {
+    "word": "confess",
+    "grade": 3,
+    "meaning": "to admit the truth",
+    "example": "I confess I ate the last cookie."
+  },
+  {
+    "word": "burden",
+    "grade": 3,
+    "meaning": "a heavy load or responsibility",
+    "example": "Helping others is not a burden."
+  },
+  {
+    "word": "honor",
+    "grade": 4,
+    "meaning": "great respect",
+    "example": "It is an honor to meet you."
+  },
+  {
+    "word": "overwhelm",
+    "grade": 5,
+    "meaning": "to overcome completely",
+    "example": "The work overwhelmed him."
+  },
+  {
+    "word": "complete",
+    "grade": 3,
+    "meaning": "having all parts",
+    "example": "The puzzle is complete."
+  },
+  {
+    "word": "firm",
+    "grade": 4,
+    "meaning": "solid or strict",
+    "example": "The ground is firm."
+  },
+  {
+    "word": "said",
+    "grade": 2,
+    "meaning": "past tense of say",
+    "example": "Mom said dinner is ready."
+  },
+  {
+    "word": "liar",
+    "grade": 4,
+    "meaning": "a person who tells lies",
+    "example": "Don't be a liar."
+  },
+  {
+    "word": "honest",
+    "grade": 4,
+    "meaning": "truthful and sincere",
+    "example": "Be honest with your friends."
+  },
+  {
+    "word": "wharf",
+    "grade": 5,
+    "meaning": "a platform for loading ships",
+    "example": "The boat docked at the wharf."
+  },
+  {
+    "word": "nation",
+    "grade": 5,
+    "meaning": "a country",
+    "example": "Our nation is diverse."
+  },
+  {
+    "word": "open",
+    "grade": 2,
+    "meaning": "not closed",
+    "example": "Leave the door open."
+  },
+  {
+    "word": "young",
+    "grade": 2,
+    "meaning": "not old",
+    "example": "The puppy is young."
+  },
+  {
+    "word": "mortal",
+    "grade": 5,
+    "meaning": "able to die",
+    "example": "All mortal beings fear death."
+  },
+  {
+    "word": "tornado",
+    "grade": 5,
+    "meaning": "a violent spinning storm",
+    "example": "The tornado destroyed the barn."
+  },
+  {
+    "word": "do",
+    "grade": 1,
+    "meaning": "to perform an action",
+    "example": "I do my homework."
+  },
+  {
+    "word": "dart",
+    "grade": 3,
+    "meaning": "to move quickly",
+    "example": "The rabbit darted into the bushes."
+  },
+  {
+    "word": "practical",
+    "grade": 5,
+    "meaning": "useful and sensible",
+    "example": "Wear practical shoes for hiking."
+  },
+  {
+    "word": "global",
+    "grade": 4,
+    "meaning": "relating to the whole world",
+    "example": "Global warming affects everyone."
+  },
+  {
+    "word": "result",
+    "grade": 5,
+    "meaning": "an outcome",
+    "example": "The result was unexpected."
+  },
+  {
+    "word": "destroy",
+    "grade": 3,
+    "meaning": "to ruin completely",
+    "example": "The storm may destroy the crops."
+  },
+  {
+    "word": "spoil",
+    "grade": 5,
+    "meaning": "to ruin or go bad",
+    "example": "Don't spoil the ending."
+  },
+  {
+    "word": "suitable",
+    "grade": 5,
+    "meaning": "appropriate",
+    "example": "Wear suitable clothes."
+  },
+  {
+    "word": "nostalgia",
+    "grade": 5,
+    "meaning": "a longing for the past",
+    "example": "The song filled me with nostalgia."
+  },
+  {
+    "word": "extend",
+    "grade": 4,
+    "meaning": "to stretch out",
+    "example": "Extend your arm fully."
+  },
+  {
+    "word": "dramatic",
+    "grade": 3,
+    "meaning": "exciting or striking",
+    "example": "The sunset was dramatic."
+  },
+  {
+    "word": "also",
+    "grade": 1,
+    "meaning": "in addition",
+    "example": "I like cats. I also like dogs."
+  },
+  {
+    "word": "through",
+    "grade": 1,
+    "meaning": "from one side to the other",
+    "example": "Walk through the door."
+  },
+  {
+    "word": "squat",
+    "grade": 5,
+    "meaning": "to crouch low",
+    "example": "Squat down to pick it up."
+  },
+  {
+    "word": "involve",
+    "grade": 4,
+    "meaning": "to include as a part",
+    "example": "The game will involve teamwork."
+  },
+  {
+    "word": "for",
+    "grade": 1,
+    "meaning": "meant to be given to",
+    "example": "This gift is for you."
+  },
+  {
+    "word": "individual",
+    "grade": 4,
+    "meaning": "a single person",
+    "example": "Each individual is unique."
+  },
+  {
+    "word": "climate",
+    "grade": 3,
+    "meaning": "the usual weather",
+    "example": "The climate here is warm."
+  },
+  {
+    "word": "remedy",
+    "grade": 5,
+    "meaning": "a cure or solution",
+    "example": "Rest is the best remedy."
+  },
+  {
+    "word": "excite",
+    "grade": 4,
+    "meaning": "to cause enthusiasm",
+    "example": "The news will excite the team."
+  },
+  {
+    "word": "never",
+    "grade": 1,
+    "meaning": "at no time",
+    "example": "I never give up."
+  },
+  {
+    "word": "favorable",
+    "grade": 4,
+    "meaning": "positive or helpful",
+    "example": "The weather is favorable."
+  },
+  {
+    "word": "research",
+    "grade": 5,
+    "meaning": "careful study",
+    "example": "Do research before writing."
+  },
+  {
+    "word": "assign",
+    "grade": 3,
+    "meaning": "to give out as a task",
+    "example": "The teacher will assign homework."
+  },
+  {
+    "word": "angle",
+    "grade": 3,
+    "meaning": "the space between two lines",
+    "example": "A right angle is 90 degrees."
+  },
+  {
+    "word": "dormant",
+    "grade": 3,
+    "meaning": "inactive or asleep",
+    "example": "The volcano is dormant."
+  },
+  {
+    "word": "scene",
+    "grade": 5,
+    "meaning": "a place or part of a play",
+    "example": "The crime scene was blocked off."
+  },
+  {
+    "word": "supervise",
+    "grade": 5,
+    "meaning": "to watch over",
+    "example": "Supervise the children."
+  },
+  {
+    "word": "risk",
+    "grade": 5,
+    "meaning": "a chance of danger",
+    "example": "There is a risk of rain."
+  },
+  {
+    "word": "surface",
+    "grade": 5,
+    "meaning": "the outside of something",
+    "example": "The surface of the moon."
+  },
+  {
+    "word": "process",
+    "grade": 5,
+    "meaning": "a series of actions",
+    "example": "Learn the writing process."
+  },
+  {
+    "word": "standard",
+    "grade": 5,
+    "meaning": "a level of quality",
+    "example": "Meet the standard."
+  },
+  {
+    "word": "attend",
+    "grade": 3,
+    "meaning": "to be present at",
+    "example": "Attend the meeting at 3."
+  },
+  {
+    "word": "puzzle",
+    "grade": 5,
+    "meaning": "a game or problem to solve",
+    "example": "The crossword puzzle was hard."
+  },
+  {
+    "word": "private",
+    "grade": 5,
+    "meaning": "belonging to one person",
+    "example": "This is my private journal."
+  },
+  {
+    "word": "phase",
+    "grade": 5,
+    "meaning": "a stage of development",
+    "example": "The project is in the planning phase."
+  },
+  {
+    "word": "that",
+    "grade": 1,
+    "meaning": "referring to something specific",
+    "example": "That ball is mine."
+  },
+  {
+    "word": "participate",
+    "grade": 5,
+    "meaning": "to take part",
+    "example": "Participate in class discussions."
+  },
+  {
+    "word": "year",
+    "grade": 2,
+    "meaning": "twelve months",
+    "example": "I am seven years old."
+  },
+  {
+    "word": "poverty",
+    "grade": 5,
+    "meaning": "the state of being poor",
+    "example": "The charity fights poverty."
+  },
+  {
+    "word": "ignore",
+    "grade": 4,
+    "meaning": "to pay no attention to",
+    "example": "Don't ignore the warning signs."
+  },
+  {
+    "word": "color",
+    "grade": 2,
+    "meaning": "a property of light",
+    "example": "My favorite color is purple."
+  },
+  {
+    "word": "pretend",
+    "grade": 5,
+    "meaning": "to act as if something is true",
+    "example": "Let's pretend we are pirates."
+  },
+  {
+    "word": "chase",
+    "grade": 3,
+    "meaning": "to pursue or run after",
+    "example": "The dog will chase the ball."
+  },
+  {
+    "word": "technology",
+    "grade": 5,
+    "meaning": "the use of science",
+    "example": "Technology changes our lives."
+  },
+  {
+    "word": "perspective",
+    "grade": 5,
+    "meaning": "a point of view",
+    "example": "Try to see it from my perspective."
+  },
+  {
+    "word": "fun",
+    "grade": 2,
+    "meaning": "enjoyable activity",
+    "example": "We have fun at recess."
+  },
+  {
+    "word": "collision",
+    "grade": 3,
+    "meaning": "a crash between objects",
+    "example": "The collision damaged both cars."
+  },
+  {
+    "word": "substance",
+    "grade": 5,
+    "meaning": "a particular kind of matter",
+    "example": "What substance is this?"
+  },
+  {
+    "word": "sense",
+    "grade": 5,
+    "meaning": "a feeling or awareness",
+    "example": "She has a sense of humor."
+  },
+  {
+    "word": "envy",
+    "grade": 4,
+    "meaning": "a feeling of wanting what others have",
+    "example": "Do not feel envy toward others."
+  },
+  {
+    "word": "permit",
+    "grade": 5,
+    "meaning": "to allow",
+    "example": "Permit me to help."
+  },
+  {
+    "word": "colleague",
+    "grade": 3,
+    "meaning": "a fellow worker",
+    "example": "My colleague helped with the project."
+  },
+  {
+    "word": "head",
+    "grade": 2,
+    "meaning": "the top part of the body",
+    "example": "I wear a hat on my head."
+  },
+  {
+    "word": "adventure",
+    "grade": 3,
+    "meaning": "an exciting experience",
+    "example": "We went on an adventure."
+  },
+  {
+    "word": "shallow",
+    "grade": 5,
+    "meaning": "not deep",
+    "example": "The pond is shallow."
+  },
+  {
+    "word": "display",
+    "grade": 3,
+    "meaning": "to show or exhibit",
+    "example": "Display your artwork on the wall."
+  },
+  {
+    "word": "trespass",
+    "grade": 5,
+    "meaning": "to enter without permission",
+    "example": "Do not trespass on private land."
+  },
+  {
+    "word": "retreat",
+    "grade": 5,
+    "meaning": "to move back",
+    "example": "The army had to retreat."
+  },
+  {
+    "word": "flame",
+    "grade": 4,
+    "meaning": "the visible part of fire",
+    "example": "The candle flame flickered."
+  },
+  {
+    "word": "vital",
+    "grade": 5,
+    "meaning": "absolutely necessary",
+    "example": "Water is vital for life."
+  },
+  {
+    "word": "reputation",
+    "grade": 5,
+    "meaning": "the beliefs about someone",
+    "example": "She has a reputation for honesty."
+  },
+  {
+    "word": "pace",
+    "grade": 5,
+    "meaning": "speed of movement",
+    "example": "Set a steady pace."
+  },
+  {
+    "word": "virtual",
+    "grade": 5,
+    "meaning": "almost real",
+    "example": "We took a virtual tour."
+  },
+  {
+    "word": "greed",
+    "grade": 4,
+    "meaning": "wanting more than needed",
+    "example": "Greed leads to unhappiness."
+  },
+  {
+    "word": "idea",
+    "grade": 2,
+    "meaning": "a thought or plan",
+    "example": "I have an idea."
+  },
+  {
+    "word": "to",
+    "grade": 1,
+    "meaning": "in the direction of",
+    "example": "I go to school."
+  },
+  {
+    "word": "scent",
+    "grade": 5,
+    "meaning": "a smell",
+    "example": "The scent of roses filled the air."
+  },
+  {
+    "word": "precious",
+    "grade": 5,
+    "meaning": "of great value",
+    "example": "Time is precious."
+  },
+  {
+    "word": "fast",
+    "grade": 1,
+    "meaning": "moving quickly",
+    "example": "The cheetah runs fast."
+  },
+  {
+    "word": "sacred",
+    "grade": 5,
+    "meaning": "holy or religious",
+    "example": "The temple is a sacred place."
+  },
+  {
+    "word": "old",
+    "grade": 1,
+    "meaning": "having lived for a long time",
+    "example": "My grandma is old."
+  },
+  {
+    "word": "fragile",
+    "grade": 4,
+    "meaning": "easily broken",
+    "example": "Handle the glass with care; it is fragile."
+  },
+  {
+    "word": "diligent",
+    "grade": 3,
+    "meaning": "hardworking and careful",
+    "example": "The diligent student finished early."
+  },
+  {
+    "word": "innocent",
+    "grade": 4,
+    "meaning": "not guilty",
+    "example": "The jury found him innocent."
+  },
+  {
+    "word": "path",
+    "grade": 2,
+    "meaning": "a track for walking",
+    "example": "Follow the dirt path."
+  },
+  {
+    "word": "function",
+    "grade": 4,
+    "meaning": "the purpose of something",
+    "example": "The function of the heart is to pump blood."
+  },
+  {
+    "word": "smash",
+    "grade": 5,
+    "meaning": "to break into pieces",
+    "example": "Smash the pi\u00f1ata."
+  },
+  {
+    "word": "gorge",
+    "grade": 4,
+    "meaning": "a narrow valley",
+    "example": "The river carved a deep gorge."
+  },
+  {
+    "word": "aware",
+    "grade": 3,
+    "meaning": "having knowledge of",
+    "example": "Be aware of your surroundings."
+  },
+  {
+    "word": "gang",
+    "grade": 4,
+    "meaning": "a group of people",
+    "example": "A gang of friends walked together."
+  },
+  {
+    "word": "excellent",
+    "grade": 4,
+    "meaning": "extremely good",
+    "example": "You did an excellent job."
+  },
+  {
+    "word": "effect",
+    "grade": 4,
+    "meaning": "a result or consequence",
+    "example": "The medicine had a good effect."
+  },
+  {
+    "word": "personality",
+    "grade": 5,
+    "meaning": "the character of a person",
+    "example": "She has a cheerful personality."
+  },
+  {
+    "word": "pioneer",
+    "grade": 5,
+    "meaning": "a person who is first",
+    "example": "She was a pioneer in medicine."
+  },
+  {
+    "word": "from",
+    "grade": 1,
+    "meaning": "starting at a place",
+    "example": "I walked from my house."
+  },
+  {
+    "word": "awkward",
+    "grade": 3,
+    "meaning": "clumsy or uncomfortable",
+    "example": "The silence felt awkward."
+  },
+  {
+    "word": "commercial",
+    "grade": 3,
+    "meaning": "related to buying and selling",
+    "example": "We saw a funny commercial."
+  },
+  {
+    "word": "harbor",
+    "grade": 4,
+    "meaning": "a place for ships",
+    "example": "The boat entered the harbor."
+  },
+  {
+    "word": "crush",
+    "grade": 3,
+    "meaning": "to press or squeeze",
+    "example": "Do not crush the flowers."
+  },
+  {
+    "word": "slumber",
+    "grade": 5,
+    "meaning": "sleep",
+    "example": "The princess was in a deep slumber."
+  },
+  {
+    "word": "course",
+    "grade": 3,
+    "meaning": "a path or class of study",
+    "example": "The ship changed course."
+  },
+  {
+    "word": "fabric",
+    "grade": 4,
+    "meaning": "cloth material",
+    "example": "The dress is made of soft fabric."
+  },
+  {
+    "word": "settle",
+    "grade": 5,
+    "meaning": "to resolve or come to rest",
+    "example": "Settle the argument."
+  },
+  {
+    "word": "popular",
+    "grade": 5,
+    "meaning": "liked by many",
+    "example": "She is popular at school."
+  },
+  {
+    "word": "hand",
+    "grade": 2,
+    "meaning": "the end part of the arm",
+    "example": "Raise your hand."
+  },
+  {
+    "word": "ability",
+    "grade": 3,
+    "meaning": "the power to do something",
+    "example": "She has the ability to sing well."
+  },
+  {
+    "word": "quarrel",
+    "grade": 5,
+    "meaning": "an angry argument",
+    "example": "Don't quarrel with your friends."
+  },
+  {
+    "word": "occasion",
+    "grade": 5,
+    "meaning": "a special event",
+    "example": "Wear your best on this occasion."
+  },
+  {
+    "word": "empire",
+    "grade": 4,
+    "meaning": "a group of territories",
+    "example": "The Roman empire was vast."
+  },
+  {
+    "word": "initial",
+    "grade": 4,
+    "meaning": "first or beginning",
+    "example": "My initial reaction was surprise."
+  },
+  {
+    "word": "courteous",
+    "grade": 3,
+    "meaning": "polite and respectful",
+    "example": "Be courteous to guests."
+  },
+  {
+    "word": "compare",
+    "grade": 3,
+    "meaning": "to note similarities",
+    "example": "Compare the two paintings."
+  },
+  {
+    "word": "original",
+    "grade": 5,
+    "meaning": "existing from the start",
+    "example": "The original plan was better."
+  },
+  {
+    "word": "beyond",
+    "grade": 3,
+    "meaning": "on the far side of",
+    "example": "The lake is beyond the trees."
+  },
+  {
+    "word": "smell",
+    "grade": 2,
+    "meaning": "to sense with the nose",
+    "example": "The flowers smell sweet."
+  },
+  {
+    "word": "give",
+    "grade": 2,
+    "meaning": "to hand over freely",
+    "example": "Give me the ball."
+  },
+  {
+    "word": "studio",
+    "grade": 5,
+    "meaning": "a room for work",
+    "example": "The artist works in a studio."
+  },
+  {
+    "word": "guest",
+    "grade": 4,
+    "meaning": "a person invited to visit",
+    "example": "We have a guest for dinner."
+  },
+  {
+    "word": "your",
+    "grade": 1,
+    "meaning": "belonging to you",
+    "example": "Is this your pencil?"
+  },
+  {
+    "word": "after",
+    "grade": 1,
+    "meaning": "later in time",
+    "example": "We play after school."
+  },
+  {
+    "word": "giggle",
+    "grade": 4,
+    "meaning": "a light laugh",
+    "example": "The joke made her giggle."
+  },
+  {
+    "word": "three",
+    "grade": 1,
+    "meaning": "the number 3",
+    "example": "I have three crayons."
+  },
+  {
+    "word": "slender",
+    "grade": 5,
+    "meaning": "thin and graceful",
+    "example": "The deer had slender legs."
+  },
+  {
+    "word": "international",
+    "grade": 4,
+    "meaning": "between nations",
+    "example": "Soccer is an international sport."
+  },
+  {
+    "word": "social",
+    "grade": 5,
+    "meaning": "relating to society",
+    "example": "Humans are social creatures."
+  },
+  {
+    "word": "pattern",
+    "grade": 5,
+    "meaning": "a repeated design",
+    "example": "The wallpaper has a floral pattern."
+  },
+  {
+    "word": "identical",
+    "grade": 4,
+    "meaning": "exactly the same",
+    "example": "The twins look identical."
+  },
+  {
+    "word": "rule",
+    "grade": 2,
+    "meaning": "a guide for behavior",
+    "example": "Follow the class rules."
+  },
+  {
+    "word": "policy",
+    "grade": 5,
+    "meaning": "a plan of action",
+    "example": "The school has a no-bully policy."
+  },
+  {
+    "word": "quest",
+    "grade": 5,
+    "meaning": "a long search",
+    "example": "The knight went on a quest."
+  },
+  {
+    "word": "century",
+    "grade": 3,
+    "meaning": "a period of 100 years",
+    "example": "The castle was built a century ago."
+  },
+  {
+    "word": "repair",
+    "grade": 5,
+    "meaning": "to fix something broken",
+    "example": "Repair the fence."
+  },
+  {
+    "word": "moral",
+    "grade": 5,
+    "meaning": "a lesson about right and wrong",
+    "example": "The story had a moral."
+  },
+  {
+    "word": "enthusiasm",
+    "grade": 4,
+    "meaning": "intense excitement",
+    "example": "She showed enthusiasm for science."
+  },
+  {
+    "word": "before",
+    "grade": 1,
+    "meaning": "earlier than",
+    "example": "Wash hands before eating."
+  },
+  {
+    "word": "damp",
+    "grade": 3,
+    "meaning": "slightly wet",
+    "example": "The grass was damp from rain."
+  },
+  {
+    "word": "retire",
+    "grade": 5,
+    "meaning": "to stop working",
+    "example": "My grandpa will retire next year."
+  },
+  {
+    "word": "overcome",
+    "grade": 5,
+    "meaning": "to defeat or master",
+    "example": "Overcome your fears."
+  },
+  {
+    "word": "peak",
+    "grade": 5,
+    "meaning": "the highest point",
+    "example": "We reached the mountain peak."
+  },
+  {
+    "word": "spelling",
+    "grade": 5,
+    "meaning": "the correct order of letters",
+    "example": "Check your spelling."
+  },
+  {
+    "word": "myself",
+    "grade": 2,
+    "meaning": "the speaker as object",
+    "example": "I did it myself."
+  },
+  {
+    "word": "turmoil",
+    "grade": 5,
+    "meaning": "a state of confusion",
+    "example": "The city was in turmoil."
+  },
+  {
+    "word": "warrior",
+    "grade": 5,
+    "meaning": "a brave fighter",
+    "example": "The warrior defended the castle."
+  },
+  {
+    "word": "horror",
+    "grade": 4,
+    "meaning": "intense fear",
+    "example": "The movie filled me with horror."
+  },
+  {
+    "word": "close",
+    "grade": 2,
+    "meaning": "near in space or time",
+    "example": "Sit close to me."
+  },
+  {
+    "word": "reject",
+    "grade": 5,
+    "meaning": "to refuse to accept",
+    "example": "Don't reject help when offered."
+  },
+  {
+    "word": "consider",
+    "grade": 3,
+    "meaning": "to think about carefully",
+    "example": "Consider all options first."
+  },
+  {
+    "word": "testify",
+    "grade": 5,
+    "meaning": "to give evidence",
+    "example": "The witness will testify."
+  },
+  {
+    "word": "dictate",
+    "grade": 3,
+    "meaning": "to speak for someone to write",
+    "example": "Dictate the letter to me."
+  },
+  {
+    "word": "like",
+    "grade": 1,
+    "meaning": "to enjoy or be fond of",
+    "example": "I like ice cream."
+  },
+  {
+    "word": "knight",
+    "grade": 4,
+    "meaning": "a warrior of medieval times",
+    "example": "The knight wore armor."
+  },
+  {
+    "word": "despair",
+    "grade": 3,
+    "meaning": "loss of hope",
+    "example": "Do not despair, help is coming."
+  },
+  {
+    "word": "monument",
+    "grade": 5,
+    "meaning": "a structure to remember",
+    "example": "The monument honors heroes."
+  },
+  {
+    "word": "more",
+    "grade": 1,
+    "meaning": "a greater amount",
+    "example": "I want more cookies."
+  },
+  {
+    "word": "tumor",
+    "grade": 5,
+    "meaning": "an abnormal growth",
+    "example": "The doctor removed the tumor."
+  },
+  {
+    "word": "civil",
+    "grade": 3,
+    "meaning": "polite or relating to citizens",
+    "example": "Be civil to everyone."
+  },
+  {
+    "word": "status",
+    "grade": 5,
+    "meaning": "the position of someone",
+    "example": "What is your social status?"
+  },
+  {
+    "word": "receive",
+    "grade": 5,
+    "meaning": "to be given something",
+    "example": "Did you receive my letter?"
+  },
+  {
+    "word": "pressure",
+    "grade": 5,
+    "meaning": "force exerted on something",
+    "example": "The pressure was intense."
+  },
+  {
+    "word": "evaporate",
+    "grade": 4,
+    "meaning": "to turn into vapor",
+    "example": "Water will evaporate in the sun."
+  },
+  {
+    "word": "identify",
+    "grade": 4,
+    "meaning": "to recognize or name",
+    "example": "Identify the correct answer."
+  },
+  {
+    "word": "heal",
+    "grade": 4,
+    "meaning": "to become healthy again",
+    "example": "Time will heal the wound."
+  },
+  {
+    "word": "important",
+    "grade": 2,
+    "meaning": "of great significance",
+    "example": "School is important."
+  },
+  {
+    "word": "tragedy",
+    "grade": 5,
+    "meaning": "a very sad event",
+    "example": "The fire was a tragedy."
+  },
+  {
+    "word": "swift",
+    "grade": 5,
+    "meaning": "moving very fast",
+    "example": "The swift runner won."
+  },
+  {
+    "word": "defeat",
+    "grade": 3,
+    "meaning": "to win victory over",
+    "example": "Our team will defeat the rival."
+  },
+  {
+    "word": "gradual",
+    "grade": 4,
+    "meaning": "happening slowly",
+    "example": "There was a gradual change."
+  },
+  {
+    "word": "distinct",
+    "grade": 3,
+    "meaning": "clearly different",
+    "example": "The two flavors are distinct."
+  },
+  {
+    "word": "distress",
+    "grade": 3,
+    "meaning": "extreme worry or pain",
+    "example": "The animal was in distress."
+  },
+  {
+    "word": "passenger",
+    "grade": 5,
+    "meaning": "a person traveling",
+    "example": "The passenger sat by the window."
+  },
+  {
+    "word": "judge",
+    "grade": 4,
+    "meaning": "to form an opinion",
+    "example": "Don't judge a book by its cover."
+  },
+  {
+    "word": "spent",
+    "grade": 2,
+    "meaning": "past tense of spend",
+    "example": "I spent all my money."
+  },
+  {
+    "word": "certain",
+    "grade": 3,
+    "meaning": "known for sure",
+    "example": "I am certain of the answer."
+  },
+  {
+    "word": "her",
+    "grade": 1,
+    "meaning": "belonging to a female",
+    "example": "That is her dress."
+  },
+  {
+    "word": "inferior",
+    "grade": 4,
+    "meaning": "lower in quality",
+    "example": "This product is inferior to that one."
+  },
+  {
+    "word": "determine",
+    "grade": 3,
+    "meaning": "to decide or find out",
+    "example": "Determine the correct answer."
+  },
+  {
+    "word": "stare",
+    "grade": 5,
+    "meaning": "to look fixedly",
+    "example": "Don't stare at strangers."
+  },
+  {
+    "word": "military",
+    "grade": 5,
+    "meaning": "relating to armed forces",
+    "example": "He served in the military."
+  },
+  {
+    "word": "revenge",
+    "grade": 5,
+    "meaning": "punishment for a wrong",
+    "example": "Revenge is never the answer."
+  },
+  {
+    "word": "at",
+    "grade": 1,
+    "meaning": "in a particular place",
+    "example": "Meet me at the park."
+  },
+  {
+    "word": "hazard",
+    "grade": 4,
+    "meaning": "a danger or risk",
+    "example": "Wet floors are a hazard."
+  },
+  {
+    "word": "relate",
+    "grade": 5,
+    "meaning": "to show a connection",
+    "example": "The stories relate to each other."
+  },
+  {
+    "word": "neglect",
+    "grade": 5,
+    "meaning": "to fail to care for",
+    "example": "Don't neglect your duties."
+  },
+  {
+    "word": "improve",
+    "grade": 4,
+    "meaning": "to make better",
+    "example": "Practice will improve your game."
+  },
+  {
+    "word": "feast",
+    "grade": 4,
+    "meaning": "a large meal",
+    "example": "We had a feast for Thanksgiving."
+  },
+  {
+    "word": "except",
+    "grade": 4,
+    "meaning": "excluding",
+    "example": "Everyone came except Tom."
+  },
+  {
+    "word": "need",
+    "grade": 2,
+    "meaning": "to require something",
+    "example": "I need a pencil."
+  },
+  {
+    "word": "earth",
+    "grade": 2,
+    "meaning": "the planet we live on",
+    "example": "The earth is round."
+  },
+  {
+    "word": "guide",
+    "grade": 4,
+    "meaning": "to lead or direct",
+    "example": "The ranger will guide the hike."
+  },
+  {
+    "word": "finite",
+    "grade": 4,
+    "meaning": "having limits",
+    "example": "Our time is finite."
+  },
+  {
+    "word": "habit",
+    "grade": 4,
+    "meaning": "a regular practice",
+    "example": "Brushing teeth is a good habit."
+  },
+  {
+    "word": "remark",
+    "grade": 5,
+    "meaning": "a spoken comment",
+    "example": "That was a kind remark."
+  },
+  {
+    "word": "far",
+    "grade": 2,
+    "meaning": "at a great distance",
+    "example": "The park is far away."
+  },
+  {
+    "word": "tactic",
+    "grade": 5,
+    "meaning": "a plan to achieve something",
+    "example": "What is your tactic for winning?"
+  },
+  {
+    "word": "knot",
+    "grade": 4,
+    "meaning": "a fastening made by tying",
+    "example": "Tie a knot in the rope."
+  },
+  {
+    "word": "universe",
+    "grade": 5,
+    "meaning": "all of space and everything in it",
+    "example": "The universe is vast."
+  },
+  {
+    "word": "butterfly",
+    "grade": 3,
+    "meaning": "an insect with colorful wings",
+    "example": "A butterfly landed on the flower."
+  },
+  {
+    "word": "delay",
+    "grade": 3,
+    "meaning": "to postpone",
+    "example": "The storm caused a delay."
+  },
+  {
+    "word": "amount",
+    "grade": 3,
+    "meaning": "a quantity of something",
+    "example": "A large amount of water fell."
+  },
+  {
+    "word": "famine",
+    "grade": 4,
+    "meaning": "a severe shortage of food",
+    "example": "The drought caused a famine."
+  },
+  {
+    "word": "often",
+    "grade": 5,
+    "meaning": "many times",
+    "example": "I often walk to school."
+  },
+  {
+    "word": "around",
+    "grade": 1,
+    "meaning": "on all sides",
+    "example": "Look around the room."
+  },
+  {
+    "word": "undertake",
+    "grade": 5,
+    "meaning": "to begin a task",
+    "example": "Undertake the project with care."
+  },
+  {
+    "word": "isolate",
+    "grade": 4,
+    "meaning": "to separate from others",
+    "example": "Isolate the sick patient."
+  },
+  {
+    "word": "zeal",
+    "grade": 5,
+    "meaning": "great energy or enthusiasm",
+    "example": "She worked with zeal."
+  },
+  {
+    "word": "heroic",
+    "grade": 4,
+    "meaning": "very brave",
+    "example": "The firefighter made a heroic rescue."
+  },
+  {
+    "word": "era",
+    "grade": 4,
+    "meaning": "a long period of history",
+    "example": "The dinosaur era ended long ago."
+  },
+  {
+    "word": "look",
+    "grade": 1,
+    "meaning": "to use your eyes to see",
+    "example": "Look at the bird."
+  },
+  {
+    "word": "routine",
+    "grade": 5,
+    "meaning": "a regular sequence",
+    "example": "My morning routine includes yoga."
+  },
+  {
+    "word": "volume",
+    "grade": 5,
+    "meaning": "the amount of space",
+    "example": "Turn up the volume."
+  },
+  {
+    "word": "blue",
+    "grade": 1,
+    "meaning": "a color like the sky",
+    "example": "The ocean is blue."
+  },
+  {
+    "word": "minority",
+    "grade": 5,
+    "meaning": "less than half",
+    "example": "Only a minority disagreed."
+  },
+  {
+    "word": "fancy",
+    "grade": 4,
+    "meaning": "elaborate or decorative",
+    "example": "She wore a fancy hat."
+  },
+  {
+    "word": "accept",
+    "grade": 3,
+    "meaning": "to receive willingly",
+    "example": "I accept your apology."
+  },
+  {
+    "word": "wood",
+    "grade": 2,
+    "meaning": "material from trees",
+    "example": "The table is made of wood."
+  },
+  {
+    "word": "obstacle",
+    "grade": 5,
+    "meaning": "something that blocks",
+    "example": "The wall was an obstacle."
+  },
+  {
+    "word": "refuse",
+    "grade": 5,
+    "meaning": "to decline or reject",
+    "example": "I refuse to give up."
+  },
+  {
+    "word": "devote",
+    "grade": 3,
+    "meaning": "to dedicate time or effort",
+    "example": "Devote time to practice."
+  },
+  {
+    "word": "virtue",
+    "grade": 5,
+    "meaning": "a good quality",
+    "example": "Honesty is a virtue."
+  },
+  {
+    "word": "happy",
+    "grade": 1,
+    "meaning": "feeling joy",
+    "example": "I feel happy today."
+  },
+  {
+    "word": "effective",
+    "grade": 4,
+    "meaning": "producing a desired result",
+    "example": "The plan was effective."
+  },
+  {
+    "word": "drive",
+    "grade": 2,
+    "meaning": "to control a vehicle",
+    "example": "My dad drives a car."
+  },
+  {
+    "word": "branch",
+    "grade": 3,
+    "meaning": "a part of a tree",
+    "example": "A bird sat on the branch."
+  },
+  {
+    "word": "sympathy",
+    "grade": 5,
+    "meaning": "feeling for another's pain",
+    "example": "I have sympathy for the victims."
+  },
+  {
+    "word": "fortunate",
+    "grade": 4,
+    "meaning": "lucky or blessed",
+    "example": "We were fortunate to find shelter."
+  },
+  {
+    "word": "action",
+    "grade": 3,
+    "meaning": "something done",
+    "example": "Your action helped others."
+  },
+  {
+    "word": "wreck",
+    "grade": 5,
+    "meaning": "the remains of something destroyed",
+    "example": "The storm left a wreck."
+  },
+  {
+    "word": "oblige",
+    "grade": 5,
+    "meaning": "to require or compel",
+    "example": "The law obliges us to attend school."
+  },
+  {
+    "word": "side",
+    "grade": 2,
+    "meaning": "a surface or edge",
+    "example": "Sit by my side."
+  },
+  {
+    "word": "equation",
+    "grade": 4,
+    "meaning": "a math statement with an equal sign",
+    "example": "Solve the equation for x."
+  },
+  {
+    "word": "sister",
+    "grade": 2,
+    "meaning": "a female sibling",
+    "example": "My sister is funny."
+  },
+  {
+    "word": "trend",
+    "grade": 5,
+    "meaning": "a general direction of change",
+    "example": "The trend is toward electric cars."
+  },
+  {
+    "word": "typical",
+    "grade": 5,
+    "meaning": "usual or normal",
+    "example": "This is typical weather."
+  },
+  {
+    "word": "finance",
+    "grade": 4,
+    "meaning": "management of money",
+    "example": "She studied finance in college."
+  },
+  {
+    "word": "dash",
+    "grade": 3,
+    "meaning": "to run quickly",
+    "example": "Dash to the finish line."
+  },
+  {
+    "word": "weary",
+    "grade": 5,
+    "meaning": "very tired",
+    "example": "The traveler was weary."
+  },
+  {
+    "word": "room",
+    "grade": 2,
+    "meaning": "a space in a building",
+    "example": "My room is upstairs."
+  },
+  {
+    "word": "grand",
+    "grade": 4,
+    "meaning": "impressive and large",
+    "example": "The hotel was grand."
+  },
+  {
+    "word": "gear",
+    "grade": 4,
+    "meaning": "equipment or machinery",
+    "example": "Bring your camping gear."
+  },
+  {
+    "word": "scold",
+    "grade": 5,
+    "meaning": "to criticize angrily",
+    "example": "Don't scold the puppy."
+  },
+  {
+    "word": "tolerate",
+    "grade": 5,
+    "meaning": "to put up with",
+    "example": "Tolerate different opinions."
+  },
+  {
+    "word": "budget",
+    "grade": 3,
+    "meaning": "a plan for spending money",
+    "example": "We need a budget for the trip."
+  },
+  {
+    "word": "sufficient",
+    "grade": 5,
+    "meaning": "enough for a purpose",
+    "example": "We have sufficient food."
+  },
+  {
+    "word": "carry",
+    "grade": 2,
+    "meaning": "to hold and move",
+    "example": "Carry your lunch box."
+  },
+  {
+    "word": "float",
+    "grade": 4,
+    "meaning": "to rest on top of liquid",
+    "example": "The boat will float on water."
+  },
+  {
+    "word": "me",
+    "grade": 1,
+    "meaning": "referring to the speaker",
+    "example": "Can you help me?"
+  },
+  {
+    "word": "ideal",
+    "grade": 4,
+    "meaning": "perfect or best possible",
+    "example": "The weather is ideal for a picnic."
+  },
+  {
+    "word": "homeland",
+    "grade": 4,
+    "meaning": "the country where one was born",
+    "example": "She returned to her homeland."
+  },
+  {
+    "word": "where",
+    "grade": 1,
+    "meaning": "in what place",
+    "example": "Where is my shoe?"
+  },
+  {
+    "word": "hut",
+    "grade": 4,
+    "meaning": "a small simple house",
+    "example": "They built a hut on the beach."
+  },
+  {
+    "word": "troublesome",
+    "grade": 5,
+    "meaning": "causing problems",
+    "example": "The leak is troublesome."
+  },
+  {
+    "word": "apart",
+    "grade": 3,
+    "meaning": "separated by distance",
+    "example": "Keep the magnets apart."
+  },
+  {
+    "word": "depend",
+    "grade": 3,
+    "meaning": "to rely on",
+    "example": "Plants depend on sunlight."
+  },
+  {
+    "word": "halt",
+    "grade": 4,
+    "meaning": "to stop",
+    "example": "Halt at the stop sign."
+  },
+  {
+    "word": "species",
+    "grade": 5,
+    "meaning": "a group of similar organisms",
+    "example": "The tiger is an endangered species."
+  },
+  {
+    "word": "respond",
+    "grade": 5,
+    "meaning": "to answer or react",
+    "example": "Respond to the email."
+  },
+  {
+    "word": "part",
+    "grade": 1,
+    "meaning": "a piece of something",
+    "example": "This is part of the story."
+  },
+  {
+    "word": "spirit",
+    "grade": 5,
+    "meaning": "the soul or mood",
+    "example": "The team spirit was high."
+  },
+  {
+    "word": "realize",
+    "grade": 5,
+    "meaning": "to become aware of",
+    "example": "I realize I made a mistake."
+  },
+  {
+    "word": "purchase",
+    "grade": 5,
+    "meaning": "to buy",
+    "example": "Purchase your ticket online."
+  },
+  {
+    "word": "energy",
+    "grade": 4,
+    "meaning": "the power to do work",
+    "example": "The sun gives us energy."
+  },
+  {
+    "word": "channel",
+    "grade": 3,
+    "meaning": "a path for water or TV",
+    "example": "Change the TV channel."
+  },
+  {
+    "word": "scarce",
+    "grade": 5,
+    "meaning": "in short supply",
+    "example": "Water is scarce in the desert."
+  },
+  {
+    "word": "consult",
+    "grade": 3,
+    "meaning": "to ask for advice",
+    "example": "Consult a map if you are lost."
+  },
+  {
+    "word": "roam",
+    "grade": 5,
+    "meaning": "to wander",
+    "example": "Buffalo used to roam the plains."
+  },
+  {
+    "word": "emerge",
+    "grade": 4,
+    "meaning": "to come out into view",
+    "example": "The sun emerged from the clouds."
+  },
+  {
+    "word": "can",
+    "grade": 1,
+    "meaning": "to be able to",
+    "example": "I can read now."
+  },
+  {
+    "word": "mere",
+    "grade": 5,
+    "meaning": "no more than",
+    "example": "It was a mere two miles away."
+  },
+  {
+    "word": "notice",
+    "grade": 5,
+    "meaning": "to become aware of",
+    "example": "Did you notice the change?"
+  },
+  {
+    "word": "play",
+    "grade": 1,
+    "meaning": "to have fun",
+    "example": "I play at recess."
+  },
+  {
+    "word": "barrier",
+    "grade": 3,
+    "meaning": "something that blocks the way",
+    "example": "A fence is a barrier."
+  },
+  {
+    "word": "read",
+    "grade": 1,
+    "meaning": "to look at and understand words",
+    "example": "I read a book."
+  },
+  {
+    "word": "mischief",
+    "grade": 5,
+    "meaning": "playful misbehavior",
+    "example": "The puppy was full of mischief."
+  },
+  {
+    "word": "quotation",
+    "grade": 5,
+    "meaning": "a repeated statement",
+    "example": "The book began with a quotation."
+  },
+  {
+    "word": "help",
+    "grade": 1,
+    "meaning": "to assist someone",
+    "example": "Can you help me?"
+  },
+  {
+    "word": "handle",
+    "grade": 4,
+    "meaning": "to touch or manage",
+    "example": "Handle the glass carefully."
+  },
+  {
+    "word": "achieve",
+    "grade": 3,
+    "meaning": "to succeed in doing",
+    "example": "I want to achieve my goal."
+  },
+  {
+    "word": "gratitude",
+    "grade": 4,
+    "meaning": "a feeling of thankfulness",
+    "example": "Show gratitude to helpers."
+  },
+  {
+    "word": "grasp",
+    "grade": 4,
+    "meaning": "to grab or understand",
+    "example": "Grasp the rope tightly."
+  },
+  {
+    "word": "veteran",
+    "grade": 5,
+    "meaning": "a person with experience",
+    "example": "He is a veteran teacher."
+  },
+  {
+    "word": "method",
+    "grade": 5,
+    "meaning": "a way of doing something",
+    "example": "What is your study method?"
+  },
+  {
+    "word": "impact",
+    "grade": 4,
+    "meaning": "a strong effect",
+    "example": "The impact of the crash was loud."
+  },
+  {
+    "word": "there",
+    "grade": 1,
+    "meaning": "in or at that place",
+    "example": "Put it over there."
+  },
+  {
+    "word": "official",
+    "grade": 5,
+    "meaning": "authorized or formal",
+    "example": "The official announcement was made."
+  },
+  {
+    "word": "ensure",
+    "grade": 4,
+    "meaning": "to make certain",
+    "example": "Ensure the door is locked."
+  },
+  {
+    "word": "divine",
+    "grade": 3,
+    "meaning": "related to God or wonderful",
+    "example": "The cake tasted divine."
+  },
+  {
+    "word": "good",
+    "grade": 1,
+    "meaning": "of high quality",
+    "example": "You did a good job."
+  },
+  {
+    "word": "fee",
+    "grade": 4,
+    "meaning": "a payment for service",
+    "example": "The fee for the class is ten dollars."
+  },
+  {
+    "word": "monarch",
+    "grade": 5,
+    "meaning": "a king or queen",
+    "example": "The monarch ruled for fifty years."
+  },
+  {
+    "word": "thrive",
+    "grade": 5,
+    "meaning": "to grow strongly",
+    "example": "Plants thrive in sunlight."
+  },
+  {
+    "word": "questionnaire",
+    "grade": 5,
+    "meaning": "a set of questions",
+    "example": "Fill out the questionnaire."
+  },
+  {
+    "word": "alert",
+    "grade": 3,
+    "meaning": "watchful and ready",
+    "example": "Stay alert during the fire drill."
+  },
+  {
+    "word": "where",
+    "grade": 1,
+    "meaning": "in what place",
+    "example": "Where do you live?"
+  },
+  {
+    "word": "cancel",
+    "grade": 3,
+    "meaning": "to call off or stop",
+    "example": "We had to cancel the picnic."
+  },
+  {
+    "word": "other",
+    "grade": 1,
+    "meaning": "different from the one mentioned",
+    "example": "I want the other book."
+  },
+  {
+    "word": "probable",
+    "grade": 5,
+    "meaning": "likely to happen",
+    "example": "Rain is probable this afternoon."
+  },
+  {
+    "word": "opinion",
+    "grade": 5,
+    "meaning": "a belief or judgment",
+    "example": "Everyone has an opinion."
+  },
+  {
+    "word": "utmost",
+    "grade": 5,
+    "meaning": "the greatest possible",
+    "example": "Do your utmost."
+  },
+  {
+    "word": "inspect",
+    "grade": 4,
+    "meaning": "to examine closely",
+    "example": "Inspect the car before buying."
+  },
+  {
+    "word": "evil",
+    "grade": 4,
+    "meaning": "morally bad",
+    "example": "The villain was evil."
+  },
+  {
+    "word": "transfer",
+    "grade": 5,
+    "meaning": "to move from one place to another",
+    "example": "Transfer the files."
+  },
+  {
+    "word": "lumber",
+    "grade": 4,
+    "meaning": "wood used for building",
+    "example": "The lumber was delivered."
+  },
+  {
+    "word": "yawn",
+    "grade": 5,
+    "meaning": "to open mouth wide",
+    "example": "His yawn showed he was tired."
+  },
+  {
+    "word": "item",
+    "grade": 4,
+    "meaning": "a single thing",
+    "example": "Check off each item on the list."
+  },
+  {
+    "word": "pretty",
+    "grade": 1,
+    "meaning": "pleasing to look at",
+    "example": "The flower is pretty."
+  },
+  {
+    "word": "dozen",
+    "grade": 3,
+    "meaning": "a group of twelve",
+    "example": "I bought a dozen eggs."
+  },
+  {
+    "word": "foe",
+    "grade": 4,
+    "meaning": "an enemy",
+    "example": "The knight fought his foe."
+  },
+  {
+    "word": "particular",
+    "grade": 5,
+    "meaning": "specific",
+    "example": "I have a particular favorite."
+  },
+  {
+    "word": "resource",
+    "grade": 5,
+    "meaning": "a supply for use",
+    "example": "Water is a natural resource."
+  },
+  {
+    "word": "national",
+    "grade": 5,
+    "meaning": "relating to a nation",
+    "example": "Today is a national holiday."
+  },
+  {
+    "word": "casual",
+    "grade": 3,
+    "meaning": "relaxed or informal",
+    "example": "Wear casual clothes to the party."
+  },
+  {
+    "word": "another",
+    "grade": 1,
+    "meaning": "one more of the same kind",
+    "example": "Can I have another turn?"
+  },
+  {
+    "word": "tease",
+    "grade": 5,
+    "meaning": "to make fun of",
+    "example": "Don't tease the dog."
+  },
+  {
+    "word": "champion",
+    "grade": 3,
+    "meaning": "a winner or defender",
+    "example": "She is the champion of the race."
+  },
+  {
+    "word": "glare",
+    "grade": 4,
+    "meaning": "a fierce stare",
+    "example": "The teacher gave him a glare."
+  },
+  {
+    "word": "admit",
+    "grade": 3,
+    "meaning": "to confess or allow entry",
+    "example": "I admit I made a mistake."
+  },
+  {
+    "word": "only",
+    "grade": 2,
+    "meaning": "no more than",
+    "example": "I have only one cookie."
+  },
+  {
+    "word": "ornament",
+    "grade": 5,
+    "meaning": "a decoration",
+    "example": "Hang an ornament on the tree."
+  },
+  {
+    "word": "prize",
+    "grade": 5,
+    "meaning": "a reward for winning",
+    "example": "The prize was a trip to Disney."
+  },
+  {
+    "word": "would",
+    "grade": 1,
+    "meaning": "past tense of will",
+    "example": "I would like some juice."
+  },
+  {
+    "word": "preface",
+    "grade": 5,
+    "meaning": "an introduction to a book",
+    "example": "Read the preface first."
+  },
+  {
+    "word": "source",
+    "grade": 5,
+    "meaning": "the origin of something",
+    "example": "What is the source of the river?"
+  },
+  {
+    "word": "both",
+    "grade": 2,
+    "meaning": "two together",
+    "example": "Both cats are sleeping."
+  },
+  {
+    "word": "curious",
+    "grade": 3,
+    "meaning": "eager to learn",
+    "example": "The curious child asked many questions."
+  },
+  {
+    "word": "whole",
+    "grade": 2,
+    "meaning": "complete or entire",
+    "example": "I ate the whole apple."
+  },
+  {
+    "word": "stingy",
+    "grade": 5,
+    "meaning": "unwilling to give",
+    "example": "Don't be stingy with praise."
+  },
+  {
+    "word": "back",
+    "grade": 1,
+    "meaning": "returning to a place",
+    "example": "Come back soon."
+  },
+  {
+    "word": "expense",
+    "grade": 4,
+    "meaning": "the cost of something",
+    "example": "The trip was a big expense."
+  },
+  {
+    "word": "veto",
+    "grade": 5,
+    "meaning": "to reject a proposal",
+    "example": "The president can veto laws."
+  },
+  {
+    "word": "avoid",
+    "grade": 3,
+    "meaning": "to keep away from",
+    "example": "Avoid touching the hot stove."
+  },
+  {
+    "word": "superb",
+    "grade": 5,
+    "meaning": "excellent",
+    "example": "The meal was superb."
+  },
+  {
+    "word": "wrote",
+    "grade": 2,
+    "meaning": "past tense of write",
+    "example": "She wrote a letter."
+  },
+  {
+    "word": "said",
+    "grade": 1,
+    "meaning": "past tense of say",
+    "example": "Mom said yes."
+  },
+  {
+    "word": "peculiar",
+    "grade": 5,
+    "meaning": "strange or odd",
+    "example": "That is a peculiar smell."
+  },
+  {
+    "word": "month",
+    "grade": 2,
+    "meaning": "a unit of time (about 30 days)",
+    "example": "My birthday is next month."
+  },
+  {
+    "word": "we",
+    "grade": 1,
+    "meaning": "the speaker and others",
+    "example": "We are going home."
+  },
+  {
+    "word": "clamber",
+    "grade": 3,
+    "meaning": "to climb awkwardly",
+    "example": "The kids clamber up the rocks."
+  },
+  {
+    "word": "some",
+    "grade": 1,
+    "meaning": "an unspecified amount",
+    "example": "I want some water."
+  },
+  {
+    "word": "fashion",
+    "grade": 4,
+    "meaning": "a popular style",
+    "example": "Fashion changes every season."
+  },
+  {
+    "word": "marvel",
+    "grade": 5,
+    "meaning": "to be filled with wonder",
+    "example": "I marvel at the stars."
+  },
+  {
+    "word": "flavor",
+    "grade": 4,
+    "meaning": "the taste of something",
+    "example": "What flavor ice cream do you want?"
+  },
+  {
+    "word": "restrain",
+    "grade": 5,
+    "meaning": "to hold back",
+    "example": "Restrain the dog."
+  },
+  {
+    "word": "out",
+    "grade": 1,
+    "meaning": "away from inside",
+    "example": "Go out and play."
+  },
+  {
+    "word": "kind",
+    "grade": 2,
+    "meaning": "friendly and generous",
+    "example": "Be kind to others."
+  },
+  {
+    "word": "elementary",
+    "grade": 4,
+    "meaning": "basic or introductory",
+    "example": "We learn elementary math first."
+  },
+  {
+    "word": "solitary",
+    "grade": 5,
+    "meaning": "alone or single",
+    "example": "A solitary tree stood on the hill."
+  },
+  {
+    "word": "station",
+    "grade": 5,
+    "meaning": "a place for a purpose",
+    "example": "Meet me at the train station."
+  },
+  {
+    "word": "critic",
+    "grade": 3,
+    "meaning": "a person who judges",
+    "example": "The critic liked the movie."
+  },
+  {
+    "word": "wish",
+    "grade": 2,
+    "meaning": "to want something",
+    "example": "I wish for a puppy."
+  },
+  {
+    "word": "event",
+    "grade": 4,
+    "meaning": "something that happens",
+    "example": "The concert was a fun event."
+  },
+  {
+    "word": "provide",
+    "grade": 5,
+    "meaning": "to supply or make available",
+    "example": "The farm will provide fresh eggs."
+  },
+  {
+    "word": "leisure",
+    "grade": 4,
+    "meaning": "free time",
+    "example": "I read for leisure."
+  },
+  {
+    "word": "insurance",
+    "grade": 4,
+    "meaning": "protection against loss",
+    "example": "Car insurance is required."
+  },
+  {
+    "word": "absent",
+    "grade": 3,
+    "meaning": "not present",
+    "example": "Three students were absent today."
+  },
+  {
+    "word": "them",
+    "grade": 1,
+    "meaning": "referring to things or people",
+    "example": "Give the toys to them."
+  },
+  {
+    "word": "their",
+    "grade": 1,
+    "meaning": "belonging to them",
+    "example": "The children love their toys."
+  },
+  {
+    "word": "watch",
+    "grade": 2,
+    "meaning": "to look at attentively",
+    "example": "Watch the parade."
+  },
+  {
+    "word": "fascinate",
+    "grade": 4,
+    "meaning": "to interest greatly",
+    "example": "Dinosaurs fascinate many children."
+  },
+  {
+    "word": "solemn",
+    "grade": 5,
+    "meaning": "serious and dignified",
+    "example": "The ceremony was solemn."
+  },
+  {
+    "word": "address",
+    "grade": 3,
+    "meaning": "the place where someone lives",
+    "example": "What is your home address?"
+  },
+  {
+    "word": "payment",
+    "grade": 5,
+    "meaning": "money given for goods",
+    "example": "Make the payment online."
+  },
+  {
+    "word": "blanket",
+    "grade": 3,
+    "meaning": "a warm covering for a bed",
+    "example": "I sleep with a soft blanket."
+  },
+  {
+    "word": "rain",
+    "grade": 2,
+    "meaning": "water falling from clouds",
+    "example": "The rain is heavy."
+  },
+  {
+    "word": "ache",
+    "grade": 3,
+    "meaning": "a continuous pain",
+    "example": "My head has an ache."
+  },
+  {
+    "word": "series",
+    "grade": 5,
+    "meaning": "a number of related things",
+    "example": "We watched the whole series."
+  },
+  {
+    "word": "tedious",
+    "grade": 5,
+    "meaning": "boring and too long",
+    "example": "The lecture was tedious."
+  },
+  {
+    "word": "why",
+    "grade": 2,
+    "meaning": "for what reason",
+    "example": "Why is the sky blue?"
+  },
+  {
+    "word": "disaster",
+    "grade": 3,
+    "meaning": "a sudden terrible event",
+    "example": "The flood was a disaster."
+  },
+  {
+    "word": "heaven",
+    "grade": 4,
+    "meaning": "the sky or a paradise",
+    "example": "The stars shine in heaven."
+  },
+  {
+    "word": "episode",
+    "grade": 4,
+    "meaning": "one part of a series",
+    "example": "Watch the next episode tonight."
+  },
+  {
+    "word": "pass",
+    "grade": 2,
+    "meaning": "to go by or succeed",
+    "example": "Pass the salt, please."
+  },
+  {
+    "word": "serene",
+    "grade": 5,
+    "meaning": "calm and peaceful",
+    "example": "The lake was serene."
+  },
+  {
+    "word": "protest",
+    "grade": 5,
+    "meaning": "to express strong disagreement",
+    "example": "The group will protest the law."
+  },
+  {
+    "word": "went",
+    "grade": 1,
+    "meaning": "past tense of go",
+    "example": "We went to the zoo."
+  },
+  {
+    "word": "spectacle",
+    "grade": 5,
+    "meaning": "an impressive sight",
+    "example": "The fireworks were a spectacle."
+  },
+  {
+    "word": "observe",
+    "grade": 5,
+    "meaning": "to watch carefully",
+    "example": "Observe the animals in the zoo."
+  },
+  {
+    "word": "excuse",
+    "grade": 4,
+    "meaning": "a reason for forgiveness",
+    "example": "What is your excuse for being late?"
+  },
+  {
+    "word": "guardian",
+    "grade": 4,
+    "meaning": "a person who protects",
+    "example": "A parent is a child's guardian."
+  },
+  {
+    "word": "vision",
+    "grade": 5,
+    "meaning": "the ability to see",
+    "example": "He has perfect vision."
+  },
+  {
+    "word": "moisture",
+    "grade": 5,
+    "meaning": "small amounts of water",
+    "example": "The air held moisture."
+  },
+  {
+    "word": "upon",
+    "grade": 2,
+    "meaning": "on or immediately after",
+    "example": "Once upon a time..."
+  },
+  {
+    "word": "contract",
+    "grade": 3,
+    "meaning": "a written agreement",
+    "example": "Sign the contract carefully."
+  },
+  {
+    "word": "outline",
+    "grade": 5,
+    "meaning": "a line around the edge",
+    "example": "Draw an outline of the shape."
+  },
+  {
+    "word": "grave",
+    "grade": 4,
+    "meaning": "serious or a burial place",
+    "example": "The situation is grave."
+  },
+  {
+    "word": "immense",
+    "grade": 4,
+    "meaning": "extremely large",
+    "example": "The universe is immense."
+  },
+  {
+    "word": "awake",
+    "grade": 3,
+    "meaning": "not asleep",
+    "example": "I am awake early today."
+  },
+  {
+    "word": "humor",
+    "grade": 4,
+    "meaning": "the quality of being funny",
+    "example": "She has a great sense of humor."
+  },
+  {
+    "word": "fare",
+    "grade": 4,
+    "meaning": "the cost of transportation",
+    "example": "The bus fare is two dollars."
+  },
+  {
+    "word": "recommend",
+    "grade": 5,
+    "meaning": "to suggest as good",
+    "example": "I recommend this book."
+  },
+  {
+    "word": "structure",
+    "grade": 5,
+    "meaning": "the way something is built",
+    "example": "Study the structure of the sentence."
+  },
+  {
+    "word": "myth",
+    "grade": 5,
+    "meaning": "an ancient traditional story",
+    "example": "Greek myth is fascinating."
+  },
+  {
+    "word": "fundamental",
+    "grade": 4,
+    "meaning": "basic and essential",
+    "example": "Reading is a fundamental skill."
+  },
+  {
+    "word": "pick",
+    "grade": 2,
+    "meaning": "to choose or gather",
+    "example": "Pick a card."
+  },
+  {
+    "word": "accident",
+    "grade": 3,
+    "meaning": "an unexpected event",
+    "example": "The spill was an accident."
+  },
+  {
+    "word": "relevant",
+    "grade": 5,
+    "meaning": "closely connected",
+    "example": "Stay relevant to the topic."
+  },
+  {
+    "word": "they",
+    "grade": 1,
+    "meaning": "more than one person or thing",
+    "example": "They are coming soon."
+  },
+  {
+    "word": "construct",
+    "grade": 3,
+    "meaning": "to build or make",
+    "example": "Construct a tower with blocks."
+  },
+  {
+    "word": "degree",
+    "grade": 3,
+    "meaning": "a unit of measurement",
+    "example": "Water freezes at 32 degrees."
+  },
+  {
+    "word": "sketch",
+    "grade": 5,
+    "meaning": "a rough drawing",
+    "example": "Make a sketch of the scene."
+  },
+  {
+    "word": "second",
+    "grade": 2,
+    "meaning": "next after first",
+    "example": "I came in second place."
+  },
+  {
+    "word": "dull",
+    "grade": 3,
+    "meaning": "not sharp or boring",
+    "example": "The knife is dull."
+  },
+  {
+    "word": "rational",
+    "grade": 5,
+    "meaning": "based on reason",
+    "example": "Try to be rational."
+  },
+  {
+    "word": "squander",
+    "grade": 5,
+    "meaning": "to waste",
+    "example": "Don't squander your money."
+  },
+  {
+    "word": "specific",
+    "grade": 5,
+    "meaning": "clearly defined",
+    "example": "Be specific in your answer."
+  },
+  {
+    "word": "day",
+    "grade": 1,
+    "meaning": "a 24-hour period",
+    "example": "Today is a sunny day."
+  },
+  {
+    "word": "learn",
+    "grade": 2,
+    "meaning": "to gain knowledge",
+    "example": "I learn new things daily."
+  },
+  {
+    "word": "difference",
+    "grade": 3,
+    "meaning": "the way two things are not the same",
+    "example": "What is the difference between them?"
+  },
+  {
+    "word": "he",
+    "grade": 1,
+    "meaning": "a male person or animal",
+    "example": "He runs fast."
+  },
+  {
+    "word": "tutor",
+    "grade": 5,
+    "meaning": "a private teacher",
+    "example": "He has a math tutor."
+  },
+  {
+    "word": "way",
+    "grade": 2,
+    "meaning": "a method or path",
+    "example": "Which way do we go?"
+  },
+  {
+    "word": "while",
+    "grade": 2,
+    "meaning": "during the time that",
+    "example": "Read while you wait."
+  },
+  {
+    "word": "audience",
+    "grade": 3,
+    "meaning": "people watching or listening",
+    "example": "The audience clapped loudly."
+  },
+  {
+    "word": "stand",
+    "grade": 2,
+    "meaning": "to be upright",
+    "example": "Stand in line."
+  },
+  {
+    "word": "behave",
+    "grade": 3,
+    "meaning": "to act in a certain way",
+    "example": "Please behave in the library."
+  },
+  {
+    "word": "stumble",
+    "grade": 5,
+    "meaning": "to trip or make a mistake",
+    "example": "Don't stumble over the rock."
+  },
+  {
+    "word": "unity",
+    "grade": 5,
+    "meaning": "being together as one",
+    "example": "The team showed great unity."
+  },
+  {
+    "word": "hunger",
+    "grade": 4,
+    "meaning": "a need for food",
+    "example": "Hunger drove them to search for food."
+  },
+  {
+    "word": "apologize",
+    "grade": 3,
+    "meaning": "to say you are sorry",
+    "example": "I apologize for being late."
+  },
+  {
+    "word": "impulse",
+    "grade": 4,
+    "meaning": "a sudden urge",
+    "example": "I had an impulse to laugh."
+  },
+  {
+    "word": "gallop",
+    "grade": 4,
+    "meaning": "to run fast like a horse",
+    "example": "The horse began to gallop."
+  },
+  {
+    "word": "memorial",
+    "grade": 5,
+    "meaning": "something that remembers",
+    "example": "The memorial honors soldiers."
+  },
+  {
+    "word": "intention",
+    "grade": 4,
+    "meaning": "a plan or aim",
+    "example": "It was not my intention to hurt you."
+  },
+  {
+    "word": "rare",
+    "grade": 5,
+    "meaning": "not often found",
+    "example": "A blue moon is rare."
+  },
+  {
+    "word": "surgeon",
+    "grade": 5,
+    "meaning": "a doctor who operates",
+    "example": "The surgeon saved his life."
+  },
+  {
+    "word": "patience",
+    "grade": 5,
+    "meaning": "the ability to wait",
+    "example": "Have patience; your turn will come."
+  },
+  {
+    "word": "contain",
+    "grade": 3,
+    "meaning": "to have inside",
+    "example": "The box contains old letters."
+  },
+  {
+    "word": "notion",
+    "grade": 5,
+    "meaning": "an idea or belief",
+    "example": "I had a notion it would rain."
+  },
+  {
+    "word": "vanish",
+    "grade": 5,
+    "meaning": "to disappear",
+    "example": "The magician made the rabbit vanish."
+  },
+  {
+    "word": "show",
+    "grade": 2,
+    "meaning": "to display or demonstrate",
+    "example": "Show me your drawing."
+  },
+  {
+    "word": "promise",
+    "grade": 5,
+    "meaning": "a declaration that one will do something",
+    "example": "Keep your promise."
+  },
+  {
+    "word": "turn",
+    "grade": 2,
+    "meaning": "to rotate or change direction",
+    "example": "Turn the page."
+  },
+  {
+    "word": "gap",
+    "grade": 4,
+    "meaning": "an opening or space",
+    "example": "There is a gap in the fence."
+  },
+  {
+    "word": "familiar",
+    "grade": 4,
+    "meaning": "well known",
+    "example": "That face looks familiar."
+  },
+  {
+    "word": "decade",
+    "grade": 3,
+    "meaning": "a period of ten years",
+    "example": "A decade has passed."
+  },
+  {
+    "word": "react",
+    "grade": 5,
+    "meaning": "to respond to something",
+    "example": "How did she react to the news?"
+  },
+  {
+    "word": "until",
+    "grade": 2,
+    "meaning": "up to the time that",
+    "example": "Wait until I come back."
+  },
+  {
+    "word": "supreme",
+    "grade": 5,
+    "meaning": "highest in rank",
+    "example": "The supreme court decides."
+  },
+  {
+    "word": "recover",
+    "grade": 5,
+    "meaning": "to get back or heal",
+    "example": "She will recover from the flu."
+  },
+  {
+    "word": "rescue",
+    "grade": 5,
+    "meaning": "to save from danger",
+    "example": "The team will rescue the hikers."
+  },
+  {
+    "word": "notable",
+    "grade": 5,
+    "meaning": "worthy of attention",
+    "example": "She is a notable scientist."
+  },
+  {
+    "word": "cottage",
+    "grade": 3,
+    "meaning": "a small house",
+    "example": "We stayed in a cozy cottage."
+  },
+  {
+    "word": "blessing",
+    "grade": 3,
+    "meaning": "something good or helpful",
+    "example": "A sunny day is a blessing."
+  },
+  {
+    "word": "complex",
+    "grade": 3,
+    "meaning": "having many parts",
+    "example": "The story has a complex plot."
+  },
+  {
+    "word": "own",
+    "grade": 1,
+    "meaning": "belonging to oneself",
+    "example": "I have my own room."
+  },
+  {
+    "word": "transport",
+    "grade": 5,
+    "meaning": "to carry from place to place",
+    "example": "Trucks transport goods."
+  },
+  {
+    "word": "triumph",
+    "grade": 5,
+    "meaning": "a great victory",
+    "example": "The team celebrated their triumph."
+  },
+  {
+    "word": "on",
+    "grade": 1,
+    "meaning": "positioned above and touching",
+    "example": "The book is on the table."
+  },
+  {
+    "word": "author",
+    "grade": 3,
+    "meaning": "a person who writes books",
+    "example": "The author signed my book."
+  },
+  {
+    "word": "desperate",
+    "grade": 3,
+    "meaning": "hopeless and reckless",
+    "example": "The lost hikers were desperate."
+  },
+  {
+    "word": "survive",
+    "grade": 5,
+    "meaning": "to stay alive",
+    "example": "The plant will survive the winter."
+  },
+  {
+    "word": "brief",
+    "grade": 3,
+    "meaning": "short in duration",
+    "example": "Give a brief summary."
+  },
+  {
+    "word": "persuade",
+    "grade": 5,
+    "meaning": "to convince",
+    "example": "Persuade me with facts."
+  },
+  {
+    "word": "distance",
+    "grade": 3,
+    "meaning": "the space between things",
+    "example": "The distance is ten miles."
+  },
+  {
+    "word": "awesome",
+    "grade": 3,
+    "meaning": "extremely good",
+    "example": "The view from the hill is awesome."
+  },
+  {
+    "word": "prevent",
+    "grade": 5,
+    "meaning": "to stop from happening",
+    "example": "Wear a helmet to prevent injury."
+  },
+  {
+    "word": "elegant",
+    "grade": 4,
+    "meaning": "graceful and stylish",
+    "example": "She wore an elegant dress."
+  },
+  {
+    "word": "ask",
+    "grade": 1,
+    "meaning": "to request information",
+    "example": "Ask me a question."
+  },
+  {
+    "word": "reduce",
+    "grade": 5,
+    "meaning": "to make smaller",
+    "example": "Reduce your screen time."
+  },
+  {
+    "word": "vocabulary",
+    "grade": 5,
+    "meaning": "all the words of a language",
+    "example": "Build your vocabulary daily."
+  },
+  {
+    "word": "stubborn",
+    "grade": 5,
+    "meaning": "refusing to change",
+    "example": "The stubborn mule would not move."
+  },
+  {
+    "word": "sent",
+    "grade": 2,
+    "meaning": "past tense of send",
+    "example": "I sent a letter."
+  },
+  {
+    "word": "spacious",
+    "grade": 5,
+    "meaning": "having ample space",
+    "example": "The house is spacious."
+  },
+  {
+    "word": "much",
+    "grade": 1,
+    "meaning": "a large amount",
+    "example": "Thank you very much."
+  },
+  {
+    "word": "insect",
+    "grade": 4,
+    "meaning": "a small creature with six legs",
+    "example": "A butterfly is a beautiful insect."
+  },
+  {
+    "word": "chapter",
+    "grade": 3,
+    "meaning": "a main division of a book",
+    "example": "I finished chapter three."
+  },
+  {
+    "word": "bump",
+    "grade": 3,
+    "meaning": "to hit lightly",
+    "example": "I bump my knee on the table."
+  },
+  {
+    "word": "glossary",
+    "grade": 4,
+    "meaning": "a list of words and meanings",
+    "example": "Check the glossary for definitions."
+  },
+  {
+    "word": "ahead",
+    "grade": 3,
+    "meaning": "in front",
+    "example": "Go ahead of me."
+  },
+  {
+    "word": "by",
+    "grade": 1,
+    "meaning": "near or through",
+    "example": "Stand by the door."
+  },
+  {
+    "word": "uncertain",
+    "grade": 5,
+    "meaning": "not sure",
+    "example": "The future is uncertain."
+  },
+  {
+    "word": "outcome",
+    "grade": 5,
+    "meaning": "the result of something",
+    "example": "The outcome was surprising."
+  },
+  {
+    "word": "quake",
+    "grade": 5,
+    "meaning": "to shake or tremble",
+    "example": "The ground began to quake."
+  },
+  {
+    "word": "remove",
+    "grade": 5,
+    "meaning": "to take away",
+    "example": "Remove your shoes at the door."
+  },
+  {
+    "word": "subtle",
+    "grade": 5,
+    "meaning": "delicate or hard to notice",
+    "example": "There was a subtle change."
+  },
+  {
+    "word": "irritate",
+    "grade": 4,
+    "meaning": "to annoy or bother",
+    "example": "Loud noise can irritate me."
+  },
+  {
+    "word": "mistaken",
+    "grade": 5,
+    "meaning": "wrong in opinion",
+    "example": "I was mistaken about the date."
+  },
+  {
+    "word": "full",
+    "grade": 2,
+    "meaning": "containing as much as possible",
+    "example": "The cup is full."
+  },
+  {
+    "word": "brave",
+    "grade": 3,
+    "meaning": "showing courage",
+    "example": "The brave firefighter saved the cat."
+  },
+  {
+    "word": "squeeze",
+    "grade": 5,
+    "meaning": "to press firmly",
+    "example": "Squeeze the lemon."
+  },
+  {
+    "word": "investigate",
+    "grade": 4,
+    "meaning": "to examine carefully",
+    "example": "Police will investigate the theft."
+  },
+  {
+    "word": "scorn",
+    "grade": 5,
+    "meaning": "a feeling of contempt",
+    "example": "She looked at him with scorn."
+  },
+  {
+    "word": "introduce",
+    "grade": 4,
+    "meaning": "to present for the first time",
+    "example": "Let me introduce my friend."
+  },
+  {
+    "word": "shrub",
+    "grade": 5,
+    "meaning": "a small bush",
+    "example": "Plant a shrub by the door."
+  },
+  {
+    "word": "interpret",
+    "grade": 4,
+    "meaning": "to explain the meaning",
+    "example": "Interpret the poem for the class."
+  },
+  {
+    "word": "sad",
+    "grade": 1,
+    "meaning": "feeling unhappy",
+    "example": "She looks sad."
+  },
+  {
+    "word": "ratio",
+    "grade": 5,
+    "meaning": "a comparison of two numbers",
+    "example": "The ratio of water to flour is two to one."
+  },
+  {
+    "word": "groan",
+    "grade": 4,
+    "meaning": "a deep sound of pain",
+    "example": "The old door gave a groan."
+  },
+  {
+    "word": "explain",
+    "grade": 4,
+    "meaning": "to make clear",
+    "example": "Explain your answer."
+  },
+  {
+    "word": "grip",
+    "grade": 4,
+    "meaning": "a tight hold",
+    "example": "Keep a firm grip on the handle."
+  },
+  {
+    "word": "presence",
+    "grade": 5,
+    "meaning": "the state of being present",
+    "example": "Your presence is requested."
+  },
+  {
+    "word": "height",
+    "grade": 4,
+    "meaning": "how tall something is",
+    "example": "The height of the tree is 50 feet."
+  },
+  {
+    "word": "all",
+    "grade": 1,
+    "meaning": "the whole amount",
+    "example": "I ate all my dinner."
+  },
+  {
+    "word": "each",
+    "grade": 1,
+    "meaning": "every one of two or more",
+    "example": "Each child got a sticker."
+  },
+  {
+    "word": "words",
+    "grade": 1,
+    "meaning": "plural of word",
+    "example": "Learn new words every day."
+  },
+  {
+    "word": "profit",
+    "grade": 5,
+    "meaning": "money gained",
+    "example": "The store made a profit."
+  },
+  {
+    "word": "opponent",
+    "grade": 5,
+    "meaning": "a person on the other side",
+    "example": "The opponent scored a goal."
+  },
+  {
+    "word": "many",
+    "grade": 1,
+    "meaning": "a large number",
+    "example": "I have many friends."
+  },
+  {
+    "word": "trait",
+    "grade": 5,
+    "meaning": "a quality of character",
+    "example": "Honesty is a good trait."
+  },
+  {
+    "word": "progress",
+    "grade": 5,
+    "meaning": "forward movement",
+    "example": "You are making good progress."
+  },
+  {
+    "word": "ordinary",
+    "grade": 5,
+    "meaning": "not special",
+    "example": "It was an ordinary day."
+  },
+  {
+    "word": "our",
+    "grade": 1,
+    "meaning": "belonging to us",
+    "example": "This is our classroom."
+  },
+  {
+    "word": "sleep",
+    "grade": 2,
+    "meaning": "to rest with eyes closed",
+    "example": "I sleep eight hours."
+  },
+  {
+    "word": "purpose",
+    "grade": 5,
+    "meaning": "the reason for which something exists",
+    "example": "What is the purpose of the tool?"
+  },
+  {
+    "word": "well",
+    "grade": 2,
+    "meaning": "in a good manner",
+    "example": "You did well on the test."
+  },
+  {
+    "word": "respect",
+    "grade": 5,
+    "meaning": "admiration for someone",
+    "example": "Show respect to elders."
+  },
+  {
+    "word": "attempt",
+    "grade": 3,
+    "meaning": "to try to do something",
+    "example": "I will attempt the puzzle."
+  },
+  {
+    "word": "liquid",
+    "grade": 4,
+    "meaning": "a substance that flows",
+    "example": "Water is a liquid."
+  },
+  {
+    "word": "contribute",
+    "grade": 3,
+    "meaning": "to give or add",
+    "example": "Contribute ideas to the group."
+  },
+  {
+    "word": "over",
+    "grade": 2,
+    "meaning": "above or across",
+    "example": "The plane flew over us."
+  },
+  {
+    "word": "appropriate",
+    "grade": 3,
+    "meaning": "suitable or proper",
+    "example": "Wear appropriate shoes for hiking."
+  },
+  {
+    "word": "violate",
+    "grade": 5,
+    "meaning": "to break a rule",
+    "example": "Don't violate the law."
+  },
+  {
+    "word": "state",
+    "grade": 2,
+    "meaning": "a condition or a part of a country",
+    "example": "Water can be a solid or liquid state."
+  },
+  {
+    "word": "idle",
+    "grade": 4,
+    "meaning": "not active or busy",
+    "example": "Don't sit idle; find something to do."
+  },
+  {
+    "word": "swindle",
+    "grade": 5,
+    "meaning": "to cheat",
+    "example": "Don't swindle your friends."
+  },
+  {
+    "word": "courage",
+    "grade": 3,
+    "meaning": "bravery in the face of fear",
+    "example": "It takes courage to speak up."
+  },
+  {
+    "word": "soar",
+    "grade": 5,
+    "meaning": "to fly high",
+    "example": "The eagle will soar above."
+  },
+  {
+    "word": "significant",
+    "grade": 5,
+    "meaning": "important or meaningful",
+    "example": "This is a significant discovery."
+  },
+  {
+    "word": "fault",
+    "grade": 4,
+    "meaning": "responsibility for a mistake",
+    "example": "It was my fault."
+  },
+  {
+    "word": "too",
+    "grade": 1,
+    "meaning": "also or excessively",
+    "example": "I want to go too."
+  },
+  {
+    "word": "temper",
+    "grade": 5,
+    "meaning": "a state of mind",
+    "example": "Control your temper."
+  },
+  {
+    "word": "fog",
+    "grade": 4,
+    "meaning": "thick mist near the ground",
+    "example": "Drive slowly in the fog."
+  },
+  {
+    "word": "pursue",
+    "grade": 5,
+    "meaning": "to chase or follow",
+    "example": "Pursue your dreams."
+  },
+  {
+    "word": "equator",
+    "grade": 4,
+    "meaning": "an imaginary line around Earth",
+    "example": "The equator divides Earth."
+  },
+  {
+    "word": "challenge",
+    "grade": 3,
+    "meaning": "a difficult task",
+    "example": "The puzzle was a real challenge."
+  },
+  {
+    "word": "word",
+    "grade": 1,
+    "meaning": "a single unit of language",
+    "example": "What does this word mean?"
+  },
+  {
+    "word": "summit",
+    "grade": 5,
+    "meaning": "the highest point",
+    "example": "We reached the mountain summit."
+  },
+  {
+    "word": "explode",
+    "grade": 4,
+    "meaning": "to burst with force",
+    "example": "The balloon will explode if overfilled."
+  },
+  {
+    "word": "legend",
+    "grade": 4,
+    "meaning": "an old story",
+    "example": "The legend of King Arthur is famous."
+  },
+  {
+    "word": "crimson",
+    "grade": 3,
+    "meaning": "a deep red color",
+    "example": "The sunset was crimson."
+  },
+  {
+    "word": "fall",
+    "grade": 2,
+    "meaning": "to drop down",
+    "example": "The leaves fall in autumn."
+  },
+  {
+    "word": "chill",
+    "grade": 3,
+    "meaning": "a feeling of coldness",
+    "example": "There is a chill in the air."
+  },
+  {
+    "word": "nocturnal",
+    "grade": 5,
+    "meaning": "active at night",
+    "example": "Owls are nocturnal birds."
+  },
+  {
+    "word": "forgive",
+    "grade": 4,
+    "meaning": "to stop being angry",
+    "example": "Forgive your friends."
+  },
+  {
+    "word": "assure",
+    "grade": 3,
+    "meaning": "to promise or guarantee",
+    "example": "I assure you it is safe."
+  },
+  {
+    "word": "govern",
+    "grade": 4,
+    "meaning": "to rule or control",
+    "example": "Laws govern our society."
+  },
+  {
+    "word": "not",
+    "grade": 1,
+    "meaning": "used to make a negative",
+    "example": "I am not tired."
+  },
+  {
+    "word": "shield",
+    "grade": 5,
+    "meaning": "something that protects",
+    "example": "A shield protects the warrior."
+  },
+  {
+    "word": "mighty",
+    "grade": 5,
+    "meaning": "powerful and strong",
+    "example": "The mighty river flooded."
+  },
+  {
+    "word": "warm",
+    "grade": 2,
+    "meaning": "moderately hot",
+    "example": "The soup is warm."
+  },
+  {
+    "word": "image",
+    "grade": 4,
+    "meaning": "a picture or likeness",
+    "example": "The mirror showed my image."
+  },
+  {
+    "word": "defend",
+    "grade": 3,
+    "meaning": "to protect from harm",
+    "example": "The soldiers defend the fort."
+  },
+  {
+    "word": "perhaps",
+    "grade": 2,
+    "meaning": "maybe",
+    "example": "Perhaps we will go later."
+  },
+  {
+    "word": "evidence",
+    "grade": 4,
+    "meaning": "proof or facts",
+    "example": "Show me the evidence."
+  },
+  {
+    "word": "dodge",
+    "grade": 3,
+    "meaning": "to avoid by moving quickly",
+    "example": "Dodge the flying ball."
+  },
+  {
+    "word": "raid",
+    "grade": 5,
+    "meaning": "a sudden attack",
+    "example": "The police raid caught the thieves."
+  },
+  {
+    "word": "tribute",
+    "grade": 5,
+    "meaning": "something given to honor",
+    "example": "The song was a tribute."
+  },
+  {
+    "word": "celebrate",
+    "grade": 3,
+    "meaning": "to observe with festivities",
+    "example": "We celebrate birthdays with cake."
+  },
+  {
+    "word": "produce",
+    "grade": 5,
+    "meaning": "to make or create",
+    "example": "Farms produce food."
+  },
+  {
+    "word": "bargain",
+    "grade": 3,
+    "meaning": "something bought cheaply",
+    "example": "The toy was a real bargain."
+  },
+  {
+    "word": "vast",
+    "grade": 5,
+    "meaning": "extremely large",
+    "example": "The ocean is vast."
+  },
+  {
+    "word": "spontaneous",
+    "grade": 5,
+    "meaning": "done without planning",
+    "example": "The crowd burst into spontaneous applause."
+  },
+  {
+    "word": "schedule",
+    "grade": 5,
+    "meaning": "a plan of activities",
+    "example": "Check the schedule."
+  },
+  {
+    "word": "indeed",
+    "grade": 4,
+    "meaning": "without question",
+    "example": "It was indeed a great day."
+  },
+  {
+    "word": "this",
+    "grade": 1,
+    "meaning": "the one near you",
+    "example": "This cookie is yummy."
+  },
+  {
+    "word": "illuminate",
+    "grade": 4,
+    "meaning": "to light up",
+    "example": "The lamp will illuminate the room."
+  },
+  {
+    "word": "entertain",
+    "grade": 4,
+    "meaning": "to amuse or provide fun",
+    "example": "The clown will entertain us."
+  },
+  {
+    "word": "cautious",
+    "grade": 3,
+    "meaning": "careful to avoid danger",
+    "example": "Be cautious near the edge."
+  },
+  {
+    "word": "protect",
+    "grade": 5,
+    "meaning": "to keep safe",
+    "example": "Wear gloves to protect your hands."
+  },
+  {
+    "word": "night",
+    "grade": 2,
+    "meaning": "the time when it is dark",
+    "example": "The stars shine at night."
+  },
+  {
+    "word": "into",
+    "grade": 1,
+    "meaning": "to the inside of",
+    "example": "Go into your room."
+  },
+  {
+    "word": "coax",
+    "grade": 3,
+    "meaning": "to persuade gently",
+    "example": "She tried to coax the cat inside."
+  },
+  {
+    "word": "creature",
+    "grade": 3,
+    "meaning": "a living being",
+    "example": "The forest is full of creatures."
+  },
+  {
+    "word": "divide",
+    "grade": 3,
+    "meaning": "to separate into parts",
+    "example": "Divide the pizza into slices."
+  },
+  {
+    "word": "manner",
+    "grade": 5,
+    "meaning": "a way of doing something",
+    "example": "Do it in a polite manner."
+  },
+  {
+    "word": "chuckle",
+    "grade": 3,
+    "meaning": "a quiet laugh",
+    "example": "He gave a soft chuckle."
+  },
+  {
+    "word": "reflect",
+    "grade": 5,
+    "meaning": "to think deeply or mirror",
+    "example": "Reflect on your choices."
+  },
+  {
+    "word": "tissue",
+    "grade": 5,
+    "meaning": "a group of cells",
+    "example": "Skin is a type of tissue."
+  },
+  {
+    "word": "qualify",
+    "grade": 5,
+    "meaning": "to meet the requirements",
+    "example": "You must qualify for the team."
+  },
+  {
+    "word": "glow",
+    "grade": 4,
+    "meaning": "to shine with heat",
+    "example": "The embers continued to glow."
+  },
+  {
+    "word": "buy",
+    "grade": 2,
+    "meaning": "to get by paying money",
+    "example": "I buy milk at the store."
+  },
+  {
+    "word": "generate",
+    "grade": 4,
+    "meaning": "to produce or create",
+    "example": "Wind turbines generate electricity."
+  },
+  {
+    "word": "scholar",
+    "grade": 5,
+    "meaning": "a learned person",
+    "example": "She is a scholar of history."
+  },
+  {
+    "word": "quality",
+    "grade": 5,
+    "meaning": "the standard of something",
+    "example": "This product is high quality."
+  },
+  {
+    "word": "submit",
+    "grade": 5,
+    "meaning": "to hand in",
+    "example": "Submit your homework on time."
+  },
+  {
+    "word": "stall",
+    "grade": 5,
+    "meaning": "to delay or stop",
+    "example": "The car began to stall."
+  },
+  {
+    "word": "write",
+    "grade": 1,
+    "meaning": "to mark with letters or symbols",
+    "example": "I can write my name."
+  },
+  {
+    "word": "disturb",
+    "grade": 3,
+    "meaning": "to interrupt or bother",
+    "example": "Do not disturb the nest."
+  },
+  {
+    "word": "suspend",
+    "grade": 5,
+    "meaning": "to hang or stop temporarily",
+    "example": "Suspend the banner."
+  },
+  {
+    "word": "instinct",
+    "grade": 4,
+    "meaning": "a natural behavior",
+    "example": "Birds fly south by instinct."
+  },
+  {
+    "word": "walk",
+    "grade": 2,
+    "meaning": "to move on foot",
+    "example": "We walk to school."
+  },
+  {
+    "word": "scrub",
+    "grade": 5,
+    "meaning": "to rub hard to clean",
+    "example": "Scrub the floor."
+  },
+  {
+    "word": "tension",
+    "grade": 5,
+    "meaning": "mental or emotional strain",
+    "example": "The tension in the room was high."
+  },
+  {
+    "word": "grant",
+    "grade": 4,
+    "meaning": "to give or allow",
+    "example": "Grant me one wish."
+  },
+  {
+    "word": "go",
+    "grade": 1,
+    "meaning": "to move from one place to another",
+    "example": "Let's go to the park."
+  },
+  {
+    "word": "confuse",
+    "grade": 3,
+    "meaning": "to mix up or bewilder",
+    "example": "The directions confuse me."
+  },
+  {
+    "word": "water",
+    "grade": 2,
+    "meaning": "a clear liquid",
+    "example": "Drink more water."
+  },
+  {
+    "word": "same",
+    "grade": 2,
+    "meaning": "identical",
+    "example": "We have the same teacher."
+  },
+  {
+    "word": "extinct",
+    "grade": 4,
+    "meaning": "no longer existing",
+    "example": "Dinosaurs are extinct."
+  },
+  {
+    "word": "declare",
+    "grade": 3,
+    "meaning": "to announce officially",
+    "example": "I declare this meeting open."
+  },
+  {
+    "word": "direct",
+    "grade": 3,
+    "meaning": "straight or to guide",
+    "example": "Take the direct route."
+  },
+  {
+    "word": "system",
+    "grade": 5,
+    "meaning": "a group of working parts",
+    "example": "The solar system has eight planets."
+  },
+  {
+    "word": "fantastic",
+    "grade": 4,
+    "meaning": "extraordinarily good",
+    "example": "The concert was fantastic."
+  },
+  {
+    "word": "simple",
+    "grade": 2,
+    "meaning": "easy to understand",
+    "example": "This is a simple game."
+  },
+  {
+    "word": "start",
+    "grade": 2,
+    "meaning": "to begin",
+    "example": "Start your work now."
+  },
+  {
+    "word": "specialist",
+    "grade": 5,
+    "meaning": "an expert in a field",
+    "example": "See a heart specialist."
+  },
+  {
+    "word": "internal",
+    "grade": 4,
+    "meaning": "inside the body",
+    "example": "The medicine works internally."
+  },
+  {
+    "word": "heel",
+    "grade": 4,
+    "meaning": "the back part of the foot",
+    "example": "My shoe rubbed my heel."
+  },
+  {
+    "word": "done",
+    "grade": 2,
+    "meaning": "finished",
+    "example": "I am done with homework."
+  },
+  {
+    "word": "consist",
+    "grade": 3,
+    "meaning": "to be made up of",
+    "example": "The team consists of ten players."
+  },
+  {
+    "word": "keen",
+    "grade": 4,
+    "meaning": "eager or sharp",
+    "example": "She has a keen mind."
+  },
+  {
+    "word": "reason",
+    "grade": 5,
+    "meaning": "a cause or explanation",
+    "example": "What is your reason for leaving?"
+  },
+  {
+    "word": "desire",
+    "grade": 3,
+    "meaning": "a strong wish",
+    "example": "Her desire is to become a doctor."
+  },
+  {
+    "word": "prefer",
+    "grade": 5,
+    "meaning": "to like better",
+    "example": "I prefer tea over coffee."
+  },
+  {
+    "word": "exercise",
+    "grade": 4,
+    "meaning": "physical activity",
+    "example": "Exercise keeps you healthy."
+  },
+  {
+    "word": "conquer",
+    "grade": 3,
+    "meaning": "to defeat or overcome",
+    "example": "She will conquer her fears."
+  },
+  {
+    "word": "horizon",
+    "grade": 4,
+    "meaning": "where the earth meets the sky",
+    "example": "The sun sank below the horizon."
+  },
+  {
+    "word": "amaze",
+    "grade": 3,
+    "meaning": "to surprise greatly",
+    "example": "The magic trick will amaze you."
+  },
+  {
+    "word": "errand",
+    "grade": 4,
+    "meaning": "a short trip for a task",
+    "example": "I ran an errand to the store."
+  },
+  {
+    "word": "edge",
+    "grade": 4,
+    "meaning": "the border or margin",
+    "example": "Don't stand too close to the edge."
+  },
+  {
+    "word": "reality",
+    "grade": 5,
+    "meaning": "the true situation",
+    "example": "In reality, it was different."
+  },
+  {
+    "word": "proof",
+    "grade": 5,
+    "meaning": "evidence or verification",
+    "example": "Show me proof of your claim."
+  },
+  {
+    "word": "immune",
+    "grade": 4,
+    "meaning": "protected from disease",
+    "example": "Vaccines make you immune."
+  },
+  {
+    "word": "red",
+    "grade": 1,
+    "meaning": "a bright color like fire",
+    "example": "The apple is red."
+  },
+  {
+    "word": "conversation",
+    "grade": 3,
+    "meaning": "a talk between people",
+    "example": "We had a long conversation."
+  },
+  {
+    "word": "request",
+    "grade": 5,
+    "meaning": "to ask for",
+    "example": "I request your help."
+  },
+  {
+    "word": "potential",
+    "grade": 5,
+    "meaning": "having the capacity to develop",
+    "example": "She has great potential."
+  },
+  {
+    "word": "salary",
+    "grade": 5,
+    "meaning": "a regular payment for work",
+    "example": "Her salary increased this year."
+  },
+  {
+    "word": "yearn",
+    "grade": 5,
+    "meaning": "to want very much",
+    "example": "I yearn for summer vacation."
+  },
+  {
+    "word": "coward",
+    "grade": 3,
+    "meaning": "a person who lacks courage",
+    "example": "A coward runs from danger."
+  },
+  {
+    "word": "difficult",
+    "grade": 3,
+    "meaning": "hard to do",
+    "example": "This puzzle is difficult."
+  },
+  {
+    "word": "genius",
+    "grade": 4,
+    "meaning": "exceptional intelligence",
+    "example": "Einstein was a genius."
+  },
+  {
+    "word": "hold",
+    "grade": 2,
+    "meaning": "to grasp or support",
+    "example": "Hold my hand."
+  },
+  {
+    "word": "swarm",
+    "grade": 5,
+    "meaning": "a large group of insects",
+    "example": "A swarm of bees."
+  },
+  {
+    "word": "theme",
+    "grade": 5,
+    "meaning": "the main idea",
+    "example": "The theme of the story is friendship."
+  },
+  {
+    "word": "still",
+    "grade": 1,
+    "meaning": "continuing until now",
+    "example": "Are you still hungry?"
+  },
+  {
+    "word": "surplus",
+    "grade": 5,
+    "meaning": "more than needed",
+    "example": "We have a surplus of apples."
+  },
+  {
+    "word": "hoarse",
+    "grade": 4,
+    "meaning": "rough sounding",
+    "example": "After cheering, my voice was hoarse."
+  },
+  {
+    "word": "you",
+    "grade": 1,
+    "meaning": "the person being spoken to",
+    "example": "You are my friend."
+  },
+  {
+    "word": "venture",
+    "grade": 5,
+    "meaning": "a risky journey",
+    "example": "The venture into space."
+  },
+  {
+    "word": "flexible",
+    "grade": 4,
+    "meaning": "able to bend easily",
+    "example": "The gymnast is very flexible."
+  },
+  {
+    "word": "priority",
+    "grade": 5,
+    "meaning": "something more important",
+    "example": "Safety is our priority."
+  },
+  {
+    "word": "set",
+    "grade": 2,
+    "meaning": "to put in place",
+    "example": "Set the table."
+  },
+  {
+    "word": "responsible",
+    "grade": 5,
+    "meaning": "accountable for",
+    "example": "Be responsible for your actions."
+  },
+  {
+    "word": "demonstrate",
+    "grade": 3,
+    "meaning": "to show how something works",
+    "example": "Demonstrate the experiment."
+  },
+  {
+    "word": "uneasy",
+    "grade": 5,
+    "meaning": "worried or uncomfortable",
+    "example": "I feel uneasy about this."
+  },
+  {
+    "word": "liberty",
+    "grade": 4,
+    "meaning": "freedom",
+    "example": "The statue represents liberty."
+  },
+  {
+    "word": "verdict",
+    "grade": 5,
+    "meaning": "a decision in court",
+    "example": "The jury reached a verdict."
+  },
+  {
+    "word": "life",
+    "grade": 2,
+    "meaning": "the existence of a person",
+    "example": "Life is beautiful."
+  },
+  {
+    "word": "employ",
+    "grade": 4,
+    "meaning": "to hire for work",
+    "example": "The factory will employ 100 workers."
+  },
+  {
+    "word": "theory",
+    "grade": 5,
+    "meaning": "an idea to explain something",
+    "example": "The theory of evolution."
+  },
+  {
+    "word": "clumsy",
+    "grade": 3,
+    "meaning": "awkward in movement",
+    "example": "I am clumsy with chopsticks."
+  },
+  {
+    "word": "underground",
+    "grade": 5,
+    "meaning": "beneath the surface",
+    "example": "The subway runs underground."
+  },
+  {
+    "word": "get",
+    "grade": 1,
+    "meaning": "to obtain or receive",
+    "example": "I get a hug every morning."
+  },
+  {
+    "word": "idiom",
+    "grade": 4,
+    "meaning": "a phrase with special meaning",
+    "example": "Break a leg is an idiom."
+  },
+  {
+    "word": "exclude",
+    "grade": 4,
+    "meaning": "to leave out",
+    "example": "Do not exclude anyone."
+  },
+  {
+    "word": "current",
+    "grade": 3,
+    "meaning": "happening now",
+    "example": "What is the current time?"
+  },
+  {
+    "word": "several",
+    "grade": 2,
+    "meaning": "more than two but not many",
+    "example": "I have several books."
+  },
+  {
+    "word": "if",
+    "grade": 1,
+    "meaning": "on the condition that",
+    "example": "If it rains, we stay inside."
+  },
+  {
+    "word": "peaceful",
+    "grade": 5,
+    "meaning": "calm and quiet",
+    "example": "The lake was peaceful at dawn."
+  },
+  {
+    "word": "rebel",
+    "grade": 5,
+    "meaning": "to resist authority",
+    "example": "The citizens began to rebel."
+  },
+  {
+    "word": "miss",
+    "grade": 2,
+    "meaning": "to fail to hit or see",
+    "example": "I miss my friend."
+  },
+  {
+    "word": "quick",
+    "grade": 2,
+    "meaning": "done in a short time",
+    "example": "Be quick, we're late."
+  },
+  {
+    "word": "resist",
+    "grade": 5,
+    "meaning": "to fight against",
+    "example": "Resist the urge to quit."
+  },
+  {
+    "word": "fossil",
+    "grade": 4,
+    "meaning": "remains of ancient life",
+    "example": "We found a dinosaur fossil."
+  },
+  {
+    "word": "round",
+    "grade": 2,
+    "meaning": "shaped like a circle",
+    "example": "The ball is round."
+  },
+  {
+    "word": "hobby",
+    "grade": 4,
+    "meaning": "an activity done for fun",
+    "example": "My hobby is collecting stamps."
+  },
+  {
+    "word": "come",
+    "grade": 1,
+    "meaning": "to move toward",
+    "example": "Come here, please."
+  },
+  {
+    "word": "assume",
+    "grade": 3,
+    "meaning": "to suppose without proof",
+    "example": "I assume you are ready."
+  },
+  {
+    "word": "experiment",
+    "grade": 4,
+    "meaning": "a test to discover something",
+    "example": "Do a science experiment."
+  },
+  {
+    "word": "faith",
+    "grade": 4,
+    "meaning": "strong belief or trust",
+    "example": "Have faith in yourself."
+  },
+  {
+    "word": "major",
+    "grade": 5,
+    "meaning": "greater or more important",
+    "example": "The major problem is cost."
+  },
+  {
+    "word": "diameter",
+    "grade": 3,
+    "meaning": "a line through the center of a circle",
+    "example": "The diameter is twice the radius."
+  },
+  {
+    "word": "wind",
+    "grade": 2,
+    "meaning": "moving air",
+    "example": "The wind blew hard."
+  },
+  {
+    "word": "any",
+    "grade": 1,
+    "meaning": "one or some of a thing",
+    "example": "Do you have any candy?"
+  },
+  {
+    "word": "flourish",
+    "grade": 4,
+    "meaning": "to grow or thrive",
+    "example": "Plants flourish in sunlight."
+  },
+  {
+    "word": "gave",
+    "grade": 2,
+    "meaning": "past tense of give",
+    "example": "She gave me a gift."
+  },
+  {
+    "word": "harvest",
+    "grade": 4,
+    "meaning": "to gather crops",
+    "example": "Farmers harvest wheat in fall."
+  },
+  {
+    "word": "symbol",
+    "grade": 5,
+    "meaning": "something that represents",
+    "example": "The dove is a symbol of peace."
+  },
+  {
+    "word": "industry",
+    "grade": 4,
+    "meaning": "business or manufacturing",
+    "example": "Tourism is a major industry."
+  },
+  {
+    "word": "rigid",
+    "grade": 5,
+    "meaning": "stiff and unbending",
+    "example": "The metal rod was rigid."
+  },
+  {
+    "word": "misery",
+    "grade": 5,
+    "meaning": "great suffering",
+    "example": "The drought caused misery."
+  },
+  {
+    "word": "page",
+    "grade": 2,
+    "meaning": "one side of a sheet of paper",
+    "example": "Turn the page."
+  },
+  {
+    "word": "frantic",
+    "grade": 4,
+    "meaning": "wild with worry",
+    "example": "The frantic search lasted hours."
+  },
+  {
+    "word": "invest",
+    "grade": 4,
+    "meaning": "to put money into",
+    "example": "Invest in your education."
+  },
+  {
+    "word": "connect",
+    "grade": 3,
+    "meaning": "to join together",
+    "example": "Connect the dots to see the picture."
+  },
+  {
+    "word": "ultimate",
+    "grade": 5,
+    "meaning": "final or best",
+    "example": "The ultimate goal is happiness."
+  },
+  {
+    "word": "annoy",
+    "grade": 3,
+    "meaning": "to bother or irritate",
+    "example": "The noise began to annoy me."
+  },
+  {
+    "word": "flee",
+    "grade": 4,
+    "meaning": "to run away from danger",
+    "example": "The rabbit will flee from the fox."
+  },
+  {
+    "word": "exceed",
+    "grade": 4,
+    "meaning": "to go beyond a limit",
+    "example": "Do not exceed the speed limit."
+  },
+  {
+    "word": "endure",
+    "grade": 4,
+    "meaning": "to bear or withstand",
+    "example": "The old tree will endure the storm."
+  },
+  {
+    "word": "incident",
+    "grade": 4,
+    "meaning": "an event or occurrence",
+    "example": "The incident was quickly forgotten."
+  },
+  {
+    "word": "primitive",
+    "grade": 5,
+    "meaning": "early or simple",
+    "example": "Cave people lived in primitive times."
+  },
+  {
+    "word": "powerful",
+    "grade": 5,
+    "meaning": "having great strength",
+    "example": "The engine is powerful."
+  },
+  {
+    "word": "wonder",
+    "grade": 2,
+    "meaning": "to feel curious",
+    "example": "I wonder what is inside."
+  },
+  {
+    "word": "adopt",
+    "grade": 3,
+    "meaning": "to take into a family",
+    "example": "We decided to adopt a pet."
+  },
+  {
+    "word": "the",
+    "grade": 1,
+    "meaning": "used to refer to one or more people or things",
+    "example": "The cat sat on the mat."
+  },
+  {
+    "word": "jealous",
+    "grade": 4,
+    "meaning": "feeling envy",
+    "example": "Don't be jealous of others."
+  },
+  {
+    "word": "doubt",
+    "grade": 3,
+    "meaning": "uncertainty or disbelief",
+    "example": "I doubt that will happen."
+  },
+  {
+    "word": "choice",
+    "grade": 3,
+    "meaning": "the act of choosing",
+    "example": "You have a choice of colors."
+  },
+  {
+    "word": "actual",
+    "grade": 3,
+    "meaning": "real or true",
+    "example": "The actual cost was higher."
+  },
+  {
+    "word": "eliminate",
+    "grade": 4,
+    "meaning": "to remove or get rid of",
+    "example": "Eliminate the wrong answers."
+  },
+  {
+    "word": "expand",
+    "grade": 4,
+    "meaning": "to grow larger",
+    "example": "The balloon will expand with air."
+  },
+  {
+    "word": "witness",
+    "grade": 5,
+    "meaning": "a person who sees an event",
+    "example": "The witness told the truth."
+  },
+  {
+    "word": "hilarious",
+    "grade": 4,
+    "meaning": "extremely funny",
+    "example": "The joke was hilarious."
+  },
+  {
+    "word": "frequent",
+    "grade": 4,
+    "meaning": "happening often",
+    "example": "Rain is frequent in spring."
+  },
+  {
+    "word": "resemble",
+    "grade": 5,
+    "meaning": "to look like",
+    "example": "She resembles her mother."
+  },
+  {
+    "word": "mansion",
+    "grade": 5,
+    "meaning": "a large house",
+    "example": "The mansion had ten bedrooms."
+  },
+  {
+    "word": "combination",
+    "grade": 3,
+    "meaning": "a mixture of things",
+    "example": "The safe has a number combination."
+  },
+  {
+    "word": "leave",
+    "grade": 2,
+    "meaning": "to go away from",
+    "example": "Leave your shoes by the door."
+  },
+  {
+    "word": "previous",
+    "grade": 5,
+    "meaning": "coming before",
+    "example": "Review the previous chapter."
+  },
+  {
+    "word": "drowsy",
+    "grade": 3,
+    "meaning": "sleepy and sluggish",
+    "example": "The warm room made me drowsy."
+  },
+  {
+    "word": "accurate",
+    "grade": 3,
+    "meaning": "correct and exact",
+    "example": "Your answer is accurate."
+  },
+  {
+    "word": "genuine",
+    "grade": 4,
+    "meaning": "real and authentic",
+    "example": "The painting is genuine."
+  },
+  {
+    "word": "cheerful",
+    "grade": 3,
+    "meaning": "happy and optimistic",
+    "example": "The cheerful clown made us laugh."
+  },
+  {
+    "word": "transparent",
+    "grade": 5,
+    "meaning": "see-through",
+    "example": "The glass is transparent."
+  },
+  {
+    "word": "regard",
+    "grade": 5,
+    "meaning": "to consider or respect",
+    "example": "I regard her highly."
+  },
+  {
+    "word": "positive",
+    "grade": 5,
+    "meaning": "good or greater than zero",
+    "example": "Stay positive."
+  },
+  {
+    "word": "afraid",
+    "grade": 3,
+    "meaning": "feeling fear",
+    "example": "I am afraid of thunder."
+  },
+  {
+    "word": "destination",
+    "grade": 3,
+    "meaning": "the place to which one is going",
+    "example": "Our destination is the beach."
+  },
+  {
+    "word": "active",
+    "grade": 3,
+    "meaning": "moving or working",
+    "example": "The dog is very active."
+  },
+  {
+    "word": "grin",
+    "grade": 4,
+    "meaning": "a broad smile",
+    "example": "He had a wide grin."
+  },
+  {
+    "word": "friend",
+    "grade": 1,
+    "meaning": "a person you like",
+    "example": "My friend shares toys."
+  },
+  {
+    "word": "laundry",
+    "grade": 4,
+    "meaning": "clothes to be washed",
+    "example": "Do the laundry on Saturday."
+  },
+  {
+    "word": "fold",
+    "grade": 4,
+    "meaning": "to bend over on itself",
+    "example": "Fold the paper in half."
+  },
+  {
+    "word": "modest",
+    "grade": 5,
+    "meaning": "not boastful",
+    "example": "Be modest about your success."
+  },
+  {
+    "word": "taunt",
+    "grade": 5,
+    "meaning": "to mock or tease",
+    "example": "Don't taunt your classmates."
+  },
+  {
+    "word": "squabble",
+    "grade": 5,
+    "meaning": "a petty argument",
+    "example": "The children had a squabble."
+  },
+  {
+    "word": "forbid",
+    "grade": 4,
+    "meaning": "to order not to do",
+    "example": "My parents forbid junk food."
+  },
+  {
+    "word": "numerous",
+    "grade": 5,
+    "meaning": "many in number",
+    "example": "Numerous birds flew overhead."
+  },
+  {
+    "word": "complain",
+    "grade": 3,
+    "meaning": "to express dissatisfaction",
+    "example": "Try not to complain."
+  },
+  {
+    "word": "border",
+    "grade": 3,
+    "meaning": "the edge or boundary",
+    "example": "The garden has a stone border."
+  },
+  {
+    "word": "secure",
+    "grade": 5,
+    "meaning": "safe and protected",
+    "example": "Keep your password secure."
+  },
+  {
+    "word": "fortress",
+    "grade": 4,
+    "meaning": "a strong building for defense",
+    "example": "The fortress stood on a hill."
+  },
+  {
+    "word": "pause",
+    "grade": 5,
+    "meaning": "a temporary stop",
+    "example": "Take a pause between sentences."
+  },
+  {
+    "word": "hearty",
+    "grade": 4,
+    "meaning": "enthusiastic and strong",
+    "example": "We ate a hearty breakfast."
+  },
+  {
+    "word": "grim",
+    "grade": 4,
+    "meaning": "stern or depressing",
+    "example": "The forecast looks grim."
+  },
+  {
+    "word": "further",
+    "grade": 4,
+    "meaning": "more distant or additional",
+    "example": "Do you have further questions?"
+  },
+  {
+    "word": "distribute",
+    "grade": 3,
+    "meaning": "to give out to many",
+    "example": "Distribute the papers evenly."
+  },
+  {
+    "word": "instant",
+    "grade": 4,
+    "meaning": "happening immediately",
+    "example": "The medicine gave instant relief."
+  },
+  {
+    "word": "dine",
+    "grade": 3,
+    "meaning": "to eat dinner",
+    "example": "We dine at seven."
+  },
+  {
+    "word": "stimulate",
+    "grade": 5,
+    "meaning": "to encourage activity",
+    "example": "The game will stimulate thinking."
+  },
+  {
+    "word": "moderate",
+    "grade": 5,
+    "meaning": "neither extreme",
+    "example": "The weather is moderate today."
+  },
+  {
+    "word": "separate",
+    "grade": 5,
+    "meaning": "to divide",
+    "example": "Separate the recycling."
+  },
+  {
+    "word": "how",
+    "grade": 1,
+    "meaning": "in what way",
+    "example": "How do you spell cat?"
+  },
+  {
+    "word": "soon",
+    "grade": 2,
+    "meaning": "in a short time",
+    "example": "School ends soon."
+  },
+  {
+    "word": "later",
+    "grade": 2,
+    "meaning": "after the present time",
+    "example": "We will eat later."
+  },
+  {
+    "word": "enable",
+    "grade": 4,
+    "meaning": "to make possible",
+    "example": "Training will enable you to succeed."
+  },
+  {
+    "word": "career",
+    "grade": 3,
+    "meaning": "a profession or occupation",
+    "example": "She wants a career in medicine."
+  },
+  {
+    "word": "necessary",
+    "grade": 5,
+    "meaning": "needed",
+    "example": "Sleep is necessary for health."
+  },
+  {
+    "word": "develop",
+    "grade": 3,
+    "meaning": "to grow or improve",
+    "example": "Plants develop from seeds."
+  },
+  {
+    "word": "examine",
+    "grade": 4,
+    "meaning": "to inspect closely",
+    "example": "Examine the evidence carefully."
+  },
+  {
+    "word": "condition",
+    "grade": 3,
+    "meaning": "the state of something",
+    "example": "The car is in good condition."
+  },
+  {
+    "word": "allow",
+    "grade": 3,
+    "meaning": "to permit",
+    "example": "My parents allow me to play outside."
+  },
+  {
+    "word": "income",
+    "grade": 4,
+    "meaning": "money earned",
+    "example": "Save part of your income."
+  },
+  {
+    "word": "guilt",
+    "grade": 4,
+    "meaning": "a feeling of wrongdoing",
+    "example": "He felt guilt for breaking the vase."
+  },
+  {
+    "word": "award",
+    "grade": 3,
+    "meaning": "a prize given for achievement",
+    "example": "She won an award for art."
+  },
+  {
+    "word": "concern",
+    "grade": 3,
+    "meaning": "worry or interest",
+    "example": "My concern is your safety."
+  },
+  {
+    "word": "escape",
+    "grade": 4,
+    "meaning": "to get free",
+    "example": "The bird escaped from its cage."
+  },
+  {
+    "word": "should",
+    "grade": 1,
+    "meaning": "ought to",
+    "example": "You should brush your teeth."
+  },
+  {
+    "word": "origin",
+    "grade": 5,
+    "meaning": "the beginning or source",
+    "example": "What is the origin of the word?"
+  },
+  {
+    "word": "reaction",
+    "grade": 5,
+    "meaning": "a response",
+    "example": "His reaction was surprise."
+  },
+  {
+    "word": "enemy",
+    "grade": 4,
+    "meaning": "a person who opposes",
+    "example": "Make friends, not enemies."
+  },
+  {
+    "word": "hour",
+    "grade": 2,
+    "meaning": "a unit of time",
+    "example": "We waited one hour."
+  },
+  {
+    "word": "prompt",
+    "grade": 5,
+    "meaning": "quick or on time",
+    "example": "Be prompt for class."
+  },
+  {
+    "word": "mercy",
+    "grade": 5,
+    "meaning": "compassion or forgiveness",
+    "example": "Show mercy to the weak."
+  },
+  {
+    "word": "statement",
+    "grade": 5,
+    "meaning": "a spoken or written declaration",
+    "example": "Make a clear statement."
+  },
+  {
+    "word": "but",
+    "grade": 1,
+    "meaning": "used to show contrast",
+    "example": "I am small but strong."
+  },
+  {
+    "word": "article",
+    "grade": 3,
+    "meaning": "a piece of writing",
+    "example": "I read an interesting article."
+  },
+  {
+    "word": "distract",
+    "grade": 3,
+    "meaning": "to draw attention away",
+    "example": "Noise can distract students."
+  },
+  {
+    "word": "labor",
+    "grade": 4,
+    "meaning": "hard work",
+    "example": "Building the house required much labor."
+  },
+  {
+    "word": "frontier",
+    "grade": 4,
+    "meaning": "the edge of settled land",
+    "example": "Pioneers crossed the frontier."
+  },
+  {
+    "word": "charm",
+    "grade": 3,
+    "meaning": "a pleasing quality",
+    "example": "Her smile has great charm."
+  },
+  {
+    "word": "detect",
+    "grade": 3,
+    "meaning": "to discover or notice",
+    "example": "The dog can detect smells."
+  },
+  {
+    "word": "fatal",
+    "grade": 4,
+    "meaning": "causing death",
+    "example": "The snake bite was fatal."
+  },
+  {
+    "word": "barely",
+    "grade": 3,
+    "meaning": "only just",
+    "example": "I barely finished on time."
+  },
+  {
+    "word": "territory",
+    "grade": 5,
+    "meaning": "an area of land",
+    "example": "This is wolf territory."
+  },
+  {
+    "word": "illustrate",
+    "grade": 4,
+    "meaning": "to explain with pictures",
+    "example": "The book will illustrate the story."
+  },
+  {
+    "word": "just",
+    "grade": 1,
+    "meaning": "exactly or only",
+    "example": "I just finished eating."
+  },
+  {
+    "word": "persist",
+    "grade": 5,
+    "meaning": "to continue firmly",
+    "example": "Persist until you succeed."
+  },
+  {
+    "word": "tendency",
+    "grade": 5,
+    "meaning": "a likelihood to happen",
+    "example": "She has a tendency to laugh."
+  },
+  {
+    "word": "argue",
+    "grade": 3,
+    "meaning": "to disagree in words",
+    "example": "Try not to argue with your sister."
+  },
+  {
+    "word": "charity",
+    "grade": 3,
+    "meaning": "help given to those in need",
+    "example": "We donate to charity."
+  },
+  {
+    "word": "left",
+    "grade": 2,
+    "meaning": "the opposite of right",
+    "example": "Turn left here."
+  },
+  {
+    "word": "fluent",
+    "grade": 4,
+    "meaning": "able to speak smoothly",
+    "example": "She is fluent in Spanish."
+  },
+  {
+    "word": "one",
+    "grade": 1,
+    "meaning": "the number 1",
+    "example": "I have one sister."
+  },
+  {
+    "word": "suggest",
+    "grade": 5,
+    "meaning": "to propose an idea",
+    "example": "I suggest we leave early."
+  },
+  {
+    "word": "reach",
+    "grade": 2,
+    "meaning": "to stretch out and touch",
+    "example": "I can reach the shelf."
+  },
+  {
+    "word": "meadow",
+    "grade": 5,
+    "meaning": "a field of grass",
+    "example": "We picnicked in the meadow."
+  },
+  {
+    "word": "influence",
+    "grade": 4,
+    "meaning": "the power to affect others",
+    "example": "Parents have great influence."
+  },
+  {
+    "word": "interrupt",
+    "grade": 4,
+    "meaning": "to break into a conversation",
+    "example": "Don't interrupt when others speak."
+  },
+  {
+    "word": "advance",
+    "grade": 3,
+    "meaning": "to move forward",
+    "example": "The troops advance slowly."
+  },
+  {
+    "word": "banner",
+    "grade": 3,
+    "meaning": "a long strip of cloth",
+    "example": "A welcome banner hung overhead."
+  },
+  {
+    "word": "unique",
+    "grade": 5,
+    "meaning": "one of a kind",
+    "example": "Each snowflake is unique."
+  },
+  {
+    "word": "valuable",
+    "grade": 5,
+    "meaning": "worth a lot",
+    "example": "Time is valuable."
+  },
+  {
+    "word": "interfere",
+    "grade": 4,
+    "meaning": "to get in the way",
+    "example": "Don't interfere with their work."
+  },
+  {
+    "word": "regret",
+    "grade": 5,
+    "meaning": "to feel sorry about",
+    "example": "I regret not studying harder."
+  },
+  {
+    "word": "picture",
+    "grade": 2,
+    "meaning": "a visual image",
+    "example": "Draw a picture."
+  },
+  {
+    "word": "reliable",
+    "grade": 5,
+    "meaning": "dependable and trustworthy",
+    "example": "She is a reliable friend."
+  },
+  {
+    "word": "loyal",
+    "grade": 4,
+    "meaning": "faithful to a person",
+    "example": "A dog is a loyal friend."
+  },
+  {
+    "word": "stern",
+    "grade": 5,
+    "meaning": "strict and serious",
+    "example": "The teacher had a stern look."
+  },
+  {
+    "word": "mechanic",
+    "grade": 5,
+    "meaning": "a person who repairs machines",
+    "example": "The mechanic fixed the car."
+  },
+  {
+    "word": "candidate",
+    "grade": 3,
+    "meaning": "a person competing for a position",
+    "example": "She is a candidate for class president."
+  },
+  {
+    "word": "segment",
+    "grade": 5,
+    "meaning": "a part of something",
+    "example": "A segment of the orange."
+  },
+  {
+    "word": "glide",
+    "grade": 4,
+    "meaning": "to move smoothly",
+    "example": "The ice skater began to glide."
+  },
+  {
+    "word": "increase",
+    "grade": 4,
+    "meaning": "to become greater",
+    "example": "Increase your speed."
+  },
+  {
+    "word": "unanimous",
+    "grade": 5,
+    "meaning": "in complete agreement",
+    "example": "The vote was unanimous."
+  },
+  {
+    "word": "tried",
+    "grade": 2,
+    "meaning": "past tense of try",
+    "example": "I tried my best."
+  },
+  {
+    "word": "since",
+    "grade": 2,
+    "meaning": "from a past time until now",
+    "example": "I have waited since morning."
+  },
+  {
+    "word": "penalty",
+    "grade": 5,
+    "meaning": "a punishment",
+    "example": "The penalty for cheating is detention."
+  },
+  {
+    "word": "harsh",
+    "grade": 4,
+    "meaning": "rough and unpleasant",
+    "example": "The harsh winter killed the plants."
+  },
+  {
+    "word": "majority",
+    "grade": 5,
+    "meaning": "more than half",
+    "example": "The majority voted yes."
+  },
+  {
+    "word": "former",
+    "grade": 4,
+    "meaning": "previous or earlier",
+    "example": "My former teacher visited."
+  },
+  {
+    "word": "reveal",
+    "grade": 5,
+    "meaning": "to make known",
+    "example": "The test will reveal the truth."
+  },
+  {
+    "word": "clash",
+    "grade": 3,
+    "meaning": "to conflict or collide",
+    "example": "The colors clash badly."
+  },
+  {
+    "word": "optimistic",
+    "grade": 5,
+    "meaning": "hopeful about the future",
+    "example": "Be optimistic; things will improve."
+  },
+  {
+    "word": "impress",
+    "grade": 4,
+    "meaning": "to affect deeply",
+    "example": "Your skills impress me."
+  },
+  {
+    "word": "sorrow",
+    "grade": 5,
+    "meaning": "deep sadness",
+    "example": "The news brought great sorrow."
+  },
+  {
+    "word": "transform",
+    "grade": 5,
+    "meaning": "to change completely",
+    "example": "The caterpillar will transform."
+  },
+  {
+    "word": "haste",
+    "grade": 4,
+    "meaning": "excessive speed",
+    "example": "Make haste, or we will be late."
+  },
+  {
+    "word": "hundred",
+    "grade": 2,
+    "meaning": "the number 100",
+    "example": "There are one hundred pennies in a dollar."
+  },
+  {
+    "word": "had",
+    "grade": 1,
+    "meaning": "past tense of have",
+    "example": "She had a great day."
+  },
+  {
+    "word": "clatter",
+    "grade": 3,
+    "meaning": "a loud rattling sound",
+    "example": "The dishes made a clatter."
+  },
+  {
+    "word": "migrate",
+    "grade": 5,
+    "meaning": "to move from one place to another",
+    "example": "Birds migrate south for winter."
+  },
+  {
+    "word": "hope",
+    "grade": 2,
+    "meaning": "to wish for something",
+    "example": "I hope it snows."
+  },
+  {
+    "word": "insult",
+    "grade": 4,
+    "meaning": "to speak disrespectfully",
+    "example": "Don't insult your friends."
+  },
+  {
+    "word": "inquire",
+    "grade": 4,
+    "meaning": "to ask about",
+    "example": "Inquire at the front desk."
+  },
+  {
+    "word": "drop",
+    "grade": 2,
+    "meaning": "to let fall",
+    "example": "Don't drop the glass."
+  },
+  {
+    "word": "mammal",
+    "grade": 5,
+    "meaning": "an animal with hair that feeds milk",
+    "example": "A whale is a mammal."
+  },
+  {
+    "word": "safe",
+    "grade": 2,
+    "meaning": "free from danger",
+    "example": "Wear a helmet to be safe."
+  },
+  {
+    "word": "opportunity",
+    "grade": 5,
+    "meaning": "a chance for advancement",
+    "example": "Seize the opportunity."
+  },
+  {
+    "word": "sacrifice",
+    "grade": 5,
+    "meaning": "to give up for a cause",
+    "example": "Soldiers sacrifice for their country."
+  },
+  {
+    "word": "clean",
+    "grade": 2,
+    "meaning": "free from dirt",
+    "example": "My room is clean."
+  },
+  {
+    "word": "historic",
+    "grade": 4,
+    "meaning": "famous in history",
+    "example": "The battle was historic."
+  },
+  {
+    "word": "expert",
+    "grade": 4,
+    "meaning": "a person with special knowledge",
+    "example": "He is an expert at chess."
+  },
+  {
+    "word": "punish",
+    "grade": 5,
+    "meaning": "to penalize for wrongdoing",
+    "example": "The law will punish thieves."
+  },
+  {
+    "word": "melody",
+    "grade": 5,
+    "meaning": "a sequence of musical notes",
+    "example": "The melody was beautiful."
+  },
+  {
+    "word": "minor",
+    "grade": 5,
+    "meaning": "less important or small",
+    "example": "It was a minor injury."
+  },
+  {
+    "word": "editor",
+    "grade": 4,
+    "meaning": "a person who prepares text",
+    "example": "The editor fixed the mistakes."
+  },
+  {
+    "word": "imperfect",
+    "grade": 4,
+    "meaning": "having flaws",
+    "example": "Everyone is imperfect."
+  },
+  {
+    "word": "basic",
+    "grade": 3,
+    "meaning": "forming the simplest part",
+    "example": "Learn the basic rules first."
+  },
+  {
+    "word": "live",
+    "grade": 1,
+    "meaning": "to be alive or reside",
+    "example": "Fish live in water."
+  },
+  {
+    "word": "forehead",
+    "grade": 4,
+    "meaning": "the front of the head",
+    "example": "Sweat dripped from his forehead."
+  },
+  {
+    "word": "valid",
+    "grade": 5,
+    "meaning": "based on truth",
+    "example": "Is your ticket still valid?"
+  },
+  {
+    "word": "fuel",
+    "grade": 4,
+    "meaning": "material burned for energy",
+    "example": "The car needs fuel."
+  },
+  {
+    "word": "order",
+    "grade": 2,
+    "meaning": "a command or arrangement",
+    "example": "Put the books in order."
+  },
+  {
+    "word": "benefit",
+    "grade": 3,
+    "meaning": "an advantage or help",
+    "example": "Exercise has many benefits."
+  },
+  {
+    "word": "preserve",
+    "grade": 5,
+    "meaning": "to keep from harm",
+    "example": "Preserve the old documents."
+  },
+  {
+    "word": "an",
+    "grade": 1,
+    "meaning": "a before vowel sounds",
+    "example": "I saw an elephant."
+  },
+  {
+    "word": "luxury",
+    "grade": 4,
+    "meaning": "great comfort",
+    "example": "A hot bath is a luxury."
+  },
+  {
+    "word": "withdraw",
+    "grade": 5,
+    "meaning": "to take back or remove",
+    "example": "Withdraw your hand."
+  },
+  {
+    "word": "inform",
+    "grade": 4,
+    "meaning": "to give information",
+    "example": "Inform me when you arrive."
+  },
+  {
+    "word": "oral",
+    "grade": 5,
+    "meaning": "spoken rather than written",
+    "example": "We had an oral exam."
+  },
+  {
+    "word": "murmur",
+    "grade": 5,
+    "meaning": "a soft low sound",
+    "example": "I heard a murmur from the crowd."
+  },
+  {
+    "word": "bother",
+    "grade": 3,
+    "meaning": "to annoy or worry",
+    "example": "Don't bother the sleeping cat."
+  },
+  {
+    "word": "advice",
+    "grade": 3,
+    "meaning": "a suggestion about what to do",
+    "example": "My dad gave me good advice."
+  },
+  {
+    "word": "which",
+    "grade": 1,
+    "meaning": "asking about a choice",
+    "example": "Which color do you like?"
+  },
+  {
+    "word": "surround",
+    "grade": 5,
+    "meaning": "to be all around",
+    "example": "Trees surround the house."
+  },
+  {
+    "word": "victim",
+    "grade": 5,
+    "meaning": "a person harmed",
+    "example": "Help the victim of the accident."
+  },
+  {
+    "word": "nice",
+    "grade": 1,
+    "meaning": "kind and pleasant",
+    "example": "She is very nice."
+  },
+  {
+    "word": "drift",
+    "grade": 3,
+    "meaning": "to float or wander",
+    "example": "The boat began to drift."
+  },
+  {
+    "word": "enormous",
+    "grade": 4,
+    "meaning": "very large",
+    "example": "The whale is enormous."
+  },
+  {
+    "word": "breathe",
+    "grade": 3,
+    "meaning": "to take air into the lungs",
+    "example": "Breathe deeply and relax."
+  },
+  {
+    "word": "journey",
+    "grade": 4,
+    "meaning": "a long trip",
+    "example": "The journey took three days."
+  },
+  {
+    "word": "most",
+    "grade": 1,
+    "meaning": "the greatest amount",
+    "example": "I like chocolate the most."
+  },
+  {
+    "word": "across",
+    "grade": 3,
+    "meaning": "from one side to another",
+    "example": "Walk across the bridge."
+  },
+  {
+    "word": "rural",
+    "grade": 5,
+    "meaning": "relating to the countryside",
+    "example": "We live in a rural area."
+  },
+  {
+    "word": "steep",
+    "grade": 5,
+    "meaning": "rising sharply",
+    "example": "The hill is steep."
+  },
+  {
+    "word": "recent",
+    "grade": 5,
+    "meaning": "happening not long ago",
+    "example": "In recent years, technology grew."
+  },
+  {
+    "word": "literal",
+    "grade": 4,
+    "meaning": "exactly as stated",
+    "example": "Take the sentence literal, not figurative."
+  },
+  {
+    "word": "mineral",
+    "grade": 5,
+    "meaning": "a natural solid substance",
+    "example": "Salt is a mineral."
+  },
+  {
+    "word": "strenuous",
+    "grade": 5,
+    "meaning": "requiring much effort",
+    "example": "The hike was strenuous."
+  },
+  {
+    "word": "disappoint",
+    "grade": 3,
+    "meaning": "to fail to meet hopes",
+    "example": "Do not disappoint your team."
+  },
+  {
+    "word": "stay",
+    "grade": 2,
+    "meaning": "to remain in place",
+    "example": "Stay in your seat."
+  },
+  {
+    "word": "foreign",
+    "grade": 4,
+    "meaning": "from another country",
+    "example": "We tried foreign food."
+  },
+  {
+    "word": "in",
+    "grade": 1,
+    "meaning": "inside something",
+    "example": "The toy is in the box."
+  },
+  {
+    "word": "think",
+    "grade": 1,
+    "meaning": "to use your mind",
+    "example": "I think it will rain."
+  },
+  {
+    "word": "drought",
+    "grade": 3,
+    "meaning": "a long period without rain",
+    "example": "The drought killed the crops."
+  },
+  {
+    "word": "sensitive",
+    "grade": 5,
+    "meaning": "easily affected",
+    "example": "Be sensitive to her feelings."
+  },
+  {
+    "word": "vessel",
+    "grade": 5,
+    "meaning": "a ship or container",
+    "example": "The vessel carried cargo."
+  },
+  {
+    "word": "made",
+    "grade": 1,
+    "meaning": "past tense of make",
+    "example": "She made a cake."
+  },
+  {
+    "word": "support",
+    "grade": 5,
+    "meaning": "to hold up or encourage",
+    "example": "Support your local team."
+  },
+  {
+    "word": "surge",
+    "grade": 5,
+    "meaning": "a sudden increase",
+    "example": "A surge of energy."
+  },
+  {
+    "word": "propose",
+    "grade": 5,
+    "meaning": "to suggest",
+    "example": "I propose a new plan."
+  },
+  {
+    "word": "discuss",
+    "grade": 3,
+    "meaning": "to talk about",
+    "example": "Let's discuss the plan."
+  },
+  {
+    "word": "chorus",
+    "grade": 3,
+    "meaning": "a group singing together",
+    "example": "The chorus sang beautifully."
+  },
+  {
+    "word": "furnish",
+    "grade": 4,
+    "meaning": "to provide with furniture",
+    "example": "Furnish the room with chairs."
+  },
+  {
+    "word": "comfort",
+    "grade": 3,
+    "meaning": "a feeling of ease",
+    "example": "The blanket gave me comfort."
+  },
+  {
+    "word": "effort",
+    "grade": 4,
+    "meaning": "a serious attempt",
+    "example": "Your effort was noticed."
+  },
+  {
+    "word": "dizzy",
+    "grade": 3,
+    "meaning": "feeling like spinning",
+    "example": "The ride made me dizzy."
+  },
+  {
+    "word": "victory",
+    "grade": 5,
+    "meaning": "success in battle",
+    "example": "The team celebrated victory."
+  },
+  {
+    "word": "paper",
+    "grade": 2,
+    "meaning": "material for writing",
+    "example": "Write on the paper."
+  },
+  {
+    "word": "rest",
+    "grade": 2,
+    "meaning": "to stop working",
+    "example": "Rest after running."
+  },
+  {
+    "word": "variety",
+    "grade": 5,
+    "meaning": "different kinds",
+    "example": "We need variety in our diet."
+  },
+  {
+    "word": "under",
+    "grade": 2,
+    "meaning": "below something",
+    "example": "The cat is under the bed."
+  },
+  {
+    "word": "once",
+    "grade": 2,
+    "meaning": "one time",
+    "example": "I read the book once."
+  },
+  {
+    "word": "establish",
+    "grade": 4,
+    "meaning": "to set up or create",
+    "example": "Establish good habits early."
+  },
+  {
+    "word": "his",
+    "grade": 1,
+    "meaning": "belonging to him",
+    "example": "This is his hat."
+  },
+  {
+    "word": "exaggerate",
+    "grade": 4,
+    "meaning": "to overstate the truth",
+    "example": "Don't exaggerate the story."
+  },
+  {
+    "word": "spectator",
+    "grade": 5,
+    "meaning": "a person who watches",
+    "example": "Spectators filled the stands."
+  },
+  {
+    "word": "succeed",
+    "grade": 5,
+    "meaning": "to achieve a goal",
+    "example": "Work hard to succeed."
+  },
+  {
+    "word": "embarrass",
+    "grade": 4,
+    "meaning": "to cause shame",
+    "example": "Don't embarrass your sister."
+  },
+  {
+    "word": "headquarters",
+    "grade": 4,
+    "meaning": "the main office",
+    "example": "The company headquarters is downtown."
+  },
+  {
+    "word": "defense",
+    "grade": 3,
+    "meaning": "protection against attack",
+    "example": "The castle has strong defense."
+  },
+  {
+    "word": "reluctant",
+    "grade": 5,
+    "meaning": "unwilling",
+    "example": "He was reluctant to try new food."
+  },
+  {
+    "word": "gesture",
+    "grade": 4,
+    "meaning": "a movement of the body",
+    "example": "A wave is a friendly gesture."
+  },
+  {
+    "word": "told",
+    "grade": 2,
+    "meaning": "past tense of tell",
+    "example": "She told me a secret."
+  },
+  {
+    "word": "reform",
+    "grade": 5,
+    "meaning": "to improve by change",
+    "example": "The school will reform its rules."
+  },
+  {
+    "word": "prospect",
+    "grade": 5,
+    "meaning": "a possibility for the future",
+    "example": "The prospect of summer excites me."
+  },
+  {
+    "word": "communicate",
+    "grade": 3,
+    "meaning": "to share information",
+    "example": "We communicate by email."
+  },
+  {
+    "word": "love",
+    "grade": 1,
+    "meaning": "to care deeply for",
+    "example": "I love my family."
+  },
+  {
+    "word": "money",
+    "grade": 2,
+    "meaning": "currency used to buy things",
+    "example": "I save my money."
+  },
+  {
+    "word": "obedient",
+    "grade": 5,
+    "meaning": "willing to obey",
+    "example": "The dog is obedient."
+  },
+  {
+    "word": "be",
+    "grade": 1,
+    "meaning": "to exist or become",
+    "example": "I want to be a doctor."
+  },
+  {
+    "word": "draw",
+    "grade": 1,
+    "meaning": "to make a picture",
+    "example": "I draw with crayons."
+  },
+  {
+    "word": "register",
+    "grade": 5,
+    "meaning": "to record officially",
+    "example": "Register for the class online."
+  },
+  {
+    "word": "nourish",
+    "grade": 5,
+    "meaning": "to provide food for growth",
+    "example": "Vegetables nourish the body."
+  },
+  {
+    "word": "estimate",
+    "grade": 4,
+    "meaning": "to guess the amount",
+    "example": "Estimate the total cost."
+  },
+  {
+    "word": "stop",
+    "grade": 2,
+    "meaning": "to cease movement",
+    "example": "Stop at the red light."
+  },
+  {
+    "word": "terror",
+    "grade": 5,
+    "meaning": "intense fear",
+    "example": "The horror movie filled me with terror."
+  },
+  {
+    "word": "volcano",
+    "grade": 5,
+    "meaning": "a mountain that erupts",
+    "example": "The volcano might erupt."
+  },
+  {
+    "word": "dainty",
+    "grade": 3,
+    "meaning": "delicate and pretty",
+    "example": "She wore a dainty necklace."
+  },
+  {
+    "word": "extraordinary",
+    "grade": 4,
+    "meaning": "very unusual or remarkable",
+    "example": "The view was extraordinary."
+  },
+  {
+    "word": "citizen",
+    "grade": 3,
+    "meaning": "a member of a country",
+    "example": "Every citizen has rights."
+  },
+  {
+    "word": "disagree",
+    "grade": 3,
+    "meaning": "to have a different opinion",
+    "example": "We can disagree and still be friends."
+  },
+  {
+    "word": "faint",
+    "grade": 4,
+    "meaning": "weak or dizzy",
+    "example": "I felt faint in the heat."
+  },
+  {
+    "word": "recall",
+    "grade": 5,
+    "meaning": "to remember",
+    "example": "I recall meeting her before."
+  },
+  {
+    "word": "kidnap",
+    "grade": 4,
+    "meaning": "to take by force",
+    "example": "The movie plot involves a kidnap."
+  },
+  {
+    "word": "early",
+    "grade": 2,
+    "meaning": "before the expected time",
+    "example": "We arrived early."
+  },
+  {
+    "word": "new",
+    "grade": 1,
+    "meaning": "not existing before",
+    "example": "I got a new backpack."
+  },
+  {
+    "word": "delicate",
+    "grade": 3,
+    "meaning": "easily broken or damaged",
+    "example": "Handle the glass with delicate care."
+  },
+  {
+    "word": "save",
+    "grade": 2,
+    "meaning": "to keep from harm",
+    "example": "Save your work often."
+  },
+  {
+    "word": "instead",
+    "grade": 4,
+    "meaning": "as a substitute",
+    "example": "Eat fruit instead of candy."
+  },
+  {
+    "word": "crumb",
+    "grade": 3,
+    "meaning": "a tiny piece of bread",
+    "example": "A crumb fell on the floor."
+  },
+  {
+    "word": "yellow",
+    "grade": 1,
+    "meaning": "a bright color like the sun",
+    "example": "The banana is yellow."
+  },
+  {
+    "word": "eat",
+    "grade": 1,
+    "meaning": "to take food into the body",
+    "example": "I eat breakfast."
+  },
+  {
+    "word": "bright",
+    "grade": 3,
+    "meaning": "shining with light",
+    "example": "The sun is very bright today."
+  },
+  {
+    "word": "drink",
+    "grade": 2,
+    "meaning": "to take liquid into the body",
+    "example": "Drink your water."
+  },
+  {
+    "word": "prove",
+    "grade": 5,
+    "meaning": "to show to be true",
+    "example": "Prove your answer with facts."
+  },
+  {
+    "word": "away",
+    "grade": 1,
+    "meaning": "to or at a distance",
+    "example": "The bird flew away."
+  },
+  {
+    "word": "alone",
+    "grade": 3,
+    "meaning": "by oneself",
+    "example": "I like to read alone."
+  },
+  {
+    "word": "reign",
+    "grade": 5,
+    "meaning": "to rule as king or queen",
+    "example": "The queen will reign for decades."
+  },
+  {
+    "word": "prominent",
+    "grade": 5,
+    "meaning": "important or well-known",
+    "example": "She is a prominent leader."
+  },
+  {
+    "word": "patient",
+    "grade": 5,
+    "meaning": "able to wait calmly",
+    "example": "Be patient with younger children."
+  },
+  {
+    "word": "even",
+    "grade": 1,
+    "meaning": "flat and level",
+    "example": "The table is even."
+  },
+  {
+    "word": "again",
+    "grade": 1,
+    "meaning": "one more time",
+    "example": "Let's read it again."
+  },
+  {
+    "word": "extra",
+    "grade": 4,
+    "meaning": "more than usual",
+    "example": "I have extra pencils."
+  },
+  {
+    "word": "scurry",
+    "grade": 5,
+    "meaning": "to run with short steps",
+    "example": "The mice scurry across the floor."
+  },
+  {
+    "word": "house",
+    "grade": 1,
+    "meaning": "a building where people live",
+    "example": "I live in a blue house."
+  },
+  {
+    "word": "conclusion",
+    "grade": 3,
+    "meaning": "the end or final decision",
+    "example": "The conclusion of the story was happy."
+  },
+  {
+    "word": "equipment",
+    "grade": 4,
+    "meaning": "tools needed for a task",
+    "example": "The gym has new equipment."
+  },
+  {
+    "word": "calm",
+    "grade": 3,
+    "meaning": "peaceful and quiet",
+    "example": "The lake was calm this morning."
+  },
+  {
+    "word": "against",
+    "grade": 3,
+    "meaning": "in opposition to",
+    "example": "Lean against the wall."
+  },
+  {
+    "word": "poison",
+    "grade": 5,
+    "meaning": "a substance that causes harm",
+    "example": "Some mushrooms are poison."
+  },
+  {
+    "word": "sponsor",
+    "grade": 5,
+    "meaning": "a person who supports",
+    "example": "Find a sponsor for the event."
+  },
+  {
+    "word": "embrace",
+    "grade": 4,
+    "meaning": "to hug or accept",
+    "example": "Embrace new ideas."
+  },
+  {
+    "word": "nominate",
+    "grade": 5,
+    "meaning": "to propose as a candidate",
+    "example": "Nominate someone for the award."
+  },
+  {
+    "word": "dismay",
+    "grade": 3,
+    "meaning": "a feeling of shock",
+    "example": "To my dismay, it was closed."
+  },
+  {
+    "word": "import",
+    "grade": 4,
+    "meaning": "to bring in from another country",
+    "example": "We import coffee from Brazil."
+  },
+  {
+    "word": "is",
+    "grade": 1,
+    "meaning": "equals or exists",
+    "example": "The sky is blue."
+  },
+  {
+    "word": "household",
+    "grade": 4,
+    "meaning": "the people living together",
+    "example": "Our household has five members."
+  },
+  {
+    "word": "arrange",
+    "grade": 3,
+    "meaning": "to put in order",
+    "example": "Arrange the books by size."
+  },
+  {
+    "word": "soil",
+    "grade": 5,
+    "meaning": "the earth in which plants grow",
+    "example": "The soil is rich."
+  },
+  {
+    "word": "urban",
+    "grade": 5,
+    "meaning": "relating to a city",
+    "example": "Urban areas have tall buildings."
+  },
+  {
+    "word": "community",
+    "grade": 3,
+    "meaning": "a group of people living together",
+    "example": "Our community has a park."
+  },
+  {
+    "word": "perceive",
+    "grade": 5,
+    "meaning": "to become aware of",
+    "example": "I perceive a problem."
+  },
+  {
+    "word": "sincere",
+    "grade": 5,
+    "meaning": "genuine and honest",
+    "example": "She gave a sincere apology."
+  },
+  {
+    "word": "intelligent",
+    "grade": 4,
+    "meaning": "having mental ability",
+    "example": "Dolphins are intelligent animals."
+  },
+  {
+    "word": "ashamed",
+    "grade": 3,
+    "meaning": "feeling guilty or embarrassed",
+    "example": "I felt ashamed of my mistake."
+  },
+  {
+    "word": "cunning",
+    "grade": 3,
+    "meaning": "clever in a tricky way",
+    "example": "The fox was cunning."
+  },
+  {
+    "word": "welfare",
+    "grade": 5,
+    "meaning": "the health and happiness of people",
+    "example": "The welfare of the community."
+  },
+  {
+    "word": "what",
+    "grade": 1,
+    "meaning": "asking for information",
+    "example": "What is your name?"
+  },
+  {
+    "word": "require",
+    "grade": 5,
+    "meaning": "to need or demand",
+    "example": "The job will require travel."
+  },
+  {
+    "word": "place",
+    "grade": 1,
+    "meaning": "a particular position or area",
+    "example": "This is my favorite place."
+  },
+  {
+    "word": "light",
+    "grade": 2,
+    "meaning": "brightness from a source",
+    "example": "The sun gives light."
+  },
+  {
+    "word": "rhyme",
+    "grade": 5,
+    "meaning": "words with the same ending sound",
+    "example": "Cat and hat rhyme."
+  },
+  {
+    "word": "miracle",
+    "grade": 5,
+    "meaning": "a wonderful event",
+    "example": "The recovery was a miracle."
+  },
+  {
+    "word": "begin",
+    "grade": 2,
+    "meaning": "to start",
+    "example": "Let's begin the game."
+  },
+  {
+    "word": "deposit",
+    "grade": 3,
+    "meaning": "to put down or place",
+    "example": "Deposit the check at the bank."
+  },
+  {
+    "word": "occur",
+    "grade": 5,
+    "meaning": "to happen",
+    "example": "Accidents can occur anytime."
+  },
+  {
+    "word": "skeleton",
+    "grade": 5,
+    "meaning": "the frame of bones",
+    "example": "The skeleton supports the body."
+  },
+  {
+    "word": "brain",
+    "grade": 3,
+    "meaning": "the organ inside the head",
+    "example": "Your brain helps you think."
+  },
+  {
+    "word": "suspect",
+    "grade": 5,
+    "meaning": "to believe guilty",
+    "example": "I suspect he took it."
+  },
+  {
+    "word": "white",
+    "grade": 2,
+    "meaning": "the color of snow",
+    "example": "The cloud is white."
+  },
+  {
+    "word": "motion",
+    "grade": 5,
+    "meaning": "movement or action",
+    "example": "The motion of the waves calmed me."
+  },
+  {
+    "word": "valor",
+    "grade": 5,
+    "meaning": "great bravery",
+    "example": "The soldier showed valor."
+  },
+  {
+    "word": "startle",
+    "grade": 5,
+    "meaning": "to surprise suddenly",
+    "example": "The noise will startle the cat."
+  },
+  {
+    "word": "capable",
+    "grade": 3,
+    "meaning": "having the ability",
+    "example": "You are capable of great things."
+  },
+  {
+    "word": "depart",
+    "grade": 3,
+    "meaning": "to leave",
+    "example": "The train will depart soon."
+  },
+  {
+    "word": "pay",
+    "grade": 2,
+    "meaning": "to give money for goods",
+    "example": "Pay at the counter."
+  },
+  {
+    "word": "frigid",
+    "grade": 4,
+    "meaning": "extremely cold",
+    "example": "The frigid wind bit my face."
+  },
+  {
+    "word": "install",
+    "grade": 4,
+    "meaning": "to set up for use",
+    "example": "Install the software."
+  },
+  {
+    "word": "mother",
+    "grade": 1,
+    "meaning": "a female parent",
+    "example": "My mother cooks dinner."
+  },
+  {
+    "word": "long",
+    "grade": 2,
+    "meaning": "great in length",
+    "example": "The snake is long."
+  },
+  {
+    "word": "men",
+    "grade": 1,
+    "meaning": "plural of man",
+    "example": "The men are working."
+  },
+  {
+    "word": "orbit",
+    "grade": 5,
+    "meaning": "a curved path around something",
+    "example": "The moon's orbit is elliptical."
+  },
+  {
+    "word": "interview",
+    "grade": 4,
+    "meaning": "a formal meeting",
+    "example": "I have a job interview tomorrow."
+  },
+  {
+    "word": "launch",
+    "grade": 4,
+    "meaning": "to send off",
+    "example": "Launch the rocket at noon."
+  },
+  {
+    "word": "gossip",
+    "grade": 4,
+    "meaning": "casual talk about others",
+    "example": "Don't spread gossip."
+  },
+  {
+    "word": "magnificent",
+    "grade": 5,
+    "meaning": "extremely beautiful",
+    "example": "The palace was magnificent."
+  },
+  {
+    "word": "verge",
+    "grade": 5,
+    "meaning": "the edge or brink",
+    "example": "On the verge of tears."
+  },
+  {
+    "word": "last",
+    "grade": 2,
+    "meaning": "coming after all others",
+    "example": "I was last in line."
+  },
+  {
+    "word": "campaign",
+    "grade": 3,
+    "meaning": "a planned effort",
+    "example": "The campaign raised money for charity."
+  },
+  {
+    "word": "intense",
+    "grade": 4,
+    "meaning": "extreme in degree",
+    "example": "The heat was intense."
+  },
+  {
+    "word": "shiver",
+    "grade": 5,
+    "meaning": "to shake from cold or fear",
+    "example": "I shiver in the winter wind."
+  },
+  {
+    "word": "decrease",
+    "grade": 3,
+    "meaning": "to become less",
+    "example": "The temperature will decrease."
+  },
+  {
+    "word": "parade",
+    "grade": 5,
+    "meaning": "a public procession",
+    "example": "We watched the Fourth of July parade."
+  },
+  {
+    "word": "sure",
+    "grade": 2,
+    "meaning": "certain or confident",
+    "example": "I am sure about this."
+  },
+  {
+    "word": "technique",
+    "grade": 5,
+    "meaning": "a method of doing",
+    "example": "What technique did you use?"
+  },
+  {
+    "word": "companion",
+    "grade": 3,
+    "meaning": "a friend or partner",
+    "example": "My dog is my loyal companion."
+  },
+  {
+    "word": "plain",
+    "grade": 5,
+    "meaning": "simple or clear",
+    "example": "She spoke in plain language."
+  },
+  {
+    "word": "ease",
+    "grade": 4,
+    "meaning": "to make less difficult",
+    "example": "The medicine will ease the pain."
+  },
+  {
+    "word": "custom",
+    "grade": 3,
+    "meaning": "a usual practice",
+    "example": "It is custom to shake hands."
+  },
+  {
+    "word": "quantity",
+    "grade": 5,
+    "meaning": "an amount or number",
+    "example": "A large quantity of food was wasted."
+  },
+  {
+    "word": "solar",
+    "grade": 5,
+    "meaning": "relating to the sun",
+    "example": "We use solar power."
+  },
+  {
+    "word": "focus",
+    "grade": 4,
+    "meaning": "to concentrate attention",
+    "example": "Focus on your work."
+  },
+  {
+    "word": "him",
+    "grade": 1,
+    "meaning": "referring to a male",
+    "example": "I gave the ball to him."
+  },
+  {
+    "word": "green",
+    "grade": 1,
+    "meaning": "a color like grass",
+    "example": "The leaf is green."
+  },
+  {
+    "word": "convince",
+    "grade": 3,
+    "meaning": "to persuade someone",
+    "example": "I tried to convince him to stay."
+  },
+  {
+    "word": "school",
+    "grade": 1,
+    "meaning": "a place for learning",
+    "example": "I walk to school."
+  },
+  {
+    "word": "sing",
+    "grade": 1,
+    "meaning": "to make music with your voice",
+    "example": "We sing songs."
+  },
+  {
+    "word": "with",
+    "grade": 1,
+    "meaning": "accompanied by",
+    "example": "I play with my dog."
+  },
+  {
+    "word": "vivid",
+    "grade": 5,
+    "meaning": "bright and clear",
+    "example": "I have a vivid memory."
+  },
+  {
+    "word": "council",
+    "grade": 3,
+    "meaning": "a group that advises",
+    "example": "The city council met today."
+  },
+  {
+    "word": "rot",
+    "grade": 5,
+    "meaning": "to decay",
+    "example": "Fruit will rot if not refrigerated."
+  },
+  {
+    "word": "she",
+    "grade": 1,
+    "meaning": "a female person or animal",
+    "example": "She sings beautifully."
+  },
+  {
+    "word": "fraud",
+    "grade": 4,
+    "meaning": "deception for gain",
+    "example": "The fraud stole money."
+  },
+  {
+    "word": "small",
+    "grade": 1,
+    "meaning": "little in size",
+    "example": "The ant is small."
+  },
+  {
+    "word": "consume",
+    "grade": 3,
+    "meaning": "to eat or use up",
+    "example": "Do not consume too much sugar."
+  },
+  {
+    "word": "dense",
+    "grade": 3,
+    "meaning": "thick or closely packed",
+    "example": "The forest was dense."
+  },
+  {
+    "word": "seen",
+    "grade": 2,
+    "meaning": "past participle of see",
+    "example": "I have seen that movie."
+  },
+  {
+    "word": "natural",
+    "grade": 5,
+    "meaning": "existing in nature",
+    "example": "The forest is a natural habitat."
+  },
+  {
+    "word": "raise",
+    "grade": 5,
+    "meaning": "to lift up",
+    "example": "Raise your hand to answer."
+  },
+  {
+    "word": "mentor",
+    "grade": 5,
+    "meaning": "a trusted advisor",
+    "example": "She found a mentor at work."
+  },
+  {
+    "word": "hesitate",
+    "grade": 4,
+    "meaning": "to pause before acting",
+    "example": "Don't hesitate to ask for help."
+  },
+  {
+    "word": "tangle",
+    "grade": 5,
+    "meaning": "to twist together",
+    "example": "The cords are in a tangle."
+  },
+  {
+    "word": "explore",
+    "grade": 4,
+    "meaning": "to travel through unknown places",
+    "example": "Explore the forest trail."
+  },
+  {
+    "word": "cheat",
+    "grade": 3,
+    "meaning": "to act dishonestly",
+    "example": "It is wrong to cheat on a test."
+  },
+  {
+    "word": "strategy",
+    "grade": 5,
+    "meaning": "a plan for success",
+    "example": "What is your strategy?"
+  },
+  {
+    "word": "comment",
+    "grade": 3,
+    "meaning": "a spoken or written remark",
+    "example": "She made a nice comment."
+  },
+  {
+    "word": "latter",
+    "grade": 4,
+    "meaning": "the second of two",
+    "example": "Of tea and coffee, I prefer the latter."
+  },
+  {
+    "word": "refuge",
+    "grade": 5,
+    "meaning": "a place of safety",
+    "example": "The cave was a refuge from the storm."
+  },
+  {
+    "word": "tense",
+    "grade": 5,
+    "meaning": "stretched tight",
+    "example": "The rope is tense."
+  },
+  {
+    "word": "arrive",
+    "grade": 3,
+    "meaning": "to reach a destination",
+    "example": "We will arrive at noon."
+  },
+  {
+    "word": "revive",
+    "grade": 5,
+    "meaning": "to bring back to life",
+    "example": "The doctor will revive the patient."
+  },
+  {
+    "word": "passage",
+    "grade": 5,
+    "meaning": "a section of text",
+    "example": "Read the passage aloud."
+  },
+  {
+    "word": "spell",
+    "grade": 2,
+    "meaning": "to name letters of a word",
+    "example": "Can you spell cat?"
+  },
+  {
+    "word": "sit",
+    "grade": 2,
+    "meaning": "to rest on a seat",
+    "example": "Sit down, please."
+  },
+  {
+    "word": "relative",
+    "grade": 5,
+    "meaning": "a family member",
+    "example": "My relative lives in Texas."
+  },
+  {
+    "word": "drink",
+    "grade": 1,
+    "meaning": "to take liquid into the body",
+    "example": "I drink water."
+  },
+  {
+    "word": "plunge",
+    "grade": 5,
+    "meaning": "to jump or fall suddenly",
+    "example": "The diver took a plunge."
+  },
+  {
+    "word": "grow",
+    "grade": 2,
+    "meaning": "to increase in size",
+    "example": "Plants grow in sunlight."
+  },
+  {
+    "word": "vacant",
+    "grade": 5,
+    "meaning": "empty or unoccupied",
+    "example": "The house is vacant."
+  },
+  {
+    "word": "thirst",
+    "grade": 5,
+    "meaning": "a need to drink",
+    "example": "The thirst was unbearable."
+  },
+  {
+    "word": "dazzle",
+    "grade": 3,
+    "meaning": "to amaze or blind with brightness",
+    "example": "The stars dazzle at night."
+  },
+  {
+    "word": "little",
+    "grade": 1,
+    "meaning": "small in size",
+    "example": "The puppy is little."
+  },
+  {
+    "word": "dare",
+    "grade": 3,
+    "meaning": "to have the courage",
+    "example": "I dare you to try it."
+  },
+  {
+    "word": "exhibit",
+    "grade": 4,
+    "meaning": "to display publicly",
+    "example": "The museum will exhibit dinosaurs."
+  },
+  {
+    "word": "guess",
+    "grade": 4,
+    "meaning": "to form an opinion without certainty",
+    "example": "Take a guess at the answer."
+  },
+  {
+    "word": "point",
+    "grade": 2,
+    "meaning": "a sharp end or to indicate",
+    "example": "Point to the answer."
+  },
+  {
+    "word": "use",
+    "grade": 1,
+    "meaning": "to employ for a purpose",
+    "example": "I use a spoon to eat."
+  },
+  {
+    "word": "portrait",
+    "grade": 5,
+    "meaning": "a painting of a person",
+    "example": "The portrait hangs in the hall."
+  },
+  {
+    "word": "fierce",
+    "grade": 4,
+    "meaning": "violent or intense",
+    "example": "The tiger is fierce."
+  },
+  {
+    "word": "and",
+    "grade": 1,
+    "meaning": "used to connect words or ideas",
+    "example": "I like apples and bananas."
+  },
+  {
+    "word": "regular",
+    "grade": 5,
+    "meaning": "happening at fixed times",
+    "example": "Maintain a regular sleep schedule."
+  },
+  {
+    "word": "represent",
+    "grade": 5,
+    "meaning": "to stand for",
+    "example": "The dove represents peace."
+  },
+  {
+    "word": "anxious",
+    "grade": 3,
+    "meaning": "worried or nervous",
+    "example": "I feel anxious before a test."
+  },
+  {
+    "word": "hibernate",
+    "grade": 4,
+    "meaning": "to sleep through winter",
+    "example": "Bears hibernate in caves."
+  },
+  {
+    "word": "sustain",
+    "grade": 5,
+    "meaning": "to keep going",
+    "example": "The meal will sustain you."
+  },
+  {
+    "word": "volunteer",
+    "grade": 5,
+    "meaning": "to offer help freely",
+    "example": "Volunteer at the shelter."
+  },
+  {
+    "word": "wander",
+    "grade": 5,
+    "meaning": "to walk without purpose",
+    "example": "Wander through the garden."
+  },
+  {
+    "word": "especially",
+    "grade": 4,
+    "meaning": "particularly or mainly",
+    "example": "I especially like chocolate."
+  },
+  {
+    "word": "own",
+    "grade": 2,
+    "meaning": "belonging to oneself",
+    "example": "I have my own desk."
+  },
+  {
+    "word": "proud",
+    "grade": 5,
+    "meaning": "feeling deep pleasure",
+    "example": "I am proud of my sister."
+  },
+  {
+    "word": "belong",
+    "grade": 3,
+    "meaning": "to be in the right place",
+    "example": "This book belongs in the library."
+  },
+  {
+    "word": "profession",
+    "grade": 5,
+    "meaning": "a job requiring training",
+    "example": "Teaching is a noble profession."
+  },
+  {
+    "word": "discover",
+    "grade": 3,
+    "meaning": "to find for the first time",
+    "example": "Columbus discovered America."
+  },
+  {
+    "word": "it",
+    "grade": 1,
+    "meaning": "a thing already mentioned",
+    "example": "I see a bird. It is red."
+  },
+  {
+    "word": "noble",
+    "grade": 5,
+    "meaning": "having high moral qualities",
+    "example": "A noble person helps others."
+  },
+  {
+    "word": "along",
+    "grade": 3,
+    "meaning": "moving in a constant direction",
+    "example": "Walk along the sidewalk."
+  },
+  {
+    "word": "massive",
+    "grade": 5,
+    "meaning": "very large and heavy",
+    "example": "The elephant is massive."
+  },
+  {
+    "word": "environment",
+    "grade": 4,
+    "meaning": "the natural world",
+    "example": "Protect the environment."
+  },
+  {
+    "word": "yield",
+    "grade": 5,
+    "meaning": "to produce or give way",
+    "example": "The farm will yield crops."
+  },
+  {
+    "word": "village",
+    "grade": 5,
+    "meaning": "a small group of houses",
+    "example": "The village has one store."
+  },
+  {
+    "word": "tribe",
+    "grade": 5,
+    "meaning": "a group of people",
+    "example": "The tribe lived by the river."
+  },
+  {
+    "word": "remote",
+    "grade": 5,
+    "meaning": "far away",
+    "example": "The cabin is in a remote area."
+  },
+  {
+    "word": "ready",
+    "grade": 2,
+    "meaning": "prepared for action",
+    "example": "Are you ready to go?"
+  },
+  {
+    "word": "or",
+    "grade": 1,
+    "meaning": "used to offer a choice",
+    "example": "Do you want juice or milk?"
+  },
+  {
+    "word": "role",
+    "grade": 5,
+    "meaning": "a part played by someone",
+    "example": "She plays the role of a doctor."
+  },
+  {
+    "word": "desert",
+    "grade": 3,
+    "meaning": "a dry sandy region",
+    "example": "The camel lives in the desert."
+  },
+  {
+    "word": "region",
+    "grade": 5,
+    "meaning": "an area or district",
+    "example": "This region is known for apples."
+  },
+  {
+    "word": "organize",
+    "grade": 5,
+    "meaning": "to put in order",
+    "example": "Organize your desk."
+  },
+  {
+    "word": "stiff",
+    "grade": 5,
+    "meaning": "rigid and hard to bend",
+    "example": "The brush has stiff bristles."
+  },
+  {
+    "word": "hurl",
+    "grade": 4,
+    "meaning": "to throw with force",
+    "example": "Hurl the ball to first base."
+  },
+  {
+    "word": "ignite",
+    "grade": 4,
+    "meaning": "to set on fire",
+    "example": "The spark will ignite the wood."
+  },
+  {
+    "word": "big",
+    "grade": 1,
+    "meaning": "large in size",
+    "example": "The elephant is big."
+  },
+  {
+    "word": "stifle",
+    "grade": 5,
+    "meaning": "to suppress",
+    "example": "Stifle your cough."
+  },
+  {
+    "word": "wisdom",
+    "grade": 5,
+    "meaning": "knowledge from experience",
+    "example": "Listen to the wisdom of elders."
+  },
+  {
+    "word": "anger",
+    "grade": 3,
+    "meaning": "a strong feeling of displeasure",
+    "example": "He felt anger when he lost."
+  },
+  {
+    "word": "advantage",
+    "grade": 3,
+    "meaning": "a better chance or position",
+    "example": "Being tall is an advantage in basketball."
+  },
+  {
+    "word": "people",
+    "grade": 2,
+    "meaning": "human beings",
+    "example": "Many people live here."
+  },
+  {
+    "word": "work",
+    "grade": 1,
+    "meaning": "to do a job or task",
+    "example": "I work hard at school."
+  },
+  {
+    "word": "inside",
+    "grade": 2,
+    "meaning": "within something",
+    "example": "The cat is inside the box."
+  },
+  {
+    "word": "prepare",
+    "grade": 5,
+    "meaning": "to make ready",
+    "example": "Prepare for the test."
+  },
+  {
+    "word": "punctual",
+    "grade": 5,
+    "meaning": "arriving on time",
+    "example": "Be punctual for the meeting."
+  },
+  {
+    "word": "week",
+    "grade": 2,
+    "meaning": "seven days",
+    "example": "I visit grandma every week."
+  },
+  {
+    "word": "tradition",
+    "grade": 5,
+    "meaning": "a custom passed down",
+    "example": "It is tradition to eat turkey."
+  },
+  {
+    "word": "guarantee",
+    "grade": 4,
+    "meaning": "a promise that something will happen",
+    "example": "The store offers a money-back guarantee."
+  },
+  {
+    "word": "injure",
+    "grade": 4,
+    "meaning": "to harm physically",
+    "example": "Be careful not to injure yourself."
+  },
+  {
+    "word": "sphere",
+    "grade": 5,
+    "meaning": "a round solid shape",
+    "example": "Earth is shaped like a sphere."
+  },
+  {
+    "word": "locate",
+    "grade": 4,
+    "meaning": "to find the place of",
+    "example": "Locate the city on the map."
+  },
+  {
+    "word": "splendid",
+    "grade": 5,
+    "meaning": "magnificent",
+    "example": "The palace was splendid."
+  },
+  {
+    "word": "discipline",
+    "grade": 3,
+    "meaning": "training to obey rules",
+    "example": "Discipline helps you succeed."
+  },
+  {
+    "word": "replace",
+    "grade": 5,
+    "meaning": "to put back or substitute",
+    "example": "Replace the old batteries."
+  },
+  {
+    "word": "voyage",
+    "grade": 5,
+    "meaning": "a long journey by sea",
+    "example": "The voyage lasted months."
+  },
+  {
+    "word": "demand",
+    "grade": 3,
+    "meaning": "to ask for forcefully",
+    "example": "The workers demand better pay."
+  },
+  {
+    "word": "worthwhile",
+    "grade": 5,
+    "meaning": "worth the effort",
+    "example": "The trip was worthwhile."
+  },
+  {
+    "word": "disguise",
+    "grade": 3,
+    "meaning": "to change appearance",
+    "example": "She wore a disguise to the party."
+  },
+  {
+    "word": "without",
+    "grade": 2,
+    "meaning": "not having",
+    "example": "I cannot see without glasses."
+  },
+  {
+    "word": "object",
+    "grade": 5,
+    "meaning": "a thing or to disagree",
+    "example": "What is the object of the game?"
+  },
+  {
+    "word": "indicate",
+    "grade": 4,
+    "meaning": "to point out or show",
+    "example": "Signs indicate the right path."
+  },
+  {
+    "word": "proceed",
+    "grade": 5,
+    "meaning": "to continue with an action",
+    "example": "Proceed to the next question."
+  },
+  {
+    "word": "committee",
+    "grade": 3,
+    "meaning": "a group chosen for a task",
+    "example": "The committee planned the event."
+  },
+  {
+    "word": "extreme",
+    "grade": 4,
+    "meaning": "very great or intense",
+    "example": "The heat was extreme."
+  },
+  {
+    "word": "severe",
+    "grade": 5,
+    "meaning": "very harsh or serious",
+    "example": "The storm caused severe damage."
+  },
+  {
+    "word": "command",
+    "grade": 3,
+    "meaning": "an order",
+    "example": "The general gave a command."
+  },
+  {
+    "word": "slow",
+    "grade": 1,
+    "meaning": "moving at low speed",
+    "example": "The turtle is slow."
+  },
+  {
+    "word": "distinguish",
+    "grade": 3,
+    "meaning": "to recognize as different",
+    "example": "Distinguish between fact and opinion."
+  },
+  {
+    "word": "insert",
+    "grade": 4,
+    "meaning": "to put inside",
+    "example": "Insert the key in the lock."
+  },
+  {
+    "word": "factor",
+    "grade": 4,
+    "meaning": "something that contributes",
+    "example": "Luck is a factor in winning."
+  },
+  {
+    "word": "widespread",
+    "grade": 5,
+    "meaning": "spread over a large area",
+    "example": "The disease was widespread."
+  },
+  {
+    "word": "cooperate",
+    "grade": 3,
+    "meaning": "to work together",
+    "example": "We must cooperate to finish."
+  },
+  {
+    "word": "same",
+    "grade": 1,
+    "meaning": "identical or alike",
+    "example": "We have the same shoes."
+  },
+  {
+    "word": "figure",
+    "grade": 4,
+    "meaning": "a number or shape",
+    "example": "Can you figure out the answer?"
+  },
+  {
+    "word": "confident",
+    "grade": 3,
+    "meaning": "sure of oneself",
+    "example": "Be confident when you speak."
+  },
+  {
+    "word": "satisfied",
+    "grade": 5,
+    "meaning": "content and pleased",
+    "example": "I am satisfied with my grade."
+  },
+  {
+    "word": "district",
+    "grade": 3,
+    "meaning": "an area of a town or city",
+    "example": "We live in the school district."
+  },
+  {
+    "word": "humble",
+    "grade": 4,
+    "meaning": "modest and not proud",
+    "example": "Be humble in victory."
+  },
+  {
+    "word": "occupy",
+    "grade": 5,
+    "meaning": "to live in or fill",
+    "example": "The army will occupy the fort."
+  },
+  {
+    "word": "approach",
+    "grade": 3,
+    "meaning": "to come near",
+    "example": "Approach the door slowly."
+  },
+  {
+    "word": "wrinkle",
+    "grade": 5,
+    "meaning": "a fold in fabric or skin",
+    "example": "Iron the wrinkle out."
+  },
+  {
+    "word": "relief",
+    "grade": 5,
+    "meaning": "a feeling of reassurance",
+    "example": "It was a relief to hear the news."
+  },
+  {
+    "word": "available",
+    "grade": 3,
+    "meaning": "able to be used",
+    "example": "Is this seat available?"
+  },
+  {
+    "word": "treaty",
+    "grade": 5,
+    "meaning": "a formal agreement",
+    "example": "The countries signed a treaty."
+  },
+  {
+    "word": "supply",
+    "grade": 5,
+    "meaning": "to provide what is needed",
+    "example": "Supply the team with water."
+  },
+  {
+    "word": "dance",
+    "grade": 1,
+    "meaning": "to move to music",
+    "example": "I dance at parties."
+  },
+  {
+    "word": "distant",
+    "grade": 3,
+    "meaning": "far away in space or time",
+    "example": "The star is distant."
+  },
+  {
+    "word": "colony",
+    "grade": 3,
+    "meaning": "a group living together",
+    "example": "An ant colony works as a team."
+  },
+  {
+    "word": "graceful",
+    "grade": 4,
+    "meaning": "moving elegantly",
+    "example": "The dancer was graceful."
+  },
+  {
+    "word": "heap",
+    "grade": 4,
+    "meaning": "a pile of things",
+    "example": "A heap of leaves covered the yard."
+  },
+  {
+    "word": "appear",
+    "grade": 3,
+    "meaning": "to come into sight",
+    "example": "The sun will appear soon."
+  },
+  {
+    "word": "gulp",
+    "grade": 4,
+    "meaning": "to swallow quickly",
+    "example": "She took a gulp of water."
+  },
+  {
+    "word": "tremble",
+    "grade": 5,
+    "meaning": "to shake slightly",
+    "example": "The leaves tremble in the wind."
+  },
+  {
+    "word": "nervous",
+    "grade": 5,
+    "meaning": "anxious or worried",
+    "example": "I feel nervous before tests."
+  },
+  {
+    "word": "vigor",
+    "grade": 5,
+    "meaning": "energy and enthusiasm",
+    "example": "He attacked the work with vigor."
+  },
+  {
+    "word": "vertical",
+    "grade": 5,
+    "meaning": "up and down",
+    "example": "Draw a vertical line."
+  },
+  {
+    "word": "morning",
+    "grade": 2,
+    "meaning": "the early part of the day",
+    "example": "I wake up in the morning."
+  },
+  {
+    "word": "wealth",
+    "grade": 5,
+    "meaning": "a large amount of money",
+    "example": "Health is better than wealth."
+  },
+  {
+    "word": "draw",
+    "grade": 2,
+    "meaning": "to make a picture",
+    "example": "I draw a picture of my dog."
+  },
+  {
+    "word": "encourage",
+    "grade": 4,
+    "meaning": "to give hope or confidence",
+    "example": "Encourage your friends."
+  },
+  {
+    "word": "convenient",
+    "grade": 3,
+    "meaning": "easy and suitable",
+    "example": "Online shopping is convenient."
+  },
+  {
+    "word": "another",
+    "grade": 1,
+    "meaning": "one more",
+    "example": "May I have another cookie?"
+  },
+  {
+    "word": "run",
+    "grade": 1,
+    "meaning": "to move quickly on foot",
+    "example": "I run in the race."
+  },
+  {
+    "word": "capture",
+    "grade": 3,
+    "meaning": "to catch or take control of",
+    "example": "The photo captures the moment."
+  },
+  {
+    "word": "solution",
+    "grade": 5,
+    "meaning": "an answer to a problem",
+    "example": "Find a solution together."
+  },
+  {
+    "word": "gross",
+    "grade": 4,
+    "meaning": "disgusting or total amount",
+    "example": "The gross weight includes packaging."
+  },
+  {
+    "word": "tame",
+    "grade": 5,
+    "meaning": "not wild",
+    "example": "The horse is tame."
+  },
+  {
+    "word": "thrust",
+    "grade": 5,
+    "meaning": "to push with force",
+    "example": "Thrust the sword forward."
+  },
+  {
+    "word": "entire",
+    "grade": 4,
+    "meaning": "whole or complete",
+    "example": "The entire class cheered."
+  },
+  {
+    "word": "rival",
+    "grade": 5,
+    "meaning": "a competitor",
+    "example": "The rival team is strong."
+  },
+  {
+    "word": "cut",
+    "grade": 2,
+    "meaning": "to separate with a sharp tool",
+    "example": "Cut the paper in half."
+  },
+  {
+    "word": "hostile",
+    "grade": 4,
+    "meaning": "unfriendly",
+    "example": "The dog seemed hostile."
+  },
+  {
+    "word": "sing",
+    "grade": 2,
+    "meaning": "to make music with voice",
+    "example": "We sing in choir."
+  },
+  {
+    "word": "remind",
+    "grade": 5,
+    "meaning": "to cause to remember",
+    "example": "Remind me to call Mom."
+  },
+  {
+    "word": "objective",
+    "grade": 5,
+    "meaning": "a goal or unbiased",
+    "example": "Our objective is to win."
+  },
+  {
+    "word": "right",
+    "grade": 1,
+    "meaning": "correct or opposite of left",
+    "example": "Turn right at the corner."
+  },
+  {
+    "word": "disease",
+    "grade": 3,
+    "meaning": "an illness",
+    "example": "Vaccines prevent disease."
+  },
+  {
+    "word": "substitute",
+    "grade": 5,
+    "meaning": "to replace",
+    "example": "Substitute milk for water."
+  },
+  {
+    "word": "gale",
+    "grade": 4,
+    "meaning": "a very strong wind",
+    "example": "The gale knocked down trees."
+  },
+  {
+    "word": "grief",
+    "grade": 4,
+    "meaning": "deep sorrow",
+    "example": "She felt grief after the loss."
+  },
+  {
+    "word": "let",
+    "grade": 2,
+    "meaning": "to allow",
+    "example": "Let me help you."
+  },
+  {
+    "word": "humid",
+    "grade": 4,
+    "meaning": "containing moisture",
+    "example": "The humid air made us sweat."
+  },
+  {
+    "word": "knew",
+    "grade": 2,
+    "meaning": "past tense of know",
+    "example": "I knew the answer."
+  },
+  {
+    "word": "worship",
+    "grade": 5,
+    "meaning": "to show reverence",
+    "example": "People worship in churches."
+  },
+  {
+    "word": "foundation",
+    "grade": 4,
+    "meaning": "the base of a building",
+    "example": "The house has a strong foundation."
+  },
+  {
+    "word": "compete",
+    "grade": 3,
+    "meaning": "to try to win",
+    "example": "The teams compete for the trophy."
+  },
+  {
+    "word": "agree",
+    "grade": 3,
+    "meaning": "to have the same opinion",
+    "example": "We agree on the plan."
+  },
+  {
+    "word": "visible",
+    "grade": 5,
+    "meaning": "able to be seen",
+    "example": "The mountain is visible."
+  },
+  {
+    "word": "frown",
+    "grade": 4,
+    "meaning": "to wrinkle the brow",
+    "example": "Don't frown; smile instead."
+  },
+  {
+    "word": "lagoon",
+    "grade": 4,
+    "meaning": "a shallow body of water",
+    "example": "We swam in the lagoon."
+  },
+  {
+    "word": "ancient",
+    "grade": 3,
+    "meaning": "very old",
+    "example": "We studied ancient Egypt."
+  },
+  {
+    "word": "are",
+    "grade": 1,
+    "meaning": "plural form of is",
+    "example": "We are happy."
+  },
+  {
+    "word": "eager",
+    "grade": 4,
+    "meaning": "wanting very much to do something",
+    "example": "The eager student raised her hand."
+  },
+  {
+    "word": "stable",
+    "grade": 5,
+    "meaning": "steady and secure",
+    "example": "The table is stable."
+  },
+  {
+    "word": "motive",
+    "grade": 5,
+    "meaning": "a reason for action",
+    "example": "What was his motive?"
+  },
+  {
+    "word": "congratulate",
+    "grade": 3,
+    "meaning": "to express praise for success",
+    "example": "I congratulate you on your win."
+  },
+  {
+    "word": "kindness",
+    "grade": 4,
+    "meaning": "the quality of being kind",
+    "example": "Show kindness to everyone."
+  },
+  {
+    "word": "wonder",
+    "grade": 5,
+    "meaning": "a feeling of amazement",
+    "example": "The Grand Canyon fills me with wonder."
+  },
+  {
+    "word": "vain",
+    "grade": 5,
+    "meaning": "too proud of oneself",
+    "example": "Don't be vain."
+  },
+  {
+    "word": "charge",
+    "grade": 3,
+    "meaning": "to ask a price",
+    "example": "They charge five dollars for parking."
+  },
+  {
+    "word": "scramble",
+    "grade": 5,
+    "meaning": "to move quickly and awkwardly",
+    "example": "Scramble to the top of the hill."
+  },
+  {
+    "word": "then",
+    "grade": 1,
+    "meaning": "after that",
+    "example": "We eat, then we play."
+  },
+  {
+    "word": "sturdy",
+    "grade": 5,
+    "meaning": "strong and solid",
+    "example": "The chair is sturdy."
+  },
+  {
+    "word": "property",
+    "grade": 5,
+    "meaning": "something owned",
+    "example": "This land is private property."
+  },
+  {
+    "word": "create",
+    "grade": 3,
+    "meaning": "to make or design",
+    "example": "Create something beautiful."
+  },
+  {
+    "word": "conduct",
+    "grade": 3,
+    "meaning": "to lead or behave",
+    "example": "Conduct the experiment carefully."
+  },
+  {
+    "word": "land",
+    "grade": 2,
+    "meaning": "the solid part of earth",
+    "example": "The plane will land soon."
+  },
+  {
+    "word": "make",
+    "grade": 1,
+    "meaning": "to create or build",
+    "example": "I can make a tower."
+  },
+  {
+    "word": "has",
+    "grade": 1,
+    "meaning": "third person of have",
+    "example": "She has a new bike."
+  },
+  {
+    "word": "lack",
+    "grade": 4,
+    "meaning": "to be without",
+    "example": "The plant died from lack of water."
+  },
+  {
+    "word": "stammer",
+    "grade": 5,
+    "meaning": "to speak with pauses",
+    "example": "He began to stammer nervously."
+  },
+  {
+    "word": "hear",
+    "grade": 2,
+    "meaning": "to perceive sound",
+    "example": "I hear music."
+  },
+  {
+    "word": "restore",
+    "grade": 5,
+    "meaning": "to bring back",
+    "example": "Restore the old painting."
+  },
+  {
+    "word": "near",
+    "grade": 2,
+    "meaning": "close by",
+    "example": "Sit near the window."
+  },
+  {
+    "word": "went",
+    "grade": 2,
+    "meaning": "past tense of go",
+    "example": "We went to the beach."
+  },
+  {
+    "word": "constant",
+    "grade": 3,
+    "meaning": "happening all the time",
+    "example": "The dog needs constant attention."
+  },
+  {
+    "word": "definite",
+    "grade": 3,
+    "meaning": "clear and certain",
+    "example": "We need a definite answer."
+  },
+  {
+    "word": "draft",
+    "grade": 3,
+    "meaning": "a first version",
+    "example": "Write a draft before the final."
+  },
+  {
+    "word": "about",
+    "grade": 1,
+    "meaning": "on the subject of",
+    "example": "Tell me about your day."
+  },
+  {
+    "word": "piece",
+    "grade": 2,
+    "meaning": "a part of something",
+    "example": "A piece of cake."
+  },
+  {
+    "word": "trudge",
+    "grade": 5,
+    "meaning": "to walk wearily",
+    "example": "We trudge through the snow."
+  }
+]

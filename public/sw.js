@@ -2,11 +2,12 @@
 // Static assets use stale-while-revalidate (fresh when online, available offline);
 // navigations fall back to the cached shell; /api/* is left to the network
 // (the app falls back to on-device saved tests in JS).
-const CACHE = "eog-shell-v6";
+const CACHE = "eog-shell-v8";
 const ASSETS = [
   "/", "/index.html", "/css/styles.css", "/manifest.webmanifest",
   "/js/app.js", "/js/api.js", "/js/runner.js", "/js/review.js", "/js/grade.js",
   "/js/diagrams.js", "/js/dict.js", "/js/timing.js", "/js/mathstrategy.js",
+  "/js/vocab.js",
   "/icons/icon-192.png", "/icons/icon-512.png", "/icons/maskable-512.png",
   "/icons/apple-touch-icon.png", "/icons/icon.svg", "/icons/favicon-32.png",
 ];

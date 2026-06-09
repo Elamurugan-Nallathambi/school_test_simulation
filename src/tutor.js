@@ -95,12 +95,16 @@ export async function explainPart(env, body) {
   const apiKey = env.OPENAI_API_KEY;
   if (!apiKey) throw new Error("OPENAI_API_KEY is not configured");
   const grade = body.grade || 3;
-  const sys = `You are a kind, simple reading helper for a Grade ${grade} child. The child highlighted a part of a passage and wants to understand it.
-In 3 to 5 short, spoken sentences (under 80 words): say what the highlighted part means in simple words, and how it fits into the whole passage (and the question, if one is given). Be warm and clear. No markdown, no lists, no emojis. Do not give away any test answer.`;
+  const sys = `You are a kind, simple reading helper for a Grade ${grade} child. The child highlighted some words in a passage and wants to understand them.
+In 3 to 5 short, spoken sentences (under 80 words):
+1. Start by repeating the exact highlighted words.
+2. Explain what those words mean in simple terms.
+3. Explain how those words fit into the rest of the passage (and the question, if one is given).
+Always name the highlighted words directly — never say "the highlighted part" or "that part". Be warm and clear. No markdown, no lists, no emojis. Do not give away any test answer.`;
   const user =
     `Whole passage:\n${String(body.passageText || "").slice(0, 4000)}\n\n` +
     (body.questionText ? `The question the child is on: ${String(body.questionText).slice(0, 400)}\n\n` : "") +
-    `The child highlighted this part: "${String(body.selection || "").slice(0, 400)}"\n\nExplain that highlighted part.`;
+    `The child highlighted these words: "${String(body.selection || "").slice(0, 400)}"\n\nExplain those highlighted words.`;
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
     body: JSON.stringify({ model: env.OPENAI_DEFINE_MODEL || "gpt-4o-mini", messages: [{ role: "system", content: sys }, { role: "user", content: user }], temperature: 0.4, max_tokens: 220 }),

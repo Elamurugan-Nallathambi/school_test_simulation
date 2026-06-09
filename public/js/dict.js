@@ -159,7 +159,7 @@ export function explainSelectionText(selection, rect) {
     else { text = decodeURIComponent(r.headers.get("X-Tutor-Text") || ""); audio = await r.arrayBuffer(); }
     if (!explEl) return;
     explEl.querySelector(".dict-body").innerHTML =
-      `<div class="expl-sel">“${esc(selection.length > 90 ? selection.slice(0, 90) + "…" : selection)}”</div>
+      `<div class="expl-sel">The highlighted part is: “${esc(selection.length > 90 ? selection.slice(0, 90) + "…" : selection)}”</div>
        <div class="dict-meaning">${esc(text)}</div>`;
     if (audio) {
       try { if (explAudio) explAudio.pause(); } catch {}

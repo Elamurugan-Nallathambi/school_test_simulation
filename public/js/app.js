@@ -5,6 +5,7 @@ import { Runner } from "./runner.js";
 import { renderResults, formatDate } from "./review.js";
 import { initDict } from "./dict.js";
 import { officialTiming } from "./timing.js";
+import { renderVocab } from "./vocab.js";
 
 const app = document.getElementById("app");
 const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -93,6 +94,7 @@ function route() {
   if (p[0] === "resume") return resumeTest(p[1]);
   if (p[0] === "name") return changeName();
   if (p[0] === "resources") return viewResources();
+  if (p[0] === "vocab") return viewVocab();
 
   if (document.body.classList.contains("in-test")) leaveTest();
 
@@ -227,9 +229,19 @@ function viewGrade() {
             ${g.ready ? "" : `<span class="soon-tag">Coming soon</span>`}
           </button>`).join("")}
       </div>
+      <div class="choice-grid" style="margin-top:18px;max-width:720px;">
+        <button class="choice-card big" id="go-vocab" style="grid-column:1/-1;flex-direction:row;justify-content:center;gap:14px;">
+          <span class="choice-emoji">📚</span>
+          <span style="text-align:left">
+            <span class="choice-label">Vocabulary Practice</span>
+            <span class="choice-desc">Learn 1,000+ words with meanings &amp; examples</span>
+          </span>
+        </button>
+      </div>
       ${state.student ? `<p class="center-link"><button class="linkish" id="go-history">📊 See ${esc(state.student)}'s results</button></p>` : ""}
     </section>`);
   app.querySelectorAll("[data-g]").forEach((b) => (b.onclick = () => go(`#/${state.region}/g${b.dataset.g}`)));
+  app.querySelector("#go-vocab").onclick = () => go("#/vocab");
   const gh = app.querySelector("#go-history"); if (gh) gh.onclick = () => go("#/history");
   wireInProgress();
 }
@@ -258,6 +270,11 @@ function viewResources() {
       <p class="center-link"><button class="linkish" id="res-back">← Back</button></p>
     </section>`);
   app.querySelector("#res-back").onclick = () => go(`#/${state.region}/g${grade}`);
+}
+
+// ── Vocabulary practice page ───────────────────────────────────────────────────
+function viewVocab() {
+  renderVocab(app, state.student, () => go(`#/${state.region}`));
 }
 
 // Resume an unfinished test directly (skips the start screen; the runner restores progress).
