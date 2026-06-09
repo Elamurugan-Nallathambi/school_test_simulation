@@ -1,0 +1,195 @@
+#!/usr/bin/env python3
+"""Build public/data/stories.json with kid-friendly stories and comprehension questions."""
+import json, os
+
+STORIES = [
+    {
+        "id": "story-g3-001",
+        "title": "The Lion and the Mouse",
+        "grade": 3,
+        "genre": "Fable",
+        "text": "One warm afternoon, a mighty lion was sleeping in the tall grass. A tiny mouse scampered across his paw and woke him up. The lion roared and caught the mouse in his giant claws.\n\n\"Please let me go!\" squeaked the mouse. \"One day I might help you.\"\n\nThe lion laughed at such a small creature promising to help a king. But he felt kind, so he opened his claws and set the mouse free.\n\nMany days later, hunters came to the jungle. They set a large rope trap and caught the lion. The lion roared and pulled, but the ropes were too strong. He was stuck.\n\nThe little mouse heard the lion's cries. She ran to the trap and began chewing the thick ropes with her sharp teeth. She chewed and chewed all through the night.\n\nAt sunrise, the last rope snapped. The lion was free! He looked down at the tiny mouse with grateful eyes.\n\n\"You saved my life,\" said the lion softly. \"I see now that even the smallest friend can be the greatest help.\"",
+        "questions": [
+            {"id": "q1", "question": "Why did the lion catch the mouse at the beginning?", "hints": ["What did the mouse do to wake the lion?"]},
+            {"id": "q2", "question": "How did the mouse help the lion escape?", "hints": ["Think about what the mouse used to break the ropes."]},
+            {"id": "q3", "question": "What lesson does this story teach?", "hints": ["Think about how the small mouse helped the big lion."]},
+        ]
+    },
+    {
+        "id": "story-g3-002",
+        "title": "Maya's Rainy Day Adventure",
+        "grade": 3,
+        "genre": "Realistic Fiction",
+        "text": "Maya looked out the window. Rain poured down in thick gray sheets. Her family had planned a picnic at the park, but now everything was cancelled. Maya's shoulders sank.\n\nHer grandmother smiled and put a warm hand on her shoulder. \"Rainy days are full of secrets,\" Grandma said. \"Put on your boots and come with me.\"\n\nMaya pulled on her yellow rain boots and followed Grandma into the backyard. Puddles dotted the grass like tiny mirrors. Grandma showed Maya how to find earthworms wiggling on the sidewalk. They watched raindrops race down the driveway.\n\nThen Grandma opened the garden shed. Inside was a small tent, blankets, and a basket of snacks. They set up camp right there in the dry shed. Rain drummed on the metal roof like a song.\n\nThey played cards by flashlight. They told silly stories. And when the rain finally slowed, they splashed through every puddle on the block, laughing until their sides hurt.\n\nThat night, Maya wrote in her journal: \"Best. Rainy Day. Ever.\"",
+        "questions": [
+            {"id": "q1", "question": "Why was Maya sad at the beginning?", "hints": ["What happened to the family's plans?"]},
+            {"id": "q2", "question": "What did Maya and Grandma do in the garden shed?", "hints": ["Name two activities they did together."]},
+            {"id": "q3", "question": "How did Maya's feelings change by the end?", "hints": ["Look at what she wrote in her journal."]},
+        ]
+    },
+    {
+        "id": "story-g3-003",
+        "title": "The Boy Who Harnessed the Wind",
+        "grade": 3,
+        "genre": "Biography",
+        "text": "William Kamkwamba lived in a small village in Malawi, a country in Africa. When William was thirteen, a terrible drought came. Crops dried up. There was no food. And worst of all, there was no electricity.\n\nWilliam loved to learn. He spent his days at the village library, reading every book he could find. One day, he found a book about windmills. The book showed how wind could spin blades and create electricity.\n\nWilliam had an idea. What if he built his own windmill? People in his village laughed. \"You are just a boy,\" they said. \"You cannot build a windmill from scraps.\"\n\nBut William did not give up. He searched the junkyard for old bicycle parts, plastic pipes, and rusted fan blades. He worked day and night in his family's yard.\n\nFinally, the windmill stood tall. When the wind blew, the blades spun. A small light bulb flickered on. William had brought electricity to his home.\n\nSoon, word spread. People came from far away to see the boy who harnessed the wind. William proved that with curiosity and hard work, even a child can change the world.",
+        "questions": [
+            {"id": "q1", "question": "What problem did William's village face?", "hints": ["Think about the weather and what stopped working."]},
+            {"id": "q2", "question": "Where did William learn about windmills?", "hints": ["He found a special book."]},
+            {"id": "q3", "question": "What materials did William use to build his windmill?", "hints": ["Think about where he found the parts."]},
+        ]
+    },
+    {
+        "id": "story-g3-004",
+        "title": "The Hidden Garden",
+        "grade": 3,
+        "genre": "Fantasy",
+        "text": "Behind Aunt Rosa's old house stood a tall wooden gate covered in vines. A rusted sign read: DO NOT ENTER. But when Lily visited for the summer, she could not stop wondering what lay beyond.\n\nOne morning, Lily pushed the gate. It creaked open. Inside was a garden she had never imagined. Flowers glowed like tiny lanterns. A fountain made of silver stones bubbled with water that sparkled like starlight. Butterflies with wings like stained glass fluttered past her nose.\n\nIn the center sat a fox with fur the color of autumn leaves. He wore a tiny pair of spectacles and held a watering can.\n\n\"You found my garden,\" said the fox. \"I have been waiting for someone kind enough to notice.\"\n\nThe fox explained that the garden was magic, but it was fading. Without a child to believe in it, the flowers would lose their glow and the fountain would run dry.\n\nLily visited every day. She watered the plants. She talked to the fox. She even brought seeds from home. By summer's end, the garden was brighter than ever. And when Lily had to leave, the fox smiled.\n\n\"A garden in your heart never fades,\" he said. \"And now you carry a piece of mine.\"",
+        "questions": [
+            {"id": "q1", "question": "What did Lily find behind the wooden gate?", "hints": ["Describe what she saw."]},
+            {"id": "q2", "question": "Why was the garden fading?", "hints": ["What did the garden need to stay alive?"]},
+            {"id": "q3", "question": "What did Lily do to help the garden?", "hints": ["Name two things she did."]},
+        ]
+    },
+    {
+        "id": "story-g3-005",
+        "title": "How the Sea Got Its Salt",
+        "grade": 3,
+        "genre": "Folktale",
+        "text": "Long ago, the sea was fresh and sweet like a mountain stream. People could dip their cups and drink straight from the shore. But they took it for granted. They wasted water. They let their boats leak. And nobody ever said thank you.\n\nThe Spirit of the Sea grew sad. She decided to teach the people a lesson. One night, she swirled her waters and whispered a spell. By morning, the sea tasted strange. It was salty.\n\nAt first, people panicked. They could not drink it. Their crops could not grow with it. They had to work hard to collect rainwater. They had to share what little fresh water they had.\n\nOver time, the people learned to value water. They fixed their boats. They built wells. And every spring, they held a festival to honor the sea.\n\nThe Spirit of the Sea smiled. She never changed the water back. But she did send gentle rains to help those who respected her gift. And so the sea stayed salty, reminding everyone that the greatest treasures deserve the greatest care.",
+        "questions": [
+            {"id": "q1", "question": "What was the sea like long ago?", "hints": ["Think about how it tasted."]},
+            {"id": "q2", "question": "Why did the Spirit of the Sea make the water salty?", "hints": ["How were the people treating the water?"]},
+            {"id": "q3", "question": "What lesson does this story teach?", "hints": ["Think about why the sea stayed salty."]},
+        ]
+    },
+    {
+        "id": "story-g4-001",
+        "title": "The Lighthouse Keeper's Daughter",
+        "grade": 4,
+        "genre": "Historical Fiction",
+        "text": "In 1887, Clara lived with her father on a rocky island off the coast of Maine. Her father was the lighthouse keeper, which meant it was his job to keep the great lamp burning every night so ships would not crash against the rocks.\n\nClara loved the lighthouse. She polished the glass lenses until they sparkled. She wound the clockwork that made the beam spin. And every evening, she helped her father climb the spiral staircase to light the lamp.\n\nOne November night, a terrible storm swept across the ocean. Rain hammered the windows. Waves crashed over the docks. And then Clara's father fell ill with a fever so high he could not leave his bed.\n\nClara was only twelve, but she knew what she had to do. She put on her father's oilskin coat. She carried the heavy lamp oil up 137 steps in the howling wind. Her hands shook as she struck the match. But the flame caught, and the great beam swept across the black sea.\n\nAll night, Clara climbed up and down the stairs. She trimmed the wick. She added oil. She kept the light burning. When the storm cleared and her father awoke, ships were safe in the harbor.\n\n\"You saved them,\" her father whispered. Clara smiled. She was a keeper now too.",
+        "questions": [
+            {"id": "q1", "question": "What was Clara's father's job?", "hints": ["Think about what he did at the lighthouse."]},
+            {"id": "q2", "question": "What problem happened during the storm?", "hints": ["What happened to Clara's father?"]},
+            {"id": "q3", "question": "How did Clara show courage?", "hints": ["Name two things she did during the storm."]},
+        ]
+    },
+    {
+        "id": "story-g4-002",
+        "title": "The Great Monarch Migration",
+        "grade": 4,
+        "genre": "Informational",
+        "text": "Every fall, millions of monarch butterflies begin one of the most amazing journeys on Earth. They flap their orange-and-black wings and take to the sky, traveling up to three thousand miles from Canada and the United States to central Mexico.\n\nBut here is the mystery: no single butterfly makes the entire round trip. The journey takes longer than a monarch's short life. So how do they find their way?\n\nScientists believe monarchs use a built-in compass. They can sense the position of the sun, even on cloudy days, using special cells in their antennae. They also seem to remember landmarks like rivers and mountains, passing this knowledge somehow to the next generation.\n\nThe most incredible part? The butterflies that arrive in Mexico have never been there before. Their grandparents made the trip. Yet they know exactly which forest to find, clustering on the same trees their ancestors used.\n\nWhen spring arrives, these same butterflies mate, lay eggs on milkweed plants, and begin the journey north. Their children and grandchildren continue the trip. It takes four or five generations to complete the full cycle.\n\nNo one fully understands how monarchs navigate such a complex path. But their journey reminds us that nature holds wonders we are still learning to understand.",
+        "questions": [
+            {"id": "q1", "question": "How far do monarch butterflies travel?", "hints": ["Look for a distance in the passage."]},
+            {"id": "q2", "question": "How do monarchs find their way to Mexico?", "hints": ["Think about two ways they navigate."]},
+            {"id": "q3", "question": "Why is the monarch migration so amazing?", "hints": ["Think about what makes the journey special."]},
+        ]
+    },
+    {
+        "id": "story-g4-003",
+        "title": "The Invention of the Popsicle",
+        "grade": 4,
+        "genre": "Informational",
+        "text": "In 1905, an eleven-year-old boy named Frank Epperson lived in San Francisco. One chilly evening, Frank mixed a soft drink powder with water in a small metal cup. He stirred it with a wooden stick and left it on his porch.\n\nThen Frank forgot about it.\n\nThat night, temperatures dropped below freezing. When Frank returned to his porch the next morning, he found something surprising. The drink had frozen solid around the stick. He pulled it out and licked it. It was delicious.\n\nFrank called it the Epsicle. He made them for his friends. But as he grew older, he forgot about his invention.\n\nYears later, in 1923, Frank was running a lemonade stand at a fireman's ball. He remembered his frozen treat and made them for the guests. Everyone loved them. Frank decided to patent his idea, but he needed a better name. His children called them Pop's Sicles, and the name stuck. The Popsicle was born.\n\nToday, over two billion Popsicles are sold every year. And it all started because a boy forgot his drink on a cold porch.",
+        "questions": [
+            {"id": "q1", "question": "How did Frank Epperson accidentally create the first Popsicle?", "hints": ["What did he forget on the porch?"]},
+            {"id": "q2", "question": "Why did the drink freeze?", "hints": ["Think about the weather that night."]},
+            {"id": "q3", "question": "How did the Popsicle get its name?", "hints": ["Who came up with the name?"]},
+        ]
+    },
+    {
+        "id": "story-g4-004",
+        "title": "The Secret of Echo Cave",
+        "grade": 4,
+        "genre": "Adventure",
+        "text": "Jamie and her cousin Theo had heard stories about Echo Cave their whole lives. The old miners said the cave could repeat any word you shouted, but sometimes it added new words that nobody had spoken. Some people claimed it was haunted. Others said it was just tricky acoustics.\n\nOn the last day of summer, Jamie and Theo decided to find out for themselves. They packed flashlights, rope, and notebooks. Their grandmother warned them to be back before dark.\n\nThe cave entrance was a jagged crack in the hillside. Cool air poured out like the cave was breathing. Inside, their flashlights caught glittering walls of crystal. Every footstep echoed six or seven times.\n\n\"Hello!\" shouted Theo.\n\n\"Hello... hello... hello...\" the cave answered.\n\nThen Jamie heard something else. A soft whisper that did not match their voices. She grabbed Theo's arm.\n\n\"Did you hear that?\"\n\nThey crept deeper. The whisper grew louder. Finally, they reached a chamber where a narrow stream ran over smooth stones. The water made a constant gurgling sound. As it bounced off the curved walls, it formed patterns that sounded almost like words.\n\n\"It's not haunted,\" Jamie laughed. \"It's the water! The moving water creates sounds that our brains try to turn into words.\"\n\nThey recorded the sounds and ran home, eager to share their discovery. Echo Cave was not magic. But it was still wonderful.",
+        "questions": [
+            {"id": "q1", "question": "What strange thing did people say about Echo Cave?", "hints": ["What did the cave do with words?"]},
+            {"id": "q2", "question": "What did Jamie and Theo find deep inside the cave?", "hints": ["What was making the whispering sound?"]},
+            {"id": "q3", "question": "How did Jamie explain the cave's whispers?", "hints": ["Think about what she discovered about the water and walls."]},
+        ]
+    },
+    {
+        "id": "story-g4-005",
+        "title": "Rosa Parks: One Seat, One Choice",
+        "grade": 4,
+        "genre": "Biography",
+        "text": "On December 1, 1955, in Montgomery, Alabama, Rosa Parks finished her long day working as a seamstress. She boarded the city bus and sat down in a seat in the middle section. In those days, Black passengers had to give up their seats to white passengers if the front of the bus was full.\n\nWhen the bus filled up, the driver ordered Rosa and three other Black passengers to move. The others stood up. Rosa stayed seated.\n\n\"Why don't you stand up?\" the driver asked.\n\n\"I don't think I should have to,\" Rosa replied quietly.\n\nShe was arrested. But her one act of courage sparked something enormous. The Black community of Montgomery organized a bus boycott. For 381 days, people walked, carpooled, and found other ways to get to work rather than ride the buses.\n\nThe boycott cost the bus company thousands of dollars. Finally, the Supreme Court ruled that bus segregation was illegal.\n\nRosa Parks did not shout. She did not hold a sign. She simply refused to give up her seat. And that one quiet choice changed the course of history.",
+        "questions": [
+            {"id": "q1", "question": "What rule did Rosa Parks refuse to follow?", "hints": ["Think about what the bus driver asked her to do."]},
+            {"id": "q2", "question": "What happened after Rosa was arrested?", "hints": ["What did the Black community do?"]},
+            {"id": "q3", "question": "Why is Rosa Parks's action important?", "hints": ["Think about what her choice led to."]},
+        ]
+    },
+    {
+        "id": "story-g5-001",
+        "title": "The Last Dodo",
+        "grade": 5,
+        "genre": "Informational",
+        "text": "Four hundred years ago, sailors on the island of Mauritius discovered a bird they had never seen before. It was large, plump, and covered in soft gray feathers. It had a hooked beak and tiny wings that could not lift it into the air. The sailors called it the dodo, from the Portuguese word for fool, because the bird seemed too clumsy and trusting to survive.\n\nThe dodo had lived peacefully on Mauritius for millions of years. With no natural predators, it had lost the ability to fly. It nested on the ground. It was not afraid of humans.\n\nThen everything changed. European ships brought rats, pigs, and monkeys to the island. These animals ate dodo eggs and destroyed their nests. Sailors hunted the birds for food. Within one hundred years of human contact, the dodo was gone.\n\nThe last confirmed sighting was in 1662. After that, the bird became a symbol of extinction. It was the first species that humans clearly documented as being wiped out by our actions.\n\nToday, scientists study dodo bones to understand what happened. They have even sequenced its DNA from remains preserved in museums. Some researchers hope that advances in science might one day bring the dodo back. But most agree that the real lesson is simpler: once a species is gone, it is gone forever. The dodo reminds us to protect the living creatures we still have.",
+        "questions": [
+            {"id": "q1", "question": "Why was the dodo unable to fly?", "hints": ["Think about what life was like on Mauritius before humans arrived."]},
+            {"id": "q2", "question": "What caused the dodo to go extinct?", "hints": ["Name three things that harmed the dodo."]},
+            {"id": "q3", "question": "What lesson does the dodo teach us?", "hints": ["Think about why the author mentions protecting living creatures."]},
+        ]
+    },
+    {
+        "id": "story-g5-002",
+        "title": "The Art Forger's Secret",
+        "grade": 5,
+        "genre": "Mystery",
+        "text": "Marisol Vargas was the youngest art restorer at the National Museum in Madrid. Her job was to clean old paintings and repair tiny cracks in the canvas. She had steady hands, sharp eyes, and a love for secrets hidden beneath the paint.\n\nOne Tuesday, a painting arrived from a wealthy collector. It was supposed to be a lost work by Diego Velázquez, a famous Spanish painter from the 1600s. The collector had paid millions for it.\n\nMarisol studied the painting under special lights. The brushwork looked right. The colors matched Velázquez's palette. But something felt wrong.\n\nShe examined the back of the canvas. There, in a corner almost too small to see, was a faint stamp. It was a maker's mark from a canvas factory in Paris. The factory had opened in 1847.\n\nVelázquez died in 1660.\n\nMarisol's heart pounded. The painting could not be real. The canvas was made almost two hundred years after the artist's death. Someone had painted a very good copy on old-looking material.\n\nShe presented her findings to the museum director. Police investigated. The collector got his money back. And Marisol learned that the smallest detail can reveal the biggest truth.\n\n\"Art speaks,\" she told her students years later. \"You just have to know how to listen.\"",
+        "questions": [
+            {"id": "q1", "question": "What was Marisol's job at the museum?", "hints": ["Think about what she did with old paintings."]},
+            {"id": "q2", "question": "How did Marisol prove the painting was a fake?", "hints": ["What did she find on the back of the canvas?"]},
+            {"id": "q3", "question": "What does Marisol mean when she says 'art speaks'?", "hints": ["Think about what the painting revealed."]},
+        ]
+    },
+    {
+        "id": "story-g5-003",
+        "title": "The Apollo 13 Rescue",
+        "grade": 5,
+        "genre": "Informational",
+        "text": "On April 11, 1970, three astronauts launched into space aboard Apollo 13. Their mission was to land on the moon. But two days into the flight, disaster struck.\n\nAn oxygen tank in the service module exploded. The blast damaged the spacecraft's power and life support systems. The astronauts heard a loud bang. Then their instruments went wild.\n\n\"Houston, we've had a problem,\" radioed astronaut Jack Swigert. Those calm words masked a terrifying truth. The crew was 200,000 miles from Earth with a crippled ship.\n\nMission Control in Houston faced an impossible puzzle. The astronauts needed to survive for four days in a tiny lunar module designed for only two people and two days. Carbon dioxide levels were rising. Batteries were dying. And the spacecraft was drifting off course.\n\nEngineers on the ground worked around the clock. They used plastic bags, duct tape, and spare parts to build a makeshift air filter. They calculated new flight paths using pencils and slide rules. They figured out how to power up the frozen command module for re-entry.\n\nOn April 17, the world held its breath. Apollo 13's heat shield entered Earth's atmosphere at 25,000 miles per hour. Parachutes opened. The capsule splashed down in the Pacific Ocean. All three astronauts were safe.\n\nApollo 13 never reached the moon. But it became one of NASA's finest hours, proving that human creativity and teamwork can overcome almost anything.",
+        "questions": [
+            {"id": "q1", "question": "What caused the emergency on Apollo 13?", "hints": ["What exploded on the spacecraft?"]},
+            {"id": "q2", "question": "What challenges did the astronauts face?", "hints": ["Name three problems they had to solve."]},
+            {"id": "q3", "question": "Why is Apollo 13 considered a success even though it did not reach the moon?", "hints": ["Think about what the mission proved."]},
+        ]
+    },
+    {
+        "id": "story-g5-004",
+        "title": "The Weaver of Dreams",
+        "grade": 5,
+        "genre": "Fantasy",
+        "text": "In the village of Loomsfield, there lived an old woman named Astra who claimed she could weave dreams into cloth. People laughed at first. But those who slept under her blankets reported the most vivid dreams of flying over oceans, speaking with animals, and visiting distant stars.\n\nA young weaver named Kira did not believe in magic. She believed in thread counts and tension and the perfect shade of indigo. She visited Astra's cottage to prove the old woman was a fraud.\n\nAstra smiled and handed Kira a loom. \"Weave your greatest fear,\" she said.\n\nKira sat down. She wove a pattern of dark storm clouds and crashing waves. It was the shipwreck that had killed her parents when she was a baby.\n\nWhen she finished, Astra draped the cloth over Kira's shoulders. That night, Kira dreamed. But the dream was different from the nightmare she expected. In her dream, she stood on a shore and watched the storm calm. She saw her parents wave goodbye, not in fear, but in peace. She woke with tears on her cheeks and a strange warmth in her chest.\n\nThe next morning, Kira returned to Astra's cottage. She did not ask for proof anymore. She asked to learn.\n\n\"Dreams are not magic,\" Astra explained. \"They are just feelings we are too afraid to feel while awake. The loom helps us see them clearly.\"\n\nKira became Astra's apprentice. And together, they wove blankets that helped an entire village understand their own hearts.",
+        "questions": [
+            {"id": "q1", "question": "Why did Kira visit Astra's cottage?", "hints": ["What did Kira want to prove?"]},
+            {"id": "q2", "question": "What happened when Kira slept under her own woven cloth?", "hints": ["How was the dream different from what she expected?"]},
+            {"id": "q3", "question": "What did Astra teach Kira about dreams?", "hints": ["Think about what Astra said dreams really are."]},
+        ]
+    },
+    {
+        "id": "story-g5-005",
+        "title": "The Code Breakers of Bletchley Park",
+        "grade": 5,
+        "genre": "Historical Fiction",
+        "text": "During World War II, the German military sent secret messages using a machine called Enigma. It scrambled letters so thoroughly that experts believed the code was unbreakable. The Germans changed the settings every day. Without knowing the daily key, the messages were just meaningless noise.\n\nIn a quiet estate called Bletchley Park, outside London, a team of mathematicians, linguists, and puzzle lovers worked in secrecy to crack Enigma. Among them was Joan Clarke, one of the few women on the team, and Alan Turing, a brilliant mathematician who believed machines could think.\n\nTuring designed a machine called the Bombe. It was the size of a room and filled with rotating drums and electrical wires. The Bombe could test thousands of possible Enigma settings in minutes. But even with the machine, the team needed clever guesses and sharp intuition to find the right answer.\n\nThe work was exhausting. The team worked in shifts around the clock. They could not tell their families what they did. They could not take credit for their victories. But their success was staggering. Historians believe that breaking Enigma shortened the war by two to four years and saved millions of lives.\n\nWhen the war ended, the Bletchley Park team disbanded. Their work remained classified for decades. Today, Bletchley Park is a museum, and visitors can see the Bombe machine that helped change history. It reminds us that intelligence, patience, and teamwork can solve problems that seem impossible.",
+        "questions": [
+            {"id": "q1", "question": "What was Enigma and why was it hard to break?", "hints": ["Think about how the machine worked and how often settings changed."]},
+            {"id": "q2", "question": "What was the Bombe and what did it do?", "hints": ["Who designed it and what was its purpose?"]},
+            {"id": "q3", "question": "Why was the work at Bletchley Park kept secret for so long?", "hints": ["Think about why they couldn't tell anyone."]},
+        ]
+    },
+]
+
+def main():
+    os.makedirs("public/data", exist_ok=True)
+    with open("public/data/stories.json", "w") as f:
+        json.dump(STORIES, f, indent=2)
+    print(f"Wrote {len(STORIES)} stories to public/data/stories.json")
+
+if __name__ == "__main__":
+    main()

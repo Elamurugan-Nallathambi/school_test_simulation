@@ -353,8 +353,8 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
 .passage.marker-on .passage-text { cursor: text; }
 .passage.marker-on .passage-text::selection, .passage.marker-on .passage-text *::selection { background: #ffe066; }
 .hl { background: #ffe066; border-radius: 4px; box-decoration-break: clone; -webkit-box-decoration-break: clone; box-shadow: 0 0 0 1px #fcd34d inset; padding: 1px 0; }
-.mark-tools { white-space: nowrap; }
-.mark-tools button { border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 12px; font-weight: 800; cursor: pointer; margin: 0 1px; vertical-align: 2px; line-height: 1; }
+.mark-tools { white-space: nowrap; -webkit-user-select: none; user-select: none; pointer-events: none; }
+.mark-tools button { border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 12px; font-weight: 800; cursor: pointer; margin: 0 1px; vertical-align: 2px; line-height: 1; pointer-events: auto; -webkit-user-select: none; user-select: none; }
 .mark-q::before { content: "?"; }
 .mark-x::before { content: "✕"; }
 .mark-q { background: #ddd6fe; color: var(--math); }
@@ -552,6 +552,40 @@ body.in-test .runner { box-shadow: 0 0 0 1px var(--line); }
 }
 
 /* ── Print (review) ──────────────────────────────────────────────────────────── */
+/* ── Reading library ─────────────────────────────────────────────────────────── */
+.read-wiz { max-width: 800px; margin: 0 auto; }
+.read-filters { display: flex; justify-content: center; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+.read-filter { border: 1.5px solid var(--line); background: #fff; border-radius: 999px; padding: 7px 16px; font-weight: 800; font-size: 14px; cursor: pointer; }
+.read-filter:hover { background: var(--bg); }
+.read-filter.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+.story-card { cursor: pointer; }
+.story-card:hover { border-color: var(--reading); transform: translateY(-2px); }
+.read-passage-wrap { background: #fffdf7; border: 2px solid var(--line); border-radius: 14px; padding: 20px 24px; margin-bottom: 18px; }
+.read-passage-wrap .passage-text { font-size: 18px; line-height: 1.85; color: #1f2937; }
+.read-passage-wrap .passage-text p { margin: 0 0 16px; }
+.read-passage-wrap .passage-toolbar { position: static; margin-bottom: 12px; }
+.read-done-bar { text-align: center; margin: 18px 0 30px; }
+.comp-form { display: flex; flex-direction: column; gap: 18px; max-width: 720px; margin: 0 auto; }
+.comp-q { background: var(--card); border: 2px solid var(--line); border-radius: 14px; padding: 20px 22px; box-shadow: var(--shadow); }
+.comp-q-num { font-size: 12px; font-weight: 800; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+.comp-q-text { font-size: 19px; font-weight: 700; margin-bottom: 10px; line-height: 1.4; }
+.comp-hint { font-size: 14px; color: #0e7490; background: #ecfeff; border-radius: 10px; padding: 10px 12px; margin-bottom: 12px; }
+.comp-input-wrap { display: flex; gap: 10px; align-items: stretch; }
+.comp-input { flex: 1; padding: 12px 14px; font-size: 16px; border: 2px solid var(--line); border-radius: 12px; font-family: inherit; resize: vertical; min-height: 80px; }
+.comp-input:focus { outline: none; border-color: var(--blue); }
+.comp-mic { border: 1.5px solid var(--line); background: #fff; border-radius: 12px; width: 48px; font-size: 22px; cursor: pointer; flex: 0 0 48px; }
+.comp-mic:hover { background: var(--blue-l); }
+.comp-mic.rec { background: var(--red); color: #fff; animation: pulse 1s infinite; }
+.comp-mic-status { font-size: 12px; color: var(--muted); margin-top: 4px; min-height: 16px; }
+.comp-feedback { max-width: 720px; margin: 0 auto 30px; background: var(--card); border: 2px solid var(--line); border-radius: 14px; padding: 24px 26px; box-shadow: var(--shadow); }
+
+@media (max-width: 560px) {
+  .read-passage-wrap { padding: 14px 16px; }
+  .read-passage-wrap .passage-text { font-size: 17px; }
+  .comp-input-wrap { flex-direction: column; }
+  .comp-mic { width: 100%; height: 44px; }
+}
+
 @media print {
   .site-head, .site-foot, .results-actions, .run-foot, .q-nav { display: none !important; }
   body { background: #fff; }

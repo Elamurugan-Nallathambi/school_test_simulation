@@ -102,7 +102,10 @@ export class Runner {
     this.renderQuestion();
     this.tick = setInterval(() => this.onTick(), 1000);
   }
-  stop() { if (this.tick) clearInterval(this.tick); }
+  stop() {
+    if (this.tick) clearInterval(this.tick);
+    if (this._selCleanups) { this._selCleanups.forEach((fn) => fn()); this._selCleanups = []; }
+  }
 
   // Pause: save progress, freeze the timer, and go home. The test stays resumable.
   pause() {
@@ -329,7 +332,25 @@ export class Runner {
         if (xb) { e.stopPropagation(); this.removeMark(passage, +xb.dataset.mid); return; }
       };
       ptext.addEventListener("mouseup", () => this.maybeHighlight(passage));
-      ptext.addEventListener("touchend", () => setTimeout(() => this.maybeHighlight(passage), 10));
+      // Mobile: longer timeout so the browser finishes its selection; also listen to
+      // selectionchange as a fallback because some mobile browsers clear getSelection()
+      // before touchend fires.
+      const onTouch = () => setTimeout(() => this.maybeHighlight(passage), 120);
+      ptext.addEventListener("touchend", onTouch);
+      // selectionchange fires whenever the user selects/deselects text.
+      let selTimer = null;
+      const onSelChange = () => {
+        if (!this.markerOn) return;
+        clearTimeout(selTimer);
+        selTimer = setTimeout(() => this.maybeHighlight(passage), 80);
+      };
+      document.addEventListener("selectionchange", onSelChange);
+      // Clean up listeners when runner stops to avoid leaks
+      this._selCleanups = this._selCleanups || [];
+      this._selCleanups.push(() => {
+        ptext.removeEventListener("touchend", onTouch);
+        document.removeEventListener("selectionchange", onSelChange);
+      });
     }
   }
   maybeHighlight(passage) {

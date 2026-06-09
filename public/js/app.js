@@ -6,6 +6,7 @@ import { renderResults, formatDate } from "./review.js";
 import { initDict } from "./dict.js";
 import { officialTiming } from "./timing.js";
 import { renderVocab } from "./vocab.js";
+import { renderLibrary } from "./reader.js";
 
 const app = document.getElementById("app");
 const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -95,6 +96,7 @@ function route() {
   if (p[0] === "name") return changeName();
   if (p[0] === "resources") return viewResources();
   if (p[0] === "vocab") return viewVocab();
+  if (p[0] === "read") return viewRead();
 
   if (document.body.classList.contains("in-test")) leaveTest();
 
@@ -230,8 +232,15 @@ function viewGrade() {
           </button>`).join("")}
       </div>
       <div class="choice-grid" style="margin-top:18px;max-width:720px;">
+        <button class="choice-card big" id="go-read" style="grid-column:1/-1;flex-direction:row;justify-content:center;gap:14px;">
+          <span class="choice-emoji">📖</span>
+          <span style="text-align:left">
+            <span class="choice-label">Story Library</span>
+            <span class="choice-desc">Read stories &amp; answer comprehension questions</span>
+          </span>
+        </button>
         <button class="choice-card big" id="go-vocab" style="grid-column:1/-1;flex-direction:row;justify-content:center;gap:14px;">
-          <span class="choice-emoji">📚</span>
+          <span class="choice-emoji">📝</span>
           <span style="text-align:left">
             <span class="choice-label">Vocabulary Practice</span>
             <span class="choice-desc">Learn 1,000+ words with meanings &amp; examples</span>
@@ -241,6 +250,7 @@ function viewGrade() {
       ${state.student ? `<p class="center-link"><button class="linkish" id="go-history">📊 See ${esc(state.student)}'s results</button></p>` : ""}
     </section>`);
   app.querySelectorAll("[data-g]").forEach((b) => (b.onclick = () => go(`#/${state.region}/g${b.dataset.g}`)));
+  app.querySelector("#go-read").onclick = () => go("#/read");
   app.querySelector("#go-vocab").onclick = () => go("#/vocab");
   const gh = app.querySelector("#go-history"); if (gh) gh.onclick = () => go("#/history");
   wireInProgress();
@@ -275,6 +285,11 @@ function viewResources() {
 // ── Vocabulary practice page ───────────────────────────────────────────────────
 function viewVocab() {
   renderVocab(app, state.student, () => go(`#/${state.region}`));
+}
+
+// ── Reading library page ───────────────────────────────────────────────────────
+function viewRead() {
+  renderLibrary(app, state.student, () => go(`#/${state.region}`));
 }
 
 // Resume an unfinished test directly (skips the start screen; the runner restores progress).
